@@ -1,0 +1,11 @@
+@mixin grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $sm-space;
+  padding: 0 $reg-space;
+
+  @media screen and (max-width: map-get($breakpoints, "md")) {
+    display: flex;
+    flex-direction: column;
+  }
+}

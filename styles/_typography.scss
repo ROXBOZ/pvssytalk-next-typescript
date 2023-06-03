@@ -1,0 +1,91 @@
+* {
+  font-family: $font-regular;
+  font-weight: 500;
+}
+
+a {
+  font-family: $font-bold;
+  text-decoration: none;
+  color: $txt-color;
+  border-bottom: $border-solid $quarterary;
+  &:hover {
+    border-bottom: none;
+  }
+}
+
+u {
+  text-decoration: none;
+  border-bottom: $border-solid $quarterary;
+}
+
+sup {
+  font-size: 60%;
+}
+
+.logo {
+  white-space: nowrap;
+  font-family: $font-logo;
+}
+
+/*-----Ratio Scale-----*/
+
+$type-ratios: (
+  "majorThird": 1.25,
+  "perfectFourth": 1.333,
+  "augmentedFourth": 1.414,
+  "perfectFifth": 1.5,
+  "goldenRatio": 1.618,
+);
+
+@function type-ratio($key) {
+  @return map-get($type-ratios, $key);
+}
+
+$type-base-size: 1rem;
+$type-size-ratio: type-ratio("augmentedFourth");
+$type-levels: 4, 3, 2, 1;
+$type-styles: ();
+$level-size: $type-base-size;
+@each $level in $type-levels {
+  $level-size: $level-size * $type-size-ratio;
+  $type-styles: map-merge($type-styles, (#{"h"}$level: $level-size));
+
+  h#{$level},
+  .h#{$level} {
+    font-size: $level-size;
+    line-height: calc(2px + 2ex + 2px);
+    font-weight: 500;
+    margin-top: calc(#{$level-size}* 1.25);
+    margin-bottom: calc(#{$level-size}/ 2);
+
+    .logo {
+      text-transform: lowercase !important;
+
+      &:first-letter {
+        text-transform: lowercase !important;
+      }
+    }
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
+
+    @if ($type-size-ratio > 1.2) {
+      $level-unitless: $level-size / ($level-size * 0 + 1);
+      $fluid-reduction: if($level-size > 4, 0.5, 0.33);
+      $fluid-min: $level-unitless - ($fluid-reduction * $level-unitless);
+      $fluid-min: if($fluid-min > $type-base-size, $fluid-min, 1);
+      $fluid-scaler: ($level-unitless - $fluid-min) + 4vw;
+
+      font-size: clamp(
+        #{$fluid-min}rem,
+        #{$fluid-scaler} + 0.5rem,
+        #{$level-size}
+      );
+    }
+  }
+}
+
+@function type-style($key) {
+  @return map-get($type-styles, $key);
+}

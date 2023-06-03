@@ -1,0 +1,21 @@
+header {
+  @include grid;
+  padding: $reg-space;
+  background-color: yellow;
+
+  .logo {
+    color: $primary;
+    font-size: 150%;
+  }
+
+  nav {
+    grid-column: #{$grid-last-thirds};
+    display: flex;
+    justify-content: space-between;
+    a {
+      font-family: $font-regular;
+      text-transform: lowercase;
+      border-bottom: none;
+    }
+  }
+}

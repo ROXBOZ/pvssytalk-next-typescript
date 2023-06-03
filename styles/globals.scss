@@ -1,0 +1,19 @@
+@import "vars";
+@import "mixins";
+@import "nav";
+@import "typography";
+@import "accessibility";
+@import "header";
+@import "footer";
+@import "tagline";
+@import "marquee";
+@import "filters";
+
+body {
+  margin: 0;
+  background-color: $bg-color;
+  color: $txt-color;
+  * {
+    transition: $animation-transition;
+  }
+}
