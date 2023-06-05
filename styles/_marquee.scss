@@ -1,3 +1,8 @@
 .marquee {
   background-color: $tierary;
+  padding: $sm-space 0;
+  font-size: $bigger-text;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: $lg-space;
 }

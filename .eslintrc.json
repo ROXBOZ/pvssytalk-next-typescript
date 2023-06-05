@@ -1,3 +1,8 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "next/babel",
+    "@sanity/eslint-config-studio",
+    "@babel/preset-env"
+  ]
 }

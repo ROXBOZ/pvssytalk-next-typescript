@@ -1,6 +1,6 @@
 .filters-container {
   @include grid;
-  background-color: yellow;
+  padding-top: 0;
 
   .filters-title {
     grid-column: #{$grid-second-half};
@@ -26,12 +26,16 @@
       border-radius: $border-radius;
       text-transform: lowercase;
       height: fit-content;
-
+      // .active = selected
       &.active,
       &:hover {
         cursor: url("../assets/images/cursor-pointer.svg"), auto;
         background-color: $quarterary;
         border-color: $quarterary;
+      }
+      // active = clicked
+      &:active {
+        background-color: darken($quarterary, 5%);
       }
     }
 

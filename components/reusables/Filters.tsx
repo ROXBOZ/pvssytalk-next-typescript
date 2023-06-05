@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-export const pains = [
-  "Sur quelle douleur souhaites-tu t’informer ?",
+type FilterOption = string;
+
+export const pains: FilterOption[] = [
+  "Sur quelle douleur souhaites-tu t’informer ?",
   "vaginisme",
   "endométriose",
   "syndrome des ovaires polykystiques",
@@ -12,16 +14,16 @@ export const pains = [
   "vulvodynie",
 ];
 
-export const bodyParts = [
-  "Dans quelles régions de ta vulve ou dans quelles circonstances as-tu mal ?",
+export const bodyParts: FilterOption[] = [
+  "Dans quelles régions de ta vulve ou dans quelles circonstances as-tu mal ?",
   "vulve",
   "vagin",
   "utérus",
   "règles",
 ];
 
-export const cantons = [
-  "Dans quelle région es-tu ?",
+export const cantons: FilterOption[] = [
+  "Dans quelle région es-tu ?",
   "genève",
   "vaud",
   "neuchâtel",
@@ -30,8 +32,8 @@ export const cantons = [
   "valais",
 ];
 
-export const mediaCategories = [
-  "Par quel type de médias souhaites-tu t’informer ?",
+export const mediaCategories: FilterOption[] = [
+  "Par quel type de médias souhaites-tu t’informer ?",
   "livres/BD",
   "articles",
   "podcasts",
@@ -40,15 +42,19 @@ export const mediaCategories = [
 ];
 
 type Props = {
-  filterOptions: string[];
+  filterOptions: FilterOption[];
 };
 
 const Filters = ({ filterOptions }: Props) => {
-  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  const [selectedFilter, setSelectedFilter] = useState<FilterOption | null>(
+    null
+  );
 
-  const handleFilter = (filter: string) => {
+  const handleFilter = (filter: FilterOption) => {
     setSelectedFilter((prevFilter) => (prevFilter === filter ? null : filter));
   };
+
+  console.log("selectedFilter :", selectedFilter);
 
   const handleReset = () => {
     setSelectedFilter(null);
@@ -58,7 +64,7 @@ const Filters = ({ filterOptions }: Props) => {
     <div className="filters-container">
       <p className="filters-title">{filterOptions[0]}</p>
       <div className="filters-content">
-        {filterOptions.slice(1).map((filter: string, index: number) => (
+        {filterOptions.slice(1).map((filter: FilterOption, index: number) => (
           <span
             key={index}
             className={`filter ${selectedFilter === filter ? "active" : ""}`}
@@ -68,7 +74,7 @@ const Filters = ({ filterOptions }: Props) => {
           </span>
         ))}
         <span className="reset" onClick={handleReset}>
-          ✕ reset
+          ✕ reset
         </span>
       </div>
     </div>

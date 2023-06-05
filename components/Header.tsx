@@ -6,9 +6,11 @@ type Props = {};
 const Header = (props: Props) => {
   return (
     <header>
-      <span className="logo">
-        pvssy talk <sup>beta</sup>
-      </span>
+      <Link href="/" className="borderless">
+        <span className="logo">
+          pvssy talk <sup>beta</sup>
+        </span>
+      </Link>
       <nav>
         <Link href="/">Accueil</Link>
         <Link href="agenda">Agenda</Link>

@@ -1,4 +1,26 @@
 .nav-directory {
   display: flex;
   flex-direction: column;
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: $bigger-text * 1.5;
+    padding-top: $sm-space;
+    font-family: $font-regular;
+    transition: $animation-transition;
+
+    &:after {
+      content: " ↗";
+    }
+
+    &:hover {
+      //animation !
+      &:after {
+        transition: $animation-transition;
+        transform: rotate(45deg);
+      }
+    }
+  }
 }

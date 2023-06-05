@@ -10,7 +10,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Header />
       <Breadcrumbs />
-      <Component {...pageProps} />
+      <div>
+        <Component {...pageProps} />
+      </div>
       <Footer />
       <CookieBanner />
     </>

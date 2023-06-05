@@ -1,5 +1,6 @@
 @import "vars";
 @import "mixins";
+@import "animation";
 @import "nav";
 @import "typography";
 @import "accessibility";
@@ -8,12 +9,14 @@
 @import "tagline";
 @import "marquee";
 @import "filters";
+@import "grid-layouts";
 
 body {
   margin: 0;
   background-color: $bg-color;
   color: $txt-color;
   * {
+    font-feature-settings: "ss11" !important;
     transition: $animation-transition;
   }
 }

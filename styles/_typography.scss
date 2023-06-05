@@ -1,6 +1,7 @@
 * {
   font-family: $font-regular;
   font-weight: 500;
+  line-height: $line-height;
 }
 
 a {
@@ -8,8 +9,11 @@ a {
   text-decoration: none;
   color: $txt-color;
   border-bottom: $border-solid $quarterary;
-  &:hover {
+  &.borderless {
     border-bottom: none;
+  }
+  &:hover {
+    border-bottom-color: transparent;
   }
 }
 
@@ -25,6 +29,10 @@ sup {
 .logo {
   white-space: nowrap;
   font-family: $font-logo;
+}
+
+.bigger-text {
+  font-size: $bigger-text;
 }
 
 /*-----Ratio Scale-----*/
