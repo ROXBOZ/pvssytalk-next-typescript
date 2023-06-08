@@ -4,6 +4,10 @@
   line-height: $line-height;
 }
 
+h1 {
+  font-family: $font-logo;
+}
+
 a {
   font-family: $font-bold;
   text-decoration: none;

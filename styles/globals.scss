@@ -11,6 +11,8 @@
 @import "filters";
 @import "grid-layouts";
 @import "breadcrumbs";
+@import "cookie-banner";
+@import "images";
 
 body {
   margin: 0;
@@ -20,6 +22,10 @@ body {
     font-feature-settings: "ss11" !important;
     transition: $animation-transition;
   }
+}
+
+main {
+  padding: 0 $reg-space;
 }
 
 .acronym {

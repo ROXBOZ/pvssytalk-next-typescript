@@ -1,34 +1,30 @@
 import React from "react";
 import { PainDetail } from "../../../types";
-import { client } from "../../../utils/sanity/client";
+import { client, urlFor } from "../../../utils/sanity/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-const Pain = ({ pain }: { pain: PainDetail }) => {
+const medicalArticle = ({ pain }: { pain: PainDetail }) => {
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        <div>
-          <h1>{pain.name}</h1>
-        </div>
-        <div>
-          <nav className="nav-directory">
-            <a href={`${pain.name.toLowerCase()}/medical`}>Approche médicale</a>
-            <a href={`${pain.name.toLowerCase()}/sexologie`}>
-              Approche sexologique
-            </a>
-            <a href={`${pain.name.toLowerCase()}/glossaire`}>Glossaire</a>
-            <a href={`${pain.name.toLowerCase()}/exercices`}>Exercices</a>
-            <a href={`${pain.name.toLowerCase()}/medias`}>
-              Littérature et médias
-            </a>
-          </nav>
-        </div>
+    <main>
+      <h1>{pain.name}</h1>
+      <img
+        className="pain-illu-cover"
+        src={urlFor(pain.mainImage).url()}
+        alt={pain.name}
+      />
+      <div className="article">
+        {pain.medicalApproach.def && (
+          <>
+            <h2>Définition</h2>
+            <p>{pain.medicalApproach.def[0].children[0].text}</p>
+          </>
+        )}
       </div>
-    </div>
+    </main>
   );
 };
 
-export default Pain;
+export default medicalArticle;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {

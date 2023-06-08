@@ -1,6 +1,6 @@
 header {
   @include grid;
-  padding: $reg-space;
+  padding: $sm-space $reg-space;
   align-items: baseline;
   background-color: yellow;
 

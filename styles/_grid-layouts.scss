@@ -1,4 +1,6 @@
 .double-column-containers-group {
+  background-color: yellow;
+  //page douleur
   .double-column-container:first-child {
     border-top: none !important;
     padding-top: 0;
@@ -8,7 +10,6 @@
 .double-column-container {
   @include grid;
   align-items: first baseline;
-  border-top: $border-solid $secondary;
   margin: 0 $reg-space;
   border-top: $border-solid $secondary;
   padding-top: $reg-space;

@@ -55,6 +55,10 @@
   line-height: 1.5;
 }
 
+h1 {
+  font-family: "ESRebond";
+}
+
 a {
   font-family: "ESKlarheit-Bold";
   text-decoration: none;
@@ -210,7 +214,7 @@ header {
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
   padding: 2rem 0 8rem;
-  padding: 2rem;
+  padding: 1rem 2rem;
   align-items: baseline;
   background-color: yellow;
 }
@@ -374,6 +378,9 @@ footer .footer-content nav a {
   border: 1px solid #f3f3e7;
 }
 
+.double-column-containers-group {
+  background-color: yellow;
+}
 .double-column-containers-group .double-column-container:first-child {
   border-top: none !important;
   padding-top: 0;
@@ -385,7 +392,6 @@ footer .footer-content nav a {
   gap: 1rem;
   padding: 2rem 0 8rem;
   align-items: first baseline;
-  border-top: 1px solid #dcb4ff;
   margin: 0 2rem;
   border-top: 1px solid #dcb4ff;
   padding-top: 2rem;
@@ -452,6 +458,7 @@ footer .footer-content nav a {
   padding: 0.5rem 2rem;
   color: #4d4d28;
   font-size: 80%;
+  background-color: yellow;
 }
 .breadcrumbs .crumb a {
   white-space: nowrap;
@@ -474,6 +481,25 @@ footer .footer-content nav a {
     overflow-x: auto;
   }
 }
+.cookie-banner {
+  background-color: yellow;
+}
+
+.pain-illu-cover {
+  width: 100%;
+  border-radius: 10px;
+  aspect-ratio: 16/5;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: cover;
+     object-position: cover;
+}
+@media screen and (max-width: 576px) {
+  .pain-illu-cover {
+    aspect-ratio: 3/2;
+  }
+}
+
 body {
   margin: 0;
   background-color: #fefdf4;
@@ -482,6 +508,10 @@ body {
 body * {
   font-feature-settings: "ss11" !important;
   transition: 0.2s ease-in;
+}
+
+main {
+  padding: 0 2rem;
 }
 
 .acronym {

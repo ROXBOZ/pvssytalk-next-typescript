@@ -8,5 +8,6 @@
   import React, { useState } from "react";
 
   // "@sanity/image-url": "^1.0.2",
-  "next-sanity-image": "^6.0.0",
+  "npm install --save next-sanity-image
+  ": "^6.0.0",
   //NOTE getStaticProps (SEO) ou getServerSideProps (auth)

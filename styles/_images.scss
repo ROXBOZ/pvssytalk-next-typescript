@@ -1,0 +1,11 @@
+.pain-illu-cover {
+  width: 100%;
+  border-radius: $border-radius-soft;
+  aspect-ratio: 16/5;
+  object-fit: cover;
+  object-position: cover;
+
+  @media screen and (max-width: map-get($breakpoints, "sm")) {
+    aspect-ratio: 3/2;
+  }
+}
