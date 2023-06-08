@@ -1,4 +1,4 @@
-.double-column-containers {
+.double-column-containers-group {
   .double-column-container:first-child {
     border-top: none !important;
     padding-top: 0;
@@ -31,10 +31,35 @@
   }
 }
 
-.pain-card-container {
-  background-color: lightblue;
+.pain-cards-container {
+  @include grid;
+  margin: 0 $reg-space;
 }
 
 .pain-card {
-  background-color: antiquewhite;
+  grid-column: span 3;
+  width: 100%;
+  color: $txt-color;
+  border-bottom: none;
+
+  a {
+    border-bottom: 0;
+  }
+
+  .pain-card-content {
+    overflow: hidden;
+    background-color: $bg-color;
+    border: $border-solid $secondary;
+    border-radius: $border-radius-soft;
+    min-height: 100%;
+
+    h3 {
+      margin: $reg-space;
+      font-family: $font-regular;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
 }

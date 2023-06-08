@@ -1,62 +1,19 @@
 import type { NextPage } from "next";
 import Tagline from "../components/Tagline";
 import Marquee from "../components/Marquee";
-import PainGrid from "./douleurs";
 import Ressources from "./ressources";
 import Start from "./start";
-import { sanityClient } from "../utils/sanity/client";
+import PainGrid from "./douleurs";
+import { pains } from "../components/reusables/Filters";
+import { PainDetails } from "../types";
+import { client } from "../utils/sanity/client";
 
-type Pain = {
-  _id: string;
-  name: string;
-  mainImage: {
-    hotspot: boolean;
-    caption: string;
-    alternativeText: string;
-  };
-  medicalApproach: {
-    def: string;
-    schema1: {
-      hotspot: boolean;
-      caption: string;
-      alternativeText: string;
-    };
-    schema2: {
-      hotspot: boolean;
-      caption: string;
-      alternativeText: string;
-    };
-    diag: string;
-    sympt: string;
-    why: string;
-    auto: string;
-    pros: string;
-  };
-  sexologicApproach: {
-    body: string;
-    norms: string;
-    everydayLife: string;
-    libido: string;
-    charge: string;
-    consent: string;
-    mental: string;
-    parenthood: string;
-    checkup: string;
-    treatments: string;
-    pleasure: string;
-  };
-};
-
-type HomeProps = {
-  pains: Pain[];
-};
-
-const Home: NextPage<HomeProps> = ({ pains }) => {
+const Home = ({ pains }: { pains: PainDetails }) => {
   return (
     <div>
       <Tagline />
       <Marquee />
-      <div className="double-column-containers">
+      <div className="double-column-containers-group">
         <div className="double-column-container">
           <div>
             <h2>Avoir mal n’est pas normal</h2>
@@ -85,12 +42,12 @@ const Home: NextPage<HomeProps> = ({ pains }) => {
 
 export default Home;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   try {
-    const pains: Pain[] = await sanityClient.fetch(
+    const pains: PainDetails = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
-
+    console.log("pains :", pains);
     return {
       props: { pains },
     };

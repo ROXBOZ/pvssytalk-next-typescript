@@ -1,10 +1,12 @@
 - link sanity to frontend
 - Next.js fetching !!
   from Sanity GROQ / GraphQL
-  differnet
-
+  difference
 - import mongoDB to sanity
+- GraphQL?
+- CSS
+  import React, { useState } from "react";
 
-– GraphQL?
-
-– CSS
+  // "@sanity/image-url": "^1.0.2",
+  "next-sanity-image": "^6.0.0",
+  //NOTE getStaticProps (SEO) ou getServerSideProps (auth)

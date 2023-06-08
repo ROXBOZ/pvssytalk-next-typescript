@@ -24,16 +24,16 @@ export const bodyParts: FilterOption[] = [
 
 export const cantons: FilterOption[] = [
   "Dans quelle région es-tu ?",
-  "genève",
-  "vaud",
-  "neuchâtel",
-  "jura",
-  "fribourg",
-  "valais",
+  "Genève",
+  "Vaud",
+  "Neuchâtel",
+  "Jura",
+  "Fribourg",
+  "Valais",
 ];
 
 export const mediaCategories: FilterOption[] = [
-  "Par quel type de médias souhaites-tu t’informer ?",
+  "Par quel type de médias aimes-tu t’informer ?",
   "livres/BD",
   "articles",
   "podcasts",
@@ -53,8 +53,6 @@ const Filters = ({ filterOptions }: Props) => {
   const handleFilter = (filter: FilterOption) => {
     setSelectedFilter((prevFilter) => (prevFilter === filter ? null : filter));
   };
-
-  console.log("selectedFilter :", selectedFilter);
 
   const handleReset = () => {
     setSelectedFilter(null);

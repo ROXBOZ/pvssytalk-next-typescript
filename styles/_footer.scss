@@ -1,4 +1,42 @@
 footer {
   background-color: $secondary;
-  background-color: yellow;
+  padding: $reg-space;
+
+  .footer-content {
+    @include grid;
+    p {
+      margin-top: 0;
+      font-size: 150%;
+      grid-column: #{$grid-first-half};
+      color: $txt-color;
+    }
+
+    nav {
+      grid-column: #{$grid-last-third};
+      display: flex;
+      gap: $lg-space;
+      text-transform: lowercase;
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+      }
+
+      li {
+        list-style: none;
+        flex-basis: 50%;
+        flex-direction: row;
+        height: fit-content;
+      }
+
+      a {
+        height: fit-content;
+        width: fit-content;
+        display: inline-block;
+        font-family: $font-regular !important;
+        border-color: $bg-color;
+      }
+    }
+  }
 }

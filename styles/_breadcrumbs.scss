@@ -1,0 +1,33 @@
+.breadcrumbs {
+  display: flex;
+  padding: $xs-space $reg-space;
+  color: $txt-color;
+  font-size: $smaller-text;
+
+  .crumb {
+    a {
+      white-space: nowrap;
+    }
+    span {
+      white-space: nowrap;
+    }
+    &:after {
+      content: "→";
+      padding: 0 $xs-space;
+      color: $txt-color;
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: map-get($breakpoints, "lg")) {
+  .breadcrumbs {
+    margin-top: 15vh;
+    overflow-x: auto;
+  }
+}

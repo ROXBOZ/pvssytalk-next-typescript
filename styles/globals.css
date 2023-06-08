@@ -237,7 +237,52 @@ header nav a {
 
 footer {
   background-color: #dcb4ff;
-  background-color: yellow;
+  padding: 2rem;
+}
+footer .footer-content {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  padding: 2rem 0 8rem;
+}
+@media screen and (max-width: 768px) {
+  footer .footer-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+footer .footer-content p {
+  margin-top: 0;
+  font-size: 150%;
+  grid-column: 1/7;
+  color: #4d4d28;
+}
+footer .footer-content nav {
+  grid-column: 10/13;
+  display: flex;
+  gap: 4rem;
+  text-transform: lowercase;
+}
+footer .footer-content nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+footer .footer-content nav li {
+  list-style: none;
+  flex-basis: 50%;
+  flex-direction: row;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+footer .footer-content nav a {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+  font-family: "ESKlarheit-Book" !important;
+  border-color: #fefdf4;
 }
 
 .tagline {
@@ -251,6 +296,8 @@ footer {
 .tagline * {
   color: #38284d;
   text-align: center;
+  max-width: 60%;
+  line-height: 1;
 }
 
 .marquee {
@@ -268,6 +315,7 @@ footer {
   gap: 1rem;
   padding: 2rem 0 8rem;
   padding-top: 0;
+  padding-bottom: 0;
 }
 @media screen and (max-width: 768px) {
   .filters-container {
@@ -326,7 +374,7 @@ footer {
   border: 1px solid #f3f3e7;
 }
 
-.double-column-containers .double-column-container:first-child {
+.double-column-containers-group .double-column-container:first-child {
   border-top: none !important;
   padding-top: 0;
 }
@@ -361,14 +409,71 @@ footer {
   width: 100%;
 }
 
-.pain-card-container {
-  background-color: lightblue;
+.pain-cards-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  padding: 2rem 0 8rem;
+  margin: 0 2rem;
+}
+@media screen and (max-width: 768px) {
+  .pain-cards-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .pain-card {
-  background-color: antiquewhite;
+  grid-column: span 3;
+  width: 100%;
+  color: #4d4d28;
+  border-bottom: none;
+}
+.pain-card a {
+  border-bottom: 0;
+}
+.pain-card .pain-card-content {
+  overflow: hidden;
+  background-color: #fefdf4;
+  border: 1px solid #dcb4ff;
+  border-radius: 10px;
+  min-height: 100%;
+}
+.pain-card .pain-card-content h3 {
+  margin: 2rem;
+  font-family: "ESKlarheit-Book";
+}
+.pain-card .pain-card-content img {
+  width: 100%;
 }
 
+.breadcrumbs {
+  display: flex;
+  padding: 0.5rem 2rem;
+  color: #4d4d28;
+  font-size: 80%;
+}
+.breadcrumbs .crumb a {
+  white-space: nowrap;
+}
+.breadcrumbs .crumb span {
+  white-space: nowrap;
+}
+.breadcrumbs .crumb:after {
+  content: "→";
+  padding: 0 0.5rem;
+  color: #4d4d28;
+}
+.breadcrumbs .crumb:last-child:after {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .breadcrumbs {
+    margin-top: 15vh;
+    overflow-x: auto;
+  }
+}
 body {
   margin: 0;
   background-color: #fefdf4;
@@ -377,4 +482,8 @@ body {
 body * {
   font-feature-settings: "ss11" !important;
   transition: 0.2s ease-in;
+}
+
+.acronym {
+  text-transform: capitalize;
 }/*# sourceMappingURL=globals.css.map */

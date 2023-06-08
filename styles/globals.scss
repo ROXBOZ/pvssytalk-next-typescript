@@ -10,6 +10,7 @@
 @import "marquee";
 @import "filters";
 @import "grid-layouts";
+@import "breadcrumbs";
 
 body {
   margin: 0;
@@ -19,4 +20,8 @@ body {
     font-feature-settings: "ss11" !important;
     transition: $animation-transition;
   }
+}
+
+.acronym {
+  text-transform: capitalize;
 }

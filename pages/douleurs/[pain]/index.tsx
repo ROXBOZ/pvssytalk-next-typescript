@@ -2,8 +2,8 @@ import React from "react";
 
 type Props = {};
 
-const index = (props: Props) => {
-  return <div>Pain</div>;
+const PainArticle = () => {
+  <p>coucou</p>;
 };
 
-export default index;
+export default PainArticle;
