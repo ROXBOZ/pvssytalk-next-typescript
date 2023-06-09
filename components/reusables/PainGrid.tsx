@@ -3,10 +3,10 @@ import Filters, { bodyParts } from "./Filters";
 import Link from "next/link";
 import { client, urlFor } from "../../utils/sanity/client";
 import { PainDetail } from "../../types";
+import Image from "next/image";
 
 const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
   const sortedPains = pains.sort((a, b) => a.name.localeCompare(b.name));
-
   return (
     <>
       <div className="double-column-container">
@@ -28,10 +28,19 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
         {sortedPains &&
           sortedPains.map((pain) => (
             <div className="pain-card" key={pain._id}>
-              <Link href={`/douleurs/${pain.slug.current}/medical`} passHref>
+              <Link
+                href={`/douleurs/${pain.slug.current}/approche-medicale`}
+                passHref
+              >
                 <div className="pain-card-content">
                   {pain.mainImage && (
-                    <img src={urlFor(pain.mainImage).url()} alt={pain.name} />
+                    <Image
+                      className="pain-card-image"
+                      src={urlFor(pain.mainImage.asset._ref).url()}
+                      width={500}
+                      height={300}
+                      alt={pain.name}
+                    />
                   )}
                   <h3 className="bigger-text">{pain.name}</h3>
                 </div>
@@ -44,7 +53,6 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
 };
 
 export default PainGrid;
-
 export const getStaticProps = async () => {
   try {
     const pains: PainDetail[] = await client.fetch(

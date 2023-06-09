@@ -5,20 +5,29 @@ export interface PainDetail {
     current: string;
   };
   mainImage: {
-    hotspot: boolean;
-    caption: string;
-    alternativeText: string;
-    url: string;
+    asset: {
+      _ref: string;
+    };
+
+    hotspot: {
+      x: number;
+      y: number;
+    };
   };
   medicalApproach: {
     def: string;
-    schema1: {
-      hotspot: boolean;
-      caption: string;
-      alternativeText: string;
-    };
-    schema2: {
-      hotspot: boolean;
+    schemas: {
+      schemaImage: {
+        asset: {
+          _ref: string;
+          caption: string;
+          alternativeText: string;
+        };
+      };
+      hotspot: {
+        x: number;
+        y: number;
+      };
       caption: string;
       alternativeText: string;
     };

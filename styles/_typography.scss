@@ -6,6 +6,7 @@
 
 h1 {
   font-family: $font-logo;
+  grid-column: #{$grid-fullwidth};
 }
 
 a {
@@ -37,6 +38,15 @@ sup {
 
 .bigger-text {
   font-size: $bigger-text;
+}
+
+strong {
+  font-family: $font-bold;
+}
+
+p,
+li {
+  max-width: $chperline;
 }
 
 /*-----Ratio Scale-----*/

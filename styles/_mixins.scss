@@ -9,3 +9,17 @@
     flex-direction: column;
   }
 }
+
+@mixin arrowRotate {
+  &:after {
+    content: " ↗";
+  }
+
+  &:hover {
+    //animation !
+    &:after {
+      transition: $animation-transition;
+      transform: rotate(45deg);
+    }
+  }
+}

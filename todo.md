@@ -11,3 +11,10 @@
   "npm install --save next-sanity-image
   ": "^6.0.0",
   //NOTE getStaticProps (SEO) ou getServerSideProps (auth)
+
+  mainImage: {
+  hotspot: boolean;
+  caption: string;
+  alternativeText: string;
+  url: string;
+  };

@@ -1,11 +1,38 @@
 .pain-illu-cover {
-  width: 100%;
+  width: 100% !important;
+  height: auto !important;
   border-radius: $border-radius-soft;
   aspect-ratio: 16/5;
   object-fit: cover;
   object-position: cover;
+  grid-column: #{$grid-fullwidth};
 
   @media screen and (max-width: map-get($breakpoints, "sm")) {
     aspect-ratio: 3/2;
   }
+}
+
+.pain-card-image {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.schemas-container {
+  margin-top: $lg-space;
+  display: flex;
+  max-width: $chperline;
+  justify-items: center;
+  // border: $border-solid $secondary;
+  // border-radius: $border-radius-soft;
+  padding: $reg-space 0;
+}
+
+.schema {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.schema-caption {
+  text-align: center;
+  font-size: $smaller-text;
 }

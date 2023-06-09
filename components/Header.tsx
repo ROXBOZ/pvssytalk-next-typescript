@@ -12,7 +12,7 @@ const Header = (props: Props) => {
         </span>
       </Link>
       <nav>
-        <Link href="/">Accueil</Link>
+        <Link href="/#start">Par où commencer</Link>
         <Link href="agenda">Agenda</Link>
         <Link href="faire-un-don">Faire un don</Link>
         <Link href="devenir-membre">Devenir membre</Link>

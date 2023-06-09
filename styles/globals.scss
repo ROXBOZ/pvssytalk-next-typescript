@@ -9,9 +9,8 @@
 @import "tagline";
 @import "marquee";
 @import "filters";
-@import "grid-layouts";
+@import "grid";
 @import "breadcrumbs";
-@import "cookie-banner";
 @import "images";
 
 body {
@@ -30,4 +29,12 @@ main {
 
 .acronym {
   text-transform: capitalize;
+}
+
+.colored {
+  color: $primary;
+}
+
+.nowrap {
+  white-space: nowrap !important;
 }

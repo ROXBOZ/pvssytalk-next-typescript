@@ -49,6 +49,25 @@
   transform: rotate(45deg);
 }
 
+.pain-nav {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1/4;
+}
+.pain-nav a {
+  font-family: "ESKlarheit-Book";
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.pain-nav a:after {
+  content: " ↗";
+}
+.pain-nav a:hover:after {
+  transition: 0.2s ease-in;
+  transform: rotate(45deg);
+}
+
 * {
   font-family: "ESKlarheit-Book";
   font-weight: 500;
@@ -57,6 +76,7 @@
 
 h1 {
   font-family: "ESRebond";
+  grid-column: 1/13;
 }
 
 a {
@@ -88,6 +108,15 @@ sup {
 
 .bigger-text {
   font-size: 120%;
+}
+
+strong {
+  font-family: "ESKlarheit-Bold";
+}
+
+p,
+li {
+  max-width: 70ch;
 }
 
 /*-----Ratio Scale-----*/
@@ -257,7 +286,7 @@ footer .footer-content {
 }
 footer .footer-content p {
   margin-top: 0;
-  font-size: 150%;
+  font-size: 300%;
   grid-column: 1/7;
   color: #4d4d28;
 }
@@ -286,7 +315,10 @@ footer .footer-content nav a {
   width: fit-content;
   display: inline-block;
   font-family: "ESKlarheit-Book" !important;
-  border-color: #fefdf4;
+  border-bottom: 1px solid #fefdf4;
+}
+footer .footer-content nav a:hover {
+  border-bottom: none;
 }
 
 .tagline {
@@ -453,9 +485,30 @@ footer .footer-content nav a {
   width: 100%;
 }
 
+.pain-article {
+  grid-column: 4/13;
+  max-width: 100%;
+  border-left: 1px solid #f3f3e7;
+  padding-left: 2rem;
+}
+
+.pain-nav-article-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  padding: 2rem 0 8rem;
+  align-items: baseline;
+}
+@media screen and (max-width: 768px) {
+  .pain-nav-article-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .breadcrumbs {
   display: flex;
-  padding: 0.5rem 2rem;
+  padding: 4rem 2rem 8rem;
   color: #4d4d28;
   font-size: 80%;
   background-color: yellow;
@@ -481,23 +534,44 @@ footer .footer-content nav a {
     overflow-x: auto;
   }
 }
-.cookie-banner {
-  background-color: yellow;
-}
-
 .pain-illu-cover {
-  width: 100%;
+  width: 100% !important;
+  height: auto !important;
   border-radius: 10px;
   aspect-ratio: 16/5;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: cover;
      object-position: cover;
+  grid-column: 1/13;
 }
 @media screen and (max-width: 576px) {
   .pain-illu-cover {
     aspect-ratio: 3/2;
   }
+}
+
+.pain-card-image {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.schemas-container {
+  margin-top: 4rem;
+  display: flex;
+  max-width: 70ch;
+  justify-items: center;
+  padding: 2rem 0;
+}
+
+.schema {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.schema-caption {
+  text-align: center;
+  font-size: 80%;
 }
 
 body {
@@ -516,4 +590,12 @@ main {
 
 .acronym {
   text-transform: capitalize;
+}
+
+.colored {
+  color: #fd4a36;
+}
+
+.nowrap {
+  white-space: nowrap !important;
 }/*# sourceMappingURL=globals.css.map */

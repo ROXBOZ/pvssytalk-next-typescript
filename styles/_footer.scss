@@ -6,7 +6,7 @@ footer {
     @include grid;
     p {
       margin-top: 0;
-      font-size: 150%;
+      font-size: 300%;
       grid-column: #{$grid-first-half};
       color: $txt-color;
     }
@@ -35,7 +35,10 @@ footer {
         width: fit-content;
         display: inline-block;
         font-family: $font-regular !important;
-        border-color: $bg-color;
+        border-bottom: $border-solid $bg-color;
+        &:hover {
+          border-bottom: none;
+        }
       }
     }
   }

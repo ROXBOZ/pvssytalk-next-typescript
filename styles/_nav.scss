@@ -10,17 +10,21 @@
     padding-top: $sm-space;
     font-family: $font-regular;
     transition: $animation-transition;
+    @include arrowRotate;
+  }
+}
 
-    &:after {
-      content: " ↗";
-    }
+.pain-nav {
+  display: flex;
+  flex-direction: column;
+  // background-color: yellow;
+  grid-column: #{$grid-first-third};
 
-    &:hover {
-      //animation !
-      &:after {
-        transition: $animation-transition;
-        transform: rotate(45deg);
-      }
-    }
+  a {
+    font-family: $font-regular;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    @include arrowRotate;
   }
 }

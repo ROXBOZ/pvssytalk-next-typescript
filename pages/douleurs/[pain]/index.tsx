@@ -4,24 +4,26 @@ import { client } from "../../../utils/sanity/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 const Pain = ({ pain }: { pain: PainDetail }) => {
+  const painSlug = pain.name.toLowerCase();
+
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        <div>
-          <h1>{pain.name}</h1>
-        </div>
-        <div>
-          <nav className="nav-directory">
-            <a href={`${pain.name.toLowerCase()}/medical`}>Approche médicale</a>
-            <a href={`${pain.name.toLowerCase()}/sexologie`}>
-              Approche sexologique
-            </a>
-            <a href={`${pain.name.toLowerCase()}/glossaire`}>Glossaire</a>
-            <a href={`${pain.name.toLowerCase()}/exercices`}>Exercices</a>
-            <a href={`${pain.name.toLowerCase()}/medias`}>
-              Littérature et médias
-            </a>
-          </nav>
+    <div>
+      <div className="double-column-containers-group">
+        <div className="double-column-container">
+          <div>
+            <h1>{pain.name}</h1>
+          </div>
+          <div>
+            <nav className="nav-directory">
+              <a href={`${painSlug}/approche-medicale`}>Approche médicale</a>
+              <a href={`${painSlug}/approche-sexologique`}>
+                Approche sexologique
+              </a>
+              <a href={`${painSlug}/glossaire`}>Glossaire</a>
+              <a href={`${painSlug}/exercices`}>Exercices</a>
+              <a href={`${painSlug}/medias`}>Littérature et médias</a>
+            </nav>
+          </div>
         </div>
       </div>
     </div>

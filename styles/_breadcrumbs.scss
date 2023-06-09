@@ -1,6 +1,6 @@
 .breadcrumbs {
   display: flex;
-  padding: $xs-space $reg-space;
+  padding: $lg-space $reg-space $lg-space * 2;
   color: $txt-color;
   font-size: $smaller-text;
   background-color: yellow;

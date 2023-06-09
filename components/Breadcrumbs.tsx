@@ -4,24 +4,24 @@ import Link from "next/link";
 export default function Breadcrumbs() {
   const router = useRouter();
 
-  let currentLink = "";
-
   if (router.pathname === "/") {
     return null;
   }
 
-  const crumbs = router.pathname
+  const crumbs = router.asPath
     .split("/")
     .filter((crumb) => crumb !== "")
     .map((crumb, index, arr) => {
-      currentLink += `/${crumb}`;
+      const currentLink = `/${arr.slice(0, index + 1).join("/")}`;
+      const decodedCrumb = decodeURIComponent(crumb);
+
       const isLastCrumb = index === arr.length - 1;
 
       return (
         <div className="crumb" key={crumb}>
           {isLastCrumb ? (
             <span>
-              {crumb
+              {decodedCrumb
                 .replaceAll("%C3%A9", "é")
                 .replaceAll("%20", " ")
                 .replaceAll("%C3%A8", "è")
@@ -31,7 +31,7 @@ export default function Breadcrumbs() {
             </span>
           ) : (
             <Link href={currentLink}>
-              {crumb
+              {decodedCrumb
                 .replaceAll("%C3%A9", "é")
                 .replaceAll("%20", " ")
                 .replaceAll("%C3%A8", "è")
@@ -44,5 +44,17 @@ export default function Breadcrumbs() {
       );
     });
 
-  return <div className="breadcrumbs">{crumbs}</div>;
+  const homeLink = "/#start";
+  const homeCrumb = (
+    <div className="crumb" key="home">
+      <Link href={homeLink}>Par où commencer</Link>
+    </div>
+  );
+
+  return (
+    <div className="breadcrumbs">
+      {homeCrumb}
+      {crumbs}
+    </div>
+  );
 }

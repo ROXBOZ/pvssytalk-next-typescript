@@ -5,7 +5,7 @@ type Props = {};
 
 const Start = (props: Props) => {
   return (
-    <div className="double-column-container">
+    <div id="start" className="double-column-container">
       <div>
         <h2>Par où commencer</h2>
       </div>

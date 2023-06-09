@@ -1,3 +1,4 @@
+// double-column containers
 .double-column-containers-group {
   background-color: yellow;
   //page douleur
@@ -32,6 +33,7 @@
   }
 }
 
+// pain cards
 .pain-cards-container {
   @include grid;
   margin: 0 $reg-space;
@@ -63,4 +65,18 @@
       width: 100%;
     }
   }
+}
+
+// articles
+.pain-article {
+  // background-color: yellow;
+  grid-column: #{$grid-last-thirds};
+  max-width: 100%;
+  border-left: $border-solid $txt-color-lighten;
+  padding-left: $reg-space;
+}
+
+.pain-nav-article-container {
+  @include grid;
+  align-items: baseline;
 }
