@@ -1,0 +1,17 @@
+button {
+  border: $border-solid $secondary;
+  padding: $padding-btn;
+  background-color: transparent;
+  border-radius: $border-radius;
+  cursor: pointer;
+  color: $txt-color;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $secondary;
+  }
+  &:active {
+    background-color: darken($secondary, 5%);
+    border-color: darken($secondary, 5%);
+  }
+}
