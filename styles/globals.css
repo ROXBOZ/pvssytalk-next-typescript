@@ -53,6 +53,7 @@
   display: flex;
   flex-direction: column;
   grid-column: 1/4;
+  padding-right: 2rem;
 }
 .pain-nav a {
   font-family: "ESKlarheit-Book";
@@ -119,6 +120,10 @@ strong {
   font-family: "ESKlarheit-Bold";
 }
 
+em {
+  font-family: "ESKlarheit-Book-Italic";
+}
+
 p,
 li {
   max-width: 70ch;
@@ -128,7 +133,7 @@ li {
 h4,
 .h4 {
   font-size: 1.414rem;
-  line-height: calc(2px + 2ex + 2px);
+  line-height: 0.75;
   font-weight: 500;
   margin-top: calc(1.414rem* 1.25);
   margin-bottom: calc(1.414rem/ 2);
@@ -154,7 +159,7 @@ h4:first-letter,
 h3,
 .h3 {
   font-size: 1.999396rem;
-  line-height: calc(2px + 2ex + 2px);
+  line-height: 0.75;
   font-weight: 500;
   margin-top: calc(1.999396rem* 1.25);
   margin-bottom: calc(1.999396rem/ 2);
@@ -180,7 +185,7 @@ h3:first-letter,
 h2,
 .h2 {
   font-size: 2.827145944rem;
-  line-height: calc(2px + 2ex + 2px);
+  line-height: 0.75;
   font-weight: 500;
   margin-top: calc(2.827145944rem* 1.25);
   margin-bottom: calc(2.827145944rem/ 2);
@@ -206,7 +211,7 @@ h2:first-letter,
 h1,
 .h1 {
   font-size: 3.9975843648rem;
-  line-height: calc(2px + 2ex + 2px);
+  line-height: 0.75;
   font-weight: 500;
   margin-top: calc(3.9975843648rem* 1.25);
   margin-bottom: calc(3.9975843648rem/ 2);
@@ -250,7 +255,6 @@ header {
   padding: 2rem 0 8rem;
   padding: 1rem 2rem;
   align-items: baseline;
-  background-color: yellow;
 }
 @media screen and (max-width: 768px) {
   header {
@@ -415,9 +419,6 @@ footer .footer-content nav a:hover {
   border: 1px solid #f3f3e7;
 }
 
-.double-column-containers-group {
-  background-color: yellow;
-}
 .double-column-containers-group .double-column-container:first-child {
   border-top: none !important;
   padding-top: 0;
@@ -444,7 +445,6 @@ footer .footer-content nav a:hover {
 }
 .double-column-container div:first-child {
   grid-column: 1/7;
-  max-width: 40ch;
 }
 .double-column-container div:nth-child(2) {
   margin: 0;
@@ -495,6 +495,10 @@ footer .footer-content nav a:hover {
   max-width: 100%;
   border-left: 1px solid #f3f3e7;
   padding-left: 2rem;
+  margin-top: 4rem;
+}
+.pain-article h2:first-child {
+  margin-top: 0;
 }
 
 .pain-nav-article-container {
@@ -516,7 +520,6 @@ footer .footer-content nav a:hover {
   padding: 4rem 2rem 8rem;
   color: #4d4d28;
   font-size: 80%;
-  background-color: yellow;
 }
 .breadcrumbs .crumb a {
   white-space: nowrap;
@@ -543,7 +546,7 @@ footer .footer-content nav a:hover {
   width: 100% !important;
   height: auto !important;
   border-radius: 10px;
-  aspect-ratio: 16/5;
+  aspect-ratio: 16/7;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: cover;

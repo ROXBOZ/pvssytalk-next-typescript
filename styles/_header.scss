@@ -2,7 +2,6 @@ header {
   @include grid;
   padding: $sm-space $reg-space;
   align-items: baseline;
-  background-color: yellow;
 
   .logo {
     color: $primary;

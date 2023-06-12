@@ -3,7 +3,7 @@ import React from "react";
 type Props = {};
 
 const Exercises = (props: Props) => {
-  return <div>Exercices douleur</div>;
+  return <>Exercices</>;
 };
 
 export default Exercises;

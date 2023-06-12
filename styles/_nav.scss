@@ -17,8 +17,8 @@
 .pain-nav {
   display: flex;
   flex-direction: column;
-  // background-color: yellow;
   grid-column: #{$grid-first-third};
+  padding-right: $reg-space;
 
   a {
     font-family: $font-regular;

@@ -1,7 +1,5 @@
 // double-column containers
 .double-column-containers-group {
-  background-color: yellow;
-  //page douleur
   .double-column-container:first-child {
     border-top: none !important;
     padding-top: 0;
@@ -22,7 +20,7 @@
 
     &:first-child {
       grid-column: #{$grid-first-half};
-      max-width: 40ch;
+      // max-width: 40ch;
     }
 
     &:nth-child(2) {
@@ -69,11 +67,14 @@
 
 // articles
 .pain-article {
-  // background-color: yellow;
   grid-column: #{$grid-last-thirds};
   max-width: 100%;
   border-left: $border-solid $txt-color-lighten;
   padding-left: $reg-space;
+  margin-top: $lg-space;
+  h2:first-child {
+    margin-top: 0;
+  }
 }
 
 .pain-nav-article-container {

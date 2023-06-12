@@ -28,10 +28,7 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
         {sortedPains &&
           sortedPains.map((pain) => (
             <div className="pain-card" key={pain._id}>
-              <Link
-                href={`/douleurs/${pain.slug.current}/approche-medicale`}
-                passHref
-              >
+              <Link href={`/douleurs/${pain.slug.current}`} passHref>
                 <div className="pain-card-content">
                   {pain.mainImage && (
                     <Image

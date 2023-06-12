@@ -49,6 +49,10 @@ strong {
   font-family: $font-bold;
 }
 
+em {
+  font-family: $font-regular-italic;
+}
+
 p,
 li {
   max-width: $chperline;
@@ -80,7 +84,8 @@ $level-size: $type-base-size;
   h#{$level},
   .h#{$level} {
     font-size: $level-size;
-    line-height: calc(2px + 2ex + 2px);
+    // line-height: calc(2px + 2ex + 2px);
+    line-height: 0.75;
     font-weight: 500;
     margin-top: calc(#{$level-size}* 1.25);
     margin-bottom: calc(#{$level-size}/ 2);

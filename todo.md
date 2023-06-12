@@ -1,3 +1,5 @@
+## to do
+
 - link sanity to frontend
 - Next.js fetching !!
   from Sanity GROQ / GraphQL
@@ -7,14 +9,10 @@
 - CSS
   import React, { useState } from "react";
 
-  // "@sanity/image-url": "^1.0.2",
-  "npm install --save next-sanity-image
-  ": "^6.0.0",
-  //NOTE getStaticProps (SEO) ou getServerSideProps (auth)
+  ## to remember
 
-  mainImage: {
-  hotspot: boolean;
-  caption: string;
-  alternativeText: string;
-  url: string;
-  };
+- getStaticProps (SEO) ou getServerSideProps (auth)
+
+NEXT_PUBLIC_SANITY_PROJECT_ID=jk2z8dh4
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_TOKEN=skFPVk1TrPr93gT2iH1rv5zdd2tqjsNfGe9JWNoQMvKUhR1V2CQNwI2ifh7EBSQ0gyygFhyae67xRFFfZfmSgwAwCx3gRMNr2LOuXFUhhwgyn8RMAeleEodRgqDR0oVtORH2ACo73xLw7rOEM6xfzCLRpjtkI58Jp6hyEZmENemwsNBA7wEa
