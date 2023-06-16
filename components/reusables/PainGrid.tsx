@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Filters, { bodyParts } from "./Filters";
 import Link from "next/link";
 import { client, urlFor } from "../../utils/sanity/client";
@@ -7,6 +7,12 @@ import Image from "next/image";
 
 const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
   const sortedPains = pains.sort((a, b) => a.name.localeCompare(b.name));
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
+  const filteredPains = sortedPains.filter((pain) =>
+    selectedFilter ? pain.filters.includes(selectedFilter) : true
+  );
+
   return (
     <>
       <div className="double-column-container">
@@ -19,41 +25,44 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
             sexologique pour te donner une vision complète. Tu trouveras
             également des ressources pour aller plus loin.
           </p>
+          <Filters
+            filterOptions={bodyParts}
+            selectedFilter={selectedFilter}
+            setSelectedFilter={setSelectedFilter}
+          />
         </div>
       </div>
 
-      <Filters filterOptions={bodyParts} />
-
       <div className="pain-cards-container">
-        {sortedPains &&
-          sortedPains.map((pain) => (
-            <div className="pain-card" key={pain._id}>
-              <Link href={`/douleurs/${pain.slug.current}`} passHref>
-                <div className="pain-card-content">
-                  {pain.mainImage && (
-                    <Image
-                      className="pain-card-image"
-                      src={urlFor(pain.mainImage.asset._ref).url()}
-                      width={500}
-                      height={300}
-                      alt={pain.name}
-                    />
-                  )}
-                  <h3 className="bigger-text">{pain.name}</h3>
-                </div>
-              </Link>
-            </div>
-          ))}
+        {filteredPains.map((pain) => (
+          <div className="pain-card" key={pain._id}>
+            <Link href={`/douleurs/${pain.slug.current}`} passHref>
+              <div className="pain-card-content">
+                {pain.mainImage && (
+                  <Image
+                    className="pain-card-image"
+                    src={urlFor(pain.mainImage.asset._ref).url()}
+                    width={500}
+                    height={300}
+                    alt={pain.name}
+                  />
+                )}
+                <h3 className="bigger-text">{pain.name}</h3>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </>
   );
 };
 
 export default PainGrid;
+
 export const getStaticProps = async () => {
   try {
     const pains: PainDetail[] = await client.fetch(
-      '*[_type == "pain" && !(_id in path("drafts.**"))] {...}'
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'
     );
     return {
       props: { pains },

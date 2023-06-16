@@ -13,6 +13,8 @@
 @import "breadcrumbs";
 @import "images";
 @import "button";
+@import "media";
+@import "exercise";
 
 body {
   margin: 0;
@@ -38,4 +40,7 @@ main {
 
 .nowrap {
   white-space: nowrap !important;
+}
+.logo {
+  font-family: $font-logo;
 }

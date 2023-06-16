@@ -35,7 +35,7 @@ footer {
         width: fit-content;
         display: inline-block;
         font-family: $font-regular !important;
-        border-bottom: $border-solid $bg-color;
+        border-bottom: $border-solid $txt-color;
         &:hover {
           border-bottom: none;
         }

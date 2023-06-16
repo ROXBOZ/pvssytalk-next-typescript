@@ -4,15 +4,10 @@ import { PainNavProps } from "../types";
 
 const PainNav = ({ pain, isMed, setIsMed }: PainNavProps) => {
   let currentURL;
-  const [isCopied, setIsCopied] = useState<boolean>(false);
-  const [isSticky, setIsSticky] = useState(false);
-  const [menuTop] = useState(0);
+  const [, setIsCopied] = useState<boolean>(false);
 
   if (typeof window !== "undefined") {
     currentURL = window.location.pathname;
-    console.log("currentURL:", currentURL);
-  } else {
-    console.log("Window object is not available.");
   }
 
   const switchArticle = () => {
@@ -27,27 +22,12 @@ const PainNav = ({ pain, isMed, setIsMed }: PainNavProps) => {
     }, 1500);
   };
 
-  useLayoutEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const isScrolledPast = scrollY > menuTop;
-      setIsSticky(isScrolledPast);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [menuTop]);
-
   return (
     <>
-      <nav className={`pain-nav  ${isSticky ? "sticky" : ""}`}>
+      <nav className="pain-nav">
         <h3>
-          Approche{" "}
           <span className="colored">
-            {isMed ? <span>médicale</span> : <span>sexologique</span>}
+            {isMed ? <span>Médical</span> : <span>Sexologie</span>}
           </span>
         </h3>
         <button onClick={switchArticle}>
@@ -55,9 +35,9 @@ const PainNav = ({ pain, isMed, setIsMed }: PainNavProps) => {
           {isMed ? <span>sexologique</span> : <span>médicale</span>}
         </button>
         <h3>Ressources</h3>
-        <a href="glossaire">Glossaire</a>
-        <a href="exercices">Exercices</a>
-        <a href="medias">Littérature et médias</a>
+        <a href={`${pain.slug.current}/glossaire`}>Glossaire</a>
+        <a href={`${pain.slug.current}/exercices`}>Exercices</a>
+        <a href={`${pain.slug.current}/medias`}>Littérature et médias</a>
         <h3>Partager</h3>
         <a style={{ cursor: "pointer" }} onClick={copyUrlToClipboard}>
           Copier l’URL

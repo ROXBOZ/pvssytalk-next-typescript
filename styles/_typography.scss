@@ -47,6 +47,9 @@ sup {
 
 strong {
   font-family: $font-bold;
+  em {
+    font-family: $font-bold-italic;
+  }
 }
 
 em {
@@ -84,8 +87,10 @@ $level-size: $type-base-size;
   h#{$level},
   .h#{$level} {
     font-size: $level-size;
-    // line-height: calc(2px + 2ex + 2px);
-    line-height: 0.75;
+    line-height: calc(2px + 2ex + 2px);
+    .colored {
+      line-height: calc(2px + 2ex + 2px);
+    }
     font-weight: 500;
     margin-top: calc(#{$level-size}* 1.25);
     margin-bottom: calc(#{$level-size}/ 2);

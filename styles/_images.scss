@@ -6,6 +6,7 @@
   object-fit: cover;
   object-position: cover;
   grid-column: #{$grid-fullwidth};
+  background-color: $secondary;
 
   @media screen and (max-width: map-get($breakpoints, "sm")) {
     aspect-ratio: 3/2;
@@ -21,10 +22,8 @@
   margin-top: $lg-space;
   display: flex;
   max-width: $chperline;
-  justify-items: center;
-  // border: $border-solid $secondary;
-  // border-radius: $border-radius-soft;
-  padding: $reg-space 0;
+  justify-content: space-between;
+  gap: $lg-space;
 }
 
 .schema {

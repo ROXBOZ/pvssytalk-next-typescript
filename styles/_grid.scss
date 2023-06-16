@@ -14,13 +14,8 @@
   padding-top: $reg-space;
 
   div {
-    * {
-      margin: 0;
-    }
-
     &:first-child {
-      grid-column: #{$grid-first-half};
-      // max-width: 40ch;
+      grid-column: 1/6;
     }
 
     &:nth-child(2) {

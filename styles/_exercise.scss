@@ -1,0 +1,44 @@
+.exercise:not(:first-child) {
+  margin-top: $reg-space !important;
+  border-top: $border-solid $secondary;
+  padding-top: $sm-space;
+}
+
+.exercise-intro {
+  margin: $reg-space 0 !important;
+}
+
+.exercice-title-button-container,
+.step-title-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  * {
+    margin: 0;
+    height: fit-content;
+    width: fit-content;
+  }
+}
+
+.step-title-button-container {
+  margin-top: $sm-space;
+}
+
+.exercise-steps {
+  ul {
+    padding-left: 0;
+    li {
+      list-style: none;
+      padding: $sm-space 0;
+      border-bottom: $border-solid $secondary;
+    }
+  }
+}
+
+ol {
+  padding-left: 0;
+  li {
+    padding: $sm-space 0 0;
+  }
+}

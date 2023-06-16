@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { PainDetail, Schema } from "../../../types";
+import { GlossaryDetail, PainDetail, Schema } from "../../../types";
 import { client, urlFor } from "../../../utils/sanity/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
@@ -12,7 +12,7 @@ const articlePain = ({ pain }: { pain: PainDetail }) => {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };
   const [isMed, setIsMed] = useState<boolean>(true);
-  console.log("pain :", pain);
+
   return (
     <main>
       <h1>{pain.name}</h1>
@@ -220,7 +220,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   }
 };
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const { pain } = params!;
@@ -228,18 +227,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       `*[_type == "pain" && slug.current == $currentSlug][0]`,
       { currentSlug: pain }
     );
+    const fetchedGlossary: GlossaryDetail | null = await client.fetch(
+      `*[_type == "glossary"]`
+    );
 
-    if (!fetchedPain) {
+    if (!fetchedPain || !fetchedGlossary) {
       return {
         notFound: true,
       };
     }
 
     return {
-      props: { pain: fetchedPain },
+      props: { pain: fetchedPain, glossary: fetchedGlossary },
     };
   } catch (error) {
-    console.error("Error fetching pain:", error);
+    console.error("Error fetching glossary:", error);
     return {
       props: { pain: null },
     };

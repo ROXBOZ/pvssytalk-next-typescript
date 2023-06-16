@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 type FilterOption = string;
 
@@ -32,24 +32,25 @@ export const cantons: FilterOption[] = [
   "Valais",
 ];
 
-export const mediaCategories: FilterOption[] = [
-  "Par quel type de médias aimes-tu t’informer ?",
-  "livres/BD",
-  "articles",
-  "podcasts",
-  "vidéos/films",
-  "porno éthique et féministe",
+export const mediaCategories: { title: string; value: string }[] = [
+  { title: "Livres/BD", value: "livres" },
+  { title: "Articles", value: "articles" },
+  { title: "Podcasts", value: "podcasts" },
+  { title: "Vidéos/Films", value: "videos" },
+  { title: "Porno éthique et féministe", value: "porno" },
 ];
 
 type Props = {
   filterOptions: FilterOption[];
+  selectedFilter: FilterOption | null;
+  setSelectedFilter: React.Dispatch<React.SetStateAction<FilterOption | null>>;
 };
 
-const Filters = ({ filterOptions }: Props) => {
-  const [selectedFilter, setSelectedFilter] = useState<FilterOption | null>(
-    null
-  );
-
+const Filters = ({
+  filterOptions,
+  selectedFilter,
+  setSelectedFilter,
+}: Props) => {
   const handleFilter = (filter: FilterOption) => {
     setSelectedFilter((prevFilter) => (prevFilter === filter ? null : filter));
   };
