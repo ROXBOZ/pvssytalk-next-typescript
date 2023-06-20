@@ -1,7 +1,7 @@
 import Tagline from "../components/Tagline";
 import Marquee from "../components/Marquee";
 import Ressources from "./ressources";
-import Start from "./start";
+import Start from "./commencer";
 import PainGrid from "./douleurs";
 import { PainDetails } from "../types";
 import { client } from "../utils/sanity/client";

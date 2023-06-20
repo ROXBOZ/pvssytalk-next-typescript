@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Filters, { bodyParts } from "./Filters";
 import Link from "next/link";
 import { client, urlFor } from "../../utils/sanity/client";
@@ -13,17 +13,33 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
     selectedFilter ? pain.filters.includes(selectedFilter) : true
   );
 
+  const [currentURL, setCurrentURL] = useState("");
+
+  useEffect(() => {
+    setCurrentURL(window.location.href);
+  }, []);
+
   return (
     <>
       <div className="double-column-container">
         <div>
-          <h2>Mieux connaître ses douleurs</h2>
+          {currentURL.endsWith("douleurs") ? (
+            <>
+              <p style={{ backgroundColor: "yellow" }}>
+                should not have a border-top
+              </p>
+              <h1>Douleurs</h1>
+            </>
+          ) : (
+            <h2>Mieux connaître ses douleurs</h2>
+          )}
         </div>
         <div>
           <p className="bigger-text">
             Chaque douleur est traitée avec une approche à la fois médicale et
             sexologique pour te donner une vision complète. Tu trouveras
-            également des ressources pour aller plus loin.
+            également des <a href="/ressources">ressources</a> pour aller plus
+            loin.
           </p>
           <Filters
             filterOptions={bodyParts}

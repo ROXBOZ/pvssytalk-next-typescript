@@ -4,7 +4,7 @@ import { client, urlFor } from "../../../utils/sanity/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
-import PainNav from "../../../components/painNav";
+import PainDashboard from "../../../components/painDashboard";
 
 const articlePain = ({ pain }: { pain: PainDetail }) => {
   const imgHotspot = pain.mainImage.hotspot;
@@ -36,7 +36,7 @@ const articlePain = ({ pain }: { pain: PainDetail }) => {
       )}
 
       <div className="pain-nav-article-container">
-        <PainNav pain={pain} isMed={isMed} setIsMed={setIsMed} />
+        <PainDashboard pain={pain} isMed={isMed} setIsMed={setIsMed} />
 
         <div className="pain-article">
           {isMed ? (
@@ -90,7 +90,7 @@ const articlePain = ({ pain }: { pain: PainDetail }) => {
               )}
               {pain.medicalApproach?.why && (
                 <>
-                  <h2>Pourquoi ça m’arrive ?</h2>
+                  <h2>Pourquoi ça m’arrive ?</h2>
                   <PortableText value={pain.medicalApproach.why as any} />
                 </>
               )}

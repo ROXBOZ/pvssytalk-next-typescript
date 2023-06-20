@@ -7,7 +7,7 @@ const Header = (props: Props) => {
   return (
     <header>
       <Link href="/" className="borderless">
-        <span className="logo">
+        <span className="logo nowrap">
           pvssy talk <sup>beta</sup>
         </span>
       </Link>

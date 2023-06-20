@@ -1,66 +1,62 @@
-import React, { useLayoutEffect, useState } from "react";
-import { ourUrl } from "../utils/urls";
+import React, { useEffect, useState } from "react";
 import { PainNavProps } from "../types";
 
-const PainNav = ({ pain, isMed, setIsMed }: PainNavProps) => {
-  let currentURL;
-  const [, setIsCopied] = useState<boolean>(false);
+const painNav = ({ pain }: PainNavProps) => {
+  const [currentURL, setCurrentURL] = useState("");
 
-  if (typeof window !== "undefined") {
-    currentURL = window.location.pathname;
-  }
-
-  const switchArticle = () => {
-    setIsMed((prevIsMed) => !prevIsMed);
-  };
-
-  const copyUrlToClipboard = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 1500);
-  };
+  useEffect(() => {
+    setCurrentURL(window.location.href);
+  }, []);
 
   return (
-    <>
-      <nav className="pain-nav">
-        <h3>
-          <span className="colored">
-            {isMed ? <span>Médical</span> : <span>Sexologie</span>}
+    <nav className="nav-directory">
+      {!currentURL.endsWith("glossaire") && (
+        <a href="glossaire">
+          <span>
+            Glossaire <span className="colored">{pain.name.toLowerCase()}</span>
           </span>
-        </h3>
-        <button onClick={switchArticle}>
-          Voir l’approche{" "}
-          {isMed ? <span>sexologique</span> : <span>médicale</span>}
-        </button>
-        <h3>Ressources</h3>
-        <a href={`${pain.slug.current}/glossaire`}>Glossaire</a>
-        <a href={`${pain.slug.current}/exercices`}>Exercices</a>
-        <a href={`${pain.slug.current}/medias`}>Littérature et médias</a>
-        <h3>Partager</h3>
-        <a style={{ cursor: "pointer" }} onClick={copyUrlToClipboard}>
-          Copier l’URL
         </a>
-        <a href={`whatsapp://send?text=${ourUrl}${currentURL}`}>WhatsApp</a>
-        <a href={`https://telegram.me/share/url?url=${ourUrl}${currentURL}`}>
-          Telegram
+      )}
+      {!currentURL.endsWith("exercices") && (
+        <a href="exercices">
+          <span>
+            Exercices <span className="colored">{pain.name.toLowerCase()}</span>
+          </span>
         </a>
-        <a href="mailto:?subject=Un%20lien%20qui%20pourrait%20t%E2%80%99int%C3%A9resser%20sur%20pvssy-talk.org&body=%C3%87a%20devrait%20t%E2%80%99int%C3%A9resser%20%3A%20https%3A%2F%2Fwww.pvssy-talk.org%2Fdouleurs%2Fvaginisme">
-          Email
+      )}
+      {!currentURL.endsWith("medias") && (
+        <a href="medias">
+          <span>
+            Médias <span className="colored">{pain.name.toLowerCase()}</span>
+          </span>
         </a>
-
-        <p className="smaller-text">
-          Rédaction :{" "}
-          {isMed ? (
-            <em className="colored">MedSexplain</em>
-          ) : (
-            <em className="colored">Sexopraxis</em>
-          )}
-        </p>
-      </nav>
-    </>
+      )}
+      {!currentURL.endsWith("annuaire") && (
+        <a href="annuaire">
+          <span>
+            Annuaire <span className="colored">{pain.name.toLowerCase()}</span>
+          </span>
+        </a>
+      )}
+      {currentURL.endsWith("glossaire") ? (
+        <a href="/ressources/glossaire">
+          <span>Glossaire complet</span>
+        </a>
+      ) : currentURL.endsWith("exercices") ? (
+        <a href="/ressources/exercices">
+          <span>Tous les exercices</span>
+        </a>
+      ) : currentURL.endsWith("medias") ? (
+        <a href="/ressources/medias">
+          <span>Médiathèque complète</span>
+        </a>
+      ) : currentURL.endsWith("annuaire") ? (
+        <a href="/ressources/annuaire">
+          <span>Annuaire complet</span>
+        </a>
+      ) : null}
+    </nav>
   );
 };
 
-export default PainNav;
+export default painNav;

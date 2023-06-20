@@ -67,7 +67,7 @@ export interface Schema {
 }
 export type Schemas = Schema[];
 
-export interface PainNavProps {
+export interface PainDashboardProps {
   pain: {
     name: string;
     slug: {
@@ -76,6 +76,16 @@ export interface PainNavProps {
   };
   isMed: boolean;
   setIsMed: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export type PainDashboardProps = PainDashboardProp[];
+
+export interface PainNavProps {
+  pain: {
+    name: string;
+    slug: {
+      current: string;
+    };
+  };
 }
 export type PainNavProps = PainNavProp[];
 
@@ -112,11 +122,15 @@ export interface ExerciseDetail {
     _ref: string;
   }[];
   steps: {
-    _id: string;
+    _key: string;
     title: string;
     stepDescription: string;
   }[];
 }
-
 export type ExerciseDetails = ExerciseDetail[];
+``;
+export interface DirectoryDetail {
+  _id: string;
+}
+export type DirectoryDetails = DirectoryDetail[];
 ``;

@@ -15,6 +15,7 @@
 @import "button";
 @import "media";
 @import "exercise";
+@import "glossary";
 
 body {
   margin: 0;
@@ -43,4 +44,8 @@ main {
 }
 .logo {
   font-family: $font-logo;
+}
+
+a.colored.logo {
+  border-bottom: transparent;
 }

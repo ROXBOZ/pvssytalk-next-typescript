@@ -3,7 +3,7 @@ import { PainDetail, ExerciseDetail, ExerciseDetails } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { client } from "../../../utils/sanity/client";
 import { PortableText } from "@portabletext/react";
-import YouTube from "react-youtube";
+import PainNav from "../../../components/painNav";
 
 const PainExercises = ({
   exercises,
@@ -17,10 +17,16 @@ const PainExercises = ({
 
   const handleExerciseToggle = (id: any) => {
     setOpenExerciseId((prevId) => (prevId === id ? null : id));
+    setOpenStepId(null);
   };
 
   const handleStepToggle = (id: any) => {
     setOpenStepId((prevId) => (prevId === id ? null : id));
+  };
+
+  const extractVideoId = (url: string) => {
+    const lastSlashIndex = url.lastIndexOf("/");
+    return url.substring(lastSlashIndex + 1);
   };
 
   return (
@@ -28,12 +34,12 @@ const PainExercises = ({
       <div className="double-column-container">
         <div>
           <h1>
-            Exercices <span className="colored logo">{pain.name}</span>
+            Exercices{" "}
+            <a href="./" className="colored logo">
+              {pain.name}
+            </a>
           </h1>
-          <div className="nav-directory">
-            <a href="/ressources/exercices">Tous les exercices</a>
-            <a href="/douleurs">Toutes les douleurs</a>
-          </div>
+          <PainNav pain={pain} />
         </div>
         <div className="exercises-container">
           {exercises &&
@@ -44,10 +50,14 @@ const PainExercises = ({
               );
               if (matchedRelatedPain) {
                 const isExerciseOpen = openExerciseId === exercise._id;
+
                 return (
                   <div className="exercise" key={exercise._id}>
-                    <div className="exercice-title-button-container">
+                    <div className="exercice-closed">
                       <h2 className="h3">{exercise.title}</h2>
+                      <div className="exercise-intro">
+                        <PortableText value={exercise.exerciseIntro as any} />
+                      </div>
                       <button
                         onClick={() => handleExerciseToggle(exercise._id)}
                       >
@@ -55,21 +65,28 @@ const PainExercises = ({
                       </button>
                     </div>
                     {isExerciseOpen && (
-                      <div className="exercise-content">
-                        <div className="exercise-intro">
-                          <PortableText value={exercise.exerciseIntro as any} />
-                        </div>
-                        {exercise.video && <YouTube videoId={exercise.video} />}
+                      <>
                         <div className="exercise-steps">
+                          {exercise.video && (
+                            <iframe
+                              width="560"
+                              height="315"
+                              src={`https://www.youtube.com/embed/${extractVideoId(
+                                exercise.video
+                              )}`}
+                              title="YouTube video player"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            ></iframe>
+                          )}
                           <ol>
                             {exercise.steps &&
                               Array.isArray(exercise.steps) &&
                               exercise.steps.map((step) => {
-                                const isStepOpen = openStepId === step._id;
+                                const isStepOpen = openStepId === step._key;
 
                                 return (
-                                  <div className="step" key={step._id}>
-                                    <div className="step-title-button-container">
+                                  <div className="step" key={step._key}>
+                                    <div className="step-closed">
                                       <h4>
                                         <li>{step.title}</li>
                                       </h4>
@@ -77,7 +94,7 @@ const PainExercises = ({
                                       <button
                                         className="square-button"
                                         onClick={() =>
-                                          handleStepToggle(step._id)
+                                          handleStepToggle(step._key)
                                         }
                                       >
                                         {isStepOpen ? "-" : "+"}
@@ -93,7 +110,7 @@ const PainExercises = ({
                               })}
                           </ol>
                         </div>
-                      </div>
+                      </>
                     )}
                   </div>
                 );

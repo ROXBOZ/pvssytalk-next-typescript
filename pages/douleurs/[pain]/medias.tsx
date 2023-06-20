@@ -3,6 +3,7 @@ import { MediaDetail, MediaDetails, PainDetail } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { client } from "../../../utils/sanity/client";
 import { mediaCategories } from "../../../components/reusables/Filters";
+import PainNav from "../../../components/painNav";
 const Medias = ({
   pain,
   media,
@@ -19,15 +20,12 @@ const Medias = ({
       <div className="double-column-container">
         <div>
           <h1>
-            Littérature et médias{" "}
-            <span className="colored logo">{pain.name}</span>
+            Médias{" "}
+            <a href="./" className="colored logo">
+              {pain.name}
+            </a>
           </h1>
-          <div>
-            <nav className="nav-directory">
-              <a href="/ressources/medias">Répertoire complet</a>
-              <a href="/douleurs">Toutes les douleurs</a>
-            </nav>
-          </div>
+          <PainNav pain={pain} />
         </div>
         <div>
           {mediaCategories.map((category) => {
@@ -56,7 +54,6 @@ const Medias = ({
                           <em>{mediaItem.title},</em>
                         </strong>
                       )}{" "}
-                      {/* [{category.title}]{" "} */}
                       {mediaItem.editor && <span> {mediaItem.editor}</span>}
                     </p>
                   </div>

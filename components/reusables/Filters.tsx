@@ -3,7 +3,7 @@ import React from "react";
 type FilterOption = string;
 
 export const pains: FilterOption[] = [
-  "Sur quelle douleur souhaites-tu t’informer ?",
+  "Sur quelle douleur souhaites-tu t’informer ?",
   "vaginisme",
   "endométriose",
   "syndrome des ovaires polykystiques",
@@ -15,7 +15,7 @@ export const pains: FilterOption[] = [
 ];
 
 export const bodyParts: FilterOption[] = [
-  "Dans quelles régions de ta vulve ou dans quelles circonstances as-tu mal ?",
+  "Peux-tu repérer ta douleur ?",
   "vulve",
   "vagin",
   "utérus",
@@ -23,7 +23,7 @@ export const bodyParts: FilterOption[] = [
 ];
 
 export const cantons: FilterOption[] = [
-  "Dans quelle région es-tu ?",
+  "Dans quelle région es-tu ?",
   "Genève",
   "Vaud",
   "Neuchâtel",

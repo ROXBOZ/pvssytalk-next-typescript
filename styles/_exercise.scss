@@ -1,18 +1,21 @@
 .exercise:not(:first-child) {
   margin-top: $reg-space !important;
   border-top: $border-solid $secondary;
-  padding-top: $sm-space;
+  padding-top: $reg-space;
 }
 
 .exercise-intro {
-  margin: $reg-space 0 !important;
+  margin: $sm-space 0 !important;
+  p {
+    margin: $xs-space 0;
+  }
 }
 
-.exercice-title-button-container,
-.step-title-button-container {
+.exercice-closed {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  // align-items: center;
+  flex-direction: column;
 
   * {
     margin: 0;
@@ -21,11 +24,25 @@
   }
 }
 
-.step-title-button-container {
+.step-closed {
   margin-top: $sm-space;
+  display: flex;
+  justify-content: space-between;
+  * {
+    margin: 0;
+    height: fit-content;
+    width: fit-content;
+  }
 }
 
 .exercise-steps {
+  height: fit-content;
+  iframe {
+    display: flex;
+    margin: $reg-space 0;
+    border: $border-solid $secondary;
+    border-radius: $border-radius-soft;
+  }
   ul {
     padding-left: 0;
     li {

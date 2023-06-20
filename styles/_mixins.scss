@@ -16,7 +16,6 @@
   }
 
   &:hover {
-    //animation !
     &:after {
       transition: $animation-transition;
       transform: rotate(45deg);

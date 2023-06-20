@@ -1,0 +1,99 @@
+.letter-title {
+  .h1 {
+    color: $primary;
+    border-top: $border-solid $secondary;
+    font-family: $font-logo;
+    padding-top: $sm-space;
+    margin-top: $lg-space;
+  }
+  &:first-child {
+    .h1 {
+      border-top: none;
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+  }
+}
+
+.term-entry {
+  h2 {
+    padding-top: $sm-space;
+  }
+}
+
+.related-pain-container {
+  display: flex;
+  gap: $sm-space;
+
+  a {
+    font-family: $font-regular;
+    display: flex;
+    @include arrowRotate;
+  }
+}
+
+.glossary-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: $lg-space;
+}
+
+form {
+  display: flex;
+  gap: $sm-space;
+  align-items: center;
+
+  .search-bar {
+    padding: 0.5rem 1.5rem !important;
+    border: $border-solid $secondary;
+    border-radius: $border-radius;
+
+    &::placeholder {
+      color: $txt-color;
+      opacity: 50%;
+      font-size: $font-size-basis;
+    }
+
+    &:focus {
+      background-color: yellow;
+      border: $border-solid $secondary !important;
+    }
+  }
+}
+
+.letter-link-container {
+  display: flex;
+  gap: $sm-space;
+  height: fit-content;
+  width: 100%;
+  flex-wrap: wrap;
+
+  .letter-link {
+    border: $border-solid transparent;
+    border-radius: $border-radius;
+    padding: 0.5em;
+    width: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    line-height: 0;
+    margin: 0;
+    background-color: $txt-color-lighten;
+
+    &:hover {
+      cursor: pointer;
+      border: $border-solid $secondary;
+      border-radius: $border-radius;
+    }
+
+    &.disabled {
+      cursor: default;
+      opacity: 40%;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}

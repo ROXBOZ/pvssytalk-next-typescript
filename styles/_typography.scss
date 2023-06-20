@@ -1,7 +1,19 @@
-* {
+span,
+p,
+li,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-regular;
   font-weight: 500;
   line-height: $line-height;
+}
+
+p,
+li {
+  max-width: $chperline;
 }
 
 h1 {
@@ -25,7 +37,7 @@ a {
 
 u {
   text-decoration: none;
-  border-bottom: $border-solid $quarterary;
+  border-bottom: $border-solid;
 }
 
 sup {
@@ -33,7 +45,7 @@ sup {
 }
 
 .logo {
-  white-space: nowrap;
+  // white-space: nowrap;
   font-family: $font-logo;
 }
 
@@ -54,11 +66,6 @@ strong {
 
 em {
   font-family: $font-regular-italic;
-}
-
-p,
-li {
-  max-width: $chperline;
 }
 
 /*-----Ratio Scale-----*/

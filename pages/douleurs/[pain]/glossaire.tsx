@@ -3,6 +3,7 @@ import { GlossaryDetail, PainDetail, GlossaryDetails } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { client } from "../../../utils/sanity/client";
 import { PortableText } from "@portabletext/react";
+import PainNav from "../../../components/painNav";
 
 const painGlossary = ({
   glossary,
@@ -18,12 +19,12 @@ const painGlossary = ({
       <div className="double-column-container">
         <div>
           <h1>
-            Glossaire <span className="colored logo">{pain.name}</span>
+            Glossaire{" "}
+            <a href="./" className="colored logo">
+              {pain.name}
+            </a>
           </h1>
-          <div className="nav-directory">
-            <a href="/ressources/glossaire">Glossaire général</a>
-            <a href="/douleurs">Toutes les douleurs</a>
-          </div>
+          <PainNav pain={pain} />
         </div>
         <div>
           {sortedGlossary.map((term: GlossaryDetail) => {
@@ -70,7 +71,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   }
 };
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const { pain } = params!;
