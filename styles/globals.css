@@ -31,6 +31,7 @@
 .nav-directory {
   display: flex;
   flex-direction: column;
+  margin-bottom: 4rem;
 }
 .nav-directory a {
   display: flex;
@@ -113,6 +114,7 @@ u {
 
 sup {
   font-size: 60%;
+  color: #fd4a36;
 }
 
 .logo {
@@ -729,10 +731,10 @@ ol li {
 .glossary-dashboard {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
 }
 
 form {
+  margin: 2rem 0;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -783,12 +785,26 @@ form .search-bar:focus {
   border: 1px solid #dcb4ff;
   border-radius: 50px;
 }
+.letter-link-container .letter-link:active {
+  background-color: #dcb4ff;
+}
 .letter-link-container .letter-link.disabled {
   cursor: default;
   opacity: 40%;
+  border: none;
 }
-.letter-link-container .letter-link.disabled:hover {
-  background-color: transparent;
+
+.directory-container h2.h3 {
+  margin: 4rem 0 2rem;
+}
+
+.directory-container h2 {
+  margin: 1rem 0;
+}
+
+.directory-item {
+  border-bottom: #dcb4ff 1px solid;
+  padding-bottom: 1rem;
 }
 
 body {
@@ -811,6 +827,10 @@ main {
 
 .colored {
   color: #fd4a36;
+}
+
+.no-color {
+  color: #4d4d28;
 }
 
 .nowrap {

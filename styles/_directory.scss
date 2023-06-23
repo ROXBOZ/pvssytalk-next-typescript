@@ -1,0 +1,14 @@
+.directory-container {
+  h2.h3 {
+    margin: $lg-space 0 $reg-space;
+  }
+}
+
+.directory-container h2 {
+  margin: $sm-space 0;
+}
+
+.directory-item {
+  border-bottom: $secondary $border-solid;
+  padding-bottom: $sm-space;
+}

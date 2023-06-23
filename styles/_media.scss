@@ -1,8 +1,13 @@
+.media-container {
+  // background-color: yellow;
+}
+
 .media-container h2 {
   margin-top: $lg-space;
   margin-bottom: $reg-space;
 }
 
 .media-item {
+  // background-color: orange;
   border-bottom: $secondary $border-solid;
 }

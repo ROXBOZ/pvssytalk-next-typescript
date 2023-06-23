@@ -1,9 +1,12 @@
 import React from "react";
 import { GlossaryDetail, PainDetail, GlossaryDetails } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { client } from "../../../utils/sanity/client";
 import { PortableText } from "@portabletext/react";
 import PainNav from "../../../components/painNav";
+import {
+  getStaticPathsPain,
+  getStaticPropsPainGlossary,
+} from "../../../props/dataFetching";
 
 const painGlossary = ({
   glossary,
@@ -13,6 +16,7 @@ const painGlossary = ({
   glossary: GlossaryDetails;
 }) => {
   const sortedGlossary = glossary.sort((a, b) => a.term.localeCompare(b.term));
+  console.log("sortedGlossary :", sortedGlossary);
 
   return (
     <div className="double-column-containers-group">
@@ -22,7 +26,8 @@ const painGlossary = ({
             Glossaire{" "}
             <a href="./" className="colored logo">
               {pain.name}
-            </a>
+            </a>{" "}
+            <sup className="no-color">?</sup>
           </h1>
           <PainNav pain={pain} />
         </div>
@@ -46,55 +51,6 @@ const painGlossary = ({
     </div>
   );
 };
-
+export const getStaticProps: GetStaticProps = getStaticPropsPainGlossary;
+export const getStaticPaths: GetStaticPaths = getStaticPathsPain;
 export default painGlossary;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const slugs: string[] = await client.fetch(
-      `*[_type == "pain"].slug.current`
-    );
-
-    const paths = slugs.map((slug) => ({
-      params: { pain: slug },
-    }));
-
-    return {
-      paths,
-      fallback: false,
-    };
-  } catch (error) {
-    console.error("Error fetching slugs:", error);
-    return {
-      paths: [],
-      fallback: false,
-    };
-  }
-};
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  try {
-    const { pain } = params!;
-    const fetchedPain: PainDetail | null = await client.fetch(
-      `*[_type == "pain" && slug.current == $currentSlug][0]`,
-      { currentSlug: pain }
-    );
-    const fetchedGlossary: GlossaryDetails | null = await client.fetch(
-      `*[_type == "glossary"]`
-    );
-
-    if (!fetchedPain || !fetchedGlossary) {
-      return {
-        notFound: true,
-      };
-    }
-
-    return {
-      props: { pain: fetchedPain, glossary: fetchedGlossary },
-    };
-  } catch (error) {
-    console.error("Error fetching glossary:", error);
-    return {
-      props: { pain: null, glossary: [] },
-    };
-  }
-};

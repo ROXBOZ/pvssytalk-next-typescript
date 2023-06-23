@@ -1,17 +1,54 @@
 import React from "react";
-import RessourceNav from "../../components/ressourceNav";
 import { GetStaticProps } from "next";
-import { DirectoryDetails } from "../../types";
-import { client } from "../../utils/sanity/client";
+import { DirectoryDetail } from "../../types";
+import { directoryCategories } from "../../components/reusables/Filters";
+import DirectoryItem from "../../components/directoryItem";
+import { getStaticPropsDirectory } from "../../props/dataFetching";
+import RessourceNav from "../../components/ressourceNav";
 
-const Directory = ({ directory }: { directory: DirectoryDetails }) => {
-  console.log("directory :", directory);
+const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        <div>
-          <h1>Annuaire</h1>
-          <RessourceNav />
+    <div>
+      <div className="double-column-containers-group">
+        <div className="double-column-container">
+          <div>
+            <h1>
+              Annuaire <sup>{directory.length}</sup>
+            </h1>
+            <RessourceNav />
+          </div>
+          <div>
+            {directoryCategories.map((category) => {
+              if (typeof category === "string") {
+                return null;
+              }
+
+              const categorizedDirectoryItem = directory.filter(
+                (directoryItem) => directoryItem.category === category.value
+              );
+
+              if (categorizedDirectoryItem.length === 0) {
+                return null;
+              }
+
+              return (
+                <div key={category.value} className="directory-container">
+                  <h2 className="h3">
+                    {category.title}{" "}
+                    <sup>{categorizedDirectoryItem.length}</sup>
+                  </h2>
+                  {categorizedDirectoryItem.map(
+                    (directoryItem: DirectoryDetail) => (
+                      <DirectoryItem
+                        contact={directoryItem}
+                        key={directoryItem._id}
+                      />
+                    )
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
@@ -19,20 +56,4 @@ const Directory = ({ directory }: { directory: DirectoryDetails }) => {
 };
 
 export default Directory;
-
-export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const directory: DirectoryDetails = await client.fetch(
-      '*[_type == "directory" && !(_id in path("drafts.**"))]{...}'
-    );
-
-    return {
-      props: { directory },
-    };
-  } catch (error) {
-    console.error("Error fetching directory:", error);
-    return {
-      props: { glossary: [] },
-    };
-  }
-};
+export const getStaticProps: GetStaticProps = getStaticPropsDirectory;

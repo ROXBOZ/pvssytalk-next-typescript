@@ -107,7 +107,7 @@ export interface MediaDetail {
   edition: number;
   isFootnote: boolean;
   relatedPain?: { _type: "reference"; _ref: string }[]; // Make relatedPain optional
-  filter: { title: string; value: string };
+  filter: string;
   url?: string;
 }
 export type MediaDetails = MediaDetail[];
@@ -131,6 +131,24 @@ export type ExerciseDetails = ExerciseDetail[];
 ``;
 export interface DirectoryDetail {
   _id: string;
+  category: string;
+  name: string;
+  firstName: string;
+  itemType: string;
+  tagline: string;
+  profession: string;
+  email: string;
+  url: string;
+  relatedPain?: {
+    _type: "reference";
+    _ref: string;
+  }[];
+  addresses: {
+    _key: string;
+    address: string;
+    phone: string;
+  }[];
 }
+
 export type DirectoryDetails = DirectoryDetail[];
 ``;

@@ -1,9 +1,14 @@
 import React from "react";
-import { MediaDetail, MediaDetails, PainDetail } from "../../../types";
+import { MediaDetail, PainDetail } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { client } from "../../../utils/sanity/client";
 import { mediaCategories } from "../../../components/reusables/Filters";
 import PainNav from "../../../components/painNav";
+import {
+  getStaticPathsPain,
+  getStaticPropsPainMedia,
+} from "../../../props/dataFetching";
+import MediaItem from "../../../components/mediaItem";
+
 const Medias = ({
   pain,
   media,
@@ -29,34 +34,21 @@ const Medias = ({
         </div>
         <div>
           {mediaCategories.map((category) => {
-            const filteredMedia = relatedMedia.filter(
+            const categorizedMedia = relatedMedia.filter(
               (mediaItem) => mediaItem.filter === category.value
             );
-            if (filteredMedia.length === 0) {
+
+            if (categorizedMedia.length === 0) {
               return null;
             }
             return (
-              <div className="media-container">
-                <h2 className="h3">{category.title}</h2>
-                {filteredMedia.map((mediaItem: MediaDetail) => (
-                  <div className="media-item" key={mediaItem._id}>
-                    <p>
-                      {mediaItem.author},{" "}
-                      {mediaItem.year && <>({mediaItem.year}). </>}
-                      {mediaItem.url ? (
-                        <a href={mediaItem.url} target="_blank">
-                          <strong>
-                            <em>{mediaItem.title}</em>
-                          </strong>
-                        </a>
-                      ) : (
-                        <strong>
-                          <em>{mediaItem.title},</em>
-                        </strong>
-                      )}{" "}
-                      {mediaItem.editor && <span> {mediaItem.editor}</span>}
-                    </p>
-                  </div>
+              <div key={category.title} className="media-container">
+                <h2 className="h3">
+                  {category.title} <sup>{categorizedMedia.length}</sup>
+                </h2>
+
+                {categorizedMedia.map((media: MediaDetail) => (
+                  <MediaItem mediaItem={media} />
                 ))}
               </div>
             );
@@ -68,53 +60,5 @@ const Medias = ({
 };
 
 export default Medias;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const slugs: string[] = await client.fetch(
-      `*[_type == "pain"].slug.current`
-    );
-
-    const paths = slugs.map((slug) => ({
-      params: { pain: slug },
-    }));
-
-    return {
-      paths,
-      fallback: false,
-    };
-  } catch (error) {
-    console.error("Error fetching slugs:", error);
-    return {
-      paths: [],
-      fallback: false,
-    };
-  }
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  try {
-    const { pain } = params!;
-    const fetchedPain: PainDetail | null = await client.fetch(
-      `*[_type == "pain" && slug.current == $currentSlug][0]`,
-      { currentSlug: pain }
-    );
-    const fetchedMedia: MediaDetails[] | null = await client.fetch(
-      `*[_type == "media" && !(_id in path("drafts.**"))]`
-    );
-    if (!fetchedPain || !fetchedMedia) {
-      return {
-        notFound: true,
-      };
-    }
-
-    return {
-      props: { pain: fetchedPain, media: fetchedMedia },
-    };
-  } catch (error) {
-    console.error("Error fetching medias:", error);
-    return {
-      props: { pain: null, media: [] },
-    };
-  }
-};
+export const getStaticProps: GetStaticProps = getStaticPropsPainMedia;
+export const getStaticPaths: GetStaticPaths = getStaticPathsPain;

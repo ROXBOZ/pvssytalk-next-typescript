@@ -1,8 +1,13 @@
 import React from "react";
 import PainNav from "../../../components/painNav";
-import { DirectoryDetail, DirectoryDetails, PainDetail } from "../../../types";
+import { DirectoryDetail, PainDetail } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { client } from "../../../utils/sanity/client";
+import DirectoryItem from "../../../components/directoryItem";
+import {
+  getStaticPathsPain,
+  getStaticPropsPainDirectory,
+} from "../../../props/dataFetching";
+import { directoryCategories } from "../../../components/reusables/Filters";
 
 const Directory = ({
   pain,
@@ -11,6 +16,11 @@ const Directory = ({
   pain: PainDetail;
   directory: DirectoryDetail[];
 }) => {
+  const relatedDirectoryItem = directory.filter(
+    (directoryItem: DirectoryDetail) =>
+      directoryItem.relatedPain?.some((related) => related._ref === pain._id)
+  );
+
   return (
     <div>
       <div className="double-column-containers-group">
@@ -24,6 +34,35 @@ const Directory = ({
             </h1>
             <PainNav pain={pain} />
           </div>
+          <div>
+            {directoryCategories.map((category) => {
+              const categorizedDirectoryItem = relatedDirectoryItem.filter(
+                (directoryItem) => directoryItem.category === category.value
+              );
+
+              if (categorizedDirectoryItem.length === 0) {
+                return null;
+              }
+
+              return (
+                <div key={category.title} className="directory-container">
+                  <h2 className="h3">
+                    {category.title}{" "}
+                    <sup>{categorizedDirectoryItem.length}</sup>
+                  </h2>
+
+                  {categorizedDirectoryItem.map(
+                    (directoryItem: DirectoryDetail) => (
+                      <DirectoryItem
+                        contact={directoryItem}
+                        key={directoryItem._id}
+                      />
+                    )
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
@@ -31,53 +70,5 @@ const Directory = ({
 };
 
 export default Directory;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const slugs: string[] = await client.fetch(
-      `*[_type == "pain"].slug.current`
-    );
-
-    const paths = slugs.map((slug) => ({
-      params: { pain: slug },
-    }));
-
-    return {
-      paths,
-      fallback: false,
-    };
-  } catch (error) {
-    console.error("Error fetching slugs:", error);
-    return {
-      paths: [],
-      fallback: false,
-    };
-  }
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  try {
-    const { pain } = params!;
-    const fetchedPain: PainDetail | null = await client.fetch(
-      `*[_type == "pain" && slug.current == $currentSlug][0]`,
-      { currentSlug: pain }
-    );
-    const fetchedDirectory: DirectoryDetails[] | null = await client.fetch(
-      `*[_type == "directory" && !(_id in path("drafts.**"))]`
-    );
-    if (!fetchedPain || !fetchedDirectory) {
-      return {
-        notFound: true,
-      };
-    }
-
-    return {
-      props: { pain: fetchedPain, directory: fetchedDirectory },
-    };
-  } catch (error) {
-    console.error("Error fetching directory:", error);
-    return {
-      props: { pain: null, media: [] },
-    };
-  }
-};
+export const getStaticProps: GetStaticProps = getStaticPropsPainDirectory;
+export const getStaticPaths: GetStaticPaths = getStaticPathsPain;

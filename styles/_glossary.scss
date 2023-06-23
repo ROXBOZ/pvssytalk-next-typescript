@@ -35,10 +35,10 @@
 .glossary-dashboard {
   display: flex;
   flex-direction: column;
-  gap: $lg-space;
 }
 
 form {
+  margin: $reg-space 0;
   display: flex;
   gap: $sm-space;
   align-items: center;
@@ -87,13 +87,14 @@ form {
       border-radius: $border-radius;
     }
 
+    &:active {
+      background-color: $secondary;
+    }
+
     &.disabled {
       cursor: default;
       opacity: 40%;
-
-      &:hover {
-        background-color: transparent;
-      }
+      border: none;
     }
   }
 }

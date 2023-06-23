@@ -16,6 +16,7 @@
 @import "media";
 @import "exercise";
 @import "glossary";
+@import "directory";
 
 body {
   margin: 0;
@@ -37,6 +38,10 @@ main {
 
 .colored {
   color: $primary;
+}
+
+.no-color {
+  color: $txt-color;
 }
 
 .nowrap {

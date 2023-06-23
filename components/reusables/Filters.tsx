@@ -32,12 +32,25 @@ export const cantons: FilterOption[] = [
   "Valais",
 ];
 
-export const mediaCategories: { title: string; value: string }[] = [
+export const mediaCategories: (string | { title: string; value: string })[] = [
+  "Quel type de médias t’intéresse ?",
   { title: "Livres/BD", value: "livres" },
   { title: "Articles", value: "articles" },
   { title: "Podcasts", value: "podcasts" },
   { title: "Vidéos/Films", value: "videos" },
   { title: "Porno éthique et féministe", value: "porno" },
+];
+
+export const directoryCategories: (
+  | string
+  | { title: string; value: string }
+)[] = [
+  "Comment souhaites-tu t’entourer ?",
+  { title: "Médical", value: "medical" },
+  { title: "Sexo/Thérapie", value: "sexology" },
+  { title: "Boutiques/E-Shops", value: "shop" },
+  { title: "Associations", value: "association" },
+  { title: "Plateformes digitales", value: "website" },
 ];
 
 type Props = {
@@ -51,8 +64,18 @@ const Filters = ({
   selectedFilter,
   setSelectedFilter,
 }: Props) => {
-  const handleFilter = (filter: FilterOption) => {
-    setSelectedFilter((prevFilter) => (prevFilter === filter ? null : filter));
+  const handleFilter = (
+    filter: FilterOption | { title: string; value: string }
+  ) => {
+    if (typeof filter === "string") {
+      setSelectedFilter((prevFilter) =>
+        prevFilter === filter ? null : filter
+      );
+    } else {
+      setSelectedFilter((prevFilter) =>
+        prevFilter === filter.value ? null : filter.value
+      );
+    }
   };
 
   const handleReset = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { client } from "../../utils/sanity/client";
-import PainGrid from "../../components/reusables/PainGrid";
+import PainGrid from "../../components/PainGrid";
 import { PainDetails } from "../../types";
 
 type Props = {

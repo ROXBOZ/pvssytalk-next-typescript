@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Filters, { bodyParts } from "./Filters";
+import Filters, { bodyParts } from "./reusables/Filters";
 import Link from "next/link";
-import { client, urlFor } from "../../utils/sanity/client";
-import { PainDetail } from "../../types";
+import { client, urlFor } from "../utils/sanity/client";
+import { PainDetail } from "../types";
 import Image from "next/image";
 
 const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
