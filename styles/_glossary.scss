@@ -98,3 +98,7 @@ form {
     }
   }
 }
+
+.glossary-term {
+  @include arrowRotate;
+}

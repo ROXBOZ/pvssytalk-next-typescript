@@ -5,6 +5,8 @@ import { PortableText } from "@portabletext/react";
 import RessourceNav from "../../components/ressourceNav";
 import { getStaticPropsGlossary } from "../../props/dataFetching";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Glossary = ({
   glossary,
@@ -20,57 +22,62 @@ const Glossary = ({
   const letterContainerRef = useRef(0);
   const router = useRouter();
   const termsContainerRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const termGroups: { [key: string]: GlossaryDetail[] } =
-    sortedGlossary?.reduce(
-      (groups: { [key: string]: GlossaryDetail[] }, term: GlossaryDetail) => {
-        const firstLetter = term.term[0].toUpperCase();
-        if (!groups[firstLetter]) {
-          groups[firstLetter] = [];
-        }
-        groups[firstLetter].push(term);
-        return groups;
-      },
-      {}
-    );
+  const termGroups: { [key: string]: GlossaryDetail[] } = {};
+  if (sortedGlossary) {
+    for (const term of sortedGlossary) {
+      const firstLetter = term.term[0].toUpperCase();
+
+      if (!termGroups[firstLetter]) {
+        termGroups[firstLetter] = [];
+      }
+
+      termGroups[firstLetter].push(term);
+    }
+  }
   const letters = Object.keys(termGroups).sort();
+  const scrollToAnchor = (anchor: string) => {
+    if (typeof window === "undefined") return;
 
+    const element = document.getElementById(anchor);
+    if (!element) return;
+
+    const top = element.offsetTop;
+    setAnchorPosition(top);
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top, behavior: "smooth" });
+      setTopList(letterContainerRef.current.offsetTop);
+    });
+  };
   useEffect(() => {
     const firstLetters = sortedGlossary.map((term) =>
       term.term[0].toLowerCase()
     );
     const uniqueLetters = [...new Set(firstLetters)];
     setEntries(uniqueLetters);
-  }, [sortedGlossary]);
 
-  const scrollToAnchor = (anchor: string) => {
-    if (typeof window !== "undefined") {
-      const element = document.getElementById(anchor);
-      if (element) {
-        const top = element.offsetTop;
-        setAnchorPosition(top);
-        window.requestAnimationFrame(() => {
-          window.scrollTo({ top, behavior: "smooth" });
-          setTopList(letterContainerRef.current.offsetTop);
-        });
+    const letterLinks =
+      document.querySelectorAll<HTMLAnchorElement>(".letter-link");
+    letterLinks.forEach((letterLink) => {
+      const letter = letterLink.innerText.toLowerCase();
+      letterLink.classList.toggle("disabled", !uniqueLetters.includes(letter));
+    });
+  }, [sortedGlossary, setEntries]);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+
+    if (event.target.value) {
+      const matchingTerm = sortedGlossary.find((term) =>
+        term.term.toLowerCase().startsWith(event.target.value.toLowerCase())
+      );
+
+      if (matchingTerm) {
+        const anchor = matchingTerm.term[0].toUpperCase();
+        scrollToAnchor(anchor);
       }
     }
   };
-
-  useEffect(() => {
-    const letterLinks =
-      document.querySelectorAll<HTMLAnchorElement>(".letter-link");
-
-    for (const letterLink of letterLinks) {
-      const letter = letterLink.innerText.toLowerCase();
-
-      if (!entries.includes(letter)) {
-        letterLink.classList.add("disabled");
-      } else {
-        letterLink.classList.remove("disabled");
-      }
-    }
-  }, [entries]);
 
   return (
     <div ref={termsContainerRef} className="double-column-containers-group">
@@ -98,6 +105,14 @@ const Glossary = ({
                 </a>
               ))}
             </div>
+            <form>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <input
+                className="search-bar"
+                placeholder="Rechercher"
+                onChange={handleInputChange}
+              />
+            </form>
           </div>
         </div>
         <div>

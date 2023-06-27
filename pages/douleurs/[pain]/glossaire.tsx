@@ -16,7 +16,15 @@ const painGlossary = ({
   glossary: GlossaryDetails;
 }) => {
   const sortedGlossary = glossary.sort((a, b) => a.term.localeCompare(b.term));
-  console.log("sortedGlossary :", sortedGlossary);
+
+  const termAnchor = (term: string) => {
+    return term
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "-")
+      .replace("œ", "oe")
+      .toLowerCase();
+  };
 
   return (
     <div className="double-column-containers-group">
@@ -27,24 +35,18 @@ const painGlossary = ({
             <a href="./" className="colored logo">
               {pain.name}
             </a>{" "}
-            <sup className="no-color">?</sup>
+            <sup className="no-color">{glossary.length}</sup>
           </h1>
           <PainNav pain={pain} />
         </div>
         <div>
           {sortedGlossary.map((term: GlossaryDetail) => {
-            const matchedRelatedPain = term.relatedPain?.some(
-              (related) => related._ref === pain._id
+            return (
+              <div id={termAnchor(term.term)} key={term._id}>
+                <h2 className="h3">{term.term}</h2>
+                <PortableText value={term.def as any} />
+              </div>
             );
-            if (matchedRelatedPain) {
-              return (
-                <div key={term._id}>
-                  <h2 className="h3">{term.term}</h2>
-                  <PortableText value={term.def as any} />
-                </div>
-              );
-            }
-            return null;
           })}
         </div>
       </div>

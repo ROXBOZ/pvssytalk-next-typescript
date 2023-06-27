@@ -1,17 +1,86 @@
-import React, { useRef, useState } from "react";
-import { GlossaryDetail, PainDetail, Schema } from "../../../types";
-import { client, urlFor } from "../../../utils/sanity/client";
+import React, { useState } from "react";
+import { GlossaryDetails, PainDetail, Schema } from "../../../types";
+import { urlFor } from "../../../utils/sanity/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import PainDashboard from "../../../components/painDashboard";
+import {
+  getStaticPathsPain,
+  getStaticPropsPainGlossary,
+} from "../../../props/dataFetching";
+import { websiteURL } from "../../../utils/urls";
+import { regexTerm } from "../../../utils/regex";
 
-const articlePain = ({ pain }: { pain: PainDetail }) => {
+const articlePain = ({
+  pain,
+  glossary,
+}: {
+  pain: PainDetail;
+  glossary: GlossaryDetails;
+}) => {
+  const [isMed, setIsMed] = useState<boolean>(true);
   const imgHotspot = pain.mainImage.hotspot;
+
   const imageCoverHotspot = {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };
-  const [isMed, setIsMed] = useState<boolean>(true);
+
+  const painTerms = glossary.map((term) => {
+    return term.term;
+  });
+
+  const painTermRedirect = (painTerm: string) => {
+    return `${websiteURL}/douleurs/${pain.slug.current}/glossaire/#${regexTerm(
+      painTerm
+    )}`;
+  };
+
+  const highlightText = (text: any) => {
+    if (typeof text === "string") {
+      if (painTerms.length === 0) {
+        return (
+          <span style={{ backgroundColor: "blue" }}>
+            <PortableText value={text as any} />
+          </span>
+        );
+      } else {
+        const termsRegex = new RegExp(`\\b(${painTerms.join("|")})\\b`, "gi");
+        const splitText = text.split(termsRegex);
+
+        const highlightedText = splitText.map((part, index) => {
+          const lowerCasePart = part.toLowerCase();
+          if (
+            painTerms.some((term) => lowerCasePart.includes(term.toLowerCase()))
+          ) {
+            return (
+              <a
+                style={{ backgroundColor: "yellow" }}
+                key={index}
+                href={painTermRedirect(part)}
+                className="glossary-term"
+              >
+                {part}
+              </a>
+            );
+          } else {
+            return (
+              <span style={{ color: "orange" }} key={index}>
+                {part}
+              </span>
+            );
+          }
+        });
+        return highlightedText;
+      }
+    } else {
+      return (
+        <span style={{ backgroundColor: "yellow" }}>
+          !!!! <PortableText value={text as any} />
+        </span>
+      );
+    }
+  };
 
   return (
     <main>
@@ -26,6 +95,7 @@ const articlePain = ({ pain }: { pain: PainDetail }) => {
             height={400}
             alt={pain.name}
             style={imageCoverHotspot}
+            priority
           />
           <span style={{ float: "right" }} className="smaller-text">
             <em>
@@ -37,14 +107,21 @@ const articlePain = ({ pain }: { pain: PainDetail }) => {
 
       <div className="pain-nav-article-container">
         <PainDashboard pain={pain} isMed={isMed} setIsMed={setIsMed} />
-
         <div className="pain-article">
           {isMed ? (
             <>
               {pain.medicalApproach?.def && (
                 <>
                   <h2>Définition</h2>
-                  <PortableText value={pain.medicalApproach.def as any} />
+
+                  {highlightText("test: contraction musculaire yuhouioyuyo")}
+
+                  {highlightText(pain.medicalApproach.def)}
+
+                  {/* {console.log(
+                    " <PortableText value={pain.medicalApproach.def as any} /> :",
+                    <PortableText value={pain.medicalApproach.def as any} />
+                  )} */}
                 </>
               )}
               {pain.medicalApproach?.schemas && (
@@ -64,7 +141,7 @@ const articlePain = ({ pain }: { pain: PainDetail }) => {
                               src={urlFor(schema.schemaImage.asset._ref).url()}
                               width={2000}
                               height={400}
-                              alt={schema.schemaImage.alternativeText}
+                              alt={`schéma : ${schema.schemaImage.alternativeText}`}
                             />
                             <p className="schema-caption">
                               {schema.schemaImage.caption}
@@ -198,52 +275,5 @@ const articlePain = ({ pain }: { pain: PainDetail }) => {
 
 export default articlePain;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  try {
-    const slugs: string[] = await client.fetch(
-      `*[_type == "pain"].slug.current`
-    );
-
-    const paths = slugs.map((slug) => ({
-      params: { pain: slug },
-    }));
-
-    return {
-      paths,
-      fallback: false,
-    };
-  } catch (error) {
-    console.error("Error fetching slugs:", error);
-    return {
-      paths: [],
-      fallback: false,
-    };
-  }
-};
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  try {
-    const { pain } = params!;
-    const fetchedPain: PainDetail | null = await client.fetch(
-      `*[_type == "pain" && slug.current == $currentSlug][0]`,
-      { currentSlug: pain }
-    );
-    const fetchedGlossary: GlossaryDetail | null = await client.fetch(
-      `*[_type == "glossary"]`
-    );
-
-    if (!fetchedPain || !fetchedGlossary) {
-      return {
-        notFound: true,
-      };
-    }
-
-    return {
-      props: { pain: fetchedPain, glossary: fetchedGlossary },
-    };
-  } catch (error) {
-    console.error("Error fetching glossary:", error);
-    return {
-      props: { pain: null },
-    };
-  }
-};
+export const getStaticPaths: GetStaticPaths = getStaticPathsPain;
+export const getStaticProps: GetStaticProps = getStaticPropsPainGlossary;

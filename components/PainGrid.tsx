@@ -21,15 +21,14 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
 
   return (
     <>
-      <div className="double-column-container">
+      <div
+        className={`double-column-container ${
+          currentURL.endsWith("douleurs") && "no-border"
+        }`}
+      >
         <div>
           {currentURL.endsWith("douleurs") ? (
-            <>
-              <p style={{ backgroundColor: "yellow" }}>
-                should not have a border-top
-              </p>
-              <h1>Douleurs</h1>
-            </>
+            <h1>Douleurs</h1>
           ) : (
             <h2>Mieux connaître ses douleurs</h2>
           )}

@@ -5,18 +5,19 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import DirectoryItem from "../../../components/directoryItem";
 import {
   getStaticPathsPain,
-  getStaticPropsPainDirectory,
+  getStaticPropsPainDirectories,
 } from "../../../props/dataFetching";
 import { directoryCategories } from "../../../components/reusables/Filters";
 
 const Directory = ({
   pain,
-  directory,
+  directories,
 }: {
   pain: PainDetail;
-  directory: DirectoryDetail[];
+  directories: DirectoryDetail[];
 }) => {
-  const relatedDirectoryItem = directory.filter(
+  console.log("directories :", directories);
+  const relatedDirectoryItem = directories.filter(
     (directoryItem: DirectoryDetail) =>
       directoryItem.relatedPain?.some((related) => related._ref === pain._id)
   );
@@ -30,7 +31,8 @@ const Directory = ({
               Annuaire{" "}
               <a href="./" className="colored logo">
                 {pain.name}
-              </a>
+              </a>{" "}
+              <sup className="no-color">{directories.length}</sup>
             </h1>
             <PainNav pain={pain} />
           </div>
@@ -70,5 +72,5 @@ const Directory = ({
 };
 
 export default Directory;
-export const getStaticProps: GetStaticProps = getStaticPropsPainDirectory;
+export const getStaticProps: GetStaticProps = getStaticPropsPainDirectories;
 export const getStaticPaths: GetStaticPaths = getStaticPathsPain;

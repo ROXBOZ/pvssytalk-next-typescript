@@ -94,7 +94,7 @@ export interface GlossaryDetail {
   _ref: string;
   term: string;
   def: string;
-  relatedPain: { _ref: string }[];
+  relatedPain: { _ref: string; term: string }[];
 }
 export type GlossaryDetails = GlossaryDetail[];
 
@@ -113,6 +113,7 @@ export interface MediaDetail {
 export type MediaDetails = MediaDetail[];
 
 export interface ExerciseDetail {
+  length: string;
   _id: string;
   title: string;
   exerciseIntro: string;

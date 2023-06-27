@@ -1,9 +1,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-type Props = {};
-
-const Ressources = (props: Props) => {
+const Ressources = () => {
   const [currentURL, setCurrentURL] = useState("");
 
   useEffect(() => {
@@ -11,15 +9,14 @@ const Ressources = (props: Props) => {
   }, []);
 
   return (
-    <div className="double-column-container">
+    <div
+      className={`double-column-container ${
+        currentURL.endsWith("ressources") && "no-border"
+      }`}
+    >
       <div>
         {currentURL.endsWith("ressources") ? (
-          <>
-            <h1>Ressources supplémentaires</h1>
-            <p style={{ backgroundColor: "yellow" }}>
-              should not have a border-top
-            </p>
-          </>
+          <h1>Ressources supplémentaires</h1>
         ) : (
           <h2>Ressources supplémentaires</h2>
         )}

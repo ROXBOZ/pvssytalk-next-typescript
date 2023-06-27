@@ -93,8 +93,9 @@ export const getStaticPropsPainGlossary: GetStaticProps = async ({
       `*[_type == "pain" && slug.current == $currentSlug][0]`,
       { currentSlug: pain }
     );
-    const fetchedGlossary: GlossaryDetails | null = await client.fetch(
-      `*[_type == "glossary"]`
+    const fetchedGlossary: GlossaryDetails[] | null = await client.fetch(
+      `*[_type == "glossary" && references($painId)]`,
+      { painId: fetchedPain?._id }
     );
 
     if (!fetchedPain || !fetchedGlossary) {
@@ -122,8 +123,9 @@ export const getStaticPropsPainExercises: GetStaticProps = async ({
       `*[_type == "pain" && slug.current == $currentSlug][0]`,
       { currentSlug: pain }
     );
-    const fetchedExercises: ExerciseDetails | null = await client.fetch(
-      `*[_type == "exercise"]`
+    const fetchedExercises: ExerciseDetails[] | null = await client.fetch(
+      `*[_type == "exercise" && references($painId)]`,
+      { painId: fetchedPain?._id }
     );
 
     if (!fetchedPain || !fetchedExercises) {
@@ -142,33 +144,37 @@ export const getStaticPropsPainExercises: GetStaticProps = async ({
     };
   }
 };
-export const getStaticPropsPainMedia: GetStaticProps = async ({ params }) => {
+
+export const getStaticPropsPainMedias: GetStaticProps = async ({ params }) => {
   try {
     const { pain } = params!;
     const fetchedPain: PainDetail | null = await client.fetch(
       `*[_type == "pain" && slug.current == $currentSlug][0]`,
       { currentSlug: pain }
     );
-    const fetchedMedia: MediaDetails[] | null = await client.fetch(
-      `*[_type == "media" && !(_id in path("drafts.**"))]`
+    const fetchedMedias: MediaDetails[] | null = await client.fetch(
+      `*[_type == "media" && references($painId)]`,
+      { painId: fetchedPain?._id }
     );
-    if (!fetchedPain || !fetchedMedia) {
+
+    if (!fetchedPain || !fetchedMedias) {
       return {
         notFound: true,
       };
     }
 
     return {
-      props: { pain: fetchedPain, media: fetchedMedia },
+      props: { pain: fetchedPain, medias: fetchedMedias },
     };
   } catch (error) {
     console.error("Error fetching medias:", error);
     return {
-      props: { pain: null, media: [] },
+      props: { pain: null, medias: [] },
     };
   }
 };
-export const getStaticPropsPainDirectory: GetStaticProps = async ({
+
+export const getStaticPropsPainDirectories: GetStaticProps = async ({
   params,
 }) => {
   try {
@@ -177,25 +183,56 @@ export const getStaticPropsPainDirectory: GetStaticProps = async ({
       `*[_type == "pain" && slug.current == $currentSlug][0]`,
       { currentSlug: pain }
     );
-    const fetchedDirectory: DirectoryDetails[] | null = await client.fetch(
-      `*[_type == "directory" && !(_id in path("drafts.**"))]`
+    const fetchedDirectories: DirectoryDetails[] | null = await client.fetch(
+      `*[_type == "directory" && references($painId)]`,
+      { painId: fetchedPain?._id }
     );
-    if (!fetchedPain || !fetchedDirectory) {
+
+    if (!fetchedPain || !fetchedDirectories) {
       return {
         notFound: true,
       };
     }
 
     return {
-      props: { pain: fetchedPain, directory: fetchedDirectory },
+      props: { pain: fetchedPain, directories: fetchedDirectories },
     };
   } catch (error) {
-    console.error("Error fetching directory:", error);
+    console.error("Error fetching directories:", error);
     return {
-      props: { pain: null, directory: [] },
+      props: { pain: null, directories: [] },
     };
   }
 };
+
+// export const getStaticPropsPainDirectory: GetStaticProps = async ({
+//   params,
+// }) => {
+//   try {
+//     const { pain } = params!;
+//     const fetchedPain: PainDetail | null = await client.fetch(
+//       `*[_type == "pain" && slug.current == $currentSlug][0]`,
+//       { currentSlug: pain }
+//     );
+//     const fetchedDirectory: DirectoryDetails[] | null = await client.fetch(
+//       `*[_type == "directory" && !(_id in path("drafts.**"))]`
+//     );
+//     if (!fetchedPain || !fetchedDirectory) {
+//       return {
+//         notFound: true,
+//       };
+//     }
+
+//     return {
+//       props: { pain: fetchedPain, directory: fetchedDirectory },
+//     };
+//   } catch (error) {
+//     console.error("Error fetching directory:", error);
+//     return {
+//       props: { pain: null, directory: [] },
+//     };
+//   }
+// };
 
 //PATH
 export const getStaticPathsPain: GetStaticPaths = async () => {

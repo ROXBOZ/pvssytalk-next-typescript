@@ -5,18 +5,18 @@ import { mediaCategories } from "../../../components/reusables/Filters";
 import PainNav from "../../../components/painNav";
 import {
   getStaticPathsPain,
-  getStaticPropsPainMedia,
+  getStaticPropsPainMedias,
 } from "../../../props/dataFetching";
 import MediaItem from "../../../components/mediaItem";
 
 const Medias = ({
   pain,
-  media,
+  medias,
 }: {
   pain: PainDetail;
-  media: MediaDetail[];
+  medias: MediaDetail[];
 }) => {
-  const relatedMedia = media.filter((mediaItem: MediaDetail) =>
+  const relatedMedia = medias.filter((mediaItem: MediaDetail) =>
     mediaItem.relatedPain?.some((related) => related._ref === pain._id)
   );
 
@@ -28,7 +28,8 @@ const Medias = ({
             Médias{" "}
             <a href="./" className="colored logo">
               {pain.name}
-            </a>
+            </a>{" "}
+            <sup className="no-color">{medias.length}</sup>
           </h1>
           <PainNav pain={pain} />
         </div>
@@ -60,5 +61,5 @@ const Medias = ({
 };
 
 export default Medias;
-export const getStaticProps: GetStaticProps = getStaticPropsPainMedia;
+export const getStaticProps: GetStaticProps = getStaticPropsPainMedias;
 export const getStaticPaths: GetStaticPaths = getStaticPathsPain;

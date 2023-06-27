@@ -794,6 +794,14 @@ form .search-bar:focus {
   border: none;
 }
 
+.glossary-term:after {
+  content: " ↗";
+}
+.glossary-term:hover:after {
+  transition: 0.2s ease-in;
+  transform: rotate(45deg);
+}
+
 .directory-container h2.h3 {
   margin: 4rem 0 2rem;
 }
@@ -843,4 +851,8 @@ main {
 
 a.colored.logo {
   border-bottom: transparent;
+}
+
+.no-border {
+  border-top: none;
 }/*# sourceMappingURL=globals.css.map */

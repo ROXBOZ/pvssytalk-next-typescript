@@ -1,5 +1,5 @@
 import React from "react";
-import { PainDetail, ExerciseDetail, ExerciseDetails } from "../../../types";
+import { PainDetail, ExerciseDetail } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import PainNav from "../../../components/painNav";
 import {
@@ -13,7 +13,7 @@ const PainExercises = ({
   pain,
 }: {
   pain: PainDetail;
-  exercises: ExerciseDetails;
+  exercises: ExerciseDetail;
 }) => {
   return (
     <div className="double-column-containers-group">
@@ -24,21 +24,14 @@ const PainExercises = ({
             <a href="./" className="colored logo">
               {pain.name}
             </a>{" "}
-            <sup className="no-color">?</sup>
+            <sup className="no-color">{exercises.length}</sup>
           </h1>
           <PainNav pain={pain} />
         </div>
         <div className="exercises-container">
           {exercises &&
-            Array.isArray(exercises) &&
             exercises.map((exercise: ExerciseDetail) => {
-              const matchedRelatedPain = exercise.relatedPain?.some(
-                (related) => related._ref === pain._id
-              );
-              if (matchedRelatedPain) {
-                return <Exercise exercise={exercise} />;
-              }
-              return null;
+              return <Exercise exercise={exercise} />;
             })}
         </div>
       </div>

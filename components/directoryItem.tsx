@@ -10,7 +10,6 @@ export default function DirectoryItem({
   return (
     <>
       <div className="directory-item" key={contact._id}>
-        <span> {contact.category}</span>
         <h2 className="h4">
           {contact.firstName} {contact.name}
         </h2>
