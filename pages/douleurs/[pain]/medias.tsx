@@ -6,7 +6,7 @@ import PainNav from "../../../components/painNav";
 import {
   getStaticPathsPain,
   getStaticPropsPainMedias,
-} from "../../../props/dataFetching";
+} from "../../../utils/dataFetching";
 import MediaItem from "../../../components/mediaItem";
 
 const Medias = ({
@@ -28,8 +28,8 @@ const Medias = ({
             Médias{" "}
             <a href="./" className="colored logo">
               {pain.name}
-            </a>{" "}
-            <sup className="no-color">{medias.length}</sup>
+            </a>
+             <sup className="no-color">{medias.length}</sup>
           </h1>
           <PainNav pain={pain} />
         </div>
@@ -44,9 +44,7 @@ const Medias = ({
             }
             return (
               <div key={category.title} className="media-container">
-                <h2 className="h3">
-                  {category.title} <sup>{categorizedMedia.length}</sup>
-                </h2>
+                <h2 className="h3">{category.title}</h2>
 
                 {categorizedMedia.map((media: MediaDetail) => (
                   <MediaItem mediaItem={media} />

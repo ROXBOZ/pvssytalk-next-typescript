@@ -6,7 +6,7 @@ import PainNav from "../../../components/painNav";
 import {
   getStaticPathsPain,
   getStaticPropsPainGlossary,
-} from "../../../props/dataFetching";
+} from "../../../utils/dataFetching";
 
 const painGlossary = ({
   glossary,
@@ -34,8 +34,8 @@ const painGlossary = ({
             Glossaire{" "}
             <a href="./" className="colored logo">
               {pain.name}
-            </a>{" "}
-            <sup className="no-color">{glossary.length}</sup>
+            </a>
+             <sup className="no-color">{glossary.length}</sup>
           </h1>
           <PainNav pain={pain} />
         </div>

@@ -1,9 +1,25 @@
 import React from "react";
+import { GetStaticProps } from "next";
+import { PageDetail } from "../../types";
+import { PortableText } from "@portabletext/react";
+import { getStaticPropsConsultPage } from "../../utils/dataFetching";
 
-type Props = {};
+const ConsultPage = ({ ConsultPage }: { ConsultPage: PageDetail[] }) => {
+  let consult = ConsultPage[0];
 
-const Consulter = (props: Props) => {
-  return <div>consulter</div>;
+  return (
+    <div className="double-column-containers-group">
+      <div className="double-column-container">
+        <div>
+          <h1>{consult.title}</h1>
+        </div>
+        <div>
+          <PortableText value={consult.subtitle as any} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Consulter;
+export default ConsultPage;
+export const getStaticProps: GetStaticProps = getStaticPropsConsultPage;

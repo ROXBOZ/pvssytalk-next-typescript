@@ -23,7 +23,8 @@
 
 .related-pain-container {
   display: flex;
-  gap: $sm-space;
+  gap: $xs-space;
+  font-size: $smaller-text;
 
   a {
     font-family: $font-regular;
@@ -99,6 +100,6 @@ form {
   }
 }
 
-.glossary-term {
+.highlighted-glossary-term {
   @include arrowRotate;
 }

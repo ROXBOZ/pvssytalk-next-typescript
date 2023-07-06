@@ -1,0 +1,118 @@
+$error-color: $primary;
+$archived-color: secondary;
+$pending-color: $secondary;
+$reminder-color: $secondary;
+$success-color: $tierary;
+$warning-color: $quarterary;
+
+.msg-box {
+  margin: $reg-space 0;
+  display: flex;
+  gap: $xs-space;
+  flex-wrap: wrap;
+  * {
+    margin: 0;
+    white-space: nowrap;
+    height: fit-content;
+  }
+}
+
+.msg {
+  width: fit-content;
+  display: flex;
+  gap: 0.5em;
+  padding: $xs-space 0;
+  align-items: flex-start;
+
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  &.success {
+    border-bottom: $border-solid $success-color;
+    &:before {
+      content: ("👏  ");
+    }
+  }
+
+  &.reminder {
+    border-bottom: $border-solid $reminder-color;
+    &:before {
+      content: ("🔔  ");
+    }
+  }
+
+  &.pending {
+    border-bottom: $border-solid $pending-color;
+    &:before {
+      content: ("⌛  ");
+    }
+  }
+
+  &.warning {
+    border-bottom: $border-solid $warning-color;
+    &:before {
+      content: ("⚠️  ");
+    }
+  }
+
+  &.archived {
+    border-bottom: $border-solid $archived-color;
+    &:before {
+      content: ("📁  ");
+    }
+  }
+
+  &.error {
+    border-bottom: $border-solid $error-color;
+    &:before {
+      content: ("🚩 ");
+    }
+  }
+
+  &.info {
+    border-bottom: $border-solid $secondary;
+    &:before {
+      content: ("💡 ");
+    }
+  }
+}
+
+.error-list {
+  display: none;
+  & li {
+    margin: 0;
+    padding: 0;
+  }
+
+  &:not(:empty) {
+    display: block;
+    padding: 0;
+    line-height: 2;
+    color: $error-color;
+    grid-column: 1/6;
+    li {
+      list-style: none;
+      &:before {
+        content: ("🚨  ");
+      }
+    }
+  }
+}
+
+.redirection {
+  width: fit-content;
+  a {
+    border-bottom: none;
+    padding-left: 16px;
+  }
+  &:before {
+    position: absolute;
+    content: "↗";
+    transition: $animation-transition;
+  }
+  &:hover:before {
+    transform: rotate(45deg);
+  }
+}

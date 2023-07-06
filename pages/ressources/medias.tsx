@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import RessourceNav from "../../components/ressourceNav";
-import Filters, { mediaCategories } from "../../components/reusables/Filters";
+import Filters, {
+  mediaCategories,
+  pains,
+} from "../../components/reusables/Filters";
 import { MediaDetail } from "../../types";
-import { getStaticPropsMedia } from "../../props/dataFetching";
+import { getStaticPropsMedia } from "../../utils/dataFetching";
 import { GetStaticProps } from "next";
 import MediaItem from "../../components/mediaItem";
 
@@ -17,6 +20,11 @@ const Medias = ({ media }: { media: MediaDetail[] }) => {
             Médias <sup>{media.length}</sup>
           </h1>
           <RessourceNav />
+          <Filters
+            filterOptions={pains}
+            selectedFilter={selectedFilter}
+            setSelectedFilter={setSelectedFilter}
+          />
         </div>
         <div>
           {mediaCategories.map((category) => {
@@ -34,9 +42,7 @@ const Medias = ({ media }: { media: MediaDetail[] }) => {
 
             return (
               <div key={category.value} className="media-container">
-                <h2 className="h3">
-                  {category.title} <sup>{categorizedMediaItem.length}</sup>
-                </h2>
+                <h2 className="h3">{category.title}</h2>
 
                 {categorizedMediaItem.map((media: MediaDetail) => (
                   <MediaItem mediaItem={media} />

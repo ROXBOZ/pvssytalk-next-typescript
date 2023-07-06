@@ -1,9 +1,25 @@
 import React from "react";
+import { GetStaticProps } from "next";
+import { PageDetail } from "../../types";
+import { PortableText } from "@portabletext/react";
+import { getStaticPropsIntroPage } from "../../utils/dataFetching";
 
-type Props = {};
+const IntroPage = ({ IntroPage }: { IntroPage: PageDetail[] }) => {
+  let intro = IntroPage[0];
 
-const Introduction = (props: Props) => {
-  return <div>Introduction</div>;
+  return (
+    <div className="double-column-containers-group">
+      <div className="double-column-container">
+        <div>
+          <h1>{intro.title}</h1>
+        </div>
+        <div>
+          <PortableText value={intro.subtitle as any} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Introduction;
+export default IntroPage;
+export const getStaticProps: GetStaticProps = getStaticPropsIntroPage;

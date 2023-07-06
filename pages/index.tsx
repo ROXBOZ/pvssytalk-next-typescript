@@ -4,7 +4,7 @@ import Ressources from "./ressources";
 import Start from "./commencer";
 import PainGrid from "./douleurs";
 import { PainDetails } from "../types";
-import { client } from "../utils/sanity/client";
+import { client } from "../config/sanity/client";
 import Intro from "../components/Intro";
 
 const Home = ({ pains }: { pains: PainDetails }) => {

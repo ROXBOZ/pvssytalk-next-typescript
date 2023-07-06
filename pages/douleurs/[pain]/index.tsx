@@ -1,16 +1,19 @@
-import React, { useState } from "react";
-import { GlossaryDetails, PainDetail, Schema } from "../../../types";
-import { urlFor } from "../../../utils/sanity/client";
+import React, { ReactNode, useEffect, useState } from "react";
+import { Diagram, GlossaryDetails, PainDetail } from "../../../types";
+import { urlFor } from "../../../config/sanity/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import PainDashboard from "../../../components/painDashboard";
 import {
   getStaticPathsPain,
   getStaticPropsPainGlossary,
-} from "../../../props/dataFetching";
+} from "../../../utils/dataFetching";
 import { websiteURL } from "../../../utils/urls";
 import { regexTerm } from "../../../utils/regex";
+import { Link } from "react-router-dom";
+import { useRouter } from "next/router";
+import { highlightText } from "../../../utils/highlightText";
 
 const articlePain = ({
   pain,
@@ -19,68 +22,20 @@ const articlePain = ({
   pain: PainDetail;
   glossary: GlossaryDetails;
 }) => {
+  const router = useRouter();
   const [isMed, setIsMed] = useState<boolean>(true);
   const imgHotspot = pain.mainImage.hotspot;
-
   const imageCoverHotspot = {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };
 
-  const painTerms = glossary.map((term) => {
-    return term.term;
+  const painTerms = glossary.map((g) => {
+    return g.term.toLowerCase();
   });
 
-  const painTermRedirect = (painTerm: string) => {
-    return `${websiteURL}/douleurs/${pain.slug.current}/glossaire/#${regexTerm(
-      painTerm
-    )}`;
-  };
-
-  const highlightText = (text: any) => {
-    if (typeof text === "string") {
-      if (painTerms.length === 0) {
-        return (
-          <span style={{ backgroundColor: "blue" }}>
-            <PortableText value={text as any} />
-          </span>
-        );
-      } else {
-        const termsRegex = new RegExp(`\\b(${painTerms.join("|")})\\b`, "gi");
-        const splitText = text.split(termsRegex);
-
-        const highlightedText = splitText.map((part, index) => {
-          const lowerCasePart = part.toLowerCase();
-          if (
-            painTerms.some((term) => lowerCasePart.includes(term.toLowerCase()))
-          ) {
-            return (
-              <a
-                style={{ backgroundColor: "yellow" }}
-                key={index}
-                href={painTermRedirect(part)}
-                className="glossary-term"
-              >
-                {part}
-              </a>
-            );
-          } else {
-            return (
-              <span style={{ color: "orange" }} key={index}>
-                {part}
-              </span>
-            );
-          }
-        });
-        return highlightedText;
-      }
-    } else {
-      return (
-        <span style={{ backgroundColor: "yellow" }}>
-          !!!! <PortableText value={text as any} />
-        </span>
-      );
-    }
-  };
+  const painTermSlug = glossary.map((g) => {
+    return g.slug?.current;
+  });
 
   return (
     <main>
@@ -113,43 +68,50 @@ const articlePain = ({
               {pain.medicalApproach?.def && (
                 <>
                   <h2>Définition</h2>
-
-                  {highlightText("test: contraction musculaire yuhouioyuyo")}
-
-                  {highlightText(pain.medicalApproach.def)}
-
                   {/* {console.log(
-                    " <PortableText value={pain.medicalApproach.def as any} /> :",
-                    <PortableText value={pain.medicalApproach.def as any} />
+                    "pain.medicalApproach.def :",
+                    pain.medicalApproach.def
+                  )}
+                  {console.log(
+                    "highlightText(pain.medicalApproach.def, ) :",
+                    highlightText(pain.medicalApproach.def, glossary)
+                  )}
+
+                  {console.log(
+                    "pain.medicalApproach.def :",
+                    pain.medicalApproach.def
                   )} */}
+
+                  <PortableText
+                    value={
+                      highlightText(pain.medicalApproach.def, glossary) as any
+                    }
+                  />
                 </>
               )}
-              {pain.medicalApproach?.schemas && (
+              {pain.medicalApproach?.diagrams && (
                 <>
                   <h3>En images</h3>
                   <div className="schemas-container">
-                    {Object.keys(pain.medicalApproach.schemas).map(
-                      (key: string, index: number) => {
-                        const schema: Schema = pain.medicalApproach.schemas[
-                          key
-                        ] as Schema;
-
-                        return (
-                          <div key={index}>
-                            <Image
-                              className="schema"
-                              src={urlFor(schema.schemaImage.asset._ref).url()}
-                              width={2000}
-                              height={400}
-                              alt={`schéma : ${schema.schemaImage.alternativeText}`}
-                            />
-                            <p className="schema-caption">
-                              {schema.schemaImage.caption}
-                            </p>
-                          </div>
-                        );
-                      }
-                    )}
+                    {Array.isArray(pain.medicalApproach.diagrams) &&
+                      pain.medicalApproach.diagrams.map(
+                        (diagram: Diagram, index: number) => {
+                          return (
+                            <div key={index}>
+                              <Image
+                                className="schema"
+                                src={urlFor(diagram.diagram.asset._ref).url()}
+                                width={2000}
+                                height={400}
+                                alt={`schéma : ${diagram.diagram.alternativeText}`}
+                              />
+                              <p className="schema-caption">
+                                {diagram.diagram.caption}
+                              </p>
+                            </div>
+                          );
+                        }
+                      )}
                   </div>
                 </>
               )}

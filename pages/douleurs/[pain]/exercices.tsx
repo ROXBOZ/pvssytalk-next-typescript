@@ -5,7 +5,7 @@ import PainNav from "../../../components/painNav";
 import {
   getStaticPathsPain,
   getStaticPropsPainExercises,
-} from "../../../props/dataFetching";
+} from "../../../utils/dataFetching";
 import { Exercise } from "../../../components/exercise";
 
 const PainExercises = ({
@@ -23,8 +23,8 @@ const PainExercises = ({
             Exercices{" "}
             <a href="./" className="colored logo">
               {pain.name}
-            </a>{" "}
-            <sup className="no-color">{exercises.length}</sup>
+            </a>
+             <sup className="no-color">{exercises.length}</sup>
           </h1>
           <PainNav pain={pain} />
         </div>

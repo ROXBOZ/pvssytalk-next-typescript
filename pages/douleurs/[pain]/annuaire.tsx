@@ -6,7 +6,7 @@ import DirectoryItem from "../../../components/directoryItem";
 import {
   getStaticPathsPain,
   getStaticPropsPainDirectories,
-} from "../../../props/dataFetching";
+} from "../../../utils/dataFetching";
 import { directoryCategories } from "../../../components/reusables/Filters";
 
 const Directory = ({
@@ -31,8 +31,8 @@ const Directory = ({
               Annuaire{" "}
               <a href="./" className="colored logo">
                 {pain.name}
-              </a>{" "}
-              <sup className="no-color">{directories.length}</sup>
+              </a>
+               <sup className="no-color">{directories.length}</sup>
             </h1>
             <PainNav pain={pain} />
           </div>
@@ -48,10 +48,7 @@ const Directory = ({
 
               return (
                 <div key={category.title} className="directory-container">
-                  <h2 className="h3">
-                    {category.title}{" "}
-                    <sup>{categorizedDirectoryItem.length}</sup>
-                  </h2>
+                  <h2 className="h3">{category.title} </h2>
 
                   {categorizedDirectoryItem.map(
                     (directoryItem: DirectoryDetail) => (

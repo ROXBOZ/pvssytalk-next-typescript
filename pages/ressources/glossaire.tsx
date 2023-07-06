@@ -3,10 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { GlossaryDetail, GlossaryDetails, PainDetails } from "../../types";
 import { PortableText } from "@portabletext/react";
 import RessourceNav from "../../components/ressourceNav";
-import { getStaticPropsGlossary } from "../../props/dataFetching";
+import { getStaticPropsGlossary } from "../../utils/dataFetching";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import Filters, { pains as painList } from "../../components/reusables/Filters";
 
 const Glossary = ({
   glossary,
@@ -23,6 +24,7 @@ const Glossary = ({
   const router = useRouter();
   const termsContainerRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
   const termGroups: { [key: string]: GlossaryDetail[] } = {};
   if (sortedGlossary) {
@@ -113,6 +115,11 @@ const Glossary = ({
                 onChange={handleInputChange}
               />
             </form>
+            <Filters
+              filterOptions={painList}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+            />
           </div>
         </div>
         <div>

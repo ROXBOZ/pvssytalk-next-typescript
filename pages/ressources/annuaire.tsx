@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { GetStaticProps } from "next";
 import { DirectoryDetail } from "../../types";
-import { directoryCategories } from "../../components/reusables/Filters";
+import Filters, {
+  directoryCategories,
+  pains,
+} from "../../components/reusables/Filters";
 import DirectoryItem from "../../components/directoryItem";
-import { getStaticPropsDirectory } from "../../props/dataFetching";
+import { getStaticPropsDirectory } from "../../utils/dataFetching";
 import RessourceNav from "../../components/ressourceNav";
 
 const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   return (
     <div>
       <div className="double-column-containers-group">
@@ -16,6 +20,11 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
               Annuaire <sup>{directory.length}</sup>
             </h1>
             <RessourceNav />
+            <Filters
+              filterOptions={pains}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+            />
           </div>
           <div>
             {directoryCategories.map((category) => {
@@ -33,10 +42,7 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
 
               return (
                 <div key={category.value} className="directory-container">
-                  <h2 className="h3">
-                    {category.title}{" "}
-                    <sup>{categorizedDirectoryItem.length}</sup>
-                  </h2>
+                  <h2 className="h3">{category.title}</h2>
                   {categorizedDirectoryItem.map(
                     (directoryItem: DirectoryDetail) => (
                       <DirectoryItem

@@ -33,8 +33,9 @@ const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
     <>
       <nav className="pain-nav">
         <h3>
+          Approche{" "}
           <span className="colored ">
-            Approche {isMed ? <span>médicale</span> : <span>sexologique</span>}
+            {isMed ? <span>médicale</span> : <span>sexologique</span>}
           </span>
         </h3>
         <button onClick={switchArticle}>
@@ -42,7 +43,8 @@ const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
             <span>Approche sexologique</span>
           ) : (
             <span>Approche médicale</span>
-          )}
+          )}{" "}
+          ⇆
         </button>
         <h3>Ressources</h3>
         <a href={`${pain.slug.current}/glossaire`}>Glossaire</a>

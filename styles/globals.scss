@@ -17,6 +17,7 @@
 @import "exercise";
 @import "glossary";
 @import "directory";
+@import "message";
 
 body {
   margin: 0;
@@ -57,4 +58,8 @@ a.colored.logo {
 
 .no-border {
   border-top: none;
+}
+
+.unknown__pt__mark__internalLink {
+  background-color: yellow;
 }

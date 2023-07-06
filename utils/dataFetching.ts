@@ -4,12 +4,29 @@ import {
   ExerciseDetails,
   GlossaryDetails,
   MediaDetails,
+  PageDetail,
   PainDetail,
   PainDetails,
 } from "../types";
-import { client } from "../utils/sanity/client";
+import { client } from "../config/sanity/client";
 
-//PROPS
+/*----PAINS----*/
+export const getStaticPropsPains = async () => {
+  try {
+    const pains: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'
+    );
+    return {
+      props: { pains },
+    };
+  } catch (error) {
+    console.error("Error fetching pains:", error);
+    return {
+      props: { pains: [] },
+    };
+  }
+};
+/*----GENERAL RESSOURCES----*/
 export const getStaticPropsGlossary: GetStaticProps = async () => {
   try {
     const glossary: GlossaryDetails = await client.fetch(
@@ -84,6 +101,7 @@ export const getStaticPropsDirectory: GetStaticProps = async () => {
     };
   }
 };
+/*----PAINS RESSOURCES----*/
 export const getStaticPropsPainGlossary: GetStaticProps = async ({
   params,
 }) => {
@@ -103,6 +121,7 @@ export const getStaticPropsPainGlossary: GetStaticProps = async ({
         notFound: true,
       };
     }
+    console.log("fetchedPain: ", fetchedPain);
 
     return {
       props: { pain: fetchedPain, glossary: fetchedGlossary },
@@ -144,7 +163,6 @@ export const getStaticPropsPainExercises: GetStaticProps = async ({
     };
   }
 };
-
 export const getStaticPropsPainMedias: GetStaticProps = async ({ params }) => {
   try {
     const { pain } = params!;
@@ -173,7 +191,6 @@ export const getStaticPropsPainMedias: GetStaticProps = async ({ params }) => {
     };
   }
 };
-
 export const getStaticPropsPainDirectories: GetStaticProps = async ({
   params,
 }) => {
@@ -204,35 +221,143 @@ export const getStaticPropsPainDirectories: GetStaticProps = async ({
     };
   }
 };
-
-// export const getStaticPropsPainDirectory: GetStaticProps = async ({
-//   params,
-// }) => {
-//   try {
-//     const { pain } = params!;
-//     const fetchedPain: PainDetail | null = await client.fetch(
-//       `*[_type == "pain" && slug.current == $currentSlug][0]`,
-//       { currentSlug: pain }
-//     );
-//     const fetchedDirectory: DirectoryDetails[] | null = await client.fetch(
-//       `*[_type == "directory" && !(_id in path("drafts.**"))]`
-//     );
-//     if (!fetchedPain || !fetchedDirectory) {
-//       return {
-//         notFound: true,
-//       };
-//     }
-
-//     return {
-//       props: { pain: fetchedPain, directory: fetchedDirectory },
-//     };
-//   } catch (error) {
-//     console.error("Error fetching directory:", error);
-//     return {
-//       props: { pain: null, directory: [] },
-//     };
-//   }
-// };
+/*----START----*/
+export const getStaticPropsIntroPage = async () => {
+  try {
+    const IntroPage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "10c30e52-94bc-4b41-9200-2eb8c89c4997" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { IntroPage },
+    };
+  } catch (error) {
+    console.error("Error fetching IntroPage:", error);
+    return {
+      props: { IntroPage: [] },
+    };
+  }
+};
+export const getStaticPropsGuidePage = async () => {
+  try {
+    const GuidePage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "907c981f-c463-415c-b975-6a14971575e1" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { GuidePage },
+    };
+  } catch (error) {
+    console.error("Error fetching GuidePage:", error);
+    return {
+      props: { GuidePage: [] },
+    };
+  }
+};
+export const getStaticPropsConsultPage = async () => {
+  try {
+    const ConsultPage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "ecfa6551-18d6-47b7-8315-43043dd7ad5d" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { ConsultPage },
+    };
+  } catch (error) {
+    console.error("Error fetching ConsultPage:", error);
+    return {
+      props: { ConsultPage: [] },
+    };
+  }
+};
+/*----OTHER PAGES----*/
+export const getStaticPropsAccessibilityPage = async () => {
+  try {
+    const AccessibilityPage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "d51ad2a1-f2ca-435c-a9bf-1166d9616831" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { AccessibilityPage },
+    };
+  } catch (error) {
+    console.error("Error fetching AccessibilityPage:", error);
+    return {
+      props: { AccessibilityPage: [] },
+    };
+  }
+};
+export const getStaticPropsAboutPage = async () => {
+  try {
+    const AboutPage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "d1ec0f67-914d-4351-8695-4a50d0b7759c" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { AboutPage },
+    };
+  } catch (error) {
+    console.error("Error fetching AccessibilityPage:", error);
+    return {
+      props: { AccessibilityPage: [] },
+    };
+  }
+};
+export const getStaticPropsMembersPage = async () => {
+  try {
+    const MembersPage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "1c05b6e2-6165-4162-94dd-37fdd58c89fb" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { MembersPage },
+    };
+  } catch (error) {
+    console.error("Error fetching MembersPage:", error);
+    return {
+      props: { MembersPage: [] },
+    };
+  }
+};
+export const getStaticPropsDonatePage = async () => {
+  try {
+    const DonatePage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "f501afa0-06d7-428b-9ad0-11b853d96896" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { DonatePage },
+    };
+  } catch (error) {
+    console.error("Error fetching DonatePage:", error);
+    return {
+      props: { DonatePage: [] },
+    };
+  }
+};
+export const getStaticPropsCreditPage = async () => {
+  try {
+    const CreditPage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "455abeba-d503-4fef-b0ec-4bd24fa437a6" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { CreditPage },
+    };
+  } catch (error) {
+    console.error("Error fetching CreditPage:", error);
+    return {
+      props: { CreditPage: [] },
+    };
+  }
+};
+export const getStaticPropsConditionsPage = async () => {
+  try {
+    const ConditionsPage: PageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "10cdf147-5d9f-4333-8bae-a27929ade630" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { ConditionsPage },
+    };
+  } catch (error) {
+    console.error("Error fetching ConditionsPage:", error);
+    return {
+      props: { ConditionsPage: [] },
+    };
+  }
+};
 
 //PATH
 export const getStaticPathsPain: GetStaticPaths = async () => {

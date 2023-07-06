@@ -18,8 +18,8 @@ export interface PainDetail {
   };
   medicalApproach: {
     def?: string;
-    schemas: {
-      schemaImage: {
+    diagrams?: {
+      diagram: {
         asset: {
           _ref: string;
           caption: string;
@@ -55,17 +55,17 @@ export interface PainDetail {
 }
 export type PainDetails = PainDetail[];
 
-export interface Schema {
-  schemaImage: {
+export interface Diagram {
+  diagram: {
     asset: {
       _key: string;
       _ref: string;
     };
-    alternativeText: string;
     caption: string;
+    alternativeText: string;
   };
 }
-export type Schemas = Schema[];
+export type Diagrams = Diagram[];
 
 export interface PainDashboardProps {
   pain: {
@@ -93,6 +93,9 @@ export interface GlossaryDetail {
   _id: string;
   _ref: string;
   term: string;
+  slug: {
+    current: string;
+  };
   def: string;
   relatedPain: { _ref: string; term: string }[];
 }
@@ -150,6 +153,12 @@ export interface DirectoryDetail {
     phone: string;
   }[];
 }
-
 export type DirectoryDetails = DirectoryDetail[];
 ``;
+export interface PageDetail {
+  _id: string;
+  _ref: string;
+  title: string;
+  subtitle: string;
+}
+export type PageDetails = PageDetail[];

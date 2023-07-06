@@ -1,9 +1,21 @@
 import React from "react";
+import { GetStaticProps } from "next";
+import { getStaticPropsCreditPage } from "../utils/dataFetching";
+import { PageDetail } from "../types";
 
-type Props = {};
+const CreditPage = ({ CreditPage }: { CreditPage: PageDetail[] }) => {
+  let credit = CreditPage[0];
 
-const Credits = (props: Props) => {
-  return <div>Crédits</div>;
+  return (
+    <div className="double-column-containers-group">
+      <div className="double-column-container">
+        <div>
+          <h1>{credit.title}</h1>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Credits;
+export default CreditPage;
+export const getStaticProps: GetStaticProps = getStaticPropsCreditPage;

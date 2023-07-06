@@ -42,6 +42,7 @@ export const mediaCategories: (string | { title: string; value: string })[] = [
 ];
 
 export const directoryCategories: (
+  | any
   | string
   | { title: string; value: string }
 )[] = [

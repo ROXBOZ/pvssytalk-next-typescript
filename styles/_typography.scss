@@ -45,8 +45,10 @@ sup {
   color: $primary;
 }
 
-.logo {
-  // white-space: nowrap;
+.logo,
+.unknown__pt__mark__span,
+.unknown__pt__mark__logo {
+  white-space: nowrap;
   font-family: $font-logo;
 }
 
