@@ -26,6 +26,18 @@ const Signup = (props: Props) => {
     console.log("send :");
   };
 
+  // const signInWithGoogle = async () => {
+  //   const provider = new firebase.auth.GoogleAuthProvider();
+  //   try {
+  //     const result = await firebase.auth().signInWithPopup(provider);
+
+  //     const user = result.user;
+  //   } catch (error) {
+  //     const errorCode = error.code;
+  //     const errorMessage = error.message;
+  //   }
+  // };
+
   return (
     <main>
       <h1>Créer un compte</h1>
@@ -61,7 +73,10 @@ const Signup = (props: Props) => {
           required
         />
         <label htmlFor="password"></label>
-        <button onClick={handleSignup}>Créer un compte</button>
+        <button onClick={handleSignup}>
+          <span>Créer un compte</span>
+        </button>
+        <button onClick={signInWithGoogle}>Sign up with Google</button>
       </form>
     </main>
   );
