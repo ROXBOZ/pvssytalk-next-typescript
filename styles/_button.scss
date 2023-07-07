@@ -6,6 +6,11 @@ button {
   cursor: pointer;
   color: $txt-color;
   white-space: nowrap;
+  height: fit-content;
+
+  &:disabled {
+    opacity: 40%;
+  }
 
   &:hover {
     background-color: $secondary;

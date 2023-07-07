@@ -9,9 +9,13 @@ const Login = (props: Props) => {
       <div className="double-column-container">
         <div>
           <h1>Se connecter</h1>
-        </div>
-        <div>
-          <a href="creer-un-compte">Créer un compte</a>
+          <nav className="nav-directory">
+            <a href="creer-un-compte">Créer un compte</a>
+          </nav>
+
+          <p style={{ color: "red" }}>
+            only be able to connect if email verified
+          </p>
         </div>
       </div>
     </div>

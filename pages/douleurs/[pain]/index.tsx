@@ -3,16 +3,13 @@ import { Diagram, GlossaryDetails, PainDetail } from "../../../types";
 import { urlFor } from "../../../config/sanity/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
-import { PortableText, PortableTextReactComponents } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import PainDashboard from "../../../components/painDashboard";
 import {
   getStaticPathsPain,
   getStaticPropsPainGlossary,
+  getStaticPropsPainGlossaryRef,
 } from "../../../utils/dataFetching";
-import { websiteURL } from "../../../utils/urls";
-import { regexTerm } from "../../../utils/regex";
-import { Link } from "react-router-dom";
-import { useRouter } from "next/router";
 import { highlightText } from "../../../utils/highlightText";
 
 const articlePain = ({
@@ -22,20 +19,11 @@ const articlePain = ({
   pain: PainDetail;
   glossary: GlossaryDetails;
 }) => {
-  const router = useRouter();
   const [isMed, setIsMed] = useState<boolean>(true);
   const imgHotspot = pain.mainImage.hotspot;
   const imageCoverHotspot = {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };
-
-  const painTerms = glossary.map((g) => {
-    return g.term.toLowerCase();
-  });
-
-  const painTermSlug = glossary.map((g) => {
-    return g.slug?.current;
-  });
 
   return (
     <main>
@@ -68,20 +56,6 @@ const articlePain = ({
               {pain.medicalApproach?.def && (
                 <>
                   <h2>Définition</h2>
-                  {/* {console.log(
-                    "pain.medicalApproach.def :",
-                    pain.medicalApproach.def
-                  )}
-                  {console.log(
-                    "highlightText(pain.medicalApproach.def, ) :",
-                    highlightText(pain.medicalApproach.def, glossary)
-                  )}
-
-                  {console.log(
-                    "pain.medicalApproach.def :",
-                    pain.medicalApproach.def
-                  )} */}
-
                   <PortableText
                     value={
                       highlightText(pain.medicalApproach.def, glossary) as any
@@ -238,4 +212,4 @@ const articlePain = ({
 export default articlePain;
 
 export const getStaticPaths: GetStaticPaths = getStaticPathsPain;
-export const getStaticProps: GetStaticProps = getStaticPropsPainGlossary;
+export const getStaticProps: GetStaticProps = getStaticPropsPainGlossaryRef;

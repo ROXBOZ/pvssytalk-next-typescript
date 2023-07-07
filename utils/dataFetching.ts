@@ -102,6 +102,7 @@ export const getStaticPropsDirectory: GetStaticProps = async () => {
   }
 };
 /*----PAINS RESSOURCES----*/
+
 export const getStaticPropsPainGlossary: GetStaticProps = async ({
   params,
 }) => {
@@ -109,6 +110,39 @@ export const getStaticPropsPainGlossary: GetStaticProps = async ({
     const { pain } = params!;
     const fetchedPain: PainDetail | null = await client.fetch(
       `*[_type == "pain" && slug.current == $currentSlug][0]`,
+      { currentSlug: pain }
+    );
+    const fetchedGlossary: GlossaryDetails[] | null = await client.fetch(
+      `*[_type == "glossary" && references($painId)]`,
+      { painId: fetchedPain?._id }
+    );
+
+    if (!fetchedPain || !fetchedGlossary) {
+      return {
+        notFound: true,
+      };
+    }
+    console.log("fetchedPain: ", fetchedPain);
+
+    return {
+      props: { pain: fetchedPain, glossary: fetchedGlossary },
+    };
+  } catch (error) {
+    console.error("Error fetching glossary:", error);
+    return {
+      props: { pain: null, glossary: [] },
+    };
+  }
+};
+export const getStaticPropsPainGlossaryRef: GetStaticProps = async ({
+  params,
+}) => {
+  try {
+    const { pain } = params!;
+    const fetchedPain: PainDetail | null = await client.fetch(
+      `*[_type == "pain" && slug.current == $currentSlug][0]{
+
+      }`,
       { currentSlug: pain }
     );
     const fetchedGlossary: GlossaryDetails[] | null = await client.fetch(

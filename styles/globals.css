@@ -609,6 +609,11 @@ button {
   cursor: pointer;
   color: #4d4d28;
   white-space: nowrap;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+button:disabled {
+  opacity: 40%;
 }
 button:hover {
   background-color: #dcb4ff;
@@ -923,6 +928,49 @@ form .search-bar:focus {
 }
 .redirection:hover:before {
   transform: rotate(45deg);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f3f3e7;
+  padding: 1rem;
+  border-radius: 10px;
+}
+form .form-section {
+  display: flex;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+form .form-section label.required {
+  width: 100%;
+}
+form .form-section label.required:after {
+  content: " *";
+  color: #fd4a36;
+}
+form .form-section input {
+  font-family: "ESKlarheit-Book";
+  color: #4d4d28;
+  background-color: transparent;
+  border: 1px solid #4d4d28;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+form .form-section.checkbox-container {
+  font-size: 80%;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+form .input-section {
+  display: flex;
+  gap: 0.5rem;
+}
+form .input-section .showPassword {
+  padding: 0;
+  border: 0;
 }
 
 body {

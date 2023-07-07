@@ -6,14 +6,9 @@ export const highlightText = (approach: any, glossary: GlossaryDetails) => {
     return g.term.toLowerCase();
   });
 
-  console.log("painTerms :", glossary);
-
   return approach.map((section: any) => {
-    console.log("approach :", approach);
     const children = section.children?.map((child: any) => {
       const part = child.text.toLowerCase();
-      const painTermSlug = "";
-      console.log("child :", child);
       return painTerms.includes(part)
         ? {
             _type: "block",
@@ -50,19 +45,7 @@ export const highlightText = (approach: any, glossary: GlossaryDetails) => {
               },
             ],
           }
-        : // ? {
-          //     ...child,
-          //     marks: ["link"],
-          //     markDefs: [
-          //       {
-          //         _type: "link",
-          //         _key: "e556761904ba",
-          //         href: "https://www.portabletext.org",
-          //       },
-          //     ],
-          //     href: `glossaire/#${painTermSlug}`,
-          //   }
-          child;
+        : child;
     });
     return { ...section, children };
   });

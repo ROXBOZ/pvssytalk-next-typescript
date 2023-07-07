@@ -1,0 +1,47 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: $txt-color-lighten;
+  padding: $sm-space;
+  border-radius: $border-radius-soft;
+
+  .form-section {
+    display: flex;
+    padding: $xs-space 0;
+    width: 100%;
+    label.required {
+      width: 100%;
+      &:after {
+        content: " *";
+        color: $primary;
+      }
+    }
+
+    input {
+      font-family: $font-regular;
+      color: $txt-color;
+      background-color: transparent;
+      border: $border-solid $txt-color;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+    }
+
+    &.checkbox-container {
+      font-size: $smaller-text;
+      gap: $sm-space;
+      justify-content: flex-start;
+    }
+  }
+
+  .input-section {
+    display: flex;
+    gap: $xs-space;
+
+    .showPassword {
+      padding: 0;
+      border: 0;
+    }
+  }
+}

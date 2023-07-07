@@ -16,6 +16,12 @@
     "incremental": true,
     "noImplicitAny": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/douleurs/[pain]"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/douleurs/[pain]",
+    "context/authContext.js"
+  ],
   "exclude": ["node_modules"]
 }
