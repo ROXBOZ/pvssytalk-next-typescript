@@ -300,11 +300,15 @@ header nav {
   grid-column: 4/13;
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 header nav a {
   font-family: "ESKlarheit-Book";
   text-transform: lowercase;
   border-bottom: none;
+}
+header nav button {
+  font-size: 16px;
 }
 
 footer {
@@ -325,7 +329,7 @@ footer .footer-content {
 }
 footer .footer-content p {
   margin-top: 0;
-  font-size: 300%;
+  font-size: 200%;
   grid-column: 1/7;
   color: #4d4d28;
 }
@@ -611,9 +615,14 @@ button {
   white-space: nowrap;
   height: -moz-fit-content;
   height: fit-content;
+  font-size: 16px;
 }
 button:disabled {
   opacity: 40%;
+}
+button:disabled:hover {
+  background-color: transparent !important;
+  cursor: not-allowed;
 }
 button:hover {
   background-color: #dcb4ff;
@@ -934,7 +943,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #f3f3e7;
+  border: 1px solid #f3f3e7;
   padding: 1rem;
   border-radius: 10px;
 }
@@ -954,15 +963,21 @@ form .form-section input {
   font-family: "ESKlarheit-Book";
   color: #4d4d28;
   background-color: transparent;
-  border: 1px solid #4d4d28;
+  border: 1px solid #dcb4ff;
   border-top-color: transparent;
   border-left-color: transparent;
   border-right-color: transparent;
 }
+form .form-section input[type=text],
+form .form-section input[type=password] {
+  width: 100%;
+  color: #4d4d28;
+}
 form .form-section.checkbox-container {
   font-size: 80%;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: flex-start;
+  align-items: center;
 }
 form .input-section {
   display: flex;
@@ -971,6 +986,44 @@ form .input-section {
 form .input-section .showPassword {
   padding: 0;
   border: 0;
+}
+
+.form-check-input {
+  margin-right: 0.5em;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: top;
+  background-position: center;
+  border: 2px solid #fea59b;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.25em;
+  background-color: white;
+}
+.form-check-input:active {
+  filter: brightness(90%);
+}
+.form-check-input:checked {
+  background-color: #fd4a36;
+}
+
+.form-check-input[type=checkbox] {
+  border: 1px solid #fd4a36;
+}
+.form-check-input[type=checkbox]:disabled {
+  opacity: 30%;
+}
+.form-check-input[type=checkbox]:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.form-check-input[type=radio] {
+  border-radius: 50%;
+  background-color: #fd4a36;
+}
+.form-check-input[type=radio]:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
 }
 
 body {

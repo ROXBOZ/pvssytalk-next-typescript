@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
+import { AuthContext } from "../context/authContext";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const { existingUserCredential, logout } = useContext(AuthContext);
+
   return (
     <header>
       <Link href="/" className="borderless">
@@ -17,7 +20,13 @@ const Header = (props: Props) => {
         <Link href="/faire-un-don">Faire un don</Link>
         <Link href="/devenir-membre">Devenir membre</Link>
         <Link href="/a-propos">À propos</Link>
-        <Link href="/se-connecter">Se connecter</Link>
+        {!existingUserCredential ? (
+          <Link href="/se-connecter">Connexion</Link>
+        ) : (
+          <button onClick={logout}>
+            <span>Déconnexion</span>
+          </button>
+        )}
       </nav>
     </header>
   );

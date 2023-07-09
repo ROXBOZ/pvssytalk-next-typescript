@@ -7,9 +7,13 @@ button {
   color: $txt-color;
   white-space: nowrap;
   height: fit-content;
-
+  font-size: $font-size-basis;
   &:disabled {
     opacity: 40%;
+    &:hover {
+      background-color: transparent !important;
+      cursor: not-allowed;
+    }
   }
 
   &:hover {

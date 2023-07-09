@@ -6,7 +6,7 @@ footer {
     @include grid;
     p {
       margin-top: 0;
-      font-size: 300%;
+      font-size: 200%;
       grid-column: #{$grid-first-half};
       color: $txt-color;
     }

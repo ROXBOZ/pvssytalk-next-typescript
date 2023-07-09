@@ -10,7 +10,7 @@ type Props = {};
 
 const Signup = (props: Props) => {
   const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
+  // const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
   const [isVisible, setIsVisible] = useState(false);
@@ -28,14 +28,12 @@ const Signup = (props: Props) => {
     }
   };
 
-  console.log("registrationError :", registrationError);
-
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
   };
-  const handleUserNameChange = (e: any) => {
-    setUserName(e.target.value);
-  };
+  // const handleUserNameChange = (e: any) => {
+  //   setUserName(e.target.value);
+  // };
   const handlePasswordChange = (e: any) => {
     setPassword(e.target.value);
   };
@@ -46,7 +44,7 @@ const Signup = (props: Props) => {
     e.preventDefault();
     register(auth, email, password);
     setEmail("");
-    setUserName("");
+    // setUserName("");
     setPassword("");
     setPasswordRepeat("");
   };
@@ -70,22 +68,30 @@ const Signup = (props: Props) => {
     }
   }, [newUserCredential, router]);
 
+  console.log("email :", email);
+  console.log("password :", password);
+
   return (
     <div className="double-column-containers-group">
       <div className="double-column-container">
         <div>
           <h1>Créer un compte</h1>
+
           <nav className="nav-directory">
             <a href="se-connecter">Se connecter</a>
-            <a href="conditions-generales">Conditions générales</a>
           </nav>
+          <p>
+            Votre compte <span className="logo">pvssy talk</span> vous permet de
+            faire des suggestions pour l’<a>agenda</a> et l’
+            <a>annuaire</a>. D’autres fonctionnalités sont à venir.
+          </p>
         </div>
         <div>
           <div>
             <form>
               <div className="form-section">
                 <label htmlFor="email" className="required">
-                  <span>Adresse Email</span>
+                  <span>Adresse email</span>
                 </label>
                 <div className="input-section">
                   <input
@@ -96,13 +102,13 @@ const Signup = (props: Props) => {
                     required
                   />
                   {email &&
-                  userName &&
+                  password &&
                   (!email.includes("@") || !email.includes(".")) ? (
-                    <span className="smaller-text colored">invalide email</span>
+                    <span className="smaller-text colored">invalide</span>
                   ) : null}
                 </div>
               </div>
-              <div className="form-section">
+              {/* <div className="form-section">
                 <label htmlFor="userName" className="required">
                   <span>Pseudo</span>
                 </label>
@@ -115,7 +121,7 @@ const Signup = (props: Props) => {
                     required
                   />
                 </div>
-              </div>
+              </div> */}
               <div className="form-section">
                 <label htmlFor="password" className="required">
                   <span>Mot de passe</span>
@@ -162,6 +168,7 @@ const Signup = (props: Props) => {
                   name="conditionsCheckbox"
                   type="checkbox"
                   required
+                  className="form-check-input"
                 />
                 <label htmlFor="conditionsCheckbox">
                   <span> J’ai lu et j’accepte les </span>
@@ -180,8 +187,7 @@ const Signup = (props: Props) => {
                 <button
                   onClick={handleRegister}
                   disabled={
-                    !(userName &&
-                    email &&
+                    !(email &&
                     email.includes("@") &&
                     email.includes(".") &&
                     password === passwordRepeat &&
@@ -191,22 +197,23 @@ const Signup = (props: Props) => {
                       : false)
                   }
                 >
-                  Créer un compte
+                  <span>Créer un compte</span>
                 </button>
-                {newUserCredential && (
-                  <div>
-                    <span className="msg success">
-                      Un lien de vérification vous a été envoyé par email{" "}
-                    </span>
-                  </div>
-                )}
-                {registrationError ===
-                  "Firebase: Error (auth/email-already-in-use)." && (
-                  <p className="msg warning">
-                    Un compte existe déjà avec cet email
-                  </p>
-                )}
+                <a href="se-connecter">Déjà un compte ?</a>
               </div>
+              {newUserCredential && (
+                <div>
+                  <span className="msg success">
+                    Un lien de vérification vous a été envoyé par email{" "}
+                  </span>
+                </div>
+              )}
+              {registrationError ===
+                "Firebase: Error (auth/email-already-in-use)." && (
+                <p className="msg warning">
+                  Un compte existe déjà avec cet email
+                </p>
+              )}
             </form>
             <div
               style={{

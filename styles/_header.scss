@@ -12,10 +12,15 @@ header {
     grid-column: #{$grid-last-thirds};
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     a {
       font-family: $font-regular;
       text-transform: lowercase;
       border-bottom: none;
+    }
+
+    button {
+      font-size: $font-size-basis;
     }
   }
 }
