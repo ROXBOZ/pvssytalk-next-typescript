@@ -17,13 +17,17 @@ const User = (props: Props) => {
             {existingUserCredential &&
               existingUserCredential.emailVerified === true && (
                 <>
+                  <nav className="nav-directory">
+                    <a href="">Gérer l’agenda</a>
+                    <a href="">Gérer l’annuaire</a>
+                  </nav>
                   <p>
                     Vous êtes connecté·e avec{" "}
-                    <strong>{existingUserCredential.email}</strong> et avec la
+                    <strong>{existingUserCredential.email}</strong> et avez la
                     fonction d’<strong>admin</strong>.{" "}
                   </p>
                   <button onClick={logout}>
-                    <span>Changer de compte</span>
+                    <span>Déconnexion</span>
                   </button>
                 </>
               )}
@@ -34,10 +38,10 @@ const User = (props: Props) => {
               <p>this is protected</p>
             ) : (
               <main>
-                <span>
+                <p className="msg warning">
                   <a href="se-connecter">Connectez-vous</a> pour accéder à cette
                   page.
-                </span>
+                </p>
               </main>
             )}
           </div>

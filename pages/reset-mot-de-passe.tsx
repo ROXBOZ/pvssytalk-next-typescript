@@ -12,16 +12,13 @@ const ResetPassword = (props: Props) => {
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
   };
-
   const handleReset = async (e: any) => {
     e.preventDefault();
     try {
       await sendPasswordResetEmail(auth, email);
-      console.log("Password reset email sent");
       setResetSuccess("Password reset email sent");
     } catch (error: any) {
       setResetError(error.message);
-      console.log("error.message :", error.message);
     }
   };
 
@@ -30,6 +27,10 @@ const ResetPassword = (props: Props) => {
       <div className="double-column-container">
         <div>
           <h1>Réinitialiser mot de passe</h1>
+          <nav className="nav-directory">
+            <a href="creer-un-compte">Créer un compte</a>
+            <a href="se-connecter">Se connecter</a>
+          </nav>
         </div>
         <div>
           <form>
@@ -65,7 +66,7 @@ const ResetPassword = (props: Props) => {
               </button>{" "}
               {resetSuccess && (
                 <p className="msg success">
-                  Lien de réinitialisation du mot de passe envoyé par email.
+                  Lien de réinitialisation du mot de passe envoyé par email.
                 </p>
               )}
               {email &&

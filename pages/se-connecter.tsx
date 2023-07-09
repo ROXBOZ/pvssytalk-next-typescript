@@ -17,11 +17,9 @@ const Login = (props: Props) => {
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
   };
-
   const handlePasswordChange = (e: any) => {
     setPassword(e.target.value);
   };
-
   const handleLogin = (e: any) => {
     e.preventDefault();
     login(email, password);
@@ -33,7 +31,7 @@ const Login = (props: Props) => {
       existingUserCredential.emailVerified === true
     ) {
       setTimeout(() => {
-        router.push("/user");
+        router.push("/gerer");
       }, 1500);
     }
   }, [existingUserCredential, router]);

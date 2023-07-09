@@ -17,7 +17,6 @@ type AuthContextProviderProps = {
 type UserCredential = any;
 
 export const AuthContext = createContext<any>(null);
-
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   children,
 }) => {
@@ -51,9 +50,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     if (userCredentials) {
       try {
         await sendEmailVerification(userCredentials);
-      } catch (error: any) {
-        console.log("Error sending email verification:", error);
-      }
+      } catch (error: any) {}
     }
   };
   const googleSignIn = () => {
@@ -69,10 +66,8 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       );
       const user = userCredential.user;
       setExistingUserCredential(user);
-      console.log("user :", user);
     } catch (error: any) {
       setLoginError(error.message);
-      console.log("error.message :", error.message);
     }
   };
   const logout = () => {

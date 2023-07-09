@@ -854,6 +854,9 @@ form .search-bar:focus {
   padding: 0.5rem 0;
   align-items: flex-start;
 }
+.msg a {
+  border-bottom: none;
+}
 .msg * {
   padding: 0;
   margin: 0;

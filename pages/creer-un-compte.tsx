@@ -27,13 +27,9 @@ const Signup = (props: Props) => {
       console.log("error :", error);
     }
   };
-
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
   };
-  // const handleUserNameChange = (e: any) => {
-  //   setUserName(e.target.value);
-  // };
   const handlePasswordChange = (e: any) => {
     setPassword(e.target.value);
   };
@@ -108,20 +104,6 @@ const Signup = (props: Props) => {
                   ) : null}
                 </div>
               </div>
-              {/* <div className="form-section">
-                <label htmlFor="userName" className="required">
-                  <span>Pseudo</span>
-                </label>
-                <div className="input-section">
-                  <input
-                    type="text"
-                    placeholder="Pseudo"
-                    name="userName"
-                    onChange={handleUserNameChange}
-                    required
-                  />
-                </div>
-              </div> */}
               <div className="form-section">
                 <label htmlFor="password" className="required">
                   <span>Mot de passe</span>

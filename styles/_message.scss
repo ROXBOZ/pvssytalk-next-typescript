@@ -24,6 +24,10 @@ $warning-color: $quarterary;
   padding: $xs-space 0;
   align-items: flex-start;
 
+  a {
+    border-bottom: none;
+  }
+
   * {
     padding: 0;
     margin: 0;
