@@ -87,7 +87,7 @@ const Signup = (props: Props) => {
             <form>
               <div className="form-section">
                 <label htmlFor="email" className="required">
-                  <span>Adresse email</span>
+                  <span>Email</span>
                 </label>
                 <div className="input-section">
                   <input
@@ -126,7 +126,7 @@ const Signup = (props: Props) => {
               </div>
               <div className="form-section">
                 <label htmlFor="passwordRepeat" className="required">
-                  <span>Confirmer mot de passe</span>
+                  <span>Confirmer mot de passe</span>
                 </label>
                 <div className="input-section">
                   <input

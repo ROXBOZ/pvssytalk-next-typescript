@@ -3,6 +3,7 @@ import { GetStaticProps } from "next";
 import { PageDetail } from "../../types";
 import { PortableText } from "@portabletext/react";
 import { getStaticPropsIntroPage } from "../../utils/dataFetching";
+import StartNav from "../../components/startNav";
 
 const IntroPage = ({ IntroPage }: { IntroPage: PageDetail[] }) => {
   let intro = IntroPage[0];
@@ -12,6 +13,7 @@ const IntroPage = ({ IntroPage }: { IntroPage: PageDetail[] }) => {
       <div className="double-column-container">
         <div>
           <h1>{intro.title}</h1>
+          <StartNav />
         </div>
         <div>
           <PortableText value={intro.subtitle as any} />

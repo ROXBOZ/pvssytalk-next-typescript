@@ -10,19 +10,9 @@ const RessourceNav = (props: Props) => {
 
   return (
     <nav className="nav-directory">
-      {!currentURL.endsWith("glossaire") && (
-        <a href="glossaire">
-          <span>Glossaire</span>
-        </a>
-      )}
-      {!currentURL.endsWith("exercices") && (
-        <a href="exercices">
-          <span>Exercices</span>
-        </a>
-      )}
-      {!currentURL.endsWith("medias") && (
-        <a href="medias">
-          <span>Médias</span>
+      {!currentURL.endsWith("agenda") && (
+        <a href="agenda">
+          <span>Agenda</span>
         </a>
       )}
       {!currentURL.endsWith("annuaire") && (
@@ -30,6 +20,22 @@ const RessourceNav = (props: Props) => {
           <span>Annuaire</span>
         </a>
       )}
+      {!currentURL.endsWith("exercices") && (
+        <a href="exercices">
+          <span>Exercices</span>
+        </a>
+      )}
+      {!currentURL.endsWith("glossaire") && (
+        <a href="glossaire">
+          <span>Glossaire</span>
+        </a>
+      )}
+      {!currentURL.endsWith("medias") && (
+        <a href="medias">
+          <span>Médias</span>
+        </a>
+      )}
+
       <a href="/ressources">Toutes les ressources</a>
     </nav>
   );

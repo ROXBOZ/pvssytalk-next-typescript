@@ -8,7 +8,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import { firebaseApp } from "../config/firebase/firebase-config";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log("firebaseApp :", firebaseApp);
+  // console.log("firebaseApp :", firebaseApp);
   return (
     <>
       <AuthContextProvider>

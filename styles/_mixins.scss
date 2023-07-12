@@ -22,3 +22,16 @@
     }
   }
 }
+
+@mixin arrowRotate135 {
+  &:after {
+    content: " ↗";
+  }
+
+  &:hover {
+    &:after {
+      transition: $animation-transition;
+      transform: rotate(135deg);
+    }
+  }
+}

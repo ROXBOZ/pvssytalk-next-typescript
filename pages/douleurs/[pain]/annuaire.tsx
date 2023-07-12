@@ -19,6 +19,7 @@ const Directory = ({
   console.log("directories :", directories);
   const relatedDirectoryItem = directories.filter(
     (directoryItem: DirectoryDetail) =>
+      directoryItem.isValidated === true &&
       directoryItem.relatedPain?.some((related) => related._ref === pain._id)
   );
 
@@ -31,8 +32,14 @@ const Directory = ({
               Annuaire{" "}
               <a href="./" className="colored logo">
                 {pain.name}
-              </a>
-               <sup className="no-color">{directories.length}</sup>
+              </a>{" "}
+              <sup className="no-color">
+                {
+                  relatedDirectoryItem.filter(
+                    (item) => item.isValidated === true
+                  ).length
+                }
+              </sup>
             </h1>
             <PainNav pain={pain} />
           </div>

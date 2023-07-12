@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import {
   DirectoryDetails,
+  EventDetail,
   ExerciseDetails,
   GlossaryDetails,
   MediaDetails,
@@ -9,6 +10,30 @@ import {
   PainDetails,
 } from "../types";
 import { client } from "../config/sanity/client";
+
+//PATH
+export const getStaticPathsPain: GetStaticPaths = async () => {
+  try {
+    const slugs: string[] = await client.fetch(
+      `*[_type == "pain"].slug.current`
+    );
+
+    const paths = slugs.map((slug) => ({
+      params: { pain: slug },
+    }));
+
+    return {
+      paths,
+      fallback: false,
+    };
+  } catch (error) {
+    console.error("Error fetching slugs:", error);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
+};
 
 /*----PAINS----*/
 export const getStaticPropsPains = async () => {
@@ -101,6 +126,20 @@ export const getStaticPropsDirectory: GetStaticProps = async () => {
     };
   }
 };
+// POST DIRECTORY ENTRY
+export const createEntry = async (entry: DirectoryDetails) => {
+  try {
+    const createdEntry = await client.create({
+      _type: "directory",
+      ...entry,
+    });
+    return createdEntry;
+  } catch (error) {
+    console.error("Error creating entry:", error);
+    throw error;
+  }
+};
+
 /*----PAINS RESSOURCES----*/
 
 export const getStaticPropsPainGlossary: GetStaticProps = async ({
@@ -109,39 +148,18 @@ export const getStaticPropsPainGlossary: GetStaticProps = async ({
   try {
     const { pain } = params!;
     const fetchedPain: PainDetail | null = await client.fetch(
-      `*[_type == "pain" && slug.current == $currentSlug][0]`,
-      { currentSlug: pain }
-    );
-    const fetchedGlossary: GlossaryDetails[] | null = await client.fetch(
-      `*[_type == "glossary" && references($painId)]`,
-      { painId: fetchedPain?._id }
-    );
-
-    if (!fetchedPain || !fetchedGlossary) {
-      return {
-        notFound: true,
-      };
-    }
-    console.log("fetchedPain: ", fetchedPain);
-
-    return {
-      props: { pain: fetchedPain, glossary: fetchedGlossary },
-    };
-  } catch (error) {
-    console.error("Error fetching glossary:", error);
-    return {
-      props: { pain: null, glossary: [] },
-    };
-  }
-};
-export const getStaticPropsPainGlossaryRef: GetStaticProps = async ({
-  params,
-}) => {
-  try {
-    const { pain } = params!;
-    const fetchedPain: PainDetail | null = await client.fetch(
       `*[_type == "pain" && slug.current == $currentSlug][0]{
-
+        ...,
+        body[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "internalLink" => {
+              ...,
+             "slug": @->slug
+            }
+          }
+        }
       }`,
       { currentSlug: pain }
     );
@@ -155,8 +173,6 @@ export const getStaticPropsPainGlossaryRef: GetStaticProps = async ({
         notFound: true,
       };
     }
-    console.log("fetchedPain: ", fetchedPain);
-
     return {
       props: { pain: fetchedPain, glossary: fetchedGlossary },
     };
@@ -392,27 +408,33 @@ export const getStaticPropsConditionsPage = async () => {
     };
   }
 };
-
-//PATH
-export const getStaticPathsPain: GetStaticPaths = async () => {
+/*----AGENDA----*/
+// GET ALL EVENTS
+export const getStaticPropsEvents = async () => {
   try {
-    const slugs: string[] = await client.fetch(
-      `*[_type == "pain"].slug.current`
+    const events: EventDetail[] = await client.fetch(
+      '*[_type == "events" && !(_id in path("drafts.**"))]'
     );
-
-    const paths = slugs.map((slug) => ({
-      params: { pain: slug },
-    }));
-
     return {
-      paths,
-      fallback: false,
+      props: { events },
     };
   } catch (error) {
-    console.error("Error fetching slugs:", error);
+    console.error("Error fetching events:", error);
     return {
-      paths: [],
-      fallback: false,
+      props: { events: [] },
     };
+  }
+};
+// POST NEW EVENT
+export const createEvent = async (event: EventDetail) => {
+  try {
+    const createdEvent = await client.create({
+      _type: "events",
+      ...event,
+    });
+    return createdEvent;
+  } catch (error) {
+    console.error("Error creating event:", error);
+    throw error;
   }
 };

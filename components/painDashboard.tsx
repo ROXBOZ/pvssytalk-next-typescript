@@ -38,13 +38,11 @@ const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
             {isMed ? <span>médicale</span> : <span>sexologique</span>}
           </span>
         </h3>
-        <button onClick={switchArticle}>
-          {isMed ? (
-            <span>Approche sexologique</span>
-          ) : (
-            <span>Approche médicale</span>
-          )}{" "}
-          ⇆
+        <button
+          style={{ display: "flex", justifyContent: "space-between" }}
+          onClick={switchArticle}
+        >
+          {isMed ? <span>Sexologie</span> : <span>Médical</span>} ⇆
         </button>
         <h3>Ressources</h3>
         <a href={`${pain.slug.current}/glossaire`}>Glossaire</a>

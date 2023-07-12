@@ -41,6 +41,7 @@
   padding-top: 1rem;
   font-family: "ESKlarheit-Book";
   transition: 0.2s ease-in;
+  cursor: pointer !important;
 }
 .nav-directory a:after {
   content: " ↗";
@@ -616,6 +617,8 @@ button {
   height: -moz-fit-content;
   height: fit-content;
   font-size: 16px;
+  font-family: "ESKlarheit-Book";
+  text-transform: lowercase;
 }
 button:disabled {
   opacity: 40%;
@@ -638,6 +641,13 @@ button.square-button {
   margin: 0;
 }
 
+.buttons-container {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  background-color: transparent;
+  width: 100%;
+}
 .media-container h2 {
   margin-top: 4rem;
   margin-bottom: 2rem;
@@ -950,29 +960,55 @@ form {
   padding: 1rem;
   border-radius: 10px;
 }
+form h3 {
+  padding: 0;
+  margin: 1rem 0;
+}
+form label {
+  font-family: "ESKlarheit-Book";
+  min-width: 25%;
+  width: -moz-fit-content;
+  width: fit-content;
+}
 form .form-section {
   display: flex;
   padding: 0.5rem 0;
   width: 100%;
-}
-form .form-section label.required {
-  width: 100%;
+  align-items: baseline;
+  border-bottom: 1px solid #dcb4ff;
+  gap: 1rem;
 }
 form .form-section label.required:after {
   content: " *";
   color: #fd4a36;
 }
-form .form-section input {
+form .form-section select {
+  border: none;
   font-family: "ESKlarheit-Book";
+  font-size: 16px;
   color: #4d4d28;
   background-color: transparent;
-  border: 1px solid #dcb4ff;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-right-color: transparent;
+  width: 100%;
+}
+form .form-section select option:checked, form .form-section select option:focus {
+  background-color: #ffc3ee;
+}
+form .form-section input,
+form .form-section textarea {
+  font-family: "ESKlarheit-Book";
+  color: #4d4d28;
+  background-color: #f3f3e7;
+  border: none;
+  font-size: 16px;
+  padding: 0.5rem;
 }
 form .form-section input[type=text],
-form .form-section input[type=password] {
+form .form-section input[type=password],
+form .form-section input[type=email],
+form .form-section input[type=number],
+form .form-section input[type=date],
+form .form-section input[type=time],
+form .form-section textarea {
   width: 100%;
   color: #4d4d28;
 }
@@ -982,6 +1018,19 @@ form .form-section.checkbox-container {
   justify-content: flex-start;
   align-items: center;
 }
+form .form-section.addresses {
+  flex-direction: column;
+  border-bottom-color: transparent;
+}
+form .form-section.addresses .address {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid #f3f3e7;
+  padding: 1rem;
+}
 form .input-section {
   display: flex;
   gap: 0.5rem;
@@ -989,6 +1038,31 @@ form .input-section {
 form .input-section .showPassword {
   padding: 0;
   border: 0;
+}
+
+.radio-buttons-container,
+.checkbox-buttons-container {
+  border: 1px solid #ffc3ee;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+.radio-buttons-container .form-section,
+.checkbox-buttons-container .form-section {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+.radio-buttons-container .form-section label,
+.checkbox-buttons-container .form-section label {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.radio-buttons-container .form-section input,
+.checkbox-buttons-container .form-section input {
+  aspect-ratio: 1/1;
 }
 
 .form-check-input {
@@ -1024,6 +1098,7 @@ form .input-section .showPassword {
 .form-check-input[type=radio] {
   border-radius: 50%;
   background-color: #fd4a36;
+  border-bottom: transparent;
 }
 .form-check-input[type=radio]:checked {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");

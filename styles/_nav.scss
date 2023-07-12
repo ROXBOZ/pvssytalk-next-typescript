@@ -11,6 +11,7 @@
     padding-top: $sm-space;
     font-family: $font-regular;
     transition: $animation-transition;
+    cursor: pointer !important;
     @include arrowRotate;
   }
 }

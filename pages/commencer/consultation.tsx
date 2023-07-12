@@ -3,6 +3,7 @@ import { GetStaticProps } from "next";
 import { PageDetail } from "../../types";
 import { PortableText } from "@portabletext/react";
 import { getStaticPropsConsultPage } from "../../utils/dataFetching";
+import StartNav from "../../components/startNav";
 
 const ConsultPage = ({ ConsultPage }: { ConsultPage: PageDetail[] }) => {
   let consult = ConsultPage[0];
@@ -12,6 +13,7 @@ const ConsultPage = ({ ConsultPage }: { ConsultPage: PageDetail[] }) => {
       <div className="double-column-container">
         <div>
           <h1>{consult.title}</h1>
+          <StartNav />
         </div>
         <div>
           <PortableText value={consult.subtitle as any} />

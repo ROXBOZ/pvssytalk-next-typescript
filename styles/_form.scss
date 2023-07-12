@@ -6,30 +6,63 @@ form {
   padding: $sm-space;
   border-radius: $border-radius-soft;
 
+  h3 {
+    padding: 0;
+    margin: $sm-space 0;
+  }
+
+  label {
+    // font-size: $smaller-text;
+    font-family: $font-regular;
+    min-width: 25%;
+    width: fit-content;
+  }
+
   .form-section {
     display: flex;
     padding: $xs-space 0;
     width: 100%;
+    align-items: baseline;
+    border-bottom: $border-solid $secondary;
+    gap: $sm-space;
+
     label.required {
-      width: 100%;
       &:after {
         content: " *";
         color: $primary;
       }
     }
-
-    input {
+    select {
+      border: none;
       font-family: $font-regular;
+      font-size: $font-size-basis;
       color: $txt-color;
       background-color: transparent;
-      border: $border-solid $secondary;
-      border-top-color: transparent;
-      border-left-color: transparent;
-      border-right-color: transparent;
+      width: 100%;
+      option {
+        &:checked,
+        &:focus {
+          background-color: $quarterary;
+        }
+      }
+    }
+    input,
+    textarea {
+      font-family: $font-regular;
+      color: $txt-color;
+      background-color: $txt-color-lighten;
+      border: none;
+      font-size: $font-size-basis;
+      padding: $xs-space;
     }
 
     input[type="text"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"],
+    textarea {
       width: 100%;
       color: $txt-color;
     }
@@ -40,6 +73,21 @@ form {
       justify-content: flex-start;
       align-items: center;
     }
+
+    &.addresses {
+      flex-direction: column;
+      border-bottom-color: transparent;
+
+      .address {
+        width: 100%;
+        display: flex;
+        gap: $sm-space;
+        flex-direction: column;
+        border-radius: $border-radius-soft;
+        border: $border-solid $txt-color-lighten;
+        padding: $sm-space;
+      }
+    }
   }
 
   .input-section {
@@ -49,6 +97,28 @@ form {
     .showPassword {
       padding: 0;
       border: 0;
+    }
+  }
+}
+
+.radio-buttons-container,
+.checkbox-buttons-container {
+  border: $border-solid $quarterary;
+  border-radius: $border-radius-soft;
+  padding: $sm-space;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $xs-space;
+  max-width: 100%;
+  .form-section {
+    width: fit-content !important;
+
+    label {
+      width: fit-content;
+    }
+
+    input {
+      aspect-ratio: 1/1;
     }
   }
 }

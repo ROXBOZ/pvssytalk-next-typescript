@@ -152,6 +152,7 @@ export interface DirectoryDetail {
     address: string;
     phone: string;
   }[];
+  isValidated: boolean;
 }
 export type DirectoryDetails = DirectoryDetail[];
 ``;
@@ -162,3 +163,9 @@ export interface PageDetail {
   subtitle: string;
 }
 export type PageDetails = PageDetail[];
+
+export interface EventDetail {
+  title: string;
+  shortDef: string;
+}
+export type EventDetails = EventDetail[];

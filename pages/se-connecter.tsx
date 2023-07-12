@@ -24,6 +24,10 @@ const Login = (props: Props) => {
     e.preventDefault();
     login(email, password);
   };
+  const seePassword = (e: any) => {
+    e.preventDefault();
+    setIsVisible((prevState) => !prevState);
+  };
 
   useEffect(() => {
     if (
@@ -31,7 +35,7 @@ const Login = (props: Props) => {
       existingUserCredential.emailVerified === true
     ) {
       setTimeout(() => {
-        router.push("/gerer");
+        router.push("/editor");
       }, 1500);
     }
   }, [existingUserCredential, router]);
@@ -51,7 +55,7 @@ const Login = (props: Props) => {
           <form>
             <div className="form-section">
               <label htmlFor="email" className="required">
-                <span>Adresse email</span>
+                <span>Email</span>
               </label>
               <div className="input-section">
                 <input
@@ -81,10 +85,7 @@ const Login = (props: Props) => {
                   onChange={handlePasswordChange}
                   required
                 />
-                <button
-                  className="showPassword"
-                  // onClick={seePassword}
-                >
+                <button className="showPassword" onClick={seePassword}>
                   <FontAwesomeIcon
                     id="eye-icon"
                     icon={!isVisible ? faEye : faEyeSlash}

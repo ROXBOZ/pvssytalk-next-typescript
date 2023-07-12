@@ -17,7 +17,10 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
         <div className="double-column-container">
           <div>
             <h1>
-              Annuaire <sup>{directory.length}</sup>
+              Annuaire{" "}
+              <sup>
+                {directory.filter((item) => item.isValidated === true).length}
+              </sup>
             </h1>
             <RessourceNav />
             <Filters
@@ -43,14 +46,17 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
               return (
                 <div key={category.value} className="directory-container">
                   <h2 className="h3">{category.title}</h2>
-                  {categorizedDirectoryItem.map(
-                    (directoryItem: DirectoryDetail) => (
+                  {categorizedDirectoryItem
+                    .filter(
+                      (directoryItem: DirectoryDetail) =>
+                        directoryItem.isValidated === true
+                    )
+                    .map((directoryItem: DirectoryDetail) => (
                       <DirectoryItem
                         contact={directoryItem}
                         key={directoryItem._id}
                       />
-                    )
-                  )}
+                    ))}
                 </div>
               );
             })}

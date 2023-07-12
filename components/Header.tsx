@@ -16,16 +16,18 @@ const Header = (props: Props) => {
       </Link>
       <nav>
         <Link href="/#start">Par où commencer</Link>
-        <Link href="/agenda">Agenda</Link>
+        <Link href="/ressources/agenda">Agenda</Link>
         <Link href="/faire-un-don">Faire un don</Link>
         <Link href="/devenir-membre">Devenir membre</Link>
         <Link href="/a-propos">À propos</Link>
         {!existingUserCredential ? (
           <Link href="/se-connecter">Connexion</Link>
         ) : (
-          <button onClick={logout}>
-            <span>Déconnexion</span>
-          </button>
+          <>
+            <Link className="colored" href="/editor">
+              Editor
+            </Link>
+          </>
         )}
       </nav>
     </header>

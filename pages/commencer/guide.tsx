@@ -3,6 +3,7 @@ import { GetStaticProps } from "next";
 import { PageDetail } from "../../types";
 import { PortableText } from "@portabletext/react";
 import { getStaticPropsGuidePage } from "../../utils/dataFetching";
+import StartNav from "../../components/startNav";
 
 const GuidePage = ({ GuidePage }: { GuidePage: PageDetail[] }) => {
   let guide = GuidePage[0];
@@ -12,7 +13,7 @@ const GuidePage = ({ GuidePage }: { GuidePage: PageDetail[] }) => {
       <div className="double-column-container">
         <div>
           <h1>{guide.title}</h1>
-          <p style={{ color: "red" }}>start nav</p>
+          <StartNav />
         </div>
         <div>
           <PortableText value={guide.subtitle as any} />

@@ -1,13 +1,18 @@
-import React, { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  setPersistence,
+  browserSessionPersistence,
+  browserLocalPersistence,
+  getAuth,
+  Auth,
+  User,
 } from "firebase/auth";
-import { auth } from "../config/firebase/firebase-config";
+import { firebaseApp } from "../config/firebase/firebase-config";
 import { sendEmailVerification } from "firebase/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { FirebaseError } from "firebase/app";
 import { useRouter } from "next/router";
 
 type AuthContextProviderProps = {
@@ -20,11 +25,12 @@ export const AuthContext = createContext<any>(null);
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   children,
 }) => {
+  const auth: Auth = getAuth(firebaseApp);
   const [newUserCredential, setNewUserCredential] =
     useState<UserCredential | null>(null);
 
   const [existingUserCredential, setExistingUserCredential] =
-    useState<UserCredential | null>(null);
+    useState<User | null>(null);
 
   const [registrationError, setRegistrationError] = useState<string | null>(
     null
@@ -32,7 +38,15 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   const [loginError, setLoginError] = useState<string | null>(null);
   const router = useRouter();
 
-  const register = async (auth: any, email: any, password: string) => {
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem("userCredential");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setExistingUserCredential(user);
+    }
+  }, []);
+
+  const register = async (email: string, password: string) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -46,6 +60,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       setRegistrationError(error.message);
     }
   };
+
   const sendSignInLinkToEmail = async (userCredentials: any) => {
     if (userCredentials) {
       try {
@@ -53,12 +68,15 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       } catch (error: any) {}
     }
   };
+
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider);
   };
-  const login = async (email: any, password: any) => {
+
+  const login = async (email: string, password: string) => {
     try {
+      await setPersistence(auth, browserLocalPersistence); // Set persistence option
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -66,12 +84,15 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       );
       const user = userCredential.user;
       setExistingUserCredential(user);
+      sessionStorage.setItem("userCredential", JSON.stringify(user)); // Store user credentials
     } catch (error: any) {
       setLoginError(error.message);
     }
   };
+
   const logout = () => {
     setExistingUserCredential(null);
+    sessionStorage.removeItem("userCredential"); // Remove stored user credentials
     setTimeout(() => {
       router.push("/se-connecter");
     }, 1500);

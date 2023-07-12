@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Diagram, GlossaryDetails, PainDetail } from "../../../types";
 import { urlFor } from "../../../config/sanity/client";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -8,11 +8,10 @@ import PainDashboard from "../../../components/painDashboard";
 import {
   getStaticPathsPain,
   getStaticPropsPainGlossary,
-  getStaticPropsPainGlossaryRef,
 } from "../../../utils/dataFetching";
-import { highlightText } from "../../../utils/highlightText";
+import Link from "next/link";
 
-const articlePain = ({
+const ArticlePain = ({
   pain,
   glossary,
 }: {
@@ -24,6 +23,31 @@ const articlePain = ({
   const imageCoverHotspot = {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };
+
+  const CustomPortableText = ({
+    value,
+    slug,
+    glossary,
+  }: {
+    value: any;
+    slug: string;
+    glossary: GlossaryDetails;
+  }) => (
+    <PortableText
+      value={value}
+      components={{
+        marks: {
+          internalLink: ({ value, children }) => {
+            const foo = glossary.find(
+              (term) => term._id === value.reference._ref
+            );
+            const href = foo?.slug?.current ?? "";
+            return <Link href={`${slug}/glossaire/#${href}`}>{children}</Link>;
+          },
+        },
+      }}
+    />
+  );
 
   return (
     <main>
@@ -56,10 +80,10 @@ const articlePain = ({
               {pain.medicalApproach?.def && (
                 <>
                   <h2>Définition</h2>
-                  <PortableText
-                    value={
-                      highlightText(pain.medicalApproach.def, glossary) as any
-                    }
+                  <CustomPortableText
+                    value={pain.medicalApproach?.def}
+                    slug={pain.slug.current}
+                    glossary={glossary}
                   />
                 </>
               )}
@@ -92,31 +116,51 @@ const articlePain = ({
               {pain.medicalApproach?.diag && (
                 <>
                   <h2>Diagnostic</h2>
-                  <PortableText value={pain.medicalApproach.diag as any} />
+                  <CustomPortableText
+                    value={pain.medicalApproach?.diag}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.medicalApproach?.sympt && (
                 <>
                   <h2>Symptômes</h2>
-                  <PortableText value={pain.medicalApproach.sympt as any} />
+                  <CustomPortableText
+                    value={pain.medicalApproach?.sympt}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.medicalApproach?.why && (
                 <>
                   <h2>Pourquoi ça m’arrive ?</h2>
-                  <PortableText value={pain.medicalApproach.why as any} />
+                  <CustomPortableText
+                    value={pain.medicalApproach?.why}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.medicalApproach?.auto && (
                 <>
                   <h2>Que puis-je faire solo ?</h2>
-                  <PortableText value={pain.medicalApproach.auto as any} />
+                  <CustomPortableText
+                    value={pain.medicalApproach?.auto}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.medicalApproach?.pros && (
                 <>
                   <h2>Qui consulter ?</h2>
-                  <PortableText value={pain.medicalApproach.pros as any} />
+                  <CustomPortableText
+                    value={pain.medicalApproach?.pros}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
             </>
@@ -127,20 +171,30 @@ const articlePain = ({
               {pain.sexologicApproach?.body && (
                 <>
                   <h3>Moi et mon corps</h3>
-                  <PortableText value={pain.sexologicApproach.body as any} />
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.body}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.sexologicApproach?.norms && (
                 <>
                   <h3>Normes genrées</h3>
-                  <PortableText value={pain.sexologicApproach.norms as any} />
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.norms}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.sexologicApproach?.everydayLife && (
                 <>
                   <h3>Vie quotidienne</h3>
-                  <PortableText
-                    value={pain.sexologicApproach.everydayLife as any}
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.everydayLife}
+                    slug={pain.slug.current}
+                    glossary={glossary}
                   />
                 </>
               )}
@@ -150,54 +204,80 @@ const articlePain = ({
               {pain.sexologicApproach?.libido && (
                 <>
                   <h3>Libido</h3>
-                  <PortableText value={pain.sexologicApproach.libido as any} />
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.libido}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.sexologicApproach?.charge && (
                 <>
                   <h3>Charge mentale et communication</h3>
-                  <PortableText value={pain.sexologicApproach.charge as any} />
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.charge}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.sexologicApproach?.consent && (
                 <>
                   <h3>Sexe et consentement</h3>
-                  <PortableText value={pain.sexologicApproach.consent as any} />
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.consent}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.sexologicApproach?.mental && (
                 <>
                   <h2>Santé mentale</h2>
-                  <PortableText value={pain.sexologicApproach.mental as any} />
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.mental}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.sexologicApproach?.parenthood && (
                 <>
                   <h2>Parentalité</h2>
-                  <PortableText
-                    value={pain.sexologicApproach.parenthood as any}
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.parenthood}
+                    slug={pain.slug.current}
+                    glossary={glossary}
                   />
                 </>
               )}
               {pain.sexologicApproach?.checkup && (
                 <>
                   <h2>Avec les pros de la santé</h2>
-                  <PortableText value={pain.sexologicApproach.checkup as any} />
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.checkup}
+                    slug={pain.slug.current}
+                    glossary={glossary}
+                  />
                 </>
               )}
               {pain.sexologicApproach?.treatments && (
                 <>
                   <h3>Quels traitements pour me soulager ?</h3>
-                  <PortableText
-                    value={pain.sexologicApproach.treatments as any}
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.treatments}
+                    slug={pain.slug.current}
+                    glossary={glossary}
                   />
                 </>
               )}
               {pain.sexologicApproach?.pleasure && (
                 <>
                   <h2>Plaisir/ anti-douleur</h2>
-                  <PortableText
-                    value={pain.sexologicApproach.pleasure as any}
+                  <CustomPortableText
+                    value={pain.sexologicApproach?.pleasure}
+                    slug={pain.slug.current}
+                    glossary={glossary}
                   />
                 </>
               )}
@@ -209,7 +289,7 @@ const articlePain = ({
   );
 };
 
-export default articlePain;
+export default ArticlePain;
 
 export const getStaticPaths: GetStaticPaths = getStaticPathsPain;
-export const getStaticProps: GetStaticProps = getStaticPropsPainGlossaryRef;
+export const getStaticProps: GetStaticProps = getStaticPropsPainGlossary;

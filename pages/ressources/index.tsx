@@ -23,10 +23,11 @@ const Ressources = () => {
       </div>
       <div>
         <nav className="nav-directory">
-          <Link href="ressources/glossaire">Glossaire</Link>
-          <Link href="ressources/exercices">Exercices</Link>
-          <Link href="ressources/medias">Médias</Link>
+          <Link href="ressources/agenda">Agenda</Link>
           <Link href="ressources/annuaire">Annuaire</Link>
+          <Link href="ressources/exercices">Exercices</Link>
+          <Link href="ressources/glossaire">Glossaire</Link>
+          <Link href="ressources/medias">Médias</Link>
         </nav>
       </div>
     </div>

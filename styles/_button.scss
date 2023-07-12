@@ -8,6 +8,8 @@ button {
   white-space: nowrap;
   height: fit-content;
   font-size: $font-size-basis;
+  font-family: $font-regular;
+  text-transform: lowercase;
   &:disabled {
     opacity: 40%;
     &:hover {
@@ -29,5 +31,16 @@ button {
     line-height: 0;
     padding: 0.75em;
     margin: 0;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  gap: $xs-space;
+  padding: $xs-space 0;
+  background-color: transparent;
+  width: 100%;
+  &.tabbed {
+    // justify-content: space-between;
   }
 }
