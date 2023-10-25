@@ -42,7 +42,11 @@ const ArticlePain = ({
               (term) => term._id === value.reference._ref
             );
             const href = foo?.slug?.current ?? "";
-            return <Link href={`${slug}/glossaire/#${href}`}>{children}</Link>;
+            return (
+              <Link className="arrow-link" href={`${slug}/glossaire/#${href}`}>
+                {children}
+              </Link>
+            );
           },
         },
       }}

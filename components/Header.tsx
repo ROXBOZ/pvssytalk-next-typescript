@@ -11,11 +11,11 @@ const Header = (props: Props) => {
     <header>
       <Link href="/" className="borderless">
         <span className="logo nowrap">
-          pvssy talk <sup>beta</sup>
+          pvssy talk <sup>1.0</sup>
         </span>
       </Link>
       <nav>
-        <Link href="/#start">Par où commencer</Link>
+        <Link href="/#start">Par où commencer ?</Link>
         <Link href="/ressources/agenda">Agenda</Link>
         <Link href="/faire-un-don">Faire un don</Link>
         <Link href="/devenir-membre">Devenir membre</Link>

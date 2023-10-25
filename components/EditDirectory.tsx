@@ -80,7 +80,8 @@ const EditDirectory = () => {
       })),
     };
 
-    createEntry(transformedData);
+    // createEntry(transformedData);
+    (createEntry as any)(transformedData);
 
     setIsSuccess(true);
     setEntryData({

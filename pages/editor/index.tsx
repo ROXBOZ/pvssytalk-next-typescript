@@ -79,9 +79,11 @@ const User = ({
             existingUserCredential.emailVerified === true ? (
               <>
                 {showAgenda ? (
-                  <EditAgenda events={events} />
-                ) : showDirectory ? (
-                  <EditDirectory directory={directory} />
+                  <EditAgenda />
+                ) : // <EditAgenda events={events} />
+                showDirectory ? (
+                  // <EditDirectory directory={directory} />
+                  <EditDirectory />
                 ) : (
                   ""
                 )}

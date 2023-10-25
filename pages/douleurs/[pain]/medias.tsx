@@ -34,7 +34,7 @@ const Medias = ({
           <PainNav pain={pain} />
         </div>
         <div>
-          {mediaCategories.map((category) => {
+          {mediaCategories.map((category: any) => {
             const categorizedMedia = relatedMedia.filter(
               (mediaItem) => mediaItem.filter === category.value
             );

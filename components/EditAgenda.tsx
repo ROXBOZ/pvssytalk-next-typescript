@@ -29,7 +29,7 @@ const EditAgenda = () => {
     maxPrice: 0,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -37,7 +37,7 @@ const EditAgenda = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
   };
 

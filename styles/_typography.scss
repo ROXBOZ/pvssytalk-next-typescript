@@ -16,6 +16,10 @@ li {
   max-width: $chperline;
 }
 
+li {
+  margin: $xs-space 0;
+}
+
 h1 {
   font-family: $font-logo;
   grid-column: #{$grid-fullwidth};
@@ -69,6 +73,10 @@ strong {
 
 em {
   font-family: $font-regular-italic;
+}
+
+.arrow-link {
+  @include arrowRotate;
 }
 
 /*-----Ratio Scale-----*/

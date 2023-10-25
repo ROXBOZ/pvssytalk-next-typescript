@@ -13,7 +13,7 @@ const PainExercises = ({
   pain,
 }: {
   pain: PainDetail;
-  exercises: ExerciseDetail;
+  exercises: ExerciseDetail[];
 }) => {
   return (
     <div className="double-column-containers-group">

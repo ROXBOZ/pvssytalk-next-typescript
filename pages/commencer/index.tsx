@@ -17,10 +17,10 @@ const Start = () => {
       >
         {currentURL.endsWith("/commencer") ? (
           <>
-            <h1>Par où commencer</h1>
+            <h1>Par où commencer ?</h1>
           </>
         ) : (
-          <h2>Par où commencer</h2>
+          <h2>Par où commencer ?</h2>
         )}
       </div>
       <div>

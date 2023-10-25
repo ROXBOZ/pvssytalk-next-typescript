@@ -20,7 +20,9 @@ const Glossary = ({
   const [entries, setEntries] = useState<string[]>([]);
   const [, setAnchorPosition] = useState(0);
   const [topList, setTopList] = useState(0);
-  const letterContainerRef = useRef(0);
+  // const letterContainerRef = useRef(0);
+  const letterContainerRef = useRef<HTMLDivElement | null>(null);
+
   const router = useRouter();
   const termsContainerRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -39,6 +41,7 @@ const Glossary = ({
     }
   }
   const letters = Object.keys(termGroups).sort();
+
   const scrollToAnchor = (anchor: string) => {
     if (typeof window === "undefined") return;
 
@@ -47,16 +50,26 @@ const Glossary = ({
 
     const top = element.offsetTop;
     setAnchorPosition(top);
+
+    if (letterContainerRef.current) {
+      setTopList(letterContainerRef.current.offsetTop);
+    }
+
     window.requestAnimationFrame(() => {
       window.scrollTo({ top, behavior: "smooth" });
-      setTopList(letterContainerRef.current.offsetTop);
+      if (letterContainerRef.current) {
+        setTopList(letterContainerRef.current.offsetTop);
+      }
     });
   };
+
   useEffect(() => {
     const firstLetters = sortedGlossary.map((term) =>
       term.term[0].toLowerCase()
     );
-    const uniqueLetters = [...new Set(firstLetters)];
+    // const uniqueLetters = [...new Set(firstLetters)];
+    const uniqueLetters = Array.from(new Set(firstLetters));
+
     setEntries(uniqueLetters);
 
     const letterLinks =

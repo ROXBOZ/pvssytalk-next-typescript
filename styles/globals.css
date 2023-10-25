@@ -89,6 +89,10 @@ li {
   max-width: 70ch;
 }
 
+li {
+  margin: 0.5rem 0;
+}
+
 h1 {
   font-family: "ESRebond";
   grid-column: 1/13;
@@ -142,6 +146,14 @@ strong em {
 
 em {
   font-family: "ESKlarheit-Book-Italic";
+}
+
+.arrow-link:after {
+  content: " ↗";
+}
+.arrow-link:hover:after {
+  transition: 0.2s ease-in;
+  transform: rotate(45deg);
 }
 
 /*-----Ratio Scale-----*/
