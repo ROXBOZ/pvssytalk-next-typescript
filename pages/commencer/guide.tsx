@@ -1,27 +1,32 @@
+import { InfoPageDetail } from "../../types";
+import { InfoPageHeader } from "../../components/reusables/InfoPageHeader";
+import InfoPageSection from "../../components/reusables/InfoPageSections";
 import React from "react";
-import { GetStaticProps } from "next";
-import { PageDetail } from "../../types";
-import { PortableText } from "@portabletext/react";
-import { getStaticPropsGuidePage } from "../../utils/dataFetching";
-import StartNav from "../../components/startNav";
+import { client } from "../../config/sanity/client";
 
-const GuidePage = ({ GuidePage }: { GuidePage: PageDetail[] }) => {
+const GuidePage = ({ GuidePage }: { GuidePage: InfoPageDetail[] }) => {
   let guide = GuidePage[0];
-
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        <div>
-          <h1>{guide.title}</h1>
-          <StartNav />
-        </div>
-        <div>
-          <PortableText value={guide.subtitle as any} />
-        </div>
-      </div>
-    </div>
+    <>
+      <InfoPageHeader data={guide} />
+      <InfoPageSection data={guide.sections} />
+    </>
   );
 };
 
 export default GuidePage;
-export const getStaticProps: GetStaticProps = getStaticPropsGuidePage;
+export const getStaticProps = async () => {
+  try {
+    const GuidePage: InfoPageDetail[] = await client.fetch(
+      '*[_type == "page" && _id== "907c981f-c463-415c-b975-6a14971575e1" && !(_id in path("drafts.**"))]'
+    );
+    return {
+      props: { GuidePage },
+    };
+  } catch (error) {
+    console.error("Error fetching GuidePage:", error);
+    return {
+      props: { GuidePage: [] },
+    };
+  }
+};

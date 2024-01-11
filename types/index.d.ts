@@ -1,3 +1,24 @@
+interface InfoPageDetail {
+  _id: string;
+  _ref: string;
+  title: string;
+  subtitle: string;
+  image: any;
+  sections: InfoPageSection[];
+}
+export type InfoPageDetail = InfoPageDetail[];
+
+interface InfoPageSection {
+  sectionTitle: string;
+  sectionContent: any;
+}
+export type InfoPageSection = InfoPageSection[];
+
+sectionTitle: string;
+sectionContent: any;
+_key: string;
+
+///
 export interface PainDetail {
   _id: string;
   _ref: string;
@@ -156,13 +177,6 @@ export interface DirectoryDetail {
 }
 export type DirectoryDetails = DirectoryDetail[];
 ``;
-export interface PageDetail {
-  _id: string;
-  _ref: string;
-  title: string;
-  subtitle: string;
-}
-export type PageDetails = PageDetail[];
 
 export interface EventDetail {
   title: string;

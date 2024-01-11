@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-const Tagline = (props: Props) => {
+const Tagline = () => {
   return (
     <div className="tagline">
       <h1>

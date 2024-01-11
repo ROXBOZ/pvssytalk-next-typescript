@@ -2,7 +2,24 @@
   background-color: $tierary;
   padding: $sm-space 0;
   font-size: $bigger-text;
-  white-space: nowrap;
-  overflow: hidden;
-  margin-bottom: $lg-space;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  p {
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    animation: marquee 46s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-280%);
+  }
 }

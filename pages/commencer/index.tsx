@@ -1,6 +1,6 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import StartNav from "../../components/startNav";
+
+import Link from "next/link";
 
 const Start = () => {
   const [currentURL, setCurrentURL] = useState("");

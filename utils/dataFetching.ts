@@ -1,4 +1,3 @@
-import { GetStaticPaths, GetStaticProps } from "next";
 import {
   DirectoryDetails,
   EventDetail,
@@ -9,6 +8,8 @@ import {
   PainDetail,
   PainDetails,
 } from "../types";
+import { GetStaticPaths, GetStaticProps } from "next";
+
 import { client } from "../config/sanity/client";
 
 //PATH
@@ -272,51 +273,7 @@ export const getStaticPropsPainDirectories: GetStaticProps = async ({
   }
 };
 /*----START----*/
-export const getStaticPropsIntroPage = async () => {
-  try {
-    const IntroPage: PageDetail[] = await client.fetch(
-      '*[_type == "page" && _id== "10c30e52-94bc-4b41-9200-2eb8c89c4997" && !(_id in path("drafts.**"))]'
-    );
-    return {
-      props: { IntroPage },
-    };
-  } catch (error) {
-    console.error("Error fetching IntroPage:", error);
-    return {
-      props: { IntroPage: [] },
-    };
-  }
-};
-export const getStaticPropsGuidePage = async () => {
-  try {
-    const GuidePage: PageDetail[] = await client.fetch(
-      '*[_type == "page" && _id== "907c981f-c463-415c-b975-6a14971575e1" && !(_id in path("drafts.**"))]'
-    );
-    return {
-      props: { GuidePage },
-    };
-  } catch (error) {
-    console.error("Error fetching GuidePage:", error);
-    return {
-      props: { GuidePage: [] },
-    };
-  }
-};
-export const getStaticPropsConsultPage = async () => {
-  try {
-    const ConsultPage: PageDetail[] = await client.fetch(
-      '*[_type == "page" && _id== "ecfa6551-18d6-47b7-8315-43043dd7ad5d" && !(_id in path("drafts.**"))]'
-    );
-    return {
-      props: { ConsultPage },
-    };
-  } catch (error) {
-    console.error("Error fetching ConsultPage:", error);
-    return {
-      props: { ConsultPage: [] },
-    };
-  }
-};
+
 /*----OTHER PAGES----*/
 export const getStaticPropsAccessibilityPage = async () => {
   try {

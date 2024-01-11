@@ -162,13 +162,9 @@ h4,
   font-size: 1.414rem;
   line-height: calc(2px + 2ex + 2px);
   font-weight: 500;
-  margin-top: calc(1.414rem* 1.25);
-  margin-bottom: calc(1.414rem/ 2);
-  font-size: clamp(
-        1rem,
-        4.414vw + 0.5rem,
-        1.414rem
-      );
+  margin-top: calc(1.414rem * 1.25);
+  margin-bottom: calc(1.414rem / 2);
+  font-size: clamp(1rem, 4.414vw + 0.5rem, 1.414rem);
 }
 h4 .colored,
 .h4 .colored {
@@ -192,13 +188,9 @@ h3,
   font-size: 1.999396rem;
   line-height: calc(2px + 2ex + 2px);
   font-weight: 500;
-  margin-top: calc(1.999396rem* 1.25);
-  margin-bottom: calc(1.999396rem/ 2);
-  font-size: clamp(
-        1.33959532rem,
-        4.65980068vw + 0.5rem,
-        1.999396rem
-      );
+  margin-top: calc(1.999396rem * 1.25);
+  margin-bottom: calc(1.999396rem / 2);
+  font-size: clamp(1.33959532rem, 4.65980068vw + 0.5rem, 1.999396rem);
 }
 h3 .colored,
 .h3 .colored {
@@ -222,13 +214,9 @@ h2,
   font-size: 2.827145944rem;
   line-height: calc(2px + 2ex + 2px);
   font-weight: 500;
-  margin-top: calc(2.827145944rem* 1.25);
-  margin-bottom: calc(2.827145944rem/ 2);
-  font-size: clamp(
-        1.8941877825rem,
-        4.9329581615vw + 0.5rem,
-        2.827145944rem
-      );
+  margin-top: calc(2.827145944rem * 1.25);
+  margin-bottom: calc(2.827145944rem / 2);
+  font-size: clamp(1.8941877825rem, 4.9329581615vw + 0.5rem, 2.827145944rem);
 }
 h2 .colored,
 .h2 .colored {
@@ -252,13 +240,9 @@ h1,
   font-size: 3.9975843648rem;
   line-height: calc(2px + 2ex + 2px);
   font-weight: 500;
-  margin-top: calc(3.9975843648rem* 1.25);
-  margin-bottom: calc(3.9975843648rem/ 2);
-  font-size: clamp(
-        2.6783815244rem,
-        5.3192028404vw + 0.5rem,
-        3.9975843648rem
-      );
+  margin-top: calc(3.9975843648rem * 1.25);
+  margin-bottom: calc(3.9975843648rem / 2);
+  font-size: clamp(2.6783815244rem, 5.3192028404vw + 0.5rem, 3.9975843648rem);
 }
 h1 .colored,
 .h1 .colored {
@@ -384,6 +368,7 @@ footer .footer-content nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: gradient 4s infinite alternate;
 }
 .tagline * {
   color: #38284d;
@@ -392,15 +377,39 @@ footer .footer-content nav a:hover {
   line-height: 1;
 }
 
+@keyframes gradient {
+  0% {
+    background-size: 100%;
+    background-position: center;
+  }
+  100% {
+    background-size: 400%;
+    background-position: center;
+  }
+}
 .marquee {
   background-color: #c8ffa5;
   padding: 1rem 0;
   font-size: 120%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.marquee p {
   white-space: nowrap;
-  overflow: hidden;
-  margin-bottom: 4rem;
+  padding: 0;
+  margin: 0;
+  animation: marquee 46s linear infinite;
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-280%);
+  }
+}
 .filters-container {
   padding-top: 0;
   padding-bottom: 0;
@@ -616,6 +625,14 @@ footer .footer-content nav a:hover {
 .schema-caption {
   text-align: center;
   font-size: 80%;
+}
+
+.intro-image,
+.guide-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 button {
