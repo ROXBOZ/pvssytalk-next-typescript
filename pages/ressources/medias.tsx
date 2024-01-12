@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import RessourceNav from "../../components/ressourceNav";
 import Filters, {
   mediaCategories,
   pains,
 } from "../../components/reusables/Filters";
-import { MediaDetail } from "../../types";
-import { getStaticPropsMedia } from "../../utils/dataFetching";
+import React, { useState } from "react";
+
 import { GetStaticProps } from "next";
+import { MediaDetail } from "../../types";
 import MediaItem from "../../components/mediaItem";
+import RessourceNav from "../../components/ressourceNav";
+import { getStaticPropsMedia } from "../../utils/dataFetching";
 
 const Medias = ({ media }: { media: MediaDetail[] }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
@@ -15,7 +16,7 @@ const Medias = ({ media }: { media: MediaDetail[] }) => {
   return (
     <div className="double-column-containers-group">
       <div className="double-column-container">
-        <div>
+        <div className="fixed-container">
           <h1>
             Médias <sup>{media.length}</sup>
           </h1>

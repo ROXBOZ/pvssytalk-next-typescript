@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/authContext";
-import { auth } from "../config/firebase/firebase-config";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
+
+import { AuthContext } from "../context/authContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GoogleButton from "react-google-button";
+import Link from "next/link";
+import { auth } from "../config/firebase/firebase-config";
+import { useRouter } from "next/router";
 
 type Props = {};
 
@@ -74,12 +76,12 @@ const Signup = (props: Props) => {
           <h1>Créer un compte</h1>
 
           <nav className="nav-directory">
-            <a href="se-connecter">Se connecter</a>
+            <Link href="se-connecter">Se connecter</Link>
           </nav>
           <p>
             Votre compte <span className="logo">pvssy talk</span> vous permet de
-            faire des suggestions pour l’<a>agenda</a> et l’
-            <a>annuaire</a>. D’autres fonctionnalités sont à venir.
+            faire des suggestions pour l’agenda et l’annuaire. D’autres
+            fonctionnalités sont à venir.
           </p>
         </div>
         <div>
@@ -154,7 +156,10 @@ const Signup = (props: Props) => {
                 />
                 <label htmlFor="conditionsCheckbox">
                   <span> J’ai lu et j’accepte les </span>
-                  <a href="/conditions-generales ">conditions générales</a>.
+                  <Link href="/conditions-generales ">
+                    conditions générales
+                  </Link>
+                  .
                 </label>
               </div>
               <div
@@ -181,7 +186,7 @@ const Signup = (props: Props) => {
                 >
                   <span>Créer un compte</span>
                 </button>
-                <a href="se-connecter">Déjà un compte ?</a>
+                <Link href="se-connecter">Déjà un compte ?</Link>
               </div>
               {newUserCredential && (
                 <div>

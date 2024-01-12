@@ -1,10 +1,12 @@
+import { DirectoryDetails, EventDetail } from "../../types";
 import React, { useContext, useState } from "react";
+
 import { AuthContext } from "../../context/authContext";
 import EditAgenda from "../../components/EditAgenda";
 import EditDirectory from "../../components/EditDirectory";
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import { getStaticPropsEvents } from "../../utils/dataFetching";
-import { DirectoryDetails, EventDetail } from "../../types";
 
 const User = ({
   events,
@@ -29,7 +31,7 @@ const User = ({
               existingUserCredential.emailVerified === true && (
                 <>
                   <nav className="nav-directory user">
-                    <a
+                    <span
                       onClick={() => {
                         setShowDirectory(true);
                         setShowAgenda(false);
@@ -38,8 +40,8 @@ const User = ({
                       <span>
                         Annuaire <sup>editor</sup>
                       </span>
-                    </a>
-                    <a
+                    </span>
+                    <span
                       onClick={() => {
                         setShowAgenda(true);
                         setShowDirectory(false);
@@ -48,9 +50,9 @@ const User = ({
                       <span>
                         Agenda <sup>editor</sup>
                       </span>
-                    </a>
-                    <a href="devenir-membre">Devenir membre</a>
-                    <a href="faire-un-don">Faire un don</a>
+                    </span>
+                    <Link href="devenir-membre">Devenir membre</Link>
+                    <Link href="faire-un-don">Faire un don</Link>
                   </nav>
 
                   <p style={{ color: "red" }}>proposer event doesnt work yet</p>
@@ -91,8 +93,8 @@ const User = ({
             ) : (
               <main>
                 <p className="msg warning">
-                  <a href="se-connecter">Connectez-vous</a> pour accéder à cette
-                  page.
+                  <Link href="se-connecter">Connectez-vous</Link> pour accéder à
+                  cette page.
                 </p>
               </main>
             )}

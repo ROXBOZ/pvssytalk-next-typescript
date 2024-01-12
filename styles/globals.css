@@ -52,10 +52,13 @@
 }
 
 .pain-nav {
+  width: 25%;
   display: flex;
   flex-direction: column;
   grid-column: 1/4;
   padding-right: 2rem;
+  position: sticky;
+  top: 0;
 }
 .pain-nav a {
   font-family: "ESKlarheit-Book";
@@ -69,6 +72,11 @@
 .pain-nav a:hover:after {
   transition: 0.2s ease-in;
   transform: rotate(45deg);
+}
+
+.fixed-container {
+  position: sticky;
+  top: 4rem;
 }
 
 span,
@@ -536,13 +544,19 @@ footer .footer-content nav a:hover {
 
 .pain-article {
   grid-column: 4/13;
-  max-width: 100%;
+  width: 100%;
   border-left: 1px solid #f3f3e7;
   padding-left: 2rem;
   margin-top: 4rem;
 }
 .pain-article h2:first-child {
   margin-top: 0;
+}
+.pain-article .text-and-diagrams {
+  max-width: 100%;
+  display: flex;
+  gap: 4rem;
+  justify-content: space-between;
 }
 
 .pain-nav-article-container {
@@ -551,6 +565,8 @@ footer .footer-content nav a:hover {
   gap: 1rem;
   padding: 2rem 0 8rem;
   align-items: baseline;
+  width: 100%;
+  display: flex;
 }
 @media screen and (max-width: 768px) {
   .pain-nav-article-container {
@@ -605,26 +621,8 @@ footer .footer-content nav a:hover {
 }
 
 .pain-card-image {
-  width: 100% !important;
+  width: 100%;
   height: auto !important;
-}
-
-.schemas-container {
-  margin-top: 4rem;
-  display: flex;
-  max-width: 70ch;
-  justify-content: space-between;
-  gap: 4rem;
-}
-
-.schema {
-  width: 100% !important;
-  height: auto !important;
-}
-
-.schema-caption {
-  text-align: center;
-  font-size: 80%;
 }
 
 .intro-image,
@@ -635,6 +633,49 @@ footer .footer-content nav a:hover {
      object-fit: cover;
 }
 
+.schemas-container {
+  margin-top: 4rem;
+  display: flex;
+  max-width: 70ch;
+  justify-content: space-between;
+  gap: 4rem;
+  flex: 1;
+  min-width: 50%;
+}
+.schemas-container .schema {
+  max-width: 100%;
+  height: auto !important;
+}
+
+.schema-caption {
+  text-align: center;
+  font-size: 80%;
+}
+
+.modal {
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(254, 253, 244, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal .modal-content {
+  width: 80%;
+  height: 80%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal .modal-content button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
 button {
   border: 1px solid #dcb4ff;
   padding: 0.5em 1.5em;

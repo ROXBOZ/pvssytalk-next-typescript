@@ -4,16 +4,14 @@ import {
   ExerciseDetails,
   GlossaryDetails,
   MediaDetails,
-  PageDetail,
   PainDetail,
-  PainDetails,
 } from "../types";
-import { GetStaticPaths, GetStaticProps } from "next";
 
+import { GetStaticProps } from "next";
 import { client } from "../config/sanity/client";
 
 //PATH
-export const getStaticPathsPain: GetStaticPaths = async () => {
+export const getStaticPathsPain = async () => {
   try {
     const slugs: string[] = await client.fetch(
       `*[_type == "pain"].slug.current`
@@ -58,7 +56,7 @@ export const getStaticPropsGlossary: GetStaticProps = async () => {
     const glossary: GlossaryDetails = await client.fetch(
       '*[_type == "glossary" && !(_id in path("drafts.**"))]{...}'
     );
-    const pains: PainDetails = await client.fetch(
+    const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
     return {
@@ -76,7 +74,7 @@ export const getStaticPropsExercises: GetStaticProps = async () => {
     const exercises: ExerciseDetails = await client.fetch(
       '*[_type == "exercise" && !(_id in path("drafts.**"))]{...}'
     );
-    const pains: PainDetails = await client.fetch(
+    const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
     return {
@@ -94,7 +92,7 @@ export const getStaticPropsMedia: GetStaticProps = async () => {
     const media: MediaDetails = await client.fetch(
       '*[_type == "media" && !(_id in path("drafts.**"))]{...}'
     );
-    const pains: PainDetails = await client.fetch(
+    const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
     return {
@@ -277,7 +275,7 @@ export const getStaticPropsPainDirectories: GetStaticProps = async ({
 /*----OTHER PAGES----*/
 export const getStaticPropsAccessibilityPage = async () => {
   try {
-    const AccessibilityPage: PageDetail[] = await client.fetch(
+    const AccessibilityPage: PageDetail = await client.fetch(
       '*[_type == "page" && _id== "d51ad2a1-f2ca-435c-a9bf-1166d9616831" && !(_id in path("drafts.**"))]'
     );
     return {

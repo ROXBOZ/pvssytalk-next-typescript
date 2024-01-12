@@ -14,31 +14,30 @@ interface InfoPageSectionProps {
 
 const InfoPageSection = ({ data }: { data: InfoPageSectionProps[] }) => {
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        {data.map((section, index: number) => {
-          return (
-            <div key={index}>
-              <div style={{ border: "2px solid red" }}>
-                <h2>{section.sectionTitle}</h2>
-                {section.sectionImage && (
-                  <Image
-                    className={section.sectionTitle}
-                    src={urlFor(section.sectionImage.asset._ref).url()}
-                    width={500}
-                    height={300}
-                    alt={section.sectionImage.alternativeText}
-                  />
-                )}
-              </div>
-              <div style={{ border: "2px solid blue" }}>
-                <PortableText value={section.sectionContent as any} />
-              </div>
+    <>
+      {data.map((section, index: number) => {
+        return (
+          <div key={index} className="double-column-container">
+            <div>
+              <h2>{section.sectionTitle}</h2>
+              {section.sectionImage && (
+                <Image
+                  style={{ width: "100%", height: "auto" }}
+                  className={section.sectionTitle}
+                  src={urlFor(section.sectionImage.asset._ref).url()}
+                  width={500}
+                  height={300}
+                  alt={section.sectionImage.alternativeText}
+                />
+              )}
             </div>
-          );
-        })}
-      </div>
-    </div>
+            <div>
+              <PortableText value={section.sectionContent as any} />
+            </div>
+          </div>
+        );
+      })}
+    </>
   );
 };
 

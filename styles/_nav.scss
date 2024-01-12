@@ -17,10 +17,14 @@
 }
 
 .pain-nav {
+  width: 25%;
   display: flex;
   flex-direction: column;
   grid-column: #{$grid-first-third};
   padding-right: $reg-space;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 
   a {
     font-family: $font-regular;
@@ -29,4 +33,10 @@
     width: 100%;
     @include arrowRotate;
   }
+}
+
+.fixed-container {
+  position: -webkit-sticky;
+  position: sticky;
+  top: $md-space-space;
 }

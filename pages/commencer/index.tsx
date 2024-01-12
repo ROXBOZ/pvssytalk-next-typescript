@@ -11,6 +11,7 @@ const Start = () => {
   return (
     <div id="start" className="double-column-container">
       <div
+        style={{ borderTop: "0" }}
         className={`double-column-container ${
           currentURL.endsWith("douleurs") && "no-border"
         }`}

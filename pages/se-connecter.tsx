@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+
 import { AuthContext } from "../context/authContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 type Props = {};
@@ -47,7 +48,7 @@ const Login = (props: Props) => {
         <div>
           <h1>Se connecter</h1>
           <nav className="nav-directory">
-            <a href="creer-un-compte">Créer un compte</a>
+            <Link href="creer-un-compte">Créer un compte</Link>
           </nav>
         </div>
         <div>
@@ -116,10 +117,10 @@ const Login = (props: Props) => {
               >
                 <span>Se connecter</span>
               </button>
-              <a href="reset-mot-de-passe">
+              <Link href="reset-mot-de-passe">
                 <span>Mot de passe oublié ?</span>
-              </a>{" "}
-              <a href="creer-un-compte">Pas encore de compte ?</a>
+              </Link>{" "}
+              <Link href="creer-un-compte">Pas encore de compte ?</Link>
             </div>
 
             {loginError === "Firebase: Error (auth/wrong-password)." && (
@@ -146,10 +147,8 @@ const Login = (props: Props) => {
               )}
             {loginError === "Firebase: Error (auth/user-not-found)." && (
               <p className="msg warning">
-                <span>
-                  Il n’existe pas de compte avec cet email.{" "}
-                  <a href="creer-un-compte">Créer un compte</a>.
-                </span>
+                <span>Il n’existe pas de compte avec cet email. </span>
+                <Link href="creer-un-compte">Créer un compte</Link>.
               </p>
             )}
 
@@ -160,9 +159,9 @@ const Login = (props: Props) => {
                   L'accès à ce compte a été temporairement désactivé en raison
                   de nombreuses tentatives de connexion échouées. Vous pouvez le
                   réactiver immédiatement en{" "}
-                  <a href="reset-mot-de-passe">
+                  <Link href="reset-mot-de-passe">
                     réinitialisant votre mot de passe
-                  </a>
+                  </Link>
                   , ou vous pouvez réessayer ultérieurement.
                 </span>
               </p>

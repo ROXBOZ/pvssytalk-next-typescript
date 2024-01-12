@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import Link from "next/link";
+
 type Props = {};
 
 const RessourceNav = (props: Props) => {
@@ -11,32 +13,32 @@ const RessourceNav = (props: Props) => {
   return (
     <nav className="nav-directory">
       {!currentURL.endsWith("agenda") && (
-        <a href="agenda">
+        <Link href="agenda">
           <span>Agenda</span>
-        </a>
+        </Link>
       )}
       {!currentURL.endsWith("annuaire") && (
-        <a href="annuaire">
+        <Link href="annuaire">
           <span>Annuaire</span>
-        </a>
+        </Link>
       )}
       {!currentURL.endsWith("exercices") && (
-        <a href="exercices">
+        <Link href="exercices">
           <span>Exercices</span>
-        </a>
+        </Link>
       )}
       {!currentURL.endsWith("glossaire") && (
-        <a href="glossaire">
+        <Link href="glossaire">
           <span>Glossaire</span>
-        </a>
+        </Link>
       )}
       {!currentURL.endsWith("medias") && (
-        <a href="medias">
+        <Link href="medias">
           <span>Médias</span>
-        </a>
+        </Link>
       )}
 
-      <a href="/ressources">Toutes les ressources</a>
+      <Link href="/ressources">Toutes les ressources</Link>
     </nav>
   );
 };

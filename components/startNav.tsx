@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import Link from "next/link";
+
 type Props = {};
 
 const StartNav = (props: Props) => {
@@ -11,19 +13,19 @@ const StartNav = (props: Props) => {
   return (
     <nav className="nav-directory">
       {!currentURL.endsWith("introduction") && (
-        <a href="introduction">
+        <Link href="introduction">
           <span>Introduction aux douleurs</span>
-        </a>
+        </Link>
       )}
       {!currentURL.endsWith("guide") && (
-        <a href="guide">
+        <Link href="guide">
           <span>Guide d’auto-observation</span>
-        </a>
+        </Link>
       )}
       {!currentURL.endsWith("consultation") && (
-        <a href="consultation">
+        <Link href="consultation">
           <span>Qui consulter ?</span>
-        </a>
+        </Link>
       )}
     </nav>
   );

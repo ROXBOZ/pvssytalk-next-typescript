@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { GetStaticProps } from "next";
-import { DirectoryDetail } from "../../types";
 import Filters, {
   directoryCategories,
   pains,
 } from "../../components/reusables/Filters";
+import React, { useState } from "react";
+
+import { DirectoryDetail } from "../../types";
 import DirectoryItem from "../../components/directoryItem";
-import { getStaticPropsDirectory } from "../../utils/dataFetching";
+import { GetStaticProps } from "next";
 import RessourceNav from "../../components/ressourceNav";
+import { getStaticPropsDirectory } from "../../utils/dataFetching";
 
 const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
@@ -15,7 +16,7 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
     <div>
       <div className="double-column-containers-group">
         <div className="double-column-container">
-          <div>
+          <div className="fixed-container">
             <h1>
               Annuaire{" "}
               <sup>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { sendPasswordResetEmail } from "firebase/auth";
+
+import Link from "next/link";
 import { auth } from "../config/firebase/firebase-config";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 type Props = {};
 
@@ -28,8 +30,8 @@ const ResetPassword = (props: Props) => {
         <div>
           <h1>Réinitialiser mot de passe</h1>
           <nav className="nav-directory">
-            <a href="creer-un-compte">Créer un compte</a>
-            <a href="se-connecter">Se connecter</a>
+            <Link href="creer-un-compte">Créer un compte</Link>
+            <Link href="se-connecter">Se connecter</Link>
           </nav>
         </div>
         <div>

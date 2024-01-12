@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import RessourceNav from "../../components/ressourceNav";
 import Filters, { pains } from "../../components/reusables/Filters";
+import React, { useState } from "react";
 
-type Props = {};
+import RessourceNav from "../../components/ressourceNav";
 
-const Agenda = (props: Props) => {
+const Agenda = () => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   return (
     <div>
       <div className="double-column-containers-group">
         <div className="double-column-container">
-          <div>
+          <div className="fixed-container" style={{ border: "5px solid red" }}>
             <h1>
               Agenda <sup>x</sup>
             </h1>

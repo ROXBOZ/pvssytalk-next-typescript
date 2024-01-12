@@ -63,16 +63,25 @@
 // articles
 .pain-article {
   grid-column: #{$grid-last-thirds};
-  max-width: 100%;
+  width: 100%;
   border-left: $border-solid $txt-color-lighten;
   padding-left: $reg-space;
   margin-top: $lg-space;
   h2:first-child {
     margin-top: 0;
   }
+
+  .text-and-diagrams {
+    max-width: 100%;
+    display: flex;
+    gap: 4rem;
+    justify-content: space-between;
+  }
 }
 
 .pain-nav-article-container {
   @include grid;
   align-items: baseline;
+  width: 100%;
+  display: flex;
 }

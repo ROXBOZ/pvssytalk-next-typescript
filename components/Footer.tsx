@@ -13,13 +13,13 @@ const Footer = (props: Props) => {
         <nav>
           <ul>
             <li>
-              <a
+              <Link
                 href="https://drive.google.com/drive/folders/1l47TaPu9BNp-Qya2Ips7ovipUBmAejqu"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 presskit
-              </a>
+              </Link>
             </li>
             <li>
               <Link className="acronym" href="conditions-generales">
@@ -34,7 +34,7 @@ const Footer = (props: Props) => {
             </li>
 
             <li>
-              <a href="mailto:hello@pvssy-talk.org">email</a>
+              <Link href="mailto:hello@pvssy-talk.org">email</Link>
             </li>
             <li>
               <Link

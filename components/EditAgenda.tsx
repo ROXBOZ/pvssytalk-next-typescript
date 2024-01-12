@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Link from "next/link";
+
 const EditAgenda = () => {
   const [formData, setFormData] = useState({
     title: "",
@@ -52,7 +54,7 @@ const EditAgenda = () => {
       <p>
         Une suggestion ? Fais-nous en part via le formulaire ci-dessous. Une
         fois validée par notre équipe, elle apparaîtra dans{" "}
-        <a href="ressources/agenda">notre agenda</a>.
+        <Link href="ressources/agenda">notre agenda</Link>.
       </p>
       <div className="buttons-container">
         <button>Ajouter</button>

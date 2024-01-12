@@ -14,12 +14,7 @@ interface InfoPageSection {
 }
 export type InfoPageSection = InfoPageSection[];
 
-sectionTitle: string;
-sectionContent: any;
-_key: string;
-
-///
-export interface PainDetail {
+interface PainDetail {
   _id: string;
   _ref: string;
   name: string;
@@ -39,21 +34,7 @@ export interface PainDetail {
   };
   medicalApproach: {
     def?: string;
-    diagrams?: {
-      diagram: {
-        asset: {
-          _ref: string;
-          caption: string;
-          alternativeText: string;
-        };
-      };
-      hotspot: {
-        x: number;
-        y: number;
-      };
-      caption: string;
-      alternativeText: string;
-    };
+    diagrams?: Diagram[];
     diag: string;
     sympt: string;
     why: string;
@@ -74,9 +55,10 @@ export interface PainDetail {
     pleasure: string;
   };
 }
-export type PainDetails = PainDetail[];
+///
 
 export interface Diagram {
+  index: number;
   diagram: {
     asset: {
       _key: string;

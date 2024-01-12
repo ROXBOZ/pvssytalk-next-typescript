@@ -1,19 +1,21 @@
-import { GetStaticProps } from "next";
+import Filters, { pains as painList } from "../../components/reusables/Filters";
+import { GlossaryDetail, GlossaryDetails, PainDetail } from "../../types";
 import React, { useEffect, useRef, useState } from "react";
-import { GlossaryDetail, GlossaryDetails, PainDetails } from "../../types";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { GetStaticProps } from "next";
+import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import RessourceNav from "../../components/ressourceNav";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { getStaticPropsGlossary } from "../../utils/dataFetching";
 import { useRouter } from "next/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import Filters, { pains as painList } from "../../components/reusables/Filters";
 
 const Glossary = ({
   glossary,
   pains,
 }: {
-  pains: PainDetails;
+  pains: PainDetail;
   glossary: GlossaryDetails;
 }) => {
   const sortedGlossary = glossary?.sort((a, b) => a.term.localeCompare(b.term));
@@ -97,7 +99,7 @@ const Glossary = ({
   return (
     <div ref={termsContainerRef} className="double-column-containers-group">
       <div className="double-column-container">
-        <div>
+        <div className="fixed-container">
           <h1>
             Glossaire <sup>{glossary.length}</sup>
           </h1>
@@ -107,7 +109,7 @@ const Glossary = ({
               {Array.from({ length: 26 }, (_, i) =>
                 String.fromCharCode("A".charCodeAt(0) + i)
               ).map((letter, index) => (
-                <a
+                <Link
                   className="letter-link"
                   key={index}
                   href={`${router}/#${letter.toLowerCase()}`}
@@ -117,7 +119,7 @@ const Glossary = ({
                   }}
                 >
                   {letter}
-                </a>
+                </Link>
               ))}
             </div>
             <form>
@@ -149,17 +151,17 @@ const Glossary = ({
                     {term.relatedPain &&
                       term.relatedPain.map((related) => {
                         const relatedPain = pains.find(
-                          (pain) => pain._id === related._ref
+                          (pain: any) => pain._id === related._ref
                         );
                         if (relatedPain) {
                           return (
-                            <a
+                            <Link
                               href={`/douleurs/${relatedPain.slug.current}`}
                               className="nowrap"
                               key={relatedPain._id}
                             >
                               {relatedPain.name.toLowerCase()}
-                            </a>
+                            </Link>
                           );
                         }
                         return null;

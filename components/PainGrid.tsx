@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
 import Filters, { bodyParts } from "./reusables/Filters";
-import Link from "next/link";
-import { urlFor } from "../config/sanity/client";
-import { PainDetail } from "../types";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
+
 import { GetStaticProps } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { PainDetail } from "../types";
 import { getStaticPropsPains } from "../utils/dataFetching";
+import { urlFor } from "../config/sanity/client";
 
 const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
   const sortedPains = pains.sort((a, b) => a.name.localeCompare(b.name));
@@ -39,8 +40,8 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
           <p className="bigger-text">
             Chaque douleur est traitée avec une approche à la fois médicale et
             sexologique pour te donner une vision complète. Tu trouveras
-            également des <a href="/ressources">ressources</a> pour aller plus
-            loin.
+            également des <Link href="/ressources">ressources</Link> pour aller
+            plus loin.
           </p>
           <Filters
             filterOptions={bodyParts}

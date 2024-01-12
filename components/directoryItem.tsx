@@ -1,5 +1,6 @@
-import React from "react";
 import { DirectoryDetail } from "../types";
+import Link from "next/link";
+import React from "react";
 import { cleanUrl } from "../utils/cleanUrl";
 
 export default function DirectoryItem({
@@ -24,22 +25,22 @@ export default function DirectoryItem({
             <p key={a._key}>
               <span>{a.address}</span>
               <br />
-              <a href={`tel: ${a.phone}`}>{a.phone}</a>
+              <Link href={`tel: ${a.phone}`}>{a.phone}</Link>
             </p>
           ))}
         </>
 
         {contact.email && (
           <>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <Link href={`mailto:${contact.email}`}>{contact.email}</Link>
             <br />
           </>
         )}
 
         {contact.url && (
-          <a href={contact.url} target="_blank">
+          <Link href={contact.url} target="_blank">
             {cleanUrl(contact.url)}
-          </a>
+          </Link>
         )}
       </div>
     </>

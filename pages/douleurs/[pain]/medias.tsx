@@ -1,13 +1,15 @@
-import React from "react";
-import { MediaDetail, PainDetail } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { mediaCategories } from "../../../components/reusables/Filters";
-import PainNav from "../../../components/painNav";
+import { MediaDetail, PainDetail } from "../../../types";
 import {
   getStaticPathsPain,
   getStaticPropsPainMedias,
 } from "../../../utils/dataFetching";
+
+import Link from "next/link";
 import MediaItem from "../../../components/mediaItem";
+import PainNav from "../../../components/painNav";
+import React from "react";
+import { mediaCategories } from "../../../components/reusables/Filters";
 
 const Medias = ({
   pain,
@@ -23,12 +25,12 @@ const Medias = ({
   return (
     <div className="double-column-containers-group">
       <div className="double-column-container">
-        <div>
+        <div className="fixed-container">
           <h1>
             Médias{" "}
-            <a href="./" className="colored logo">
+            <Link href="./" className="colored logo">
               {pain.name}
-            </a>
+            </Link>
              <sup className="no-color">{medias.length}</sup>
           </h1>
           <PainNav pain={pain} />

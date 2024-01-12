@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Marquee = () => {
@@ -6,10 +7,12 @@ const Marquee = () => {
       <p>
         Nous travaillons sur un annuaire de soignant·esx en Suisse Romande. Si
         tu connais des practicien·nexs <em>safe</em>, tu peux nous envoyer un
-        email à <a href="mailto:hello@pvssy-talk.org">hello@pvssy-talk.org</a>.
+        email à{" "}
+        <Link href="mailto:hello@pvssy-talk.org">hello@pvssy-talk.org</Link>.
         Nous travaillons sur un annuaire de soignant·esx en Suisse Romande. Si
         tu connais des practicien·nexs <em>safe</em>, tu peux nous envoyer un
-        email à <a href="mailto:hello@pvssy-talk.org">hello@pvssy-talk.org</a>.
+        email à{" "}
+        <Link href="mailto:hello@pvssy-talk.org">hello@pvssy-talk.org</Link>.
       </p>
     </div>
   );

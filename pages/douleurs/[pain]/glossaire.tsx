@@ -1,12 +1,14 @@
-import React from "react";
-import { GlossaryDetail, PainDetail, GlossaryDetails } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { PortableText } from "@portabletext/react";
-import PainNav from "../../../components/painNav";
+import { GlossaryDetail, GlossaryDetails, PainDetail } from "../../../types";
 import {
   getStaticPathsPain,
   getStaticPropsPainGlossary,
 } from "../../../utils/dataFetching";
+
+import Link from "next/link";
+import PainNav from "../../../components/painNav";
+import { PortableText } from "@portabletext/react";
+import React from "react";
 
 const painGlossary = ({
   glossary,
@@ -29,12 +31,12 @@ const painGlossary = ({
   return (
     <div className="double-column-containers-group">
       <div className="double-column-container">
-        <div>
+        <div className="fixed-container">
           <h1>
             Glossaire{" "}
-            <a href="./" className="colored logo">
+            <Link href="./" className="colored logo">
               {pain.name}
-            </a>
+            </Link>
              <sup className="no-color">{glossary.length}</sup>
           </h1>
           <PainNav pain={pain} />

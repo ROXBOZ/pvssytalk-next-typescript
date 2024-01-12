@@ -1,5 +1,6 @@
-import React from "react";
+import Link from "next/link";
 import { MediaDetail } from "../types";
+import React from "react";
 
 export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
   return (
@@ -7,11 +8,11 @@ export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
       <p>
         {mediaItem.author}, {mediaItem.year && <>({mediaItem.year}). </>}
         {mediaItem.url ? (
-          <a href={mediaItem.url} target="_blank">
+          <Link href={mediaItem.url} target="_blank">
             <strong>
               <em>{mediaItem.title}</em>
             </strong>
-          </a>
+          </Link>
         ) : (
           <span>
             <strong>

@@ -1,11 +1,11 @@
-import React from "react";
-import PainGrid from "../../components/PainGrid";
-import { PainDetails } from "../../types";
-import { getStaticPropsPains } from "../../utils/dataFetching";
 import { GetStaticProps } from "next";
+import { PainDetail } from "../../types";
+import PainGrid from "../../components/PainGrid";
+import React from "react";
+import { getStaticPropsPains } from "../../utils/dataFetching";
 
 type Props = {
-  pains: PainDetails;
+  pains: PainDetail[];
 };
 
 const Pains = ({ pains }: Props) => {

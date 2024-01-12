@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import Link from "next/link";
 import { createEntry } from "../utils/dataFetching";
 import { v4 as uuidv4 } from "uuid";
 
@@ -115,7 +117,7 @@ const EditDirectory = () => {
         ... ainsi que des associations, des boutiques en ligne, des plateformes
         web, etc. Une suggestion ? Fais-nous en part via le formulaire
         ci-dessous. Une fois validée par notre équipe, elle apparaîtra dans{" "}
-        <a href="ressources/annuaire">notre annuaire</a>.
+        <Link href="ressources/annuaire">notre annuaire</Link>.
       </p>
       <div className="buttons-container">
         <button>Ajouter</button>

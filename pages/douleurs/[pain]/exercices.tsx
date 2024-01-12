@@ -1,12 +1,22 @@
-import React from "react";
-import { PainDetail, ExerciseDetail } from "../../../types";
+import { ExerciseDetail, PainDetail } from "../../../types";
 import { GetStaticPaths, GetStaticProps } from "next";
-import PainNav from "../../../components/painNav";
 import {
   getStaticPathsPain,
   getStaticPropsPainExercises,
 } from "../../../utils/dataFetching";
+
 import { Exercise } from "../../../components/exercise";
+import PainResourcePageLayout from "../../../components/reusables/PainResourcePageLayout";
+import React from "react";
+
+const filterRelatedExercises = (
+  exercises: ExerciseDetail[],
+  painId: string
+): ExerciseDetail[] => {
+  return exercises.filter((exercise: ExerciseDetail) =>
+    exercise.relatedPain?.some((related) => related._ref === painId)
+  );
+};
 
 const PainExercises = ({
   exercises,
@@ -15,27 +25,20 @@ const PainExercises = ({
   pain: PainDetail;
   exercises: ExerciseDetail[];
 }) => {
+  const relatedExercises = filterRelatedExercises(exercises, pain._id);
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        <div>
-          <h1>
-            Exercices{" "}
-            <a href="./" className="colored logo">
-              {pain.name}
-            </a>
-             <sup className="no-color">{exercises.length}</sup>
-          </h1>
-          <PainNav pain={pain} />
-        </div>
-        <div className="exercises-container">
-          {exercises &&
-            exercises.map((exercise: ExerciseDetail) => {
-              return <Exercise exercise={exercise} />;
-            })}
-        </div>
+    <PainResourcePageLayout
+      pageName="Exercices"
+      pain={pain}
+      relatedContent={relatedExercises}
+    >
+      <div className="exercises-container">
+        {relatedExercises &&
+          relatedExercises.map((exercise: ExerciseDetail, index: number) => (
+            <Exercise exercise={exercise} key={index} />
+          ))}
       </div>
-    </div>
+    </PainResourcePageLayout>
   );
 };
 

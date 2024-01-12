@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { websiteURL } from "../utils/urls";
+
+import Link from "next/link";
 import { PainDashboardProps } from "../types";
+import { websiteURL } from "../utils/urls";
 
 const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
   const [, setIsCopied] = useState<boolean>(false);
@@ -34,8 +36,8 @@ const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
       <nav className="pain-nav">
         <h3>
           Approche{" "}
-          <span className="colored ">
-            {isMed ? <span>médicale</span> : <span>sexologique</span>}
+          <span className="colored">
+            {isMed ? <span>médicale</span> : <span>sexo</span>}
           </span>
         </h3>
         <button
@@ -45,19 +47,21 @@ const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
           {isMed ? <span>Sexologie</span> : <span>Médical</span>} ⇆
         </button>
         <h3>Ressources</h3>
-        <a href={`${pain.slug.current}/glossaire`}>Glossaire</a>
-        <a href={`${pain.slug.current}/exercices`}>Exercices</a>
-        <a href={`${pain.slug.current}/medias`}>Médias</a>
-        <a href={`${pain.slug.current}/annuaire`}>Annuaire</a>
+        <Link href={`${pain.slug.current}/glossaire`}>Glossaire</Link>
+        <Link href={`${pain.slug.current}/exercices`}>Exercices</Link>
+        <Link href={`${pain.slug.current}/medias`}>Médias</Link>
+        <Link href={`${pain.slug.current}/annuaire`}>Annuaire</Link>
         <h3>Partager</h3>
-        <a style={{ cursor: "pointer" }} onClick={copyUrlToClipboard}>
+        <span style={{ cursor: "pointer" }} onClick={copyUrlToClipboard}>
           Copier l’URL
-        </a>
-        <a href={`whatsapp://send?text=${currentURL}`}>WhatsApp</a>
-        <a href={`https://telegram.me/share/url?url=${currentURL}`}>Telegram</a>
-        <a href="mailto:?subject=Un%20lien%20qui%20pourrait%20t%E2%80%99int%C3%A9resser%20sur%20pvssy-talk.org&body=%C3%87a%20devrait%20t%E2%80%99int%C3%A9resser%20%3A%20https%3A%2F%2Fwww.pvssy-talk.org%2Fdouleurs%2Fvaginisme">
+        </span>
+        <Link href={`whatsapp://send?text=${currentURL}`}>WhatsApp</Link>
+        <Link href={`https://telegram.me/share/url?url=${currentURL}`}>
+          Telegram
+        </Link>
+        <Link href="mailto:?subject=Un%20lien%20qui%20pourrait%20t%E2%80%99int%C3%A9resser%20sur%20pvssy-talk.org&body=%C3%87a%20devrait%20t%E2%80%99int%C3%A9resser%20%3A%20https%3A%2F%2Fwww.pvssy-talk.org%2Fdouleurs%2Fvaginisme">
           Email
-        </a>
+        </Link>
 
         <p className="smaller-text">
           Rédaction :{" "}
