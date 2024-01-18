@@ -217,7 +217,6 @@ export const getStaticPropsPainDirectories: GetStaticProps = async ({
     };
   }
 };
-/*----START----*/
 
 /*----OTHER PAGES----*/
 
