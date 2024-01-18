@@ -1,10 +1,10 @@
-import React from "react";
 import { GetStaticProps } from "next";
-import { getStaticPropsAboutPage } from "../utils/dataFetching";
-import { PageDetail } from "../types";
+import { InfoPageDetail } from "../types";
 import { PortableText } from "@portabletext/react";
+import React from "react";
+import { getStaticPropsAboutPage } from "../utils/dataFetching";
 
-const AboutPage = ({ AboutPage }: { AboutPage: PageDetail[] }) => {
+const AboutPage = ({ AboutPage }: { AboutPage: InfoPageDetail[] }) => {
   let about = AboutPage[0];
 
   return (

@@ -5,10 +5,9 @@ import {
   getStaticPropsPainGlossary,
 } from "../../../utils/dataFetching";
 
-import Link from "next/link";
-import PainNav from "../../../components/painNav";
 import { PortableText } from "@portabletext/react";
 import React from "react";
+import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
 
 const painGlossary = ({
   glossary,
@@ -29,18 +28,12 @@ const painGlossary = ({
   };
 
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        <div className="fixed-container">
-          <h1>
-            Glossaire{" "}
-            <Link href="./" className="colored logo">
-              {pain.name}
-            </Link>
-             <sup className="no-color">{glossary.length}</sup>
-          </h1>
-          <PainNav pain={pain} />
-        </div>
+    <ResourcePageLayout
+      pageName="Glossaire"
+      pain={pain}
+      relatedContent={sortedGlossary}
+    >
+      <div>
         <div>
           {sortedGlossary.map((term: GlossaryDetail) => {
             return (
@@ -52,7 +45,7 @@ const painGlossary = ({
           })}
         </div>
       </div>
-    </div>
+    </ResourcePageLayout>
   );
 };
 export const getStaticProps: GetStaticProps = getStaticPropsPainGlossary;

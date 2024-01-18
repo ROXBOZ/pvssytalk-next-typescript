@@ -1,12 +1,12 @@
-import React from "react";
 import { GetStaticProps } from "next";
+import { InfoPageDetail } from "../types";
+import React from "react";
 import { getStaticPropsConditionsPage } from "../utils/dataFetching";
-import { PageDetail } from "../types";
 
 const ConditionsPage = ({
   ConditionsPage,
 }: {
-  ConditionsPage: PageDetail[];
+  ConditionsPage: InfoPageDetail[];
 }) => {
   let cguv = ConditionsPage[0];
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PainDetail } from "../../types";
 import PainNav from "../painNav";
 
-const PainResourcePageLayout: React.FC<{
+const ResourcePageLayout: React.FC<{
   pageName: string;
   pain: PainDetail;
   relatedContent: any;
@@ -39,4 +39,4 @@ const PainResourcePageLayout: React.FC<{
   );
 };
 
-export default PainResourcePageLayout;
+export default ResourcePageLayout;

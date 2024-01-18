@@ -1,13 +1,13 @@
-import Tagline from "../components/Tagline";
+import Intro from "../components/Intro";
 import Marquee from "../components/Marquee";
+import { PainDetail } from "../types";
+import PainGrid from "./douleurs";
 import Ressources from "./ressources";
 import Start from "./commencer";
-import PainGrid from "./douleurs";
-import { PainDetails } from "../types";
+import Tagline from "../components/Tagline";
 import { client } from "../config/sanity/client";
-import Intro from "../components/Intro";
 
-const Home = ({ pains }: { pains: PainDetails }) => {
+const Home = ({ pains }: { pains: any }) => {
   return (
     <div>
       <Tagline />
@@ -26,7 +26,7 @@ export default Home;
 
 export const getStaticProps = async () => {
   try {
-    const pains: PainDetails = await client.fetch(
+    const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
     console.log("pains :", pains);

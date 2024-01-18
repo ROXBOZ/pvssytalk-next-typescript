@@ -6,6 +6,11 @@ form {
   padding: $sm-space;
   border-radius: $border-radius-soft;
 
+  &.search-form {
+    flex-direction: row;
+    align-items: baseline;
+  }
+
   h3 {
     padding: 0;
     margin: $sm-space 0;

@@ -5,10 +5,9 @@ import {
   getStaticPropsPainMedias,
 } from "../../../utils/dataFetching";
 
-import Link from "next/link";
 import MediaItem from "../../../components/mediaItem";
-import PainNav from "../../../components/painNav";
 import React from "react";
+import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
 import { mediaCategories } from "../../../components/reusables/Filters";
 
 const Medias = ({
@@ -23,40 +22,33 @@ const Medias = ({
   );
 
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        <div className="fixed-container">
-          <h1>
-            Médias{" "}
-            <Link href="./" className="colored logo">
-              {pain.name}
-            </Link>
-             <sup className="no-color">{medias.length}</sup>
-          </h1>
-          <PainNav pain={pain} />
-        </div>
-        <div>
-          {mediaCategories.map((category: any) => {
-            const categorizedMedia = relatedMedia.filter(
-              (mediaItem) => mediaItem.filter === category.value
-            );
+    <ResourcePageLayout
+      pageName="Médias"
+      pain={pain}
+      relatedContent={relatedMedia}
+    >
+      <div className="medias-container">
+        {mediaCategories.map((category: any) => {
+          const categorizedMedia = relatedMedia.filter(
+            (mediaItem) => mediaItem.filter === category.value
+          );
 
-            if (categorizedMedia.length === 0) {
-              return null;
-            }
-            return (
-              <div key={category.title} className="media-container">
-                <h2 className="h3">{category.title}</h2>
+          if (categorizedMedia.length === 0) {
+            return null;
+          }
 
-                {categorizedMedia.map((media: MediaDetail) => (
-                  <MediaItem mediaItem={media} />
-                ))}
-              </div>
-            );
-          })}
-        </div>
+          return (
+            <div key={category.title} className="media-container">
+              <h2 className="h3">{category.title}</h2>
+
+              {categorizedMedia.map((media: MediaDetail, index: number) => (
+                <MediaItem key={index} mediaItem={media} />
+              ))}
+            </div>
+          );
+        })}
       </div>
-    </div>
+    </ResourcePageLayout>
   );
 };
 

@@ -3,32 +3,34 @@ import { GlossaryDetail, GlossaryDetails, PainDetail } from "../../types";
 import React, { useEffect, useRef, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { GetStaticProps } from "next";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import RessourceNav from "../../components/ressourceNav";
+import { client } from "../../config/sanity/client";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { getStaticPropsGlossary } from "../../utils/dataFetching";
 import { useRouter } from "next/router";
 
-const Glossary = ({
-  glossary,
-  pains,
-}: {
-  pains: PainDetail;
-  glossary: GlossaryDetails;
-}) => {
+const Glossary = ({ glossary }: { glossary: GlossaryDetails }) => {
   const sortedGlossary = glossary?.sort((a, b) => a.term.localeCompare(b.term));
-  const [entries, setEntries] = useState<string[]>([]);
+  const [, setEntries] = useState<string[]>([]);
   const [, setAnchorPosition] = useState(0);
-  const [topList, setTopList] = useState(0);
-  // const letterContainerRef = useRef(0);
+  const [, setTopList] = useState(0);
   const letterContainerRef = useRef<HTMLDivElement | null>(null);
-
   const router = useRouter();
   const termsContainerRef = useRef(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
+  const filteredGlossaryEntries = glossary.filter((glossaryEntry) => {
+    return (
+      !selectedFilter ||
+      (glossaryEntry.relatedPain &&
+        glossaryEntry.relatedPain.some(
+          (pain: any) =>
+            pain.name.toLowerCase() === selectedFilter.toLowerCase()
+        ))
+    );
+  });
 
   const termGroups: { [key: string]: GlossaryDetail[] } = {};
   if (sortedGlossary) {
@@ -69,9 +71,7 @@ const Glossary = ({
     const firstLetters = sortedGlossary.map((term) =>
       term.term[0].toLowerCase()
     );
-    // const uniqueLetters = [...new Set(firstLetters)];
     const uniqueLetters = Array.from(new Set(firstLetters));
-
     setEntries(uniqueLetters);
 
     const letterLinks =
@@ -122,60 +122,72 @@ const Glossary = ({
                 </Link>
               ))}
             </div>
-            <form>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            <form className="search-form">
+              <div>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />{" "}
+                <span>Rechercher</span>
+              </div>
               <input
                 className="search-bar"
-                placeholder="Rechercher"
+                placeholder="zone pelvienne"
                 onChange={handleInputChange}
               />
             </form>
-            <Filters
+            {/*
+             <Filters
               filterOptions={painList}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
-            />
+            /> */}
           </div>
         </div>
         <div>
-          {letters.map((letter) => (
-            <div className="letter-title" key={letter}>
-              <p id={letter} className="h1">
-                {letter}
-                {letter.toLowerCase()}
-              </p>
-              {termGroups[letter].map((term: GlossaryDetail) => (
-                <div className="glossary-term" key={term._id}>
-                  <h2 className="h3 term-entry">{term.term}</h2>
-                  <div className="related-pain-container">
-                    {term.relatedPain &&
-                      term.relatedPain.map((related) => {
-                        const relatedPain = pains.find(
-                          (pain: any) => pain._id === related._ref
-                        );
-                        if (relatedPain) {
-                          return (
-                            <Link
-                              href={`/douleurs/${relatedPain.slug.current}`}
-                              className="nowrap"
-                              key={relatedPain._id}
-                            >
-                              {relatedPain.name.toLowerCase()}
-                            </Link>
-                          );
-                        }
-                        return null;
-                      })}
+          {letters.map((letter) => {
+            console.log("filteredGlossaryEntries", filteredGlossaryEntries);
+            //FIXME ALLOW FILTER BY PAIN
+            return (
+              <div className="letter-title" key={letter}>
+                <p id={letter} className="h1">
+                  {letter}
+                  {letter.toLowerCase()}
+                </p>
+                {termGroups[letter].map((term: GlossaryDetail) => (
+                  <div className="glossary-term" key={term._id}>
+                    <h2 className="h3 term-entry">{term.term}</h2>
+                    <div className="related-pain-container"></div>
+                    <PortableText value={term.def as any} />
                   </div>
-                  <PortableText value={term.def as any} />
-                </div>
-              ))}
-            </div>
-          ))}
+                ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
   );
 };
-export const getStaticProps: GetStaticProps = getStaticPropsGlossary;
+export const getStaticProps = async () => {
+  try {
+    const glossary: GlossaryDetails = await client.fetch(`
+      *[_type == "glossary" && !(_id in path("drafts.**"))]{
+        ...,
+        relatedPain[]->{
+          name
+        }
+      }
+    `);
+
+    const pains: PainDetail = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
+    );
+    return {
+      props: { glossary, pains },
+    };
+  } catch (error) {
+    console.error("Error fetching glossary:", error);
+    return {
+      props: { glossary: [], pains: [] },
+    };
+  }
+};
 export default Glossary;

@@ -2,16 +2,25 @@ import Filters, {
   mediaCategories,
   pains,
 } from "../../components/reusables/Filters";
+import { MediaDetail, MediaDetails, PainDetail } from "../../types";
 import React, { useState } from "react";
 
-import { GetStaticProps } from "next";
-import { MediaDetail } from "../../types";
 import MediaItem from "../../components/mediaItem";
 import RessourceNav from "../../components/ressourceNav";
-import { getStaticPropsMedia } from "../../utils/dataFetching";
+import { client } from "../../config/sanity/client";
 
 const Medias = ({ media }: { media: MediaDetail[] }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  const filteredMedias = media.filter((mediaItem) => {
+    return (
+      !selectedFilter ||
+      (mediaItem.relatedPain &&
+        mediaItem.relatedPain.some(
+          (pain: any) =>
+            pain.name.toLowerCase() === selectedFilter.toLowerCase()
+        ))
+    );
+  });
 
   return (
     <div className="double-column-containers-group">
@@ -33,21 +42,30 @@ const Medias = ({ media }: { media: MediaDetail[] }) => {
               return null;
             }
 
-            const categorizedMediaItem = media.filter(
+            const categorizedMediaItem = filteredMedias.filter(
               (mediaItem) => mediaItem.filter === category.value
             );
 
-            if (categorizedMediaItem.length === 0) {
-              return null;
+            if (selectedFilter && categorizedMediaItem.length === 0) {
+              return (
+                <div key={category.value} className="media-container">
+                  <h2 className="h3">{category.title}</h2>
+                  <div className="msg-box">
+                    <p className="msg info">
+                      Tu as une recommendation? Contacte-nous!
+                    </p>
+                  </div>
+                </div>
+              );
             }
-
             return (
               <div key={category.value} className="media-container">
                 <h2 className="h3">{category.title}</h2>
-
-                {categorizedMediaItem.map((media: MediaDetail) => (
-                  <MediaItem mediaItem={media} />
-                ))}
+                {categorizedMediaItem.map(
+                  (media: MediaDetail, index: number) => (
+                    <MediaItem mediaItem={media} key={index} />
+                  )
+                )}
               </div>
             );
           })}
@@ -58,4 +76,27 @@ const Medias = ({ media }: { media: MediaDetail[] }) => {
 };
 
 export default Medias;
-export const getStaticProps: GetStaticProps = getStaticPropsMedia;
+
+export const getStaticProps = async () => {
+  try {
+    const media: MediaDetails = await client.fetch(`
+      *[_type == "media" && !(_id in path("drafts.**"))]{
+        ...,
+        relatedPain[]->{
+          name
+        }
+      }
+    `);
+    const pains: PainDetail = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
+    );
+    return {
+      props: { media, pains },
+    };
+  } catch (error) {
+    console.error("Error fetching media:", error);
+    return {
+      props: { media: [], pains: [] },
+    };
+  }
+};

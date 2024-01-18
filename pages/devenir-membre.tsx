@@ -1,10 +1,10 @@
-import React from "react";
 import { GetStaticProps } from "next";
-import { getStaticPropsMembersPage } from "../utils/dataFetching";
-import { PageDetail } from "../types";
+import { InfoPageDetail } from "../types";
 import { PortableText } from "@portabletext/react";
+import React from "react";
+import { getStaticPropsMembersPage } from "../utils/dataFetching";
 
-const MembersPage = ({ MembersPage }: { MembersPage: PageDetail[] }) => {
+const MembersPage = ({ MembersPage }: { MembersPage: InfoPageDetail[] }) => {
   let members = MembersPage[0];
 
   return (

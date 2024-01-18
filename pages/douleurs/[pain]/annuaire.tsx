@@ -6,8 +6,8 @@ import {
 } from "../../../utils/dataFetching";
 
 import DirectoryItem from "../../../components/directoryItem";
-import PainResourcePageLayout from "../../../components/reusables/PainResourcePageLayout";
 import React from "react";
+import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
 import { directoryCategories } from "../../../components/reusables/Filters";
 
 const Directory = ({
@@ -24,7 +24,7 @@ const Directory = ({
   );
 
   return (
-    <PainResourcePageLayout
+    <ResourcePageLayout
       pageName="Annuaire"
       pain={pain}
       relatedContent={relatedDirectoryItem}
@@ -33,7 +33,6 @@ const Directory = ({
         const categorizedDirectoryItem = relatedDirectoryItem.filter(
           (directoryItem) => directoryItem.category === category.value
         );
-
         if (categorizedDirectoryItem.length === 0) {
           return null;
         }
@@ -41,14 +40,13 @@ const Directory = ({
         return (
           <div key={category.title} className="directory-container">
             <h2 className="h3">{category.title} </h2>
-
             {categorizedDirectoryItem.map((directoryItem: DirectoryDetail) => (
               <DirectoryItem contact={directoryItem} key={directoryItem._id} />
             ))}
           </div>
         );
       })}
-    </PainResourcePageLayout>
+    </ResourcePageLayout>
   );
 };
 

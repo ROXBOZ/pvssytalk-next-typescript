@@ -1,10 +1,10 @@
-import React from "react";
 import { GetStaticProps } from "next";
-import { getStaticPropsDonatePage } from "../utils/dataFetching";
-import { PageDetail } from "../types";
+import { InfoPageDetail } from "../types";
 import { PortableText } from "@portabletext/react";
+import React from "react";
+import { getStaticPropsDonatePage } from "../utils/dataFetching";
 
-const DonatePage = ({ DonatePage }: { DonatePage: PageDetail[] }) => {
+const DonatePage = ({ DonatePage }: { DonatePage: InfoPageDetail[] }) => {
   let donate = DonatePage[0];
 
   return (

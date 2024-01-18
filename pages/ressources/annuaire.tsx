@@ -1,17 +1,27 @@
+import { DirectoryDetail, DirectoryDetails } from "../../types";
 import Filters, {
   directoryCategories,
   pains,
 } from "../../components/reusables/Filters";
 import React, { useState } from "react";
 
-import { DirectoryDetail } from "../../types";
 import DirectoryItem from "../../components/directoryItem";
-import { GetStaticProps } from "next";
 import RessourceNav from "../../components/ressourceNav";
-import { getStaticPropsDirectory } from "../../utils/dataFetching";
+import { client } from "../../config/sanity/client";
 
 const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  const filteredDirectoryItems = directory.filter((directoryItem) => {
+    return (
+      !selectedFilter ||
+      (directoryItem.relatedPain &&
+        directoryItem.relatedPain.some(
+          (pain: any) =>
+            pain.name.toLowerCase() === selectedFilter.toLowerCase()
+        ))
+    );
+  });
+
   return (
     <div>
       <div className="double-column-containers-group">
@@ -36,28 +46,30 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
                 return null;
               }
 
-              const categorizedDirectoryItem = directory.filter(
-                (directoryItem) => directoryItem.category === category.value
+              const categorizedDirectoryItem = filteredDirectoryItems.filter(
+                (mediaItem) => mediaItem.category === category.value
               );
 
-              if (categorizedDirectoryItem.length === 0) {
-                return null;
+              if (selectedFilter && categorizedDirectoryItem.length === 0) {
+                return (
+                  <div key={category.value} className="media-container">
+                    <h2 className="h3">{category.title}</h2>
+                    <div className="msg-box">
+                      <p className="msg info">
+                        Tu as une recommendation? Contacte-nous!
+                      </p>
+                    </div>
+                  </div>
+                );
               }
-
               return (
                 <div key={category.value} className="directory-container">
                   <h2 className="h3">{category.title}</h2>
-                  {categorizedDirectoryItem
-                    .filter(
-                      (directoryItem: DirectoryDetail) =>
-                        directoryItem.isValidated === true
+                  {categorizedDirectoryItem.map(
+                    (directoryItem: DirectoryDetail, index: number) => (
+                      <DirectoryItem contact={directoryItem} key={index} />
                     )
-                    .map((directoryItem: DirectoryDetail) => (
-                      <DirectoryItem
-                        contact={directoryItem}
-                        key={directoryItem._id}
-                      />
-                    ))}
+                  )}
                 </div>
               );
             })}
@@ -69,4 +81,28 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
 };
 
 export default Directory;
-export const getStaticProps: GetStaticProps = getStaticPropsDirectory;
+export const getStaticProps = async () => {
+  try {
+    const directory: DirectoryDetails = await client.fetch(`
+      *[_type == "directory" && !(_id in path("drafts.**"))]{
+        ...,
+        relatedPain[]->{
+          name
+        }
+      }
+    `);
+
+    const sortedDirectory = directory.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+
+    return {
+      props: { directory: sortedDirectory },
+    };
+  } catch (error) {
+    console.error("Error fetching directory:", error);
+    return {
+      props: { directory: [] },
+    };
+  }
+};

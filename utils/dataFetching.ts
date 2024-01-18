@@ -3,6 +3,7 @@ import {
   EventDetail,
   ExerciseDetails,
   GlossaryDetails,
+  InfoPageDetail,
   MediaDetails,
   PainDetail,
 } from "../types";
@@ -51,24 +52,7 @@ export const getStaticPropsPains = async () => {
   }
 };
 /*----GENERAL RESSOURCES----*/
-export const getStaticPropsGlossary: GetStaticProps = async () => {
-  try {
-    const glossary: GlossaryDetails = await client.fetch(
-      '*[_type == "glossary" && !(_id in path("drafts.**"))]{...}'
-    );
-    const pains: PainDetail = await client.fetch(
-      '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
-    );
-    return {
-      props: { glossary, pains },
-    };
-  } catch (error) {
-    console.error("Error fetching glossary:", error);
-    return {
-      props: { glossary: [], pains: [] },
-    };
-  }
-};
+
 export const getStaticPropsExercises: GetStaticProps = async () => {
   try {
     const exercises: ExerciseDetails = await client.fetch(
@@ -87,44 +71,7 @@ export const getStaticPropsExercises: GetStaticProps = async () => {
     };
   }
 };
-export const getStaticPropsMedia: GetStaticProps = async () => {
-  try {
-    const media: MediaDetails = await client.fetch(
-      '*[_type == "media" && !(_id in path("drafts.**"))]{...}'
-    );
-    const pains: PainDetail = await client.fetch(
-      '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
-    );
-    return {
-      props: { media, pains },
-    };
-  } catch (error) {
-    console.error("Error fetching media:", error);
-    return {
-      props: { media: [], pains: [] },
-    };
-  }
-};
-export const getStaticPropsDirectory: GetStaticProps = async () => {
-  try {
-    const directory: DirectoryDetails = await client.fetch(
-      '*[_type == "directory" && !(_id in path("drafts.**"))]{...}'
-    );
 
-    const sortedDirectory = directory.sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-
-    return {
-      props: { directory: sortedDirectory },
-    };
-  } catch (error) {
-    console.error("Error fetching directory:", error);
-    return {
-      props: { directory: [] },
-    };
-  }
-};
 // POST DIRECTORY ENTRY
 export const createEntry = async (entry: DirectoryDetails) => {
   try {
@@ -273,24 +220,10 @@ export const getStaticPropsPainDirectories: GetStaticProps = async ({
 /*----START----*/
 
 /*----OTHER PAGES----*/
-export const getStaticPropsAccessibilityPage = async () => {
-  try {
-    const AccessibilityPage: PageDetail = await client.fetch(
-      '*[_type == "page" && _id== "d51ad2a1-f2ca-435c-a9bf-1166d9616831" && !(_id in path("drafts.**"))]'
-    );
-    return {
-      props: { AccessibilityPage },
-    };
-  } catch (error) {
-    console.error("Error fetching AccessibilityPage:", error);
-    return {
-      props: { AccessibilityPage: [] },
-    };
-  }
-};
+
 export const getStaticPropsAboutPage = async () => {
   try {
-    const AboutPage: PageDetail[] = await client.fetch(
+    const AboutPage: InfoPageDetail[] = await client.fetch(
       '*[_type == "page" && _id== "d1ec0f67-914d-4351-8695-4a50d0b7759c" && !(_id in path("drafts.**"))]'
     );
     return {
@@ -305,7 +238,7 @@ export const getStaticPropsAboutPage = async () => {
 };
 export const getStaticPropsMembersPage = async () => {
   try {
-    const MembersPage: PageDetail[] = await client.fetch(
+    const MembersPage: InfoPageDetail[] = await client.fetch(
       '*[_type == "page" && _id== "1c05b6e2-6165-4162-94dd-37fdd58c89fb" && !(_id in path("drafts.**"))]'
     );
     return {
@@ -320,7 +253,7 @@ export const getStaticPropsMembersPage = async () => {
 };
 export const getStaticPropsDonatePage = async () => {
   try {
-    const DonatePage: PageDetail[] = await client.fetch(
+    const DonatePage: InfoPageDetail[] = await client.fetch(
       '*[_type == "page" && _id== "f501afa0-06d7-428b-9ad0-11b853d96896" && !(_id in path("drafts.**"))]'
     );
     return {
@@ -335,7 +268,7 @@ export const getStaticPropsDonatePage = async () => {
 };
 export const getStaticPropsCreditPage = async () => {
   try {
-    const CreditPage: PageDetail[] = await client.fetch(
+    const CreditPage: InfoPageDetail[] = await client.fetch(
       '*[_type == "page" && _id== "455abeba-d503-4fef-b0ec-4bd24fa437a6" && !(_id in path("drafts.**"))]'
     );
     return {
@@ -350,7 +283,7 @@ export const getStaticPropsCreditPage = async () => {
 };
 export const getStaticPropsConditionsPage = async () => {
   try {
-    const ConditionsPage: PageDetail[] = await client.fetch(
+    const ConditionsPage: InfoPageDetail[] = await client.fetch(
       '*[_type == "page" && _id== "10cdf147-5d9f-4333-8bae-a27929ade630" && !(_id in path("drafts.**"))]'
     );
     return {

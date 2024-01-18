@@ -6,8 +6,8 @@ import {
 } from "../../../utils/dataFetching";
 
 import { Exercise } from "../../../components/exercise";
-import PainResourcePageLayout from "../../../components/reusables/PainResourcePageLayout";
 import React from "react";
+import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
 
 const filterRelatedExercises = (
   exercises: ExerciseDetail[],
@@ -27,7 +27,7 @@ const PainExercises = ({
 }) => {
   const relatedExercises = filterRelatedExercises(exercises, pain._id);
   return (
-    <PainResourcePageLayout
+    <ResourcePageLayout
       pageName="Exercices"
       pain={pain}
       relatedContent={relatedExercises}
@@ -38,7 +38,7 @@ const PainExercises = ({
             <Exercise exercise={exercise} key={index} />
           ))}
       </div>
-    </PainResourcePageLayout>
+    </ResourcePageLayout>
   );
 };
 

@@ -1,9 +1,9 @@
-import React from "react";
 import { GetStaticProps } from "next";
+import { InfoPageDetail } from "../types";
+import React from "react";
 import { getStaticPropsCreditPage } from "../utils/dataFetching";
-import { PageDetail } from "../types";
 
-const CreditPage = ({ CreditPage }: { CreditPage: PageDetail[] }) => {
+const CreditPage = ({ CreditPage }: { CreditPage: InfoPageDetail[] }) => {
   let credit = CreditPage[0];
 
   return (

@@ -107,11 +107,11 @@ export type GlossaryDetails = GlossaryDetail[];
 export interface MediaDetail {
   _id: string;
   title: string;
-  author: string;
-  editor: string;
-  year: string;
-  edition: number;
-  isFootnote: boolean;
+  author?: string;
+  editor?: string;
+  year?: string;
+  edition?: number;
+  isFootnote?: boolean;
   relatedPain?: { _type: "reference"; _ref: string }[]; // Make relatedPain optional
   filter: string;
   url?: string;

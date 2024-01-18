@@ -25,18 +25,9 @@
   object-fit: cover;
 }
 
-.schemas-container {
-  margin-top: $lg-space;
-  display: flex;
-  max-width: $chperline;
-  justify-content: space-between;
-  gap: $lg-space;
-  flex: 1;
-  min-width: 50%;
-  .schema {
-    max-width: 100%;
-    height: auto !important;
-  }
+.schema {
+  height: auto !important;
+  max-width: 100%;
 }
 
 .schema-caption {
