@@ -14,8 +14,25 @@
     max-width: 50ch;
   }
 
+  $tiny-glow: 0 0 5px 5px lighten($primary, 10);
+  $small-glow: 0 0 5px 2px lighten($primary, 10), 0 0 100px 60px $secondary;
+  $big-glow: 0 0 20px 10px lighten($primary, 10), 0 0 50px 30px $secondary;
+
+  @keyframes glow {
+    0%,
+    100% {
+      box-shadow: $small-glow;
+      mix-blend-mode: multiply;
+    }
+
+    50%,
+    75% {
+      box-shadow: $big-glow;
+      mix-blend-mode: multiply;
+    }
+  }
+
   .filters-content {
-    // grid-column: #{$grid-second-half};
     display: flex;
     flex-wrap: wrap;
     cursor: pointer;
@@ -26,21 +43,27 @@
       align-items: center;
       white-space: nowrap;
       padding: $padding-btn;
-      border: $border-solid $quarterary;
       font-size: $smaller-text;
       border-radius: $border-radius;
       text-transform: lowercase;
       height: fit-content;
-      // .active = selected
-      &.active,
+      transition: 1s;
+      border: $border-solid $primary;
+
       &:hover {
-        cursor: url("../assets/images/cursor-pointer.svg"), auto;
-        background-color: $quarterary;
-        border-color: $quarterary;
+        border: $border-solid lighten($primary, 10);
+        box-shadow: $tiny-glow;
+        background-color: lighten($primary, 10);
       }
-      // active = clicked
+      //on click
       &:active {
-        background-color: darken($quarterary, 5%);
+        background-color: lighten($primary, 50);
+      }
+      // selected
+      &.active {
+        border: $border-solid lighten($primary, 10);
+        background-color: lighten($primary, 10);
+        animation: glow 8s infinite;
       }
     }
 

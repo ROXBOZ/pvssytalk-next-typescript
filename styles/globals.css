@@ -432,6 +432,16 @@ footer .footer-content nav a:hover {
   font-size: 120%;
   max-width: 50ch;
 }
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px 2px #fe7768, 0 0 100px 60px #dcb4ff;
+    mix-blend-mode: multiply;
+  }
+  50%, 75% {
+    box-shadow: 0 0 20px 10px #fe7768, 0 0 50px 30px #dcb4ff;
+    mix-blend-mode: multiply;
+  }
+}
 .filters-container .filters-content {
   display: flex;
   flex-wrap: wrap;
@@ -443,20 +453,26 @@ footer .footer-content nav a:hover {
   align-items: center;
   white-space: nowrap;
   padding: 0.5em 1.5em;
-  border: 1px solid #ffc3ee;
   font-size: 80%;
   border-radius: 50px;
   text-transform: lowercase;
   height: -moz-fit-content;
   height: fit-content;
+  transition: 1s;
+  border: 1px solid #fd4a36;
 }
-.filters-container .filters-content .filter.active, .filters-container .filters-content .filter:hover {
-  cursor: url("../assets/images/cursor-pointer.svg"), auto;
-  background-color: #ffc3ee;
-  border-color: #ffc3ee;
+.filters-container .filters-content .filter:hover {
+  border: 1px solid #fe7768;
+  box-shadow: 0 0 5px 5px #fe7768;
+  background-color: #fe7768;
 }
 .filters-container .filters-content .filter:active {
-  background-color: #ffaae7;
+  background-color: white;
+}
+.filters-container .filters-content .filter.active {
+  border: 1px solid #fe7768;
+  background-color: #fe7768;
+  animation: glow 8s infinite;
 }
 .filters-container .filters-content .reset {
   padding: 0.5em 1.5em;
