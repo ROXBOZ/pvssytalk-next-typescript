@@ -141,8 +141,9 @@ const ArticlePain: React.FC<{
                       />
                     </div>
                   )}
-
-                  {Array.isArray(pain.medicalApproach.diagrams) &&
+                  {pain.medicalApproach &&
+                    pain.medicalApproach.diagrams &&
+                    Array.isArray(pain.medicalApproach.diagrams) &&
                     pain.medicalApproach.diagrams.map(renderDiagram)}
                 </div>
 
