@@ -16,6 +16,10 @@
   div {
     &:first-child {
       grid-column: 1/6;
+
+      h2 {
+        margin-top: 0;
+      }
     }
 
     &:nth-child(2) {

@@ -63,6 +63,11 @@ interface HomeDetail {
     pitch: string;
     text: any;
   };
+  about: {
+    title: string;
+    text: any;
+    image: any;
+  };
 }
 ///
 

@@ -43,6 +43,7 @@
       background-color: lighten($primary, 10);
       border: $border-solid lighten($primary, 10);
       @include painful;
+      font-family: $font-logo;
     }
   }
 }

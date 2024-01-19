@@ -297,7 +297,6 @@ header {
   padding: 2rem 0 8rem;
   padding: 1rem 2rem;
   align-items: baseline;
-  position: absolute;
 }
 @media screen and (max-width: 768px) {
   header {
@@ -325,6 +324,10 @@ header nav a {
 }
 header nav button {
   font-size: 16px;
+}
+
+.landing-view header {
+  position: absolute;
 }
 
 footer {
@@ -436,6 +439,7 @@ footer .footer-content nav a:hover {
 .landing-view .marquee button {
   background-color: #fe7768;
   border: 1px solid #fe7768;
+  font-family: "ESRebond";
 }
 .landing-view .marquee button:hover {
   border: 1px solid #ffd2cd;
@@ -564,6 +568,9 @@ footer .footer-content nav a:hover {
 }
 .double-column-container div:first-child {
   grid-column: 1/6;
+}
+.double-column-container div:first-child h2 {
+  margin-top: 0;
 }
 .double-column-container div:nth-child(2) {
   margin: 0;
@@ -1256,6 +1263,8 @@ form .input-section .showPassword {
   grid-column: none;
   padding: 1rem 0;
   flex-wrap: wrap;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 .animated-data .orangeDot,
 .animated-data .violetDot {
@@ -1263,6 +1272,7 @@ form .input-section .showPassword {
   aspect-ratio: 1/1;
   border-radius: 50%;
   flex: 0 0 15%;
+  width: 30px;
 }
 .animated-data .orangeDot {
   background-color: #fd4a36;

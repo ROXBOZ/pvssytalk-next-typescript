@@ -6,14 +6,15 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import CookieBanner from "../components/CookieBanner";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { firebaseApp } from "../config/firebase/firebase-config";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // console.log("firebaseApp :", firebaseApp);
+  const router = useRouter();
+  const isHomepage = router.pathname === "/";
   return (
     <>
       <AuthContextProvider>
-        {/* <Header /> */}
+        {isHomepage ? null : <Header />}
         <Breadcrumbs />
         <div>
           <Component {...pageProps} />

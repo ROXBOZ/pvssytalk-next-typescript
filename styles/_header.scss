@@ -2,7 +2,6 @@ header {
   @include grid;
   padding: $sm-space $reg-space;
   align-items: baseline;
-  position: absolute;
 
   .logo {
     color: $txt-color;
@@ -26,5 +25,11 @@ header {
     button {
       font-size: $font-size-basis;
     }
+  }
+}
+
+.landing-view {
+  header {
+    position: absolute;
   }
 }
