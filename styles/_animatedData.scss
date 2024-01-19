@@ -1,0 +1,38 @@
+.animated-data {
+  display: flex;
+  gap: $reg-space;
+  grid-column: none;
+  padding: $sm-space 0;
+  flex-wrap: wrap;
+  .orangeDot,
+  .violetDot {
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    flex: 0 0 15%;
+  }
+
+  .orangeDot {
+    background-color: $primary;
+    box-shadow: 0 0 7px 5px $primary;
+    animation: smallGlow 8s infinite;
+  }
+
+  .violetDot {
+    background-color: $secondary;
+  }
+}
+
+@keyframes smallGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px 5px $primary;
+    mix-blend-mode: multiply;
+  }
+
+  50%,
+  75% {
+    box-shadow: 0 0 30px 20px $primary;
+    mix-blend-mode: multiply;
+  }
+}

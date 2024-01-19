@@ -674,6 +674,13 @@ footer .footer-content nav a:hover {
     overflow-x: auto;
   }
 }
+.intro-image {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+
 .pain-illu-cover {
   width: 100% !important;
   height: auto !important;
@@ -1243,6 +1250,39 @@ form .input-section .showPassword {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
 }
 
+.animated-data {
+  display: flex;
+  gap: 2rem;
+  grid-column: none;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+.animated-data .orangeDot,
+.animated-data .violetDot {
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  flex: 0 0 15%;
+}
+.animated-data .orangeDot {
+  background-color: #fd4a36;
+  box-shadow: 0 0 7px 5px #fd4a36;
+  animation: smallGlow 8s infinite;
+}
+.animated-data .violetDot {
+  background-color: #dcb4ff;
+}
+
+@keyframes smallGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px 5px #fd4a36;
+    mix-blend-mode: multiply;
+  }
+  50%, 75% {
+    box-shadow: 0 0 30px 20px #fd4a36;
+    mix-blend-mode: multiply;
+  }
+}
 body {
   margin: 0;
   background-color: #fefdf4;

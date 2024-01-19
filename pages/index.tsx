@@ -34,7 +34,7 @@ export default Home;
 export const getStaticProps = async () => {
   try {
     const home: HomeDetail = await client.fetch(
-      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., intro {..., navigation[]->{...}}}'
+      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., intro {...,navigation[]->{...}}}'
     );
     const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
