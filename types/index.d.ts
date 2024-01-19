@@ -56,7 +56,7 @@ interface PainDetail {
   };
 }
 
-interface GlobalDetail {
+interface HomeDetail {
   tagline: string;
   marquee: string;
   intro: {

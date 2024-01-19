@@ -40,7 +40,8 @@
   width: 100%;
   font-size: 180%;
   padding-top: 1rem;
-  font-family: "ESKlarheit-Book";
+  font-family: "ESRebond";
+  font-weight: normal;
   transition: 0.2s ease-in;
   cursor: pointer !important;
 }
@@ -397,6 +398,7 @@ footer .footer-content nav a:hover {
 .landing-view {
   height: 100vh;
   position: relative;
+  margin-bottom: 4rem;
 }
 .landing-view .tagline {
   background: radial-gradient(circle, #fd4a36 0%, #dcb4ff 30%);
@@ -566,6 +568,13 @@ footer .footer-content nav a:hover {
 .double-column-container div:nth-child(2) {
   margin: 0;
   grid-column: 7/13;
+  width: 100%;
+}
+.double-column-container .nav-directory {
+  grid-column-start: 7;
+  grid-column-end: 12;
+}
+.double-column-container .nav-directory a {
   width: 100%;
 }
 

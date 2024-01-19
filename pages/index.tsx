@@ -1,23 +1,17 @@
-import { GlobalDetail, PainDetail } from "../types";
+import { HomeDetail, PainDetail } from "../types";
 
 import Header from "../components/Header";
 import Intro from "../components/Intro";
 import Marquee from "../components/Marquee";
 import PainGrid from "./douleurs";
 import Ressources from "./ressources";
-import Start from "./commencer";
 import Tagline from "../components/Tagline";
 import { client } from "../config/sanity/client";
 
-const Home = ({
-  pains,
-  global,
-}: {
-  pains: PainDetail[];
-  global: GlobalDetail[];
-}) => {
-  const tagline = global[0].tagline;
-  const marquee = global[0].marquee;
+const Home = ({ pains, home }: { pains: PainDetail[]; home: HomeDetail[] }) => {
+  const tagline = home[0].tagline;
+  const marquee = home[0].marquee;
+  const intro = home[0].intro;
 
   return (
     <div>
@@ -27,8 +21,7 @@ const Home = ({
         {marquee && <Marquee marquee={marquee} />}
       </div>
       <div className="double-column-containers-group">
-        <Intro intro={global[0].intro} />
-        <Start />
+        <Intro intro={intro} />
         <PainGrid pains={pains} />
         <Ressources />
       </div>
@@ -40,15 +33,15 @@ export default Home;
 
 export const getStaticProps = async () => {
   try {
-    const global: GlobalDetail = await client.fetch(
-      '*[_type == "global" && !(_id in path("drafts.**"))]{...}'
+    const home: HomeDetail = await client.fetch(
+      '*[_type == "homepage" && !(_id in path("drafts.**"))]{...}'
     );
     const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
-    console.log("pains :", pains);
+
     return {
-      props: { pains, global },
+      props: { pains, home },
     };
   } catch (error) {
     console.error("Error fetching pains:", error);
