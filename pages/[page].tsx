@@ -1,0 +1,104 @@
+import { client, urlFor } from "../config/sanity/client";
+
+import Image from "next/image";
+import { InfoPageDetail } from "../types";
+import { PortableText } from "@portabletext/react";
+import StartNav from "../components/startNav";
+
+const Page = ({ page }: any) => {
+  return (
+    <>
+      <div className="double-column-containers-group">
+        <div className="double-column-container">
+          <div>
+            <h1>{page.title}</h1>
+            <StartNav />
+            {page.image && (
+              <Image
+                className="intro-image"
+                src={urlFor(page.image.asset._ref).url()}
+                width={500}
+                height={300}
+                alt={page.image.alternativeText}
+              />
+            )}
+          </div>
+          <div className="bigger-text">
+            <PortableText value={page.subtitle as any} />
+          </div>
+        </div>
+      </div>
+
+      {page.sections.map((section: any, index: number) => {
+        return (
+          <div key={index} className="double-column-container">
+            <div>
+              <h2>{section.sectionTitle}</h2>
+              {section.sectionImage && (
+                <Image
+                  style={{ width: "100%", height: "auto" }}
+                  className={section.sectionTitle}
+                  src={urlFor(section.sectionImage.asset._ref).url()}
+                  width={500}
+                  height={300}
+                  alt={section.sectionImage.alternativeText}
+                />
+              )}
+            </div>
+            <div>
+              <PortableText value={section.sectionContent as any} />
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+export default Page;
+
+export const getStaticPaths = async () => {
+  try {
+    const slugs: string[] = await client.fetch(
+      `*[_type == "page"].slug.current`
+    );
+
+    const paths = slugs.map((slug) => ({
+      params: { page: slug },
+    }));
+
+    return {
+      paths,
+      fallback: false,
+    };
+  } catch (error) {
+    console.error("Error fetching slugs:", error);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
+};
+
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { page: string };
+}) => {
+  try {
+    const { page } = params;
+    const [currentPage]: InfoPageDetail[] = await client.fetch(
+      '*[_type == "page" && slug.current == $page && !(_id in path("drafts.**"))]{...}',
+      { page }
+    );
+
+    return {
+      props: { page: currentPage },
+    };
+  } catch (error) {
+    console.error("Error fetching pages:", error);
+    return {
+      props: { page: null },
+    };
+  }
+};

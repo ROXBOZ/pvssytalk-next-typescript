@@ -4,7 +4,7 @@ import React from "react";
 
 const Intro = ({ intro }: any) => {
   return (
-    <div className="double-column-container">
+    <div id="start" className="double-column-container">
       <div>
         <h2>{intro.pitch}</h2>
       </div>
@@ -12,9 +12,14 @@ const Intro = ({ intro }: any) => {
         <PortableText value={intro.text as any} />
       </div>
       <nav className="nav-directory">
-        <Link href="commencer/introduction">Introduction aux douleurs</Link>
-        <Link href="commencer/guide">Guide d’auto-observation</Link>
-        <Link href="commencer/consultation">Qui consulter ?</Link>
+        {intro.navigation &&
+          intro.navigation.map((page: any, index: number) => {
+            return (
+              <Link key={index} href={page.slug.current}>
+                {page.title}
+              </Link>
+            );
+          })}
       </nav>
     </div>
   );
