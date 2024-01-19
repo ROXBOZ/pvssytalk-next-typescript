@@ -2,10 +2,14 @@ header {
   @include grid;
   padding: $sm-space $reg-space;
   align-items: baseline;
+  position: absolute;
 
   .logo {
-    color: $primary;
+    color: $txt-color;
     font-size: 150%;
+    sup {
+      color: $txt-color;
+    }
   }
 
   nav {

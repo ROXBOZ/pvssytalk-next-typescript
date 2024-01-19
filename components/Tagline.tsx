@@ -1,12 +1,9 @@
 import React from "react";
 
-const Tagline = () => {
+const Tagline = ({ tagline }: any) => {
   return (
     <div className="tagline">
-      <h1>
-        <span className="logo">pvssy talk</span> s’adresse aux personnes à vulve
-        souffrant de douleurs sexuelles
-      </h1>
+      <h1>{tagline}</h1>
     </div>
   );
 };

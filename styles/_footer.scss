@@ -1,5 +1,5 @@
 footer {
-  background-color: $secondary;
+  background-color: $tierary;
   padding: $reg-space;
 
   .footer-content {
@@ -9,6 +9,16 @@ footer {
       font-size: 200%;
       grid-column: #{$grid-first-half};
       color: $txt-color;
+
+      .logo {
+        .talk {
+          color: darken($secondary, 20);
+        }
+      }
+    }
+
+    button {
+      @include secondaryButton;
     }
 
     nav {
@@ -37,7 +47,7 @@ footer {
         width: fit-content;
         display: inline-block;
         font-family: $font-regular !important;
-        border-bottom: $border-solid $txt-color;
+        border-bottom: none;
         &:hover {
           border-bottom: none;
         }

@@ -1,8 +1,9 @@
 /*-----Colors-----*/
 
-$txt-color: #4d4d28;
-$txt-color-lighten: lighten($txt-color, 60%);
-$txt-color2: #38284d;
+// $txt-color: #4d4d28;
+$txt-color: #31064b;
+$txt-color-lighten: lighten($txt-color, 75);
+$txt-color2: #31064b;
 
 $bg-color: #fefdf4;
 
@@ -102,3 +103,8 @@ $breakpoints: (
   "lg": 992px,
   "xl": 1200px,
 );
+
+/*-----Animations-----*/
+
+$small-glow: 0 0 5px 2px lighten($primary, 10), 0 0 100px 60px $secondary;
+$big-glow: 0 0 20px 10px lighten($primary, 10), 0 0 50px 30px $secondary;

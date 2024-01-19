@@ -55,6 +55,15 @@ interface PainDetail {
     pleasure: string;
   };
 }
+
+interface GlobalDetail {
+  tagline: string;
+  marquee: string;
+  intro: {
+    pitch: string;
+    text: any;
+  };
+}
 ///
 
 export interface Diagram {

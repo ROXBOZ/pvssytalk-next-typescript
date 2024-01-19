@@ -35,3 +35,31 @@
     }
   }
 }
+
+@mixin secondaryButton {
+  font-family: $font-logo;
+  background-color: darken($secondary, 5);
+  &:hover {
+    background-color: darken($secondary, 10);
+  }
+  &:active {
+    background-color: darken($secondary, 15);
+  }
+}
+
+@mixin painful {
+  &:hover {
+    border: $border-solid lighten($primary, 30);
+    background-color: lighten($primary, 30);
+  }
+
+  &:active {
+    background-color: lighten($primary, 20);
+    border: $border-solid lighten($primary, 20);
+  }
+  &.active {
+    border: $border-solid lighten($primary, 10);
+    background-color: lighten($primary, 10);
+    animation: glow 8s infinite;
+  }
+}

@@ -14,10 +14,6 @@
     max-width: 50ch;
   }
 
-  $tiny-glow: 0 0 5px 5px lighten($primary, 10);
-  $small-glow: 0 0 5px 2px lighten($primary, 10), 0 0 100px 60px $secondary;
-  $big-glow: 0 0 20px 10px lighten($primary, 10), 0 0 50px 30px $secondary;
-
   @keyframes glow {
     0%,
     100% {
@@ -50,21 +46,7 @@
       transition: 1s;
       border: $border-solid $primary;
 
-      &:hover {
-        border: $border-solid lighten($primary, 10);
-        box-shadow: $tiny-glow;
-        background-color: lighten($primary, 10);
-      }
-      //on click
-      &:active {
-        background-color: lighten($primary, 50);
-      }
-      // selected
-      &.active {
-        border: $border-solid lighten($primary, 10);
-        background-color: lighten($primary, 10);
-        animation: glow 8s infinite;
-      }
+      @include painful;
     }
 
     .reset {

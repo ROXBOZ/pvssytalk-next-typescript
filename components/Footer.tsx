@@ -1,15 +1,23 @@
 import Link from "next/link";
 import React from "react";
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
+  const handleNewsletter = () => {
+    console.log("s'inscrire à la newsletter");
+  };
   return (
     <footer>
       <div className="footer-content">
-        <p>
-          Let’s <span className="logo">pvssy talk</span> !
-        </p>
+        <div>
+          <p>
+            Let’s 
+            <span className="logo">
+              pvssy <span className="logo talk">talk</span>
+            </span>
+             !
+          </p>
+          <button onClick={handleNewsletter}>s'inscrire à la newsletter</button>
+        </div>
         <nav>
           <ul>
             <li>
