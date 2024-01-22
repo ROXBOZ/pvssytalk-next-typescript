@@ -20,6 +20,8 @@
 @import "form";
 @import "bootstrap";
 @import "animatedData";
+@import "navBlock";
+@import "textImageBlock";
 
 body {
   margin: 0;
@@ -64,4 +66,25 @@ a.colored.logo {
 
 .unknown__pt__mark__internalLink {
   background-color: yellow;
+}
+
+//SCROLLBAR
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $secondary;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primary;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darken($primary, 10);
 }

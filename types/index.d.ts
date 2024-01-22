@@ -1,3 +1,17 @@
+// types.ts
+interface MenuDetail {
+  footerMenu?: MenuDetail[];
+  headerMenu?: MenuDetail[];
+  _id: string;
+  _type: string;
+  title: string;
+  slug: {
+    current: string;
+  };
+  link: string;
+  isAction: boolean;
+}
+
 interface InfoPageDetail {
   _id: string;
   _ref: string;
@@ -55,21 +69,6 @@ interface PainDetail {
     pleasure: string;
   };
 }
-
-interface HomeDetail {
-  tagline: string;
-  marquee: string;
-  intro: {
-    pitch: string;
-    text: any;
-  };
-  about: {
-    title: string;
-    text: any;
-    image: any;
-  };
-}
-///
 
 export interface Diagram {
   index: number;

@@ -3,7 +3,6 @@ import { client, urlFor } from "../config/sanity/client";
 import Image from "next/image";
 import { InfoPageDetail } from "../types";
 import { PortableText } from "@portabletext/react";
-import StartNav from "../components/startNav";
 
 const Page = ({ page }: any) => {
   return (
@@ -12,7 +11,7 @@ const Page = ({ page }: any) => {
         <div className="double-column-container">
           <div>
             <h1>{page.title}</h1>
-            <StartNav />
+
             {page.image && (
               <Image
                 className="intro-image"

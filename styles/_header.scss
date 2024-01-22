@@ -14,8 +14,9 @@ header {
   nav {
     grid-column: #{$grid-last-thirds};
     display: flex;
-    justify-content: space-between;
     align-items: baseline;
+    justify-content: space-between;
+
     a {
       font-family: $font-regular;
       text-transform: lowercase;

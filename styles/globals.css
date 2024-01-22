@@ -29,6 +29,18 @@
 /*-----Elevations-----*/
 /*-----Media Queries-----*/
 /*-----Animations-----*/
+.primary-button {
+  font-family: "ESRebond";
+  border: 1px solid #dcb4ff;
+  background-color: #fe7768;
+}
+.primary-button:hover {
+  background-color: #fd4a36;
+}
+.primary-button:active {
+  background-color: #fd331d;
+}
+
 .nav-directory {
   display: flex;
   flex-direction: column;
@@ -314,8 +326,8 @@ header .logo sup {
 header nav {
   grid-column: 4/13;
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
+  justify-content: space-between;
 }
 header nav a {
   font-family: "ESKlarheit-Book";
@@ -437,22 +449,15 @@ footer .footer-content nav a:hover {
   max-width: 100%;
 }
 .landing-view .marquee button {
-  background-color: #fe7768;
-  border: 1px solid #fe7768;
   font-family: "ESRebond";
+  border: 1px solid #dcb4ff;
+  background-color: #fe7768;
 }
 .landing-view .marquee button:hover {
-  border: 1px solid #ffd2cd;
-  background-color: #ffd2cd;
+  background-color: #fd4a36;
 }
 .landing-view .marquee button:active {
-  background-color: #fea59b;
-  border: 1px solid #fea59b;
-}
-.landing-view .marquee button.active {
-  border: 1px solid #fe7768;
-  background-color: #fe7768;
-  animation: glow 8s infinite;
+  background-color: #fd331d;
 }
 
 @keyframes gradient {
@@ -513,6 +518,7 @@ footer .footer-content nav a:hover {
   height: fit-content;
   transition: 1s;
   border: 1px solid #fd4a36;
+  font-family: "ESRebond";
 }
 .filters-container .filters-content .filter:hover {
   border: 1px solid #ffd2cd;
@@ -528,6 +534,7 @@ footer .footer-content nav a:hover {
   animation: glow 8s infinite;
 }
 .filters-container .filters-content .reset {
+  font-family: "ESRebond";
   padding: 0.5em 1.5em;
   display: flex;
   align-items: center;
@@ -1293,6 +1300,46 @@ form .input-section .showPassword {
     mix-blend-mode: multiply;
   }
 }
+.navBlock:first-of-type {
+  border-top: 0;
+}
+
+.textImageBlock-wrapper + .navBlock {
+  border-top: 0;
+}
+
+.textImageBlock-wrapper.violet {
+  background-color: #dcb4ff;
+}
+.textImageBlock-wrapper.green {
+  background-color: #c8ffa5;
+}
+.textImageBlock-wrapper .textImageBlock {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+}
+.textImageBlock-wrapper .textImageBlock .text-container {
+  margin-left: 2rem;
+}
+.textImageBlock-wrapper .textImageBlock .text-container h2 {
+  margin-top: 0;
+}
+.textImageBlock-wrapper .textImageBlock .text-container button {
+  margin-top: 2rem;
+}
+.textImageBlock-wrapper .textImageBlock .image-container {
+  display: flex;
+  max-width: 50%;
+}
+.textImageBlock-wrapper .textImageBlock .image-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   background-color: #fefdf4;
@@ -1337,4 +1384,24 @@ a.colored.logo {
 
 .unknown__pt__mark__internalLink {
   background-color: yellow;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #dcb4ff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fd4a36;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fc1d04;
 }/*# sourceMappingURL=globals.css.map */

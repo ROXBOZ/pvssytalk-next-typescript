@@ -1,0 +1,34 @@
+.textImageBlock-wrapper {
+  &.violet {
+    background-color: $secondary;
+  }
+  &.green {
+    background-color: $tierary;
+  }
+  .textImageBlock {
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    display: flex;
+    gap: $reg-space;
+    .text-container {
+      margin-left: $reg-space;
+      h2 {
+        margin-top: 0;
+      }
+
+      button {
+        margin-top: $reg-space;
+      }
+    }
+
+    .image-container {
+      display: flex;
+      max-width: 50%;
+      img {
+        object-fit: cover;
+        max-width: 100%;
+      }
+    }
+  }
+}

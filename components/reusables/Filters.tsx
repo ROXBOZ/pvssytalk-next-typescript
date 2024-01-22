@@ -15,7 +15,7 @@ export const pains: FilterOption[] = [
 ];
 
 export const bodyParts: FilterOption[] = [
-  "Peux-tu repérer ta douleur ?",
+  "Dans quelle partie de ton corps ou dans quelles circonstances as-tu mal ?",
   "vulve",
   "vagin",
   "utérus",

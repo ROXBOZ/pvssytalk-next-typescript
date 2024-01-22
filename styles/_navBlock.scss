@@ -1,0 +1,9 @@
+.navBlock {
+  &:first-of-type {
+    border-top: 0;
+  }
+}
+
+.textImageBlock-wrapper + .navBlock {
+  border-top: 0;
+}

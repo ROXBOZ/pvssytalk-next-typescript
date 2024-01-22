@@ -1,12 +1,8 @@
-import React, { useContext } from "react";
 import Link from "next/link";
-import { AuthContext } from "../context/authContext";
+import { MenuDetail } from "../types";
+import React from "react";
 
-type Props = {};
-
-const Header = (props: Props) => {
-  const { existingUserCredential, logout } = useContext(AuthContext);
-
+const Header = ({ data }: any) => {
   return (
     <header>
       <Link href="/" className="borderless">
@@ -15,20 +11,33 @@ const Header = (props: Props) => {
         </span>
       </Link>
       <nav>
-        <Link href="/#start">Par où commencer ?</Link>
-        <Link href="/ressources/agenda">Agenda</Link>
-        <Link href="/faire-un-don">Faire un don</Link>
-        <Link href="/devenir-membre">Devenir membre</Link>
-        <Link href="/a-propos">À propos</Link>
-        {!existingUserCredential ? (
-          <Link href="/se-connecter">Connexion</Link>
-        ) : (
-          <>
-            <Link className="colored" href="/editor">
-              Editor
-            </Link>
-          </>
-        )}
+        {data &&
+          data.map((item: MenuDetail, index: number) => {
+            if (item._type === "page") {
+              return (
+                <Link key={index} href={item.slug.current}>
+                  {item.title}
+                </Link>
+              );
+            }
+            if (item._type === "customLink") {
+              if (item.isAction === false) {
+                return (
+                  <Link key={index} href={item.link}>
+                    {item.title}
+                  </Link>
+                );
+              }
+              if (item.isAction === true) {
+                return (
+                  <Link key={index} href={item.link}>
+                    <button className="primary-button"> {item.title}</button>
+                  </Link>
+                );
+              }
+            }
+            return null;
+          })}
       </nav>
     </header>
   );

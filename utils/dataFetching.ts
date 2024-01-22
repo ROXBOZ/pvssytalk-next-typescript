@@ -5,6 +5,7 @@ import {
   GlossaryDetails,
   InfoPageDetail,
   MediaDetails,
+  MenuDetail,
   PainDetail,
 } from "../types";
 
@@ -323,5 +324,19 @@ export const createEvent = async (event: EventDetail) => {
   } catch (error) {
     console.error("Error creating event:", error);
     throw error;
+  }
+};
+
+// FOOTER DATA
+
+export const getFooterData = async () => {
+  try {
+    const footerMenu = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    return footerMenu;
+  } catch (error) {
+    console.error("Error fetching footer data:", error);
+    return [];
   }
 };

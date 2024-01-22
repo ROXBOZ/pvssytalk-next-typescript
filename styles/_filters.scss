@@ -45,11 +45,12 @@
       height: fit-content;
       transition: 1s;
       border: $border-solid $primary;
-
+      font-family: $font-logo;
       @include painful;
     }
 
     .reset {
+      font-family: $font-logo;
       padding: $padding-btn;
       display: flex;
       align-items: center;

@@ -36,6 +36,22 @@
   }
 }
 
+@mixin primarybutton {
+  font-family: $font-logo;
+  border: $border-solid $secondary;
+  background-color: lighten($primary, 10);
+  &:hover {
+    background-color: $primary;
+  }
+  &:active {
+    background-color: darken($primary, 5);
+  }
+}
+
+.primary-button {
+  @include primarybutton;
+}
+
 @mixin secondaryButton {
   font-family: $font-logo;
   background-color: darken($secondary, 5);
