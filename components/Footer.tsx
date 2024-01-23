@@ -1,10 +1,8 @@
+import Link from "next/link";
 import { MenuDetail } from "../types";
 import React from "react";
-import { getFooterData } from "../utils/dataFetching";
 
-const Footer = ({ footerMenu }: MenuDetail) => {
-  console.log("footerMenu", footerMenu);
-
+const Footer = ({ data }: any) => {
   const handleNewsletter = () => {
     console.log("s'inscrire à la newsletter");
   };
@@ -22,7 +20,45 @@ const Footer = ({ footerMenu }: MenuDetail) => {
           <button onClick={handleNewsletter}>s'inscrire à la newsletter</button>
         </div>
         <nav>
-          <ul></ul>
+          <ul>
+            {data &&
+              data.map((item: MenuDetail, index: number) => {
+                if (item._type === "page") {
+                  return (
+                    <li key={index}>
+                      <Link href={item.slug.current}>{item.title}</Link>
+                    </li>
+                  );
+                }
+                if (item._type === "customLink") {
+                  if (item.isAction === false) {
+                    const isInternal = item.link.includes("pvssy");
+                    return (
+                      <li key={index}>
+                        <Link
+                          href={item.link}
+                          target={isInternal ? "_self" : "_blank"}
+                        >
+                          {item.title}
+                        </Link>
+                      </li>
+                    );
+                  }
+                  if (item.isAction === true) {
+                    return (
+                      <li key={index}>
+                        <Link href={item.link}>
+                          <button className="primary-button">
+                            {item.title}
+                          </button>
+                        </Link>
+                      </li>
+                    );
+                  }
+                }
+                return null;
+              })}
+          </ul>
         </nav>
       </div>
     </footer>
@@ -30,10 +66,3 @@ const Footer = ({ footerMenu }: MenuDetail) => {
 };
 
 export default Footer;
-
-export const getStaticProps = async () => {
-  const footerMenu = await getFooterData();
-  return {
-    props: { footerMenu },
-  };
-};

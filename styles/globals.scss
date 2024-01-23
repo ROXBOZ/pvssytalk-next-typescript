@@ -23,6 +23,10 @@
 @import "navBlock";
 @import "textImageBlock";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background-color: $bg-color;

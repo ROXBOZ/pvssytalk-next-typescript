@@ -1340,6 +1340,10 @@ form .input-section .showPassword {
   max-width: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background-color: #fefdf4;

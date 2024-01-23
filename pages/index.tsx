@@ -1,5 +1,6 @@
 import { MenuDetail, PainDetail } from "../types";
 
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Marquee from "../components/Marquee";
 import NavBlock from "../components/reusables/NavBlock";
@@ -18,19 +19,23 @@ interface HomeDetail {
 }
 
 const Home = ({
+  headerMenu,
   home,
   pains,
-  headerMenu,
+  footerMenu,
 }: {
+  headerMenu: MenuDetail[];
   pains: PainDetail[];
   home: HomeDetail[];
-  headerMenu: MenuDetail[];
+  footerMenu: MenuDetail[];
 }) => {
-  const menu = headerMenu[0].headerMenu;
+  const headerMenuData = headerMenu[0].headerMenu;
+  const footerMenuData = footerMenu[0].footerMenu;
+
   return (
     <div>
       <div className="landing-view">
-        <Header data={menu} />
+        <Header data={headerMenuData} />
         <Tagline tagline={home[0].tagline} />
         {home[0].marquee && <Marquee marquee={home[0].marquee} />}
       </div>
@@ -55,6 +60,7 @@ const Home = ({
           })}
         </div>
       )}
+      <Footer data={footerMenuData} />
     </div>
   );
 };
@@ -63,18 +69,21 @@ export default Home;
 
 export const getStaticProps = async () => {
   try {
+    const headerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const footerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
     const home: HomeDetail[] = await client.fetch(
       '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., content[] { ..., _type =="textImageBlock" => {..., callToAction {..., link->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
     );
     const pains: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'
     );
-    const headerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
 
     return {
-      props: { pains, home, headerMenu },
+      props: { headerMenu, footerMenu, pains, home },
     };
   } catch (error) {
     console.error("Error fetching pains:", error);

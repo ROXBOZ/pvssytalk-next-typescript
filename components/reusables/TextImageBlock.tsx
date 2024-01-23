@@ -5,7 +5,6 @@ import React from "react";
 import { urlFor } from "../../config/sanity/client";
 
 function TextImageBlock({ data }: any) {
-  console.log("data", data.callToAction);
   return (
     <div
       className={`textImageBlock-wrapper ${

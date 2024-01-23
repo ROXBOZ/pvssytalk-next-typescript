@@ -122,7 +122,7 @@ const Glossary = ({ glossary }: { glossary: GlossaryDetails }) => {
                 </Link>
               ))}
             </div>
-            <form className="search-form">
+            {/* <form className="search-form">
               <div>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />{" "}
                 <span>Rechercher</span>
@@ -132,7 +132,7 @@ const Glossary = ({ glossary }: { glossary: GlossaryDetails }) => {
                 placeholder="zone pelvienne"
                 onChange={handleInputChange}
               />
-            </form>
+            </form> */}
             {/*
              <Filters
               filterOptions={painList}

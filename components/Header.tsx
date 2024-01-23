@@ -1,3 +1,4 @@
+// import { Link } from "react-scroll";
 import Link from "next/link";
 import { MenuDetail } from "../types";
 import React from "react";
@@ -21,9 +22,17 @@ const Header = ({ data }: any) => {
               );
             }
             if (item._type === "customLink") {
+              const isInternal =
+                item.link.includes("pvssy") || item.link.includes("/#");
+
               if (item.isAction === false) {
                 return (
-                  <Link key={index} href={item.link}>
+                  <Link
+                    key={index}
+                    href={item.link}
+                    target={isInternal ? "_self" : "_blank"}
+                    rel="noopener noreferrer"
+                  >
                     {item.title}
                   </Link>
                 );

@@ -1,12 +1,27 @@
+import { InfoPageDetail, MenuDetail } from "../types";
 import { client, urlFor } from "../config/sanity/client";
 
+import Breadcrumbs from "../components/Breadcrumbs";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import Image from "next/image";
-import { InfoPageDetail } from "../types";
 import { PortableText } from "@portabletext/react";
 
-const Page = ({ page }: any) => {
+const Page = ({
+  headerMenu,
+  page,
+  footerMenu,
+}: {
+  headerMenu: MenuDetail[];
+  page: any;
+  footerMenu: MenuDetail[];
+}) => {
+  const headerMenuData = headerMenu[0].headerMenu;
+  const footerMenuData = footerMenu[0].footerMenu;
   return (
     <>
+      <Header data={headerMenuData} />
+      <Breadcrumbs />
       <div className="double-column-containers-group">
         <div className="double-column-container">
           <div>
@@ -50,6 +65,7 @@ const Page = ({ page }: any) => {
           </div>
         );
       })}
+      <Footer data={footerMenuData} />
     </>
   );
 };
@@ -86,13 +102,19 @@ export const getStaticProps = async ({
 }) => {
   try {
     const { page } = params;
+    const headerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const footerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
     const [currentPage]: InfoPageDetail[] = await client.fetch(
       '*[_type == "page" && slug.current == $page && !(_id in path("drafts.**"))]{...}',
       { page }
     );
 
     return {
-      props: { page: currentPage },
+      props: { page: currentPage, headerMenu, footerMenu },
     };
   } catch (error) {
     console.error("Error fetching pages:", error);
