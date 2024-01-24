@@ -1,16 +1,28 @@
-import Filters, { pains as painList } from "../../components/reusables/Filters";
-import { GlossaryDetail, GlossaryDetails, PainDetail } from "../../types";
+import {
+  GlossaryDetail,
+  GlossaryDetails,
+  MenuDetail,
+  PainDetail,
+} from "../../types";
 import React, { useEffect, useRef, useState } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import Layout from "../../components/Layout";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import RessourceNav from "../../components/ressourceNav";
 import { client } from "../../config/sanity/client";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 
-const Glossary = ({ glossary }: { glossary: GlossaryDetails }) => {
+const Glossary = ({
+  glossary,
+  headerMenu,
+  footerMenu,
+}: {
+  glossary: GlossaryDetails;
+  headerMenu: MenuDetail[];
+  footerMenu: MenuDetail[];
+}) => {
   const sortedGlossary = glossary?.sort((a, b) => a.term.localeCompare(b.term));
   const [, setEntries] = useState<string[]>([]);
   const [, setAnchorPosition] = useState(0);
@@ -19,18 +31,6 @@ const Glossary = ({ glossary }: { glossary: GlossaryDetails }) => {
   const router = useRouter();
   const termsContainerRef = useRef(null);
   const [, setSearchTerm] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-
-  const filteredGlossaryEntries = glossary.filter((glossaryEntry) => {
-    return (
-      !selectedFilter ||
-      (glossaryEntry.relatedPain &&
-        glossaryEntry.relatedPain.some(
-          (pain: any) =>
-            pain.name.toLowerCase() === selectedFilter.toLowerCase()
-        ))
-    );
-  });
 
   const termGroups: { [key: string]: GlossaryDetail[] } = {};
   if (sortedGlossary) {
@@ -97,77 +97,73 @@ const Glossary = ({ glossary }: { glossary: GlossaryDetails }) => {
   };
 
   return (
-    <div ref={termsContainerRef} className="double-column-containers-group">
-      <div className="double-column-container">
-        <div className="fixed-container">
-          <h1>
-            Glossaire <sup>{glossary.length}</sup>
-          </h1>
-          <div className="glossary-dashboard">
-            <RessourceNav />
-            <div className="letter-link-container">
-              {Array.from({ length: 26 }, (_, i) =>
-                String.fromCharCode("A".charCodeAt(0) + i)
-              ).map((letter, index) => (
-                <Link
-                  className="letter-link"
-                  key={index}
-                  href={`${router}/#${letter.toLowerCase()}`}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    scrollToAnchor(letter);
-                  }}
-                >
-                  {letter}
-                </Link>
-              ))}
-            </div>
-            {/* <form className="search-form">
-              <div>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />{" "}
-                <span>Rechercher</span>
-              </div>
-              <input
-                className="search-bar"
-                placeholder="zone pelvienne"
-                onChange={handleInputChange}
-              />
-            </form> */}
-            {/*
-             <Filters
-              filterOptions={painList}
-              selectedFilter={selectedFilter}
-              setSelectedFilter={setSelectedFilter}
-            /> */}
-          </div>
-        </div>
-        <div>
-          {letters.map((letter) => {
-            console.log("filteredGlossaryEntries", filteredGlossaryEntries);
-            //FIXME ALLOW FILTER BY PAIN
-            return (
-              <div className="letter-title" key={letter}>
-                <p id={letter} className="h1">
-                  {letter}
-                  {letter.toLowerCase()}
-                </p>
-                {termGroups[letter].map((term: GlossaryDetail) => (
-                  <div className="glossary-term" key={term._id}>
-                    <h2 className="h3 term-entry">{term.term}</h2>
-                    <div className="related-pain-container"></div>
-                    <PortableText value={term.def as any} />
-                  </div>
+    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Breadcrumbs />
+      <div ref={termsContainerRef} className="double-column-containers-group">
+        <div className="double-column-container">
+          <div className="fixed-container">
+            <h1>
+              Glossaire <sup>{glossary.length}</sup>
+            </h1>
+            <div className="glossary-dashboard">
+              <RessourceNav />
+              <div className="letter-link-container">
+                {Array.from({ length: 26 }, (_, i) =>
+                  String.fromCharCode("A".charCodeAt(0) + i)
+                ).map((letter, index) => (
+                  <Link
+                    className="letter-link"
+                    key={index}
+                    href={`${router}/#${letter.toLowerCase()}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      scrollToAnchor(letter);
+                    }}
+                  >
+                    {letter}
+                  </Link>
                 ))}
               </div>
-            );
-          })}
+            </div>
+          </div>
+          <div>
+            {letters.map((letter) => {
+              return (
+                <div className="letter-title" key={letter}>
+                  <p id={letter} className="h1">
+                    {letter}
+                    {letter.toLowerCase()}
+                  </p>
+                  {termGroups[letter].map((term: GlossaryDetail) => (
+                    <div className="glossary-term" key={term._id}>
+                      <h2
+                        className="h3 term-entry"
+                        style={{
+                          marginTop: "revert",
+                        }}
+                      >
+                        {term.term}
+                      </h2>
+                      <PortableText value={term.def as any} />
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 export const getStaticProps = async () => {
   try {
+    const headerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const footerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
     const glossary: GlossaryDetails = await client.fetch(`
       *[_type == "glossary" && !(_id in path("drafts.**"))]{
         ...,
@@ -181,7 +177,7 @@ export const getStaticProps = async () => {
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
     return {
-      props: { glossary, pains },
+      props: { glossary, pains, headerMenu, footerMenu },
     };
   } catch (error) {
     console.error("Error fetching glossary:", error);

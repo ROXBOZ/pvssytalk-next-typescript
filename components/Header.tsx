@@ -2,8 +2,12 @@
 import Link from "next/link";
 import { MenuDetail } from "../types";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Header = ({ data }: any) => {
+  const router = useRouter();
+  const { pathname } = router;
+  const isHome = pathname === "/";
   return (
     <header>
       <Link href="/" className="borderless">
@@ -16,7 +20,7 @@ const Header = ({ data }: any) => {
           data.map((item: MenuDetail, index: number) => {
             if (item._type === "page") {
               return (
-                <Link key={index} href={item.slug.current}>
+                <Link key={index} href={`/${item.slug.current}`}>
                   {item.title}
                 </Link>
               );
@@ -37,7 +41,7 @@ const Header = ({ data }: any) => {
                   </Link>
                 );
               }
-              if (item.isAction === true) {
+              if (item.isAction === true && isHome === false) {
                 return (
                   <Link key={index} href={item.link}>
                     <button className="primary-button"> {item.title}</button>

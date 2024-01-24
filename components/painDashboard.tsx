@@ -53,7 +53,7 @@ const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
         <Link href={`${pain.slug.current}/annuaire`}>Annuaire</Link>
         <h3>Partager</h3>
         <span style={{ cursor: "pointer" }} onClick={copyUrlToClipboard}>
-          Copier l’URL
+          <a> Copier l’URL</a>
         </span>
         <Link href={`whatsapp://send?text=${currentURL}`}>WhatsApp</Link>
         <Link href={`https://telegram.me/share/url?url=${currentURL}`}>

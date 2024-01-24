@@ -8,15 +8,17 @@ function TextImageBlock({ data }: any) {
   return (
     <div
       className={`textImageBlock-wrapper ${
-        data.color === "violet"
-          ? "violet"
-          : data.color === "green"
-          ? "green"
+        data.color === "primary"
+          ? "primary"
+          : data.color === "secondary"
+          ? "secondary"
+          : data.color === "tierary"
+          ? "tierary"
           : ""
       }`}
     >
       <div className="textImageBlock">
-        <div className="text-container">
+        <div className="text-container bigger-text">
           <h2>{data.title}</h2>
           <PortableText value={data.text as any} />
           {data.callToAction && (

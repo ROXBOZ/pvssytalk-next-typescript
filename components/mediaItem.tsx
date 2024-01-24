@@ -6,8 +6,6 @@ export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
   return (
     <div className="media-item" key={mediaItem._id}>
       <p>
-        {mediaItem.author && <>{mediaItem.author},</>}{" "}
-        {mediaItem.year && <>({mediaItem.year}). </>}
         {mediaItem.url ? (
           <Link href={mediaItem.url} target="_blank">
             <strong>
@@ -21,7 +19,9 @@ export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
             </strong>
           </span>
         )}
+        {mediaItem.author && <span>, {mediaItem.author}</span>}
         {mediaItem.editor && <span>, {mediaItem.editor}</span>}
+        {mediaItem.year && <span> ({mediaItem.year})</span>}
       </p>
     </div>
   );

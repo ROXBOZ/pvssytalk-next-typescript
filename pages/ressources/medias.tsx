@@ -2,15 +2,26 @@ import Filters, {
   mediaCategories,
   pains,
 } from "../../components/reusables/Filters";
-import { MediaDetail, MediaDetails, PainDetail } from "../../types";
+import { MediaDetail, MediaDetails, MenuDetail, PainDetail } from "../../types";
 import React, { useState } from "react";
 
+import Breadcrumbs from "../../components/Breadcrumbs";
+import Layout from "../../components/Layout";
 import MediaItem from "../../components/mediaItem";
 import RessourceNav from "../../components/ressourceNav";
 import { client } from "../../config/sanity/client";
 
-const Medias = ({ media }: { media: MediaDetail[] }) => {
+const Medias = ({
+  media,
+  headerMenu,
+  footerMenu,
+}: {
+  media: MediaDetail[];
+  headerMenu: MenuDetail[];
+  footerMenu: MenuDetail[];
+}) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
   const filteredMedias = media.filter((mediaItem) => {
     return (
       !selectedFilter ||
@@ -23,55 +34,58 @@ const Medias = ({ media }: { media: MediaDetail[] }) => {
   });
 
   return (
-    <div className="double-column-containers-group">
-      <div className="double-column-container">
-        <div className="fixed-container">
-          <h1>
-            Médias <sup>{media.length}</sup>
-          </h1>
-          <RessourceNav />
-          <Filters
-            filterOptions={pains}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-          />
-        </div>
-        <div>
-          {mediaCategories.map((category) => {
-            if (typeof category === "string") {
-              return null;
-            }
+    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Breadcrumbs />
+      <div className="double-column-containers-group">
+        <div className="double-column-container">
+          <div className="fixed-container">
+            <h1>
+              Médias <sup>{media.length}</sup>
+            </h1>
+            <RessourceNav />
+            <Filters
+              filterOptions={pains}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+            />
+          </div>
+          <div>
+            {mediaCategories.map((category) => {
+              if (typeof category === "string") {
+                return null;
+              }
 
-            const categorizedMediaItem = filteredMedias.filter(
-              (mediaItem) => mediaItem.filter === category.value
-            );
+              const categorizedMediaItem = filteredMedias.filter(
+                (mediaItem) => mediaItem.filter === category.value
+              );
 
-            if (selectedFilter && categorizedMediaItem.length === 0) {
+              if (selectedFilter && categorizedMediaItem.length === 0) {
+                return (
+                  <div key={category.value} className="media-container">
+                    <h2 className="h3">{category.title}</h2>
+                    <div className="msg-box">
+                      <p className="msg info">
+                        Tu as une recommendation? Contacte-nous!
+                      </p>
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <div key={category.value} className="media-container">
                   <h2 className="h3">{category.title}</h2>
-                  <div className="msg-box">
-                    <p className="msg info">
-                      Tu as une recommendation? Contacte-nous!
-                    </p>
-                  </div>
+                  {categorizedMediaItem.map(
+                    (media: MediaDetail, index: number) => (
+                      <MediaItem mediaItem={media} key={index} />
+                    )
+                  )}
                 </div>
               );
-            }
-            return (
-              <div key={category.value} className="media-container">
-                <h2 className="h3">{category.title}</h2>
-                {categorizedMediaItem.map(
-                  (media: MediaDetail, index: number) => (
-                    <MediaItem mediaItem={media} key={index} />
-                  )
-                )}
-              </div>
-            );
-          })}
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
@@ -79,6 +93,12 @@ export default Medias;
 
 export const getStaticProps = async () => {
   try {
+    const headerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const footerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
     const media: MediaDetails = await client.fetch(`
       *[_type == "media" && !(_id in path("drafts.**"))]{
         ...,
@@ -91,7 +111,7 @@ export const getStaticProps = async () => {
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
     return {
-      props: { media, pains },
+      props: { media, pains, headerMenu, footerMenu },
     };
   } catch (error) {
     console.error("Error fetching media:", error);

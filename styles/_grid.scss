@@ -55,19 +55,40 @@
   }
 
   .pain-card-content {
-    overflow: hidden;
-    background-color: $bg-color;
     border: $border-solid $secondary;
-    border-radius: $border-radius-soft;
+
+    overflow: hidden;
+    border-radius: $border-radius;
     min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 0;
 
-    h3 {
-      margin: $reg-space;
-      font-family: $font-regular;
+    .text-container {
+      z-index: 9;
+      background-color: $bg-color;
+      // box-shadow: 0 0 5px 5px lighten($primary, 5);
+      // background-color: lighten($primary, 5);
+
+      h3 {
+        margin: $reg-space;
+        font-family: $font-logo;
+        text-align: center;
+        font-size: larger;
+      }
     }
-
     img {
       width: 100%;
+    }
+
+    &:hover {
+      transform: translate(0, -3px);
+      border-color: $primary;
+      img {
+        transform: scale(1.1);
+        transition: 700ms;
+      }
     }
   }
 }

@@ -1,13 +1,18 @@
-import { ExerciseDetail, PainDetail } from "../../../types";
-import { GetStaticPaths, GetStaticProps } from "next";
 import {
-  getStaticPathsPain,
-  getStaticPropsPainExercises,
-} from "../../../utils/dataFetching";
+  ExerciseDetail,
+  ExerciseDetails,
+  MenuDetail,
+  PainDetail,
+} from "../../../types";
 
+import Breadcrumbs from "../../../components/Breadcrumbs";
 import { Exercise } from "../../../components/exercise";
+import { GetStaticPaths } from "next";
+import Layout from "../../../components/Layout";
 import React from "react";
 import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
+import { client } from "../../../config/sanity/client";
+import { getStaticPathsPain } from "../../../utils/dataFetching";
 
 const filterRelatedExercises = (
   exercises: ExerciseDetail[],
@@ -21,27 +26,73 @@ const filterRelatedExercises = (
 const PainExercises = ({
   exercises,
   pain,
+  headerMenu,
+  footerMenu,
 }: {
   pain: PainDetail;
   exercises: ExerciseDetail[];
+  headerMenu: MenuDetail[];
+  footerMenu: MenuDetail[];
 }) => {
   const relatedExercises = filterRelatedExercises(exercises, pain._id);
   return (
-    <ResourcePageLayout
-      pageName="Exercices"
-      pain={pain}
-      relatedContent={relatedExercises}
-    >
-      <div className="exercises-container">
-        {relatedExercises &&
-          relatedExercises.map((exercise: ExerciseDetail, index: number) => (
-            <Exercise exercise={exercise} key={index} />
-          ))}
-      </div>
-    </ResourcePageLayout>
+    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Breadcrumbs />
+      <ResourcePageLayout
+        pageName="Exercices"
+        pain={pain}
+        relatedContent={relatedExercises}
+      >
+        <div className="exercises-container">
+          {relatedExercises &&
+            relatedExercises.map((exercise: ExerciseDetail, index: number) => (
+              <Exercise exercise={exercise} key={index} />
+            ))}
+        </div>
+      </ResourcePageLayout>
+    </Layout>
   );
 };
 
 export default PainExercises;
-export const getStaticProps: GetStaticProps = getStaticPropsPainExercises;
+
+export const getStaticProps = async ({ params }: any) => {
+  try {
+    const { pain } = params!;
+    const headerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const footerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const fetchedPain: PainDetail | null = await client.fetch(
+      `*[_type == "pain" && slug.current == $currentSlug][0]`,
+      { currentSlug: pain }
+    );
+    const fetchedExercises: ExerciseDetails[] | null = await client.fetch(
+      `*[_type == "exercise" && references($painId)]`,
+      { painId: fetchedPain?._id }
+    );
+
+    if (!fetchedPain || !fetchedExercises) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        pain: fetchedPain,
+        exercises: fetchedExercises,
+        headerMenu,
+        footerMenu,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching exercises:", error);
+    return {
+      props: { pain: null, exercises: [] },
+    };
+  }
+};
 export const getStaticPaths: GetStaticPaths = getStaticPathsPain;

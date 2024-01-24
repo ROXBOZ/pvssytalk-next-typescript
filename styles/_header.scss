@@ -1,7 +1,10 @@
 header {
-  @include grid;
   padding: $sm-space $reg-space;
   align-items: baseline;
+  display: flex;
+
+  width: -webkit-fill-available;
+  justify-content: space-between;
 
   .logo {
     color: $txt-color;
@@ -12,10 +15,9 @@ header {
   }
 
   nav {
-    grid-column: #{$grid-last-thirds};
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
+    gap: $lg-space;
 
     a {
       font-family: $font-regular;

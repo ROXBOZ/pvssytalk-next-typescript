@@ -1,8 +1,11 @@
 .textImageBlock-wrapper {
-  &.violet {
+  &.primary {
+    background-color: lighten($primary, 5);
+  }
+  &.secondary {
     background-color: $secondary;
   }
-  &.green {
+  &.tierary {
     background-color: $tierary;
   }
   .textImageBlock {

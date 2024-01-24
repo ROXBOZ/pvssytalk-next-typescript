@@ -38,8 +38,8 @@
       display: flex;
       align-items: center;
       white-space: nowrap;
-      padding: $padding-btn;
-      font-size: $smaller-text;
+      padding: 0.25em 1em;
+      // font-size: $smaller-text;
       border-radius: $border-radius;
       text-transform: lowercase;
       height: fit-content;
@@ -51,11 +51,11 @@
 
     .reset {
       font-family: $font-logo;
-      padding: $padding-btn;
+      padding: 0.25em 1em;
       display: flex;
       align-items: center;
       gap: $sm-space;
-      font-size: $smaller-text;
+      // font-size: $smaller-text;
       border-radius: $border-radius;
       cursor: url("../assets/images/cursor-pointer.svg"), auto;
       text-transform: lowercase !important;

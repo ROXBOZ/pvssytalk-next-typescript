@@ -1,22 +1,22 @@
-import { Diagram, GlossaryDetails, PainDetail } from "../../../types";
-import { GetStaticPaths, GetStaticProps } from "next";
+import {
+  Diagram,
+  GlossaryDetails,
+  MenuDetail,
+  PainDetail,
+} from "../../../types";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { client, urlFor } from "../../../config/sanity/client";
-import {
-  getStaticPathsPain,
-  getStaticPropsPainGlossary,
-} from "../../../utils/dataFetching";
 
+import Breadcrumbs from "../../../components/Breadcrumbs";
+import { GetStaticPaths } from "next";
 import Image from "next/image";
+import Layout from "../../../components/Layout";
 import Link from "next/link";
 import Modal from "../../../components/Modal";
 import PainDashboard from "../../../components/painDashboard";
 import { PortableText } from "@portabletext/react";
 
-const ArticlePain: React.FC<{
-  pain: PainDetail;
-  glossary: GlossaryDetails;
-}> = ({ pain, glossary }) => {
+const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMed, setIsMed] = useState<boolean>(true);
   const imgHotspot = pain.mainImage.hotspot;
@@ -98,11 +98,12 @@ const ArticlePain: React.FC<{
   }, [setShowModal]);
 
   return (
-    <>
+    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       {showModal && selectedDiagram && (
         <Modal diagram={selectedDiagram} closeModal={closeModal} />
       )}
-      <main>
+      <Breadcrumbs />
+      <main style={{ marginTop: "5rem" }}>
         <h1>{pain.name}</h1>
 
         {pain.mainImage && (
@@ -333,7 +334,7 @@ const ArticlePain: React.FC<{
           </div>
         </div>
       </main>
-    </>
+    </Layout>
   );
 };
 
@@ -361,5 +362,55 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   }
 };
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { pain: string };
+}) => {
+  try {
+    const headerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const footerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const { pain } = params!;
+    const fetchedPain: PainDetail | null = await client.fetch(
+      `*[_type == "pain" && slug.current == $currentSlug][0]{
+        ...,
+        body[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "internalLink" => {
+              ...,
+              "slug": @->slug
+            }
+          }
+        }
+      }`,
+      { currentSlug: pain }
+    );
+    const fetchedGlossary: GlossaryDetails[] | null = await client.fetch(
+      `*[_type == "glossary" && references($painId)]`,
+      { painId: fetchedPain?._id }
+    );
 
-export const getStaticProps: GetStaticProps = getStaticPropsPainGlossary;
+    if (!fetchedPain || !fetchedGlossary) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        headerMenu,
+        footerMenu,
+        pain: fetchedPain,
+        glossary: fetchedGlossary,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching pages:", error);
+  }
+};

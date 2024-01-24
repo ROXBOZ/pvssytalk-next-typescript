@@ -1,15 +1,25 @@
-import { DirectoryDetail, DirectoryDetails } from "../../types";
+import { DirectoryDetail, DirectoryDetails, MenuDetail } from "../../types";
 import Filters, {
   directoryCategories,
   pains,
 } from "../../components/reusables/Filters";
 import React, { useState } from "react";
 
+import Breadcrumbs from "../../components/Breadcrumbs";
 import DirectoryItem from "../../components/directoryItem";
+import Layout from "../../components/Layout";
 import RessourceNav from "../../components/ressourceNav";
 import { client } from "../../config/sanity/client";
 
-const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
+const Directory = ({
+  directory,
+  headerMenu,
+  footerMenu,
+}: {
+  directory: DirectoryDetail[];
+  headerMenu: MenuDetail[];
+  footerMenu: MenuDetail[];
+}) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const filteredDirectoryItems = directory.filter((directoryItem) => {
     return (
@@ -23,7 +33,8 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
   });
 
   return (
-    <div>
+    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Breadcrumbs />
       <div className="double-column-containers-group">
         <div className="double-column-container">
           <div className="fixed-container">
@@ -76,13 +87,19 @@ const Directory = ({ directory }: { directory: DirectoryDetail[] }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
 export default Directory;
 export const getStaticProps = async () => {
   try {
+    const headerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
+    const footerMenu: MenuDetail[] = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
+    );
     const directory: DirectoryDetails = await client.fetch(`
       *[_type == "directory" && !(_id in path("drafts.**"))]{
         ...,
@@ -97,7 +114,7 @@ export const getStaticProps = async () => {
     );
 
     return {
-      props: { directory: sortedDirectory },
+      props: { directory: sortedDirectory, headerMenu, footerMenu },
     };
   } catch (error) {
     console.error("Error fetching directory:", error);

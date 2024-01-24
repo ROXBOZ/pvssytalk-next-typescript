@@ -49,7 +49,9 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
                     alt={pain.name}
                   />
                 )}
-                <h3 className="bigger-text">{pain.name}</h3>
+                <div className="text-container">
+                  <h3 className="bigger-text">{pain.name}</h3>
+                </div>
               </div>
             </Link>
           </div>

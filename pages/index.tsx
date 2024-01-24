@@ -58,6 +58,13 @@ const Home = ({
             }
             return null;
           })}
+          <div style={{ backgroundColor: "yellow" }}>
+            Prochains events (à insérer avant participer ?){" "}
+          </div>
+          <div style={{ backgroundColor: "lightgreen" }}>
+            Marquee "pvssy talk - let's pvssy talk -pvssy talk - let's pvssy
+            talk"{" "}
+          </div>
         </div>
       )}
       <Footer data={footerMenuData} />
