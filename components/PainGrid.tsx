@@ -1,12 +1,11 @@
 import Filters, { bodyParts } from "./reusables/Filters";
 import React, { useEffect, useState } from "react";
+import { client, urlFor } from "../config/sanity/client";
 
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PainDetail } from "../types";
-import { getStaticPropsPains } from "../utils/dataFetching";
-import { urlFor } from "../config/sanity/client";
 
 const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
   const sortedPains = pains.sort((a, b) => a.name.localeCompare(b.name));
@@ -76,4 +75,18 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
 };
 
 export default PainGrid;
-export const getStaticProps: GetStaticProps = getStaticPropsPains;
+export const getStaticProps = async () => {
+  try {
+    const pains: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'
+    );
+    return {
+      props: { pains },
+    };
+  } catch (error) {
+    console.error("Error fetching pains:", error);
+    return {
+      props: { pains: [] },
+    };
+  }
+};
