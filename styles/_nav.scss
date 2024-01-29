@@ -59,10 +59,12 @@
     display: flex;
     gap: 0.5rem;
     margin-top: $reg-space;
+    align-items: center;
 
-    a {
+    a,
+    .a {
       aspect-ratio: 1/1;
-
+      cursor: pointer;
       width: fit-content;
       height: auto;
       border-radius: $border-radius;

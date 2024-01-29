@@ -112,9 +112,12 @@
   display: flex;
   gap: 0.5rem;
   margin-top: 2rem;
+  align-items: center;
 }
-.pain-nav .partage-nav a {
+.pain-nav .partage-nav a,
+.pain-nav .partage-nav .a {
   aspect-ratio: 1/1;
+  cursor: pointer;
   width: -moz-fit-content;
   width: fit-content;
   height: auto;
@@ -124,26 +127,31 @@
   align-items: center;
   border: 1px solid #fd4a36;
 }
-.pain-nav .partage-nav a:hover {
+.pain-nav .partage-nav a:hover,
+.pain-nav .partage-nav .a:hover {
   border: 1px solid #ffd2cd;
   background-color: #ffd2cd;
 }
-.pain-nav .partage-nav a:active {
+.pain-nav .partage-nav a:active,
+.pain-nav .partage-nav .a:active {
   background-color: #fea59b;
   border: 1px solid #fea59b;
 }
-.pain-nav .partage-nav a.active {
+.pain-nav .partage-nav a.active,
+.pain-nav .partage-nav .a.active {
   border: 1px solid #fe7768;
   background-color: #fe7768;
   animation: glow 8s infinite;
 }
-.pain-nav .partage-nav a svg {
+.pain-nav .partage-nav a svg,
+.pain-nav .partage-nav .a svg {
   width: 25px;
   height: 25px;
   font-size: x-large;
   color: #fc1d04;
 }
-.pain-nav .partage-nav a svg path {
+.pain-nav .partage-nav a svg path,
+.pain-nav .partage-nav .a svg path {
   width: 100%;
 }
 
