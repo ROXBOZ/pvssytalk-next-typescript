@@ -66,7 +66,6 @@
 }
 
 .pain-nav {
-  width: 25%;
   display: flex;
   flex-direction: column;
   grid-column: 1/4;
@@ -74,18 +73,61 @@
   position: sticky;
   top: 0;
 }
-.pain-nav a {
+.pain-nav .switcher {
+  display: flex;
+}
+.pain-nav .switcher button {
+  font-family: "ESRebond";
+  font-size: large;
+  width: 100%;
+}
+.pain-nav .switcher button:first-of-type {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.pain-nav .switcher button:nth-of-type(2) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.pain-nav .switcher button.active {
+  background-color: #e4c7f1;
+}
+.pain-nav .ressources-nav a {
   font-family: "ESKlarheit-Book";
+  padding: 0.75rem 0 0.25rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-.pain-nav a:after {
+.pain-nav .ressources-nav a:after {
   content: " ↗";
 }
-.pain-nav a:hover:after {
+.pain-nav .ressources-nav a:hover:after {
   transition: 0.2s ease-in;
   transform: rotate(45deg);
+}
+.pain-nav .partage-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.pain-nav .partage-nav a {
+  aspect-ratio: 1/1;
+  background-color: #e1ed8c;
+  border-bottom: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 50px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.pain-nav .partage-nav a svg {
+  width: 30px;
+  font-size: x-large;
+}
+.pain-nav .partage-nav a svg path {
+  width: 100%;
 }
 
 .fixed-container {
@@ -637,29 +679,48 @@ footer .footer-content nav a:hover {
   transition: 700ms;
 }
 
-.pain-article {
-  grid-column: 4/13;
-  width: 100%;
-  border-left: 1px solid #edd4fc;
-  padding-left: 2rem;
-  margin-top: 4rem;
-}
-.pain-article h2:first-child {
-  margin-top: 0;
-}
-.pain-article .text-and-diagrams {
-  display: flex;
-  gap: 2rem;
-}
-
-.pain-nav-article-container {
+.title-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
   padding: 2rem 0 8rem;
+  padding-bottom: 2rem;
+}
+@media screen and (max-width: 768px) {
+  .title-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.title-container .title {
+  grid-column: 4/10;
+}
+.title-container .pain-illu-cover {
+  grid-column: 3/11;
+  width: 100%;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: auto;
+}
+
+.pain-article {
+  grid-column: 4/9;
+  border-left: 1px solid #edd4fc;
+  padding: 0 2rem;
+  max-width: 100%;
+}
+.pain-article h2:first-child {
+  margin-top: 0;
+}
+
+.pain-nav-article-container {
   align-items: baseline;
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  padding: 2rem 0 8rem;
 }
 @media screen and (max-width: 768px) {
   .pain-nav-article-container {
@@ -702,24 +763,6 @@ footer .footer-content nav a:hover {
   max-height: fit-content;
 }
 
-.pain-illu-cover {
-  width: 100% !important;
-  height: auto !important;
-  border-radius: 10px;
-  aspect-ratio: 16/7;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: cover;
-     object-position: cover;
-  grid-column: 1/13;
-  background-color: #e4c7f1;
-}
-@media screen and (max-width: 576px) {
-  .pain-illu-cover {
-    aspect-ratio: 3/2;
-  }
-}
-
 .pain-card-image {
   width: 100%;
   height: auto !important;
@@ -733,12 +776,29 @@ footer .footer-content nav a:hover {
      object-fit: cover;
 }
 
-.schema {
+.diagrams-container {
+  align-self: flex-start;
+  width: 100%;
+  grid-column: 9/13;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+.diagrams-container .schema-container {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.diagrams-container .schema-container .schema {
+  border: 1px solid #e4c7f1;
+  border-radius: 10px;
+  padding: 2rem;
   height: auto !important;
   max-width: 100%;
 }
-
-.schema-caption {
+.diagrams-container .schema-container .schema-caption {
   text-align: center;
   font-size: 80%;
 }
@@ -1363,6 +1423,9 @@ body {
 body * {
   font-feature-settings: "ss11" !important;
   transition: 0.2s ease-in;
+}
+body * ul li::marker {
+  color: #fd4a36;
 }
 
 main {

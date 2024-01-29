@@ -16,8 +16,9 @@
   }
 }
 
+// NAVIGATION ARTICLE
+
 .pain-nav {
-  width: 25%;
   display: flex;
   flex-direction: column;
   grid-column: #{$grid-first-third};
@@ -26,15 +27,65 @@
   position: sticky;
   top: 0;
 
-  a {
-    font-family: $font-regular;
+  .switcher {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    @include arrowRotate;
+
+    button {
+      font-family: $font-logo;
+      font-size: large;
+      width: 100%;
+      &:first-of-type {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      &:nth-of-type(2) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &.active {
+        background-color: $secondary;
+      }
+    }
+  }
+
+  .ressources-nav {
+    a {
+      font-family: $font-regular;
+      padding: 0.75rem 0 0.25rem;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      @include arrowRotate;
+    }
+  }
+
+  .partage-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: $reg-space;
+
+    a {
+      aspect-ratio: 1/1;
+      background-color: $tierary;
+      border-bottom: 0;
+      width: fit-content;
+      border-radius: $border-radius;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      svg {
+        width: 30px;
+        font-size: x-large;
+        path {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 
+// NAVIGATION fixed
 .fixed-container {
   position: -webkit-sticky;
   position: sticky;

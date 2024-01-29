@@ -94,25 +94,35 @@
 }
 
 // articles
-.pain-article {
-  grid-column: #{$grid-last-thirds};
-  width: 100%;
-  border-left: $border-solid $txt-color-lighten;
-  padding-left: $reg-space;
-  margin-top: $lg-space;
-  h2:first-child {
-    margin-top: 0;
+.title-container {
+  @include grid;
+  padding-bottom: $reg-space;
+
+  .title {
+    grid-column: #{$grid-center};
   }
 
-  .text-and-diagrams {
-    display: flex;
-    gap: 2rem;
+  .pain-illu-cover {
+    grid-column: 3/11;
+    width: 100%;
+    border-radius: $border-radius-soft;
+    object-fit: cover;
+    height: auto;
+  }
+}
+
+.pain-article {
+  grid-column: 4/9;
+  border-left: $border-solid $txt-color-lighten;
+  padding: 0 $reg-space;
+  max-width: 100%;
+  h2:first-child {
+    margin-top: 0;
   }
 }
 
 .pain-nav-article-container {
-  @include grid;
   align-items: baseline;
   width: 100%;
-  display: flex;
+  @include grid;
 }

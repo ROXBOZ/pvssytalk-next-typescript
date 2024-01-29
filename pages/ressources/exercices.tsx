@@ -6,6 +6,7 @@ import {
 } from "../../types";
 import Filters, { pains } from "../../components/reusables/Filters";
 import React, { useState } from "react";
+import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { Exercise } from "../../components/exercise";
@@ -68,12 +69,8 @@ const Exercises = ({
 export default Exercises;
 export const getStaticProps = async () => {
   try {
-    const headerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
-    const footerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
+    const headerMenu: MenuDetail[] = await fetchHeaderMenu();
+    const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const exercises: ExerciseDetails = await client.fetch(
       '*[_type == "exercise" && !(_id in path("drafts.**"))]{..., relatedPain[]->{name}}'
     );

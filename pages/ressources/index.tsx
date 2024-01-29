@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Layout from "../../components/Layout";
@@ -56,12 +57,8 @@ export const getStaticProps = async ({
   params: { page: string };
 }) => {
   try {
-    const headerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
-    const footerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
+    const headerMenu: MenuDetail[] = await fetchHeaderMenu();
+    const footerMenu: MenuDetail[] = await fetchFooterMenu();
 
     return {
       props: { headerMenu, footerMenu },

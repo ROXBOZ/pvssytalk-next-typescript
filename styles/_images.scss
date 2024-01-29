@@ -3,21 +3,6 @@
   max-height: fit-content;
 }
 
-.pain-illu-cover {
-  width: 100% !important;
-  height: auto !important;
-  border-radius: $border-radius-soft;
-  aspect-ratio: 16/7;
-  object-fit: cover;
-  object-position: cover;
-  grid-column: #{$grid-fullwidth};
-  background-color: $secondary;
-
-  @media screen and (max-width: map-get($breakpoints, "sm")) {
-    aspect-ratio: 3/2;
-  }
-}
-
 .pain-card-image {
   width: 100%;
   height: auto !important;
@@ -30,14 +15,34 @@
   object-fit: cover;
 }
 
-.schema {
-  height: auto !important;
-  max-width: 100%;
-}
+.diagrams-container {
+  align-self: flex-start;
+  width: 100%;
+  grid-column: 9/13;
+  display: flex;
+  flex-direction: column;
+  gap: $reg-space;
+  margin-top: $lg-space;
 
-.schema-caption {
-  text-align: center;
-  font-size: $smaller-text;
+  .schema-container {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .schema {
+      border: $border-solid $secondary;
+      border-radius: $border-radius-soft;
+      padding: $reg-space;
+      height: auto !important;
+      max-width: 100%;
+    }
+
+    .schema-caption {
+      text-align: center;
+      font-size: $smaller-text;
+    }
+  }
 }
 
 .modal {
@@ -50,6 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   .modal-content {
     width: 80%;
     height: 80%;

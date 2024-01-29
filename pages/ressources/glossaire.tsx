@@ -5,6 +5,7 @@ import {
   PainDetail,
 } from "../../types";
 import React, { useEffect, useRef, useState } from "react";
+import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Layout from "../../components/Layout";
@@ -158,12 +159,8 @@ const Glossary = ({
 };
 export const getStaticProps = async () => {
   try {
-    const headerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
-    const footerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
+    const headerMenu: MenuDetail[] = await fetchHeaderMenu();
+    const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const glossary: GlossaryDetails = await client.fetch(`
       *[_type == "glossary" && !(_id in path("drafts.**"))]{
         ...,

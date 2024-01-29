@@ -43,7 +43,11 @@ const Header = ({ data }: any) => {
               }
               if (item.isAction === true && isHome === false) {
                 return (
-                  <Link key={index} href={item.link}>
+                  <Link
+                    key={index}
+                    href={item.link}
+                    target={isInternal ? "_self" : "_blank"}
+                  >
                     <button className="primary-button"> {item.title}</button>
                   </Link>
                 );

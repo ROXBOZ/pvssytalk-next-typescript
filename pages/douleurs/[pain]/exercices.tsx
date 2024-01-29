@@ -4,6 +4,7 @@ import {
   MenuDetail,
   PainDetail,
 } from "../../../types";
+import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { Exercise } from "../../../components/exercise";
@@ -59,12 +60,8 @@ export default PainExercises;
 export const getStaticProps = async ({ params }: any) => {
   try {
     const { pain } = params!;
-    const headerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
-    const footerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
+    const headerMenu: MenuDetail[] = await fetchHeaderMenu();
+    const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const fetchedPain: PainDetail | null = await client.fetch(
       `*[_type == "pain" && slug.current == $currentSlug][0]`,
       { currentSlug: pain }

@@ -6,6 +6,7 @@ import {
 } from "../../../types";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { client, urlFor } from "../../../config/sanity/client";
+import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GetStaticPaths } from "next";
@@ -28,7 +29,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
   const renderDiagram = (diagram: Diagram, index: number) => (
     <div
-      style={{ cursor: "pointer" }}
+      className="schema-container"
       onClick={() => handleImageModal(index)}
       data-index={index}
       key={index}
@@ -36,8 +37,8 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
       <Image
         className="schema"
         src={urlFor(diagram.diagram.asset._ref).url()}
-        width={380}
-        height={380}
+        width={500}
+        height={500}
         alt={`schéma : ${diagram.diagram.alternativeText}`}
       />
       <p className="schema-caption">{diagram.diagram.caption}</p>
@@ -74,7 +75,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
   );
 
   useLayoutEffect(() => {
-    if (!isMed && ref.current) {
+    if (ref.current) {
       ref.current.scrollIntoView({
         behavior: "smooth",
       });
@@ -103,27 +104,37 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
         <Modal diagram={selectedDiagram} closeModal={closeModal} />
       )}
       <Breadcrumbs />
-      <main style={{ marginTop: "5rem" }}>
-        <h1>{pain.name}</h1>
-
-        {pain.mainImage && (
-          <>
+      <main>
+        <div className="title-container">
+          <div className="title">
+            <h1>{pain.name}</h1>
+            <span>
+              Textes de{" "}
+              <Link href="https://aemg-ge.com/medsexplain/" target="_blank">
+                MedSexPlain
+              </Link>{" "}
+              &{" "}
+              <Link href="https://www.sexopraxis.ch/" target="_blank">
+                Sexopraxis
+              </Link>{" "}
+              | Illustrations de{" "}
+              <Link href="https://noemiecreux.com/" target="_blank">
+                Noémie Creux
+              </Link>
+            </span>
+          </div>
+          {pain.mainImage && (
             <Image
               className="pain-illu-cover"
               src={urlFor(pain.mainImage.asset._ref).url()}
-              width={2000}
-              height={400}
+              width={1000}
+              height={1000}
               alt={pain.name}
               style={imageCoverHotspot}
               priority
             />
-            <span style={{ float: "right" }} className="smaller-text">
-              <em>
-                Illustration : <span className="colored">Noémie Creux</span>
-              </em>
-            </span>
-          </>
-        )}
+          )}
+        </div>
 
         <div className="pain-nav-article-container">
           <PainDashboard pain={pain} isMed={isMed} setIsMed={setIsMed} />
@@ -131,26 +142,20 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
           <div ref={ref} className="pain-article">
             {isMed ? (
               <>
-                <div className="text-and-diagrams">
-                  {pain.medicalApproach?.def && (
-                    <div>
-                      <h2>Définition</h2>
-                      <CustomPortableText
-                        value={pain.medicalApproach?.def}
-                        slug={pain.slug.current}
-                        glossary={glossary}
-                      />
-                    </div>
-                  )}
-                  {pain.medicalApproach &&
-                    pain.medicalApproach.diagrams &&
-                    Array.isArray(pain.medicalApproach.diagrams) &&
-                    pain.medicalApproach.diagrams.map(renderDiagram)}
-                </div>
+                {pain.medicalApproach?.def && (
+                  <div>
+                    <h2 className="h3">Définition</h2>
+                    <CustomPortableText
+                      value={pain.medicalApproach?.def}
+                      slug={pain.slug.current}
+                      glossary={glossary}
+                    />
+                  </div>
+                )}
 
                 {pain.medicalApproach?.diag && (
                   <>
-                    <h2>Diagnostic</h2>
+                    <h2 className="h3">Diagnostic</h2>
                     <CustomPortableText
                       value={pain.medicalApproach?.diag}
                       slug={pain.slug.current}
@@ -161,7 +166,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.medicalApproach?.sympt && (
                   <>
-                    <h2>Symptômes</h2>
+                    <h2 className="h3">Symptômes</h2>
                     <CustomPortableText
                       value={pain.medicalApproach?.sympt}
                       slug={pain.slug.current}
@@ -172,7 +177,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.medicalApproach?.why && (
                   <>
-                    <h2>Pourquoi ça m’arrive ?</h2>
+                    <h2 className="h3">Pourquoi ça m’arrive ?</h2>
                     <CustomPortableText
                       value={pain.medicalApproach?.why}
                       slug={pain.slug.current}
@@ -183,7 +188,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.medicalApproach?.auto && (
                   <>
-                    <h2>Que puis-je faire solo ?</h2>
+                    <h2 className="h3">Que puis-je faire solo ?</h2>
                     <CustomPortableText
                       value={pain.medicalApproach?.auto}
                       slug={pain.slug.current}
@@ -194,7 +199,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.medicalApproach?.pros && (
                   <>
-                    <h2>Qui consulter ?</h2>
+                    <h2 className="h3">Qui consulter ?</h2>
                     <CustomPortableText
                       value={pain.medicalApproach?.pros}
                       slug={pain.slug.current}
@@ -205,7 +210,9 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
               </>
             ) : (
               <>
-                {pain.sexologicApproach && <h2>Vivre avec la douleur</h2>}
+                {pain.sexologicApproach && (
+                  <h2 className="h3">Vivre avec la douleur</h2>
+                )}
 
                 {pain.sexologicApproach?.body && (
                   <>
@@ -240,7 +247,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
                   </>
                 )}
 
-                {pain.sexologicApproach && <h2>Sexualité</h2>}
+                {pain.sexologicApproach && <h2 className="h3">Sexualité</h2>}
 
                 {pain.sexologicApproach?.libido && (
                   <>
@@ -277,7 +284,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.mental && (
                   <>
-                    <h2>Santé mentale</h2>
+                    <h2 className="h3">Santé mentale</h2>
                     <CustomPortableText
                       value={pain.sexologicApproach?.mental}
                       slug={pain.slug.current}
@@ -288,7 +295,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.parenthood && (
                   <>
-                    <h2>Parentalité</h2>
+                    <h2 className="h3">Parentalité</h2>
                     <CustomPortableText
                       value={pain.sexologicApproach?.parenthood}
                       slug={pain.slug.current}
@@ -299,7 +306,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.checkup && (
                   <>
-                    <h2>Avec les pros de la santé</h2>
+                    <h2 className="h3">Avec les pros de la santé</h2>
                     <CustomPortableText
                       value={pain.sexologicApproach?.checkup}
                       slug={pain.slug.current}
@@ -321,7 +328,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.pleasure && (
                   <>
-                    <h2>Plaisir/ anti-douleur</h2>
+                    <h2 className="h3">Plaisir/ anti-douleur</h2>
                     <CustomPortableText
                       value={pain.sexologicApproach?.pleasure}
                       slug={pain.slug.current}
@@ -332,6 +339,14 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
               </>
             )}
           </div>
+          {isMed && (
+            <div className="diagrams-container">
+              {pain.medicalApproach &&
+                pain.medicalApproach.diagrams &&
+                Array.isArray(pain.medicalApproach.diagrams) &&
+                pain.medicalApproach.diagrams.map(renderDiagram)}
+            </div>
+          )}
         </div>
       </main>
     </Layout>
@@ -368,12 +383,8 @@ export const getStaticProps = async ({
   params: { pain: string };
 }) => {
   try {
-    const headerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
-    const footerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
+    const headerMenu: MenuDetail[] = await fetchHeaderMenu();
+    const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const { pain } = params!;
     const fetchedPain: PainDetail | null = await client.fetch(
       `*[_type == "pain" && slug.current == $currentSlug][0]{

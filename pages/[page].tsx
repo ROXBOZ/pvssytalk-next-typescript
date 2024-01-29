@@ -1,5 +1,6 @@
 import { InfoPageDetail, MenuDetail } from "../types";
 import { client, urlFor } from "../config/sanity/client";
+import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
 import Breadcrumbs from "../components/Breadcrumbs";
 import Footer from "../components/Footer";
@@ -102,12 +103,8 @@ export const getStaticProps = async ({
 }) => {
   try {
     const { page } = params;
-    const headerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
-    const footerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
+    const headerMenu: MenuDetail[] = await fetchHeaderMenu();
+    const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const [currentPage]: InfoPageDetail[] = await client.fetch(
       '*[_type == "page" && slug.current == $page && !(_id in path("drafts.**"))]{...}',
       { page }

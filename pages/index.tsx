@@ -1,4 +1,5 @@
 import { MenuDetail, PainDetail } from "../types";
+import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -76,12 +77,8 @@ export default Home;
 
 export const getStaticProps = async () => {
   try {
-    const headerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {headerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
-    const footerMenu: MenuDetail[] = await client.fetch(
-      '*[_type == "menu" && !(_id in path("drafts.**"))] {footerMenu[] {_type == "customLink" => {_type, isAction, title,link}, _type == "pageReference" => {...}->}}'
-    );
+    const headerMenu: MenuDetail[] = await fetchHeaderMenu();
+    const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const home: HomeDetail[] = await client.fetch(
       '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., content[] { ..., _type =="textImageBlock" => {..., callToAction {..., link->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
     );

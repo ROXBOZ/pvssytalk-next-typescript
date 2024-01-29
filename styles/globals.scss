@@ -36,6 +36,13 @@ body {
   * {
     font-feature-settings: "ss11" !important;
     transition: $animation-transition;
+    ul {
+      li {
+        &::marker {
+          color: $primary;
+        }
+      }
+    }
   }
 }
 
