@@ -28,16 +28,15 @@ const Modal: React.FC<ModalProps> = ({ diagram, closeModal }) => {
     <div className="modal" onClick={closeModal}>
       <div className="modal-content">
         <button onClick={closeModal}>fermer</button>
-        <div>
-          <Image
-            className="schema"
-            src={urlFor(diagram.diagram.asset._ref).url()}
-            width={600}
-            height={600}
-            alt={`schéma : ${diagram.diagram.alternativeText}`}
-          />
-          <p className="schema-caption">{diagram.diagram.caption}</p>
-        </div>
+
+        <Image
+          className="schema"
+          src={urlFor(diagram.diagram.asset._ref).url()}
+          width={600}
+          height={600}
+          alt={`schéma : ${diagram.diagram.alternativeText}`}
+        />
+        <p className="schema-caption">{diagram.diagram.caption}</p>
       </div>
     </div>
   );

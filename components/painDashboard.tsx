@@ -9,7 +9,12 @@ import { faTelegram } from "@fortawesome/free-brands-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { websiteURL } from "../utils/urls";
 
-const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
+const painDashboard = ({
+  pain,
+  isMed,
+  setIsMed,
+  setIsInitialRender,
+}: PainDashboardProps) => {
   const [currentURL, setCurrentURL] = useState("");
 
   useEffect(() => {
@@ -17,11 +22,11 @@ const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
     const constructedURL = websiteURL + currentPath;
     setCurrentURL(constructedURL);
   }, []);
+
   const switchArticle = () => {
     setIsMed((prevIsMed) => !prevIsMed);
+    setIsInitialRender(false);
   };
-
-  console.log(pain.name);
 
   return (
     <nav className="pain-nav">
@@ -61,77 +66,3 @@ const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
 };
 
 export default painDashboard;
-
-// import React, { useEffect, useState } from "react";
-
-// import Link from "next/link";
-// import { PainDashboardProps } from "../types";
-// import { websiteURL } from "../utils/urls";
-
-// const painDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
-//   const [, setIsCopied] = useState<boolean>(false);
-//   const [currentURL, setCurrentURL] = useState("");
-
-//   useEffect(() => {
-//     const currentPath = window.location.pathname;
-//     const constructedURL = websiteURL + currentPath;
-//     setCurrentURL(constructedURL);
-//   }, []);
-
-//   let currentPath;
-//   if (typeof window !== "undefined") {
-//     currentPath = window.location.pathname;
-//   }
-
-//   const switchArticle = () => {
-//     setIsMed((prevIsMed) => !prevIsMed);
-//   };
-
-//   const copyUrlToClipboard = () => {
-//     navigator.clipboard.writeText(window.location.href);
-//     setIsCopied(true);
-//     setTimeout(() => {
-//       setIsCopied(false);
-//     }, 1500);
-//   };
-
-//   return (
-//     <>
-//       <nav className="pain-nav">
-//         <h3>
-//           Approche{" "}
-//           <span className="colored">
-//             {isMed ? <span>médicale</span> : <span>sexo</span>}
-//           </span>
-//         </h3>
-//         <button
-//           style={{ display: "flex", justifyContent: "space-between" }}
-//           onClick={switchArticle}
-//         >
-//           {isMed ? <span>Sexologie</span> : <span>Médical</span>} ⇆
-//         </button>
-//         <h3>Ressources</h3>
-//         <Link href={`${pain.slug.current}/glossaire`}>Glossaire</Link>
-//         <Link href={`${pain.slug.current}/exercices`}>Exercices</Link>
-//         <Link href={`${pain.slug.current}/medias`}>Médias</Link>
-//         <Link href={`${pain.slug.current}/annuaire`}>Annuaire</Link>
-//         <h3>Partager</h3>
-//         <span style={{ cursor: "pointer" }} onClick={copyUrlToClipboard}>
-//           <a> Copier l’URL</a>
-//         </span>
-//
-
-//         <p className="smaller-text">
-//           Rédaction :{" "}
-//           {isMed ? (
-//             <em className="colored">MedSexplain</em>
-//           ) : (
-//             <em className="colored">Sexopraxis</em>
-//           )}
-//         </p>
-//       </nav>
-//     </>
-//   );
-// };
-
-// export default painDashboard;

@@ -29,19 +29,14 @@
 
   .switcher {
     display: flex;
-
+    border: $secondary $border-solid;
+    border-radius: $border-radius;
     button {
       font-family: $font-logo;
       font-size: large;
       width: 100%;
-      &:first-of-type {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-      &:nth-of-type(2) {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
+      border: transparent;
+      background-color: transparent;
 
       &.active {
         background-color: $secondary;
@@ -67,16 +62,21 @@
 
     a {
       aspect-ratio: 1/1;
-      background-color: $tierary;
-      border-bottom: 0;
+
       width: fit-content;
+      height: auto;
       border-radius: $border-radius;
       padding: 0.5rem;
       display: flex;
       align-items: center;
+      border: $border-solid $primary;
+
+      @include painful;
       svg {
-        width: 30px;
+        width: 25px;
+        height: 25px;
         font-size: x-large;
+        color: darken($primary, 10);
         path {
           width: 100%;
         }

@@ -4,7 +4,13 @@ import {
   MenuDetail,
   PainDetail,
 } from "../../../types";
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { client, urlFor } from "../../../config/sanity/client";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
@@ -23,6 +29,8 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
   const imgHotspot = pain.mainImage.hotspot;
   const [showModal, setShowModal] = useState(false);
   const [selectedDiagram, setSelectedDiagram] = useState<Diagram | null>(null);
+  const [isInitialRender, setIsInitialRender] = useState(true);
+  console.log("isInitialRender", isInitialRender);
   const imageCoverHotspot = {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };
@@ -74,13 +82,13 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
     />
   );
 
-  useLayoutEffect(() => {
-    if (ref.current) {
+  useEffect(() => {
+    if (isInitialRender === false && ref.current) {
       ref.current.scrollIntoView({
         behavior: "smooth",
       });
     }
-  }, [isMed]);
+  }, [isMed, isInitialRender]);
 
   const handleImageModal = useCallback(
     (index: number) => {
@@ -137,7 +145,12 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
         </div>
 
         <div className="pain-nav-article-container">
-          <PainDashboard pain={pain} isMed={isMed} setIsMed={setIsMed} />
+          <PainDashboard
+            pain={pain}
+            isMed={isMed}
+            setIsMed={setIsMed}
+            setIsInitialRender={setIsInitialRender}
+          />
 
           <div ref={ref} className="pain-article">
             {isMed ? (

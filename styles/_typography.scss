@@ -82,6 +82,7 @@ em {
 
 .arrow-link {
   @include arrowRotate;
+  border: none;
 }
 
 /*-----Ratio Scale-----*/
@@ -115,7 +116,7 @@ $level-size: $type-base-size;
       line-height: calc(2px + 2ex + 2px);
     }
     font-weight: 500;
-    margin-top: calc(#{$level-size}* 1.25);
+    margin-top: calc(#{$level-size}* 2);
     margin-bottom: calc(#{$level-size}/ 2);
 
     .logo {

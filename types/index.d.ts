@@ -92,6 +92,7 @@ export interface PainDashboardProps {
   };
   isMed: boolean;
   setIsMed: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsInitialRender: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export type PainDashboardProps = PainDashboardProp[];
 

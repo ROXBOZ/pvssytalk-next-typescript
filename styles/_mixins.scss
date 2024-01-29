@@ -13,11 +13,13 @@
 @mixin arrowRotate {
   &:after {
     content: " ↗";
+    font-family: $font-logo;
   }
 
   &:hover {
+    transition: $animation-transition;
+
     &:after {
-      transition: $animation-transition;
       transform: rotate(45deg);
     }
   }
