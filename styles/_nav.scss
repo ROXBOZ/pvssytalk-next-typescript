@@ -1,18 +1,20 @@
 .nav-directory {
   display: flex;
   flex-direction: column;
-  margin-bottom: $lg-space;
+  padding-bottom: $lg-space;
+
   a {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    font-size: $bigger-text * 1.5;
     padding-top: $sm-space;
-    font-family: $font-logo;
     font-weight: normal;
     transition: $animation-transition;
     cursor: pointer !important;
     @include arrowRotate;
+    span {
+      font-family: $font-logo !important;
+    }
   }
 }
 
@@ -102,6 +104,52 @@
       align-items: center;
       gap: $sm-space;
       max-width: fit-content;
+    }
+  }
+}
+
+.dropdowns-container {
+  display: flex;
+  gap: $sm-space;
+  .dropdown {
+    position: relative;
+    flex: 1;
+    border: $border-solid $secondary;
+    padding: 0.25rem 1em;
+    border-radius: $border-radius;
+    .drowpdown-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      min-width: fit-content;
+      padding: $sm-space;
+      z-index: 1;
+    }
+
+    &:hover {
+      .drowpdown-title {
+        .icon {
+          transform: rotate(-90deg);
+          transition: $animation-transition;
+        }
+      }
+
+      .dropdown-content {
+        display: block;
+        ul {
+          padding-left: 0;
+          max-width: 90%;
+          li {
+            list-style: none;
+            border-bottom: $border-solid $secondary;
+            padding-bottom: 0.25rem;
+          }
+        }
+      }
     }
   }
 }

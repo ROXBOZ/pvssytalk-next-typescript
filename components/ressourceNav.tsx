@@ -11,7 +11,7 @@ const RessourceNav = (props: Props) => {
   }, []);
 
   return (
-    <nav className="nav-directory">
+    <nav className="nav-directory h4">
       {!currentURL.endsWith("agenda") && (
         <Link href="agenda">
           <span>Agenda</span>
@@ -38,7 +38,9 @@ const RessourceNav = (props: Props) => {
         </Link>
       )}
 
-      <Link href="/ressources">Toutes les ressources</Link>
+      <Link href="/ressources">
+        <span>Toutes les ressources</span>
+      </Link>
     </nav>
   );
 };

@@ -8,7 +8,6 @@ export default function DirectoryItem({
 }: {
   contact: DirectoryDetail;
 }) {
-  console.log("contact", contact);
   return (
     <>
       <div className="directory-item" key={contact._id}>

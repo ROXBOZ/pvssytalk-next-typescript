@@ -14,10 +14,12 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import DirectoryItem from "../../components/directoryItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Layout from "../../components/Layout";
 import Link from "next/link";
 import RessourceNav from "../../components/ressourceNav";
 import { client } from "../../config/sanity/client";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Directory = ({
   directory,
@@ -28,7 +30,7 @@ const Directory = ({
   directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
-  typeform: any;
+  typeform: typeformDetail;
 }) => {
   const typeformDirectoryLink =
     Array.isArray(typeform[0]?.typeforms) &&
@@ -36,8 +38,10 @@ const Directory = ({
       (typeform: any) => typeform.typeformName === "Annuaire"
     )?.typeformLink;
 
+  {
+    /* FIXME  */
+  }
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-
   const filteredDirectoryItems = directory.filter((directoryItem) => {
     return (
       !selectedFilter ||
@@ -49,7 +53,26 @@ const Directory = ({
     );
   });
 
-  console.log("directory", directory);
+  const allPains = pains.slice(1);
+  const allRegions = cantons.slice(1);
+
+  const DropDown = ({ title, array }: any) => {
+    return (
+      <div className="dropdown">
+        <span className="drowpdown-title">
+          {title} <FontAwesomeIcon className="icon" icon={faChevronDown} />
+        </span>
+        <div className="dropdown-content">
+          <ul>
+            {array.map((item: any) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <Breadcrumbs />
@@ -60,32 +83,24 @@ const Directory = ({
               Annuaire{" "}
               <sup>
                 {directory.filter((item) => item.isValidated === true).length}
-                {typeformDirectoryLink && (
-                  <Link
-                    target="_blank"
-                    style={{ border: 0 }}
-                    href={typeformDirectoryLink}
-                  >
-                    <button>faire une recommendation</button>
-                  </Link>
-                )}
               </sup>
+              {typeformDirectoryLink && (
+                <Link
+                  target="_blank"
+                  style={{ border: 0 }}
+                  href={typeformDirectoryLink}
+                >
+                  <button>faire une recommendation</button>
+                </Link>
+              )}
             </h1>
             <RessourceNav />
-
-            <Filters
-              filterOptions={pains}
-              selectedFilter={selectedFilter}
-              setSelectedFilter={setSelectedFilter}
-            />
-            <br />
-            <br />
-            <Filters
-              filterOptions={cantons}
-              selectedFilter={selectedFilter}
-              setSelectedFilter={setSelectedFilter}
-            />
+            <div className="dropdowns-container">
+              <DropDown title="Douleurs" array={allPains} />
+              <DropDown title="Régions" array={allRegions} />
+            </div>
           </div>
+
           <div>
             {directoryCategories.map((category) => {
               if (typeof category === "string") {
@@ -132,6 +147,7 @@ const Directory = ({
 };
 
 export default Directory;
+
 export const getStaticProps = async () => {
   try {
     const headerMenu: MenuDetail[] = await fetchHeaderMenu();
