@@ -628,7 +628,6 @@ footer .footer-content nav a:hover {
 }
 
 .tag-container {
-  padding: 1rem 0;
   max-width: -moz-fit-content;
   max-width: fit-content;
   display: flex;
@@ -1154,15 +1153,22 @@ form .search-bar:focus {
   gap: 2rem;
   justify-content: space-between !important;
   align-items: center;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+.directory-container .directory-item .directory-item-title h2,
+.directory-container .directory-item .directory-item-title h3 {
+  margin: 0;
+}
+.directory-container .directory-item .directory-item-subtitle {
+  color: #fd4a36;
+  margin-top: 0.5rem;
 }
 .directory-container .directory-item .directory-item-content-container {
   display: flex;
 }
 .directory-container .directory-item .directory-item-content-container .col1 {
   min-width: 50%;
-}
-.directory-container .directory-item .directory-item-content-container h4 {
-  margin-top: 2rem;
 }
 .directory-container .directory-item .directory-item-content-container .directory-item-address:not(:first-of-type) {
   margin-top: 1rem;

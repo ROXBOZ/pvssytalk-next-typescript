@@ -15,15 +15,23 @@
       gap: 2rem;
       justify-content: space-between !important;
       align-items: center;
+      max-height: fit-content;
+      h2,
+      h3 {
+        margin: 0;
+      }
+    }
+
+    .directory-item-subtitle {
+      color: $primary;
+      margin-top: 0.5rem;
     }
 
     .directory-item-content-container {
       display: flex;
+
       .col1 {
         min-width: 50%;
-      }
-      h4 {
-        margin-top: $reg-space;
       }
 
       .directory-item-address:not(:first-of-type) {

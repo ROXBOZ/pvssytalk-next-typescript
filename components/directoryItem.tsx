@@ -13,28 +13,32 @@ export default function DirectoryItem({
     <>
       <div className="directory-item" key={contact._id}>
         <div>
-          <div className="directory-item-title">
-            <h3>
-              {contact.firstName} {contact.name}
-            </h3>
-            <div className="tag-container">
-              {contact.profession ? (
-                <span className="tag">{contact.profession.name}</span>
-              ) : contact.category === "website" ? (
-                <span className="tag">online</span>
-              ) : (
-                ""
-              )}
+          <div>
+            <div className="directory-item-title">
+              <h3>
+                {contact.firstName} {contact.name}
+              </h3>
+              <div className="tag-container">
+                {contact.profession ? (
+                  <span className="tag">{contact.profession.name}</span>
+                ) : contact.category === "website" ? (
+                  <span className="tag">online</span>
+                ) : (
+                  ""
+                )}
 
-              {contact.addresses?.map((address: any) =>
-                address.region ? (
-                  <span key={address.id} className="tag">
-                    {address.region}
-                  </span>
-                ) : null
-              )}
+                {contact.addresses?.map((address: any) =>
+                  address.region ? (
+                    <span key={address.id} className="tag">
+                      {address.region}
+                    </span>
+                  ) : null
+                )}
+              </div>
             </div>
+            <p className="directory-item-subtitle">{contact.subtitle}</p>
           </div>
+
           <div className="directory-item-content-container">
             <div className="col1">
               <div>
@@ -74,7 +78,10 @@ export default function DirectoryItem({
 
                       <br />
                       {a.isAccessible === true && (
-                        <div className="tag-container">
+                        <div
+                          className="tag-container"
+                          style={{ margin: "1rem 0" }}
+                        >
                           <span className="tag">Accès mobilité réduite</span>
                         </div>
                       )}

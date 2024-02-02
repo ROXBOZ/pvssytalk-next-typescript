@@ -155,6 +155,7 @@ export interface DirectoryDetail {
   category: string;
   name: string;
   firstName: string;
+  subtitle: string;
   itemType: string;
   tagline: string;
   profession: {
