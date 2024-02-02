@@ -8,6 +8,7 @@ const Header = ({ data }: any) => {
   const router = useRouter();
   const { pathname } = router;
   const isHome = pathname === "/";
+  const isDirectory = pathname === "/ressources/annuaire";
   return (
     <header>
       <Link href="/" className="borderless">
@@ -41,7 +42,11 @@ const Header = ({ data }: any) => {
                   </Link>
                 );
               }
-              if (item.isAction === true && isHome === false) {
+              if (
+                item.isAction === true &&
+                isHome === false &&
+                isDirectory === false
+              ) {
                 return (
                   <Link
                     key={index}

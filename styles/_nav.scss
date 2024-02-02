@@ -95,6 +95,11 @@
   position: sticky;
   top: $lg-space;
 
+  .title {
+    display: flex;
+    align-items: center;
+  }
+
   h1 {
     width: 100%;
     display: flex;

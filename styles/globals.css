@@ -160,6 +160,10 @@
   position: sticky;
   top: 4rem;
 }
+.fixed-container .title {
+  display: flex;
+  align-items: center;
+}
 .fixed-container h1 {
   width: 100%;
   display: flex;

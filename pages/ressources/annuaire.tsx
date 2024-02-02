@@ -30,7 +30,7 @@ const Directory = ({
   directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
-  typeform: typeformDetail;
+  typeform: any;
 }) => {
   const typeformDirectoryLink =
     Array.isArray(typeform[0]?.typeforms) &&
@@ -60,7 +60,8 @@ const Directory = ({
     return (
       <div className="dropdown">
         <span className="drowpdown-title">
-          {title} <FontAwesomeIcon className="icon" icon={faChevronDown} />
+          {title}
+          <FontAwesomeIcon className="icon" icon={faChevronDown} />
         </span>
         <div className="dropdown-content">
           <ul>
@@ -79,22 +80,29 @@ const Directory = ({
       <div className="double-column-containers-group">
         <div className="double-column-container">
           <div className="fixed-container">
-            <h1>
-              Annuaire{" "}
-              <sup>
-                {directory.filter((item) => item.isValidated === true).length}
-              </sup>
+            <div className="title">
+              <h1>
+                Annuaire{" "}
+                <sup>
+                  {directory.filter((item) => item.isValidated === true).length}
+                </sup>
+              </h1>
               {typeformDirectoryLink && (
                 <Link
                   target="_blank"
                   style={{ border: 0 }}
                   href={typeformDirectoryLink}
                 >
-                  <button>faire une recommendation</button>
+                  <button className="primary-button">
+                    faire une recommendation
+                  </button>
                 </Link>
               )}
-            </h1>
+            </div>
             <RessourceNav />
+            {/* <span>
+              Filtre: Syndrome des ovaires polykystiques, France voisine
+            </span> */}
             <div className="dropdowns-container">
               <DropDown title="Douleurs" array={allPains} />
               <DropDown title="Régions" array={allRegions} />

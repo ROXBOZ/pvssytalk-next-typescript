@@ -192,7 +192,5 @@ export interface EventDetail {
 }
 export type EventDetails = EventDetail[];
 
-export interface typeformDetail {
-  typeforms: any;
-}
+export interface typeformDetail {}
 [];
