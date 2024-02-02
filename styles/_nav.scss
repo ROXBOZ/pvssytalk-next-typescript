@@ -92,4 +92,16 @@
   position: -webkit-sticky;
   position: sticky;
   top: $lg-space;
+
+  h1 {
+    width: 100%;
+    display: flex;
+    gap: $sm-space;
+    sup {
+      display: flex;
+      align-items: center;
+      gap: $sm-space;
+      max-width: fit-content;
+    }
+  }
 }

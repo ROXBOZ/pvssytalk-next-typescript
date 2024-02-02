@@ -1,5 +1,11 @@
-import { DirectoryDetail, DirectoryDetails, MenuDetail } from "../../types";
+import {
+  DirectoryDetail,
+  DirectoryDetails,
+  MenuDetail,
+  typeformDetail,
+} from "../../types";
 import Filters, {
+  cantons,
   directoryCategories,
   pains,
 } from "../../components/reusables/Filters";
@@ -9,6 +15,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import DirectoryItem from "../../components/directoryItem";
 import Layout from "../../components/Layout";
+import Link from "next/link";
 import RessourceNav from "../../components/ressourceNav";
 import { client } from "../../config/sanity/client";
 
@@ -16,12 +23,21 @@ const Directory = ({
   directory,
   headerMenu,
   footerMenu,
+  typeform,
 }: {
   directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  typeform: any;
 }) => {
+  const typeformDirectoryLink =
+    Array.isArray(typeform[0]?.typeforms) &&
+    typeform[0].typeforms.find(
+      (typeform: any) => typeform.typeformName === "Annuaire"
+    )?.typeformLink;
+
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
   const filteredDirectoryItems = directory.filter((directoryItem) => {
     return (
       !selectedFilter ||
@@ -33,6 +49,7 @@ const Directory = ({
     );
   });
 
+  console.log("directory", directory);
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <Breadcrumbs />
@@ -43,11 +60,28 @@ const Directory = ({
               Annuaire{" "}
               <sup>
                 {directory.filter((item) => item.isValidated === true).length}
+                {typeformDirectoryLink && (
+                  <Link
+                    target="_blank"
+                    style={{ border: 0 }}
+                    href={typeformDirectoryLink}
+                  >
+                    <button>faire une recommendation</button>
+                  </Link>
+                )}
               </sup>
             </h1>
             <RessourceNav />
+
             <Filters
               filterOptions={pains}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+            />
+            <br />
+            <br />
+            <Filters
+              filterOptions={cantons}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
             />
@@ -59,12 +93,12 @@ const Directory = ({
               }
 
               const categorizedDirectoryItem = filteredDirectoryItems.filter(
-                (mediaItem) => mediaItem.category === category.value
+                (directoryItem) => directoryItem.category === category.value
               );
 
               if (selectedFilter && categorizedDirectoryItem.length === 0) {
                 return (
-                  <div key={category.value} className="media-container">
+                  <div key={category.value} className="directory-container">
                     <h2 className="h3">{category.title}</h2>
                     <div className="msg-box">
                       <p className="msg info">
@@ -74,13 +108,18 @@ const Directory = ({
                   </div>
                 );
               }
+
               return (
                 <div key={category.value} className="directory-container">
-                  <h2 className="h3">{category.title}</h2>
+                  <h2 className="h3 category-title">{category.title}</h2>
                   {categorizedDirectoryItem.map(
-                    (directoryItem: DirectoryDetail, index: number) => (
-                      <DirectoryItem contact={directoryItem} key={index} />
-                    )
+                    (directoryItem: DirectoryDetail, index: number) => {
+                      if (directoryItem.isValidated === true) {
+                        return (
+                          <DirectoryItem contact={directoryItem} key={index} />
+                        );
+                      }
+                    }
                   )}
                 </div>
               );
@@ -102,7 +141,11 @@ export const getStaticProps = async () => {
         ...,
         relatedPain[]->{
           name
-        }
+        },
+        tags[]->{
+          name
+        },
+        profession->{name}
       }
     `);
 
@@ -110,8 +153,16 @@ export const getStaticProps = async () => {
       a.name.localeCompare(b.name)
     );
 
+    const typeform: typeformDetail = await client.fetch(`
+      *[_type == "typeform" && !(_id in path("drafts.**"))] {
+        typeforms[] {
+          typeformName,
+          typeformLink
+        }
+      }`);
+
     return {
-      props: { directory: sortedDirectory, headerMenu, footerMenu },
+      props: { directory: sortedDirectory, headerMenu, footerMenu, typeform },
     };
   } catch (error) {
     console.error("Error fetching directory:", error);

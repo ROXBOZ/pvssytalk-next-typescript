@@ -1,14 +1,44 @@
 .directory-container {
-  h2.h3 {
-    margin: $lg-space 0 $reg-space;
+  .directory-item {
+    margin: $reg-space 0;
+    padding: $sm-space 0;
+
+    display: flex;
+    flex-direction: column;
+    max-width: 97%;
+    &:not(:last-of-type) {
+      border-bottom: $border-solid $secondary;
+    }
+
+    .directory-item-title {
+      display: flex;
+      gap: 2rem;
+      justify-content: space-between !important;
+      align-items: center;
+    }
+
+    .directory-item-content-container {
+      display: flex;
+      .col1 {
+        min-width: 50%;
+      }
+      h4 {
+        margin-top: $reg-space;
+      }
+
+      .directory-item-address:not(:first-of-type) {
+        margin-top: $sm-space;
+      }
+    }
   }
 }
 
-.directory-container h2 {
+.directory-container h3 {
   margin: $sm-space 0;
 }
 
-.directory-item {
-  border-bottom: $secondary $border-solid;
+.category-title {
+  color: lighten($txt-color, 40);
+  border-bottom: $border-solid lighten($txt-color, 40);
   padding-bottom: $sm-space;
 }

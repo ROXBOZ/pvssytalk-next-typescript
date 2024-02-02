@@ -30,6 +30,7 @@ export const cantons: FilterOption[] = [
   "Jura",
   "Fribourg",
   "Valais",
+  "France voisine",
 ];
 
 export const mediaCategories: (string | { title: string; value: string })[] = [
@@ -47,8 +48,7 @@ export const directoryCategories: (
   | { title: string; value: string }
 )[] = [
   "Comment souhaites-tu t’entourer ?",
-  { title: "Médical", value: "medical" },
-  { title: "Sexo/Thérapie", value: "sexology" },
+  { title: "Spécialistes", value: "specialist" },
   { title: "Boutiques/E-Shops", value: "shop" },
   { title: "Associations", value: "association" },
   { title: "Plateformes digitales", value: "website" },

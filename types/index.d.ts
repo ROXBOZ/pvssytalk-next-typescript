@@ -157,7 +157,9 @@ export interface DirectoryDetail {
   firstName: string;
   itemType: string;
   tagline: string;
-  profession: string;
+  profession: {
+    name: string;
+  };
   email: string;
   url: string;
   relatedPain?: {
@@ -167,9 +169,18 @@ export interface DirectoryDetail {
   addresses: {
     _key: string;
     address: string;
+    phoneIndicator: number;
     phone: string;
+    isAccessible: boolean;
   }[];
   isValidated: boolean;
+  pricing: {
+    pricingMin: number;
+    pricingMax: number;
+  };
+  tags: {
+    name: string;
+  }[];
 }
 export type DirectoryDetails = DirectoryDetail[];
 ``;
@@ -179,3 +190,8 @@ export interface EventDetail {
   shortDef: string;
 }
 export type EventDetails = EventDetail[];
+
+export interface typeformDetail {
+  typeforms: any;
+}
+[];

@@ -56,7 +56,6 @@
 
   .pain-card-content {
     border: $border-solid $secondary;
-
     overflow: hidden;
     border-radius: $border-radius;
     min-height: 100%;
@@ -68,8 +67,9 @@
     .text-container {
       z-index: 9;
       background-color: $bg-color;
-      // box-shadow: 0 0 5px 5px lighten($primary, 5);
-      // background-color: lighten($primary, 5);
+
+      display: flex;
+      justify-content: center;
 
       h3 {
         margin: $reg-space;

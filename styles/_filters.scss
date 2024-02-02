@@ -69,3 +69,24 @@
     }
   }
 }
+
+.tag-container {
+  padding: $sm-space 0;
+  max-width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  white-space: nowrap;
+  max-width: fit-content;
+  padding: 0.25rem 1em;
+  border: $border-solid darken($primary, 10);
+  color: darken($primary, 10);
+  border-radius: $border-radius;
+  font-size: small;
+  max-height: max-content;
+  display: flex;
+  align-items: center;
+}

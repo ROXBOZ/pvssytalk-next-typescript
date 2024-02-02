@@ -8,40 +8,108 @@ export default function DirectoryItem({
 }: {
   contact: DirectoryDetail;
 }) {
+  console.log("contact", contact);
   return (
     <>
       <div className="directory-item" key={contact._id}>
-        <h2 className="h4">
-          {contact.firstName} {contact.name}
-        </h2>
-        <p>
-          <em>
-            {contact.tagline && <em>{contact.tagline}</em>}
-            {contact.profession && <em>{contact.profession}</em>}
-          </em>
-        </p>
-        <>
-          {contact.addresses?.map((a) => (
-            <p key={a._key}>
-              <span>{a.address}</span>
-              <br />
-              <Link href={`tel: ${a.phone}`}>{a.phone}</Link>
-            </p>
-          ))}
-        </>
+        <div>
+          <div className="directory-item-title">
+            <h3>
+              {contact.firstName} {contact.name}
+            </h3>
+            <div className="tag-container">
+              {contact.profession ? (
+                <span className="tag">{contact.profession.name}</span>
+              ) : contact.category === "website" ? (
+                <span className="tag">online</span>
+              ) : (
+                ""
+              )}
 
-        {contact.email && (
-          <>
-            <Link href={`mailto:${contact.email}`}>{contact.email}</Link>
-            <br />
-          </>
-        )}
+              {contact.addresses?.map((address: any) =>
+                address.region ? (
+                  <span key={address.id} className="tag">
+                    {address.region}
+                  </span>
+                ) : null
+              )}
+            </div>
+          </div>
+          <div className="directory-item-content-container">
+            <div className="col1">
+              <div>
+                <h4>Contact</h4>
+                {contact.email && (
+                  <Link href={`mailto:${contact.email}`}>{contact.email}</Link>
+                )}
+                {contact.url && (
+                  <>
+                    <br />
+                    <Link href={contact.url} target="_blank">
+                      {cleanUrl(contact.url)}
+                    </Link>
+                  </>
+                )}
+              </div>
+              <div>
+                {contact.addresses && contact.category === "specialist" ? (
+                  <h4>Lieux de consultations</h4>
+                ) : (
+                  contact.addresses && <h4>Adresses</h4>
+                )}
+                {contact.addresses?.map((a) => {
+                  return (
+                    <div className="directory-item-address" key={a._key}>
+                      <span>{a.address}</span>
+                      <br />
+                      {a.phoneIndicator && a.phone && (
+                        <Link
+                          href={`tel:${a.phoneIndicator}${a.phone
+                            .substring(1)
+                            .replace(/\s/g, "")}`}
+                        >
+                          {a.phone}
+                        </Link>
+                      )}
 
-        {contact.url && (
-          <Link href={contact.url} target="_blank">
-            {cleanUrl(contact.url)}
-          </Link>
-        )}
+                      <br />
+                      {a.isAccessible === true && (
+                        <div className="tag-container">
+                          <span className="tag">Accès mobilité réduite</span>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <div>
+                {contact.pricing && (
+                  <>
+                    <h4>Tarifs de consultation</h4>
+                    <p>
+                      CHF {contact.pricing.pricingMin}-
+                      {contact.pricing.pricingMax}
+                      .-
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+            <div>
+              {contact.tags && <h4>Recommendations</h4>}
+              <div className="tag-container">
+                {contact.tags &&
+                  contact.tags.map((tag: any) => {
+                    return (
+                      <div className="tag">
+                        <span>{tag.name}</span>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
