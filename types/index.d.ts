@@ -166,6 +166,7 @@ export interface DirectoryDetail {
   relatedPain?: {
     _type: "reference";
     _ref: string;
+    _id: string;
   }[];
   addresses: {
     _key: string;

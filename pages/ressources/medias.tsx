@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layouts/Layout";
 import MediaLayout from "../../components/layouts/MediaLayout";
 import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
 import { client } from "../../config/sanity/client";

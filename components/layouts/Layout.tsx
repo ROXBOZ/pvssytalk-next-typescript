@@ -1,6 +1,6 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import { MenuDetail } from "../types";
+import Footer from "../Footer";
+import Header from "../Header";
+import { MenuDetail } from "../../types";
 import React from "react";
 
 function Layout({
@@ -14,6 +14,7 @@ function Layout({
 }) {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
+
   return (
     <div className="layout">
       <Header data={headerMenuData} />

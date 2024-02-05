@@ -9,7 +9,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { Exercise } from "../../../components/exercise";
 import { GetStaticPaths } from "next";
-import Layout from "../../../components/Layout";
+import Layout from "../../../components/layouts/Layout";
 import React from "react";
 import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";

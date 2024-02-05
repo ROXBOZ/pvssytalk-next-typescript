@@ -9,7 +9,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import GlossaryLayout from "../../components/layouts/GlossaryLayout";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layouts/Layout";
 import { PortableText } from "@portabletext/react";
 import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
 import { client } from "../../config/sanity/client";

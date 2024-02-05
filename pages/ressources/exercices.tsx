@@ -10,7 +10,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { Exercise } from "../../components/exercise";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layouts/Layout";
 import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
 import RessourceNav from "../../components/ressourceNav";
 import { client } from "../../config/sanity/client";

@@ -38,7 +38,7 @@ const ResourcePageLayout: React.FC<{
       : "";
 
   const allPains = pains.slice(1);
-  const allRegions = regions.map((region: any) => region.name);
+  const allRegions = regions && regions.map((region: any) => region.name);
 
   const [, setAnchorPosition] = useState(0);
   const letterContainerRef = useRef<HTMLDivElement | null>(null);
@@ -78,9 +78,7 @@ const ResourcePageLayout: React.FC<{
         </span>
         <div className="dropdown-content">
           <ul>
-            {array.map((item: any) => (
-              <li key={item}>{item}</li>
-            ))}
+            {array && array.map((item: any) => <li key={item}>{item}</li>)}
           </ul>
         </div>
       </div>
@@ -117,12 +115,13 @@ const ResourcePageLayout: React.FC<{
 
           {pain ? <PainNav pain={pain} /> : <RessourceNav />}
 
-          {pageName !== "Glossaire" && (
-            <div className="dropdowns-container">
-              <DropDown title="Douleurs" array={allPains} />
-              <DropDown title="Régions" array={allRegions} />
-            </div>
-          )}
+          {pageName !== "Glossaire" ||
+            (!pain && (
+              <div className="dropdowns-container">
+                <DropDown title="Douleurs" array={allPains} />
+                <DropDown title="Régions" array={allRegions} />
+              </div>
+            ))}
 
           {pageName === "Glossaire" && (
             <div className="letter-link-container">

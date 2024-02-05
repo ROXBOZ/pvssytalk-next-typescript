@@ -17,7 +17,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GetStaticPaths } from "next";
 import Image from "next/image";
-import Layout from "../../../components/Layout";
+import Layout from "../../../components/layouts/Layout";
 import Link from "next/link";
 import Modal from "../../../components/Modal";
 import PainDashboard from "../../../components/painDashboard";

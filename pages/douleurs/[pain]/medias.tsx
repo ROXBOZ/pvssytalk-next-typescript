@@ -8,7 +8,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GetStaticPaths } from "next";
-import Layout from "../../../components/Layout";
+import Layout from "../../../components/layouts/Layout";
 import MediaItem from "../../../components/mediaItem";
 import MediaLayout from "../../../components/layouts/MediaLayout";
 import React from "react";

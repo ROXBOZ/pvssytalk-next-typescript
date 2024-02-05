@@ -2,7 +2,7 @@ import { MenuDetail, PainDetail } from "../../types";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layouts/Layout";
 import PainGrid from "../../components/PainGrid";
 import React from "react";
 import { client } from "../../config/sanity/client";

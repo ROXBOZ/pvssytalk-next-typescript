@@ -8,10 +8,9 @@ import {
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
-import DirectoryItem from "../../../components/directoryItem";
 import DirectoryLayout from "../../../components/layouts/DirectoryLayout";
 import { GetStaticPaths } from "next";
-import Layout from "../../../components/Layout";
+import Layout from "../../../components/layouts/Layout";
 import React from "react";
 import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";
@@ -20,22 +19,24 @@ import { getStaticPathsPain } from "../../../utils/dataFetching";
 
 const Directory = ({
   pain,
-  directories,
+  directory,
   headerMenu,
   footerMenu,
   typeform,
 }: {
   pain: PainDetail;
-  directories: DirectoryDetail[];
+  directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   typeform: typeformDetail;
 }) => {
-  const relatedDirectoryItem = directories.filter(
+  const relatedDirectoryItem = directory.filter(
     (directoryItem: DirectoryDetail) =>
-      directoryItem.isValidated === true &&
-      directoryItem.relatedPain?.some((related) => related._ref === pain._id)
+      directoryItem.relatedPain?.some((related) => {
+        return related._id === pain._id;
+      })
   );
+
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <Breadcrumbs />
@@ -49,9 +50,11 @@ const Directory = ({
           const categorizedDirectoryItem = relatedDirectoryItem.filter(
             (directoryItem) => directoryItem.category === category.value
           );
+
           if (categorizedDirectoryItem.length === 0) {
             return null;
           }
+
           return (
             <DirectoryLayout
               category={category}
@@ -75,28 +78,27 @@ export const getStaticProps = async ({ params }: any) => {
       `*[_type == "pain" && slug.current == $currentSlug][0]`,
       { currentSlug: pain }
     );
-    const fetchedDirectories: DirectoryDetails[] | null = await client.fetch(
-      `*[_type == "directory" && references($painId)] {
-        ...,
-        relatedPain[]->{
-          name
-        },
-        recommendations[]->{
-          name
-        },
-        addresses[]{
-          ...,
-          accessibility[]->{
-           name
+    const directory: DirectoryDetails = await client.fetch(
+      `*[_type == "directory"] {
+    ...,
+    relatedPain[]->
+
+          ,
+       recommendations[]->{
+            name
           },
-        },
-        profession->{name}
-      }
-      }`,
+       addresses[]{
+            ...,
+            accessibility[]->{
+             name
+            },
+          },
+       profession->{name}
+        }`,
       { painId: fetchedPain?._id }
     );
 
-    if (!fetchedPain || !fetchedDirectories) {
+    if (!fetchedPain || !directory) {
       return {
         notFound: true,
       };
@@ -113,14 +115,13 @@ export const getStaticProps = async ({ params }: any) => {
     return {
       props: {
         pain: fetchedPain,
-        directories: fetchedDirectories,
+        directory,
         headerMenu,
         footerMenu,
         typeform,
       },
     };
   } catch (error) {
-    console.error("Error fetching directories:", error);
     return {
       props: { pain: null, directories: [] },
     };

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layouts/Layout";
 import { MenuDetail } from "../../types";
 import { PortableText } from "@portabletext/react";
 import RessourceNav from "../../components/ressourceNav";
