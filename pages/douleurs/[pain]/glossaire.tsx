@@ -4,14 +4,14 @@ import {
   MenuDetail,
   PainDetail,
 } from "../../../types";
+import React, { useEffect, useRef, useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GetStaticPaths } from "next";
+import GlossaryLayout from "../../../components/layouts/GlossaryLayout";
 import Layout from "../../../components/Layout";
-import { PortableText } from "@portabletext/react";
-import React from "react";
-import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
+import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";
 import { getStaticPathsPain } from "../../../utils/dataFetching";
 
@@ -26,16 +26,37 @@ const painGlossary = ({
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
 }) => {
-  const sortedGlossary = glossary.sort((a, b) => a.term.localeCompare(b.term));
+  const sortedGlossary = glossary?.sort((a, b) => a.term.localeCompare(b.term));
+  const [, setEntries] = useState<string[]>([]);
+  const termGroups: { [key: string]: GlossaryDetail[] } = {};
 
-  const termAnchor = (term: string) => {
-    return term
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, "-")
-      .replace("œ", "oe")
-      .toLowerCase();
-  };
+  if (sortedGlossary) {
+    for (const term of sortedGlossary) {
+      const firstLetter = term.term[0].toUpperCase();
+
+      if (!termGroups[firstLetter]) {
+        termGroups[firstLetter] = [];
+      }
+      termGroups[firstLetter].push(term);
+    }
+  }
+
+  useEffect(() => {
+    const firstLetters = sortedGlossary.map((term) =>
+      term.term[0].toLowerCase()
+    );
+    const uniqueLetters = Array.from(new Set(firstLetters));
+    setEntries(uniqueLetters);
+
+    const letterLinks =
+      document.querySelectorAll<HTMLAnchorElement>(".letter-link");
+    letterLinks.forEach((letterLink) => {
+      const letter = letterLink.innerText.toLowerCase();
+      letterLink.classList.toggle("disabled", !uniqueLetters.includes(letter));
+    });
+  }, [sortedGlossary, setEntries]);
+
+  const letters = Object.keys(termGroups).sort();
 
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
@@ -45,14 +66,7 @@ const painGlossary = ({
         pain={pain}
         relatedContent={sortedGlossary}
       >
-        {sortedGlossary.map((term: GlossaryDetail) => {
-          return (
-            <div id={termAnchor(term.term)} key={term._id}>
-              <h2 className="h3">{term.term}</h2>
-              <PortableText value={term.def as any} />
-            </div>
-          );
-        })}
+        <GlossaryLayout letters={letters} termGroups={termGroups} />
       </ResourcePageLayout>
     </Layout>
   );

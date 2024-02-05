@@ -10,8 +10,9 @@ import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/Layout";
 import MediaItem from "../../../components/mediaItem";
+import MediaLayout from "../../../components/layouts/MediaLayout";
 import React from "react";
-import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
+import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";
 import { getStaticPathsPain } from "../../../utils/dataFetching";
 import { mediaCategories } from "../../../components/reusables/Filters";
@@ -39,7 +40,7 @@ const Medias = ({
         pain={pain}
         relatedContent={relatedMedia}
       >
-        <div className="medias-container">
+        <div className="media-container">
           {mediaCategories.map((category: any) => {
             const categorizedMedia = relatedMedia.filter(
               (mediaItem) => mediaItem.filter === category.value
@@ -50,13 +51,10 @@ const Medias = ({
             }
 
             return (
-              <div key={category.title} className="media-container">
-                <h2 className="h3">{category.title}</h2>
-
-                {categorizedMedia.map((media: MediaDetail, index: number) => (
-                  <MediaItem key={index} mediaItem={media} />
-                ))}
-              </div>
+              <MediaLayout
+                category={category}
+                categorizedMedia={categorizedMedia}
+              />
             );
           })}
         </div>

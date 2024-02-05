@@ -4,40 +4,29 @@ import {
   MenuDetail,
   typeformDetail,
 } from "../../types";
-import Filters, {
-  cantons,
-  directoryCategories,
-  pains,
-} from "../../components/reusables/Filters";
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
-import DirectoryItem from "../../components/directoryItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DirectoryLayout from "../../components/layouts/DirectoryLayout";
 import Layout from "../../components/Layout";
-import Link from "next/link";
-import RessourceNav from "../../components/ressourceNav";
+import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
 import { client } from "../../config/sanity/client";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { directoryCategories } from "../../components/reusables/Filters";
 
 const Directory = ({
   directory,
   headerMenu,
   footerMenu,
   typeform,
+  regions,
 }: {
   directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   typeform: any;
+  regions: any;
 }) => {
-  const typeformDirectoryLink =
-    Array.isArray(typeform[0]?.typeforms) &&
-    typeform[0].typeforms.find(
-      (typeform: any) => typeform.typeformName === "Annuaire"
-    )?.typeformLink;
-
   {
     /* FIXME  */
   }
@@ -53,105 +42,38 @@ const Directory = ({
     );
   });
 
-  const allPains = pains.slice(1);
-  const allRegions = cantons.slice(1);
-
-  const DropDown = ({ title, array }: any) => {
-    return (
-      <div className="dropdown">
-        <span className="drowpdown-title">
-          {title} <span className="icon logo">↗</span>
-        </span>
-        <div className="dropdown-content">
-          <ul>
-            {array.map((item: any) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <Breadcrumbs />
-      <div className="double-column-containers-group">
-        <div className="double-column-container">
-          <div className="fixed-container">
-            <div className="title">
-              <h1>
-                Annuaire{" "}
-                <sup>
-                  {directory.filter((item) => item.isValidated === true).length}
-                </sup>
-              </h1>
-              {typeformDirectoryLink && (
-                <Link
-                  target="_blank"
-                  style={{ border: 0 }}
-                  href={typeformDirectoryLink}
-                >
-                  <button className="primary-button">
-                    faire une recommendation
-                  </button>
-                </Link>
-              )}
-            </div>
-            <RessourceNav />
-            <div className="dropdowns-container">
-              <DropDown title="Douleurs" array={allPains} />
-              <DropDown title="Régions" array={allRegions} />
-            </div>
-          </div>
+      <ResourcePageLayout
+        pageName="Annuaire"
+        relatedContent={directory}
+        typeform={typeform}
+        regions={regions[0].regions}
+      >
+        {directoryCategories.map((category) => {
+          if (typeof category === "string") {
+            return null;
+          }
 
-          <div>
-            {directoryCategories.map((category) => {
-              if (typeof category === "string") {
-                return null;
-              }
+          const categorizedDirectoryItem = filteredDirectoryItems.filter(
+            (directoryItem) => directoryItem.category === category.value
+          );
 
-              const categorizedDirectoryItem = filteredDirectoryItems.filter(
-                (directoryItem) => directoryItem.category === category.value
-              );
-
-              if (selectedFilter && categorizedDirectoryItem.length === 0) {
-                return (
-                  <div key={category.value} className="directory-container">
-                    <h2 className="h3">{category.title}</h2>
-                    <div className="msg-box">
-                      <p className="msg info">
-                        Tu as une recommendation? Contacte-nous!
-                      </p>
-                    </div>
-                  </div>
-                );
-              }
-
-              return (
-                <div key={category.value} className="directory-container">
-                  <h2 className="h3 category-title">{category.title}</h2>
-                  {categorizedDirectoryItem.map(
-                    (directoryItem: DirectoryDetail, index: number) => {
-                      if (directoryItem.isValidated === true) {
-                        return (
-                          <DirectoryItem contact={directoryItem} key={index} />
-                        );
-                      }
-                    }
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+          return (
+            <DirectoryLayout
+              regions={regions}
+              category={category}
+              categorizedDirectoryItem={categorizedDirectoryItem}
+            />
+          );
+        })}
+      </ResourcePageLayout>
     </Layout>
   );
 };
 
 export default Directory;
-
 export const getStaticProps = async () => {
   try {
     const headerMenu: MenuDetail[] = await fetchHeaderMenu();
@@ -162,12 +84,27 @@ export const getStaticProps = async () => {
         relatedPain[]->{
           name
         },
-        tags[]->{
+        recommendations[]->{
           name
         },
+        addresses[]{
+          ...,
+          accessibility[]->{
+           name
+          },
+        },
+
         profession->{name}
       }
     `);
+
+    const regions: any = await client.fetch(
+      `*[_type == "region" && !(_id in path("drafts.**"))]{
+          regions[]{
+            name
+          }
+        }`
+    );
 
     const sortedDirectory = directory.sort((a, b) =>
       a.name.localeCompare(b.name)
@@ -182,7 +119,13 @@ export const getStaticProps = async () => {
       }`);
 
     return {
-      props: { directory: sortedDirectory, headerMenu, footerMenu, typeform },
+      props: {
+        directory: sortedDirectory,
+        headerMenu,
+        footerMenu,
+        typeform,
+        regions,
+      },
     };
   } catch (error) {
     console.error("Error fetching directory:", error);

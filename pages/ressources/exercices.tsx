@@ -11,6 +11,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { Exercise } from "../../components/exercise";
 import Layout from "../../components/Layout";
+import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
 import RessourceNav from "../../components/ressourceNav";
 import { client } from "../../config/sanity/client";
 
@@ -24,10 +25,8 @@ const Exercises = ({
   footerMenu: MenuDetail[];
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-  console.log("selectedFilter :", selectedFilter);
 
   const filteredExercises = exercises.filter((exercise) => {
-    console.log("exercise :", exercise);
     return (
       !selectedFilter ||
       (exercise.relatedPain &&
@@ -41,27 +40,14 @@ const Exercises = ({
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <Breadcrumbs />
-      <div className="double-column-containers-group">
-        <div className="double-column-container">
-          <div className="fixed-container">
-            <h1>
-              Exercices <sup>{exercises.length}</sup>
-            </h1>
-            <RessourceNav />
-            <Filters
-              filterOptions={pains}
-              selectedFilter={selectedFilter}
-              setSelectedFilter={setSelectedFilter}
-            />
-          </div>
-          <div className="exercises-container">
-            {filteredExercises &&
-              filteredExercises.map((exercise: ExerciseDetail) => {
-                return <Exercise exercise={exercise} />;
-              })}
-          </div>
+      <ResourcePageLayout pageName="Exercices" relatedContent={exercises}>
+        <div className="exercises-container">
+          {filteredExercises &&
+            filteredExercises.map((exercise: ExerciseDetail) => {
+              return <Exercise exercise={exercise} />;
+            })}
         </div>
-      </div>
+      </ResourcePageLayout>
     </Layout>
   );
 };

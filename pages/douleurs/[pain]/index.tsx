@@ -30,7 +30,6 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedDiagram, setSelectedDiagram] = useState<Diagram | null>(null);
   const [isInitialRender, setIsInitialRender] = useState(true);
-  console.log("isInitialRender", isInitialRender);
   const imageCoverHotspot = {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };

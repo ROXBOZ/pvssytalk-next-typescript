@@ -85,6 +85,12 @@ const Header = ({ data: initialData }: any) => {
             <li>Faire un don</li>
           </ul>
         </div>
+        <div style={{ backgroundColor: "lightcoral" }}>
+          <span>À propos</span>
+          <ul>
+            <li>À propos</li>
+          </ul>
+        </div>
       </motion.div>
     );
   };

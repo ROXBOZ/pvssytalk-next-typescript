@@ -12,6 +12,11 @@
     transition: $animation-transition;
     cursor: pointer !important;
     @include arrowRotate;
+
+    // font-size: xx-large;
+
+    font-family: $font-logo !important;
+
     span {
       font-family: $font-logo !important;
     }
@@ -98,17 +103,18 @@
   .title {
     display: flex;
     align-items: center;
-  }
 
-  h1 {
-    width: 100%;
-    display: flex;
-    gap: $sm-space;
-    sup {
+    h1 {
+      width: 100%;
       display: flex;
-      align-items: center;
       gap: $sm-space;
-      max-width: fit-content;
+
+      sup {
+        display: flex;
+        align-items: center;
+        gap: $sm-space;
+        max-width: fit-content;
+      }
     }
   }
 }

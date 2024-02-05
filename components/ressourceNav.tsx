@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 
-type Props = {};
-
-const RessourceNav = (props: Props) => {
+const RessourceNav = () => {
   const [currentURL, setCurrentURL] = useState("");
   useEffect(() => {
     setCurrentURL(window.location.href);
@@ -37,7 +35,6 @@ const RessourceNav = (props: Props) => {
           <span>Médias</span>
         </Link>
       )}
-
       <Link href="/ressources">
         <span>Toutes les ressources</span>
       </Link>

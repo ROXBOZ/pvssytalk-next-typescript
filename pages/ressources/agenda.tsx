@@ -60,7 +60,6 @@ const Agenda = ({
           <div>
             <button className="primary-button">recommander un évènement</button>
             {agenda.map((event: AgendaDetail, index: number) => {
-              console.log("event", event);
               return (
                 <div key={index}>
                   <h2 className="h3">{event.title}</h2>

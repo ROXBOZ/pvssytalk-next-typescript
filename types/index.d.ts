@@ -172,14 +172,18 @@ export interface DirectoryDetail {
     address: string;
     phoneIndicator: number;
     phone: string;
-    isAccessible: boolean;
+    accessibility: {
+      name: string;
+    }[];
   }[];
   isValidated: boolean;
   pricing: {
     pricingMin: number;
     pricingMax: number;
+    isReimbursed: boolean;
+    isReimbursedComp: boolean;
   };
-  tags: {
+  recommendations: {
     name: string;
   }[];
 }

@@ -41,7 +41,8 @@ export default function DirectoryItem({
           <div className="directory-item-content-container">
             <div className="col1">
               <div>
-                <h4>Contact</h4>
+                {(contact.email || contact.url) && <h4>Contact</h4>}
+
                 {contact.email && (
                   <Link href={`mailto:${contact.email}`}>{contact.email}</Link>
                 )}
@@ -74,38 +75,65 @@ export default function DirectoryItem({
                           {a.phone}
                         </Link>
                       )}
-
                       <br />
-                      {a.isAccessible === true && (
-                        <div
-                          className="tag-container"
-                          style={{ margin: "1rem 0" }}
-                        >
-                          <span className="tag">Accès mobilité réduite</span>
-                        </div>
-                      )}
+                      <div
+                        className="tag-container"
+                        style={{ margin: "1rem 0" }}
+                      >
+                        {a.accessibility &&
+                          a.accessibility.map((tag: any) => {
+                            return (
+                              <div className="tag">
+                                <span>{tag.name}</span>
+                              </div>
+                            );
+                          })}
+                      </div>
                     </div>
                   );
                 })}
               </div>
               <div>
                 {contact.pricing && (
-                  <>
-                    <h4>Tarifs de consultation</h4>
-                    <p>
-                      CHF {contact.pricing.pricingMin}-
-                      {contact.pricing.pricingMax}
-                      .-
-                    </p>
-                  </>
+                  <div>
+                    {contact.pricing.pricingMin && (
+                      <h4>Tarifs de consultation</h4>
+                    )}
+
+                    {contact.pricing && (
+                      <p>
+                        {(contact.pricing.pricingMin ||
+                          contact.pricing.pricingMax) && <span>CHF </span>}
+                        {contact.pricing.pricingMin &&
+                          contact.pricing.pricingMin}
+                        {contact.pricing.pricingMax && (
+                          <span>-{contact.pricing.pricingMax}</span>
+                        )}
+                        {(contact.pricing.pricingMin ||
+                          contact.pricing.pricingMax) && <span>.-</span>}
+                      </p>
+                    )}
+
+                    {contact.pricing.isReimbursed === true &&
+                      contact.pricing.isReimbursedComp === false && (
+                        <div className="tag">
+                          <span>remboursé par l’assurance de base</span>
+                        </div>
+                      )}
+                    {contact.pricing.isReimbursedComp === true && (
+                      <div className="tag">
+                        <span>remboursé par la complémentaire</span>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
             <div>
-              {contact.tags && <h4>Recommendations</h4>}
+              {contact.recommendations && <h4>Recommendations</h4>}
               <div className="tag-container">
-                {contact.tags &&
-                  contact.tags.map((tag: any) => {
+                {contact.recommendations &&
+                  contact.recommendations.map((tag: any) => {
                     return (
                       <div className="tag">
                         <span>{tag.name}</span>

@@ -3,15 +3,17 @@ import {
   DirectoryDetails,
   MenuDetail,
   PainDetail,
+  typeformDetail,
 } from "../../../types";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import DirectoryItem from "../../../components/directoryItem";
+import DirectoryLayout from "../../../components/layouts/DirectoryLayout";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/Layout";
 import React from "react";
-import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
+import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";
 import { directoryCategories } from "../../../components/reusables/Filters";
 import { getStaticPathsPain } from "../../../utils/dataFetching";
@@ -21,18 +23,19 @@ const Directory = ({
   directories,
   headerMenu,
   footerMenu,
+  typeform,
 }: {
   pain: PainDetail;
   directories: DirectoryDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  typeform: typeformDetail;
 }) => {
   const relatedDirectoryItem = directories.filter(
     (directoryItem: DirectoryDetail) =>
       directoryItem.isValidated === true &&
       directoryItem.relatedPain?.some((related) => related._ref === pain._id)
   );
-
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <Breadcrumbs />
@@ -40,6 +43,7 @@ const Directory = ({
         pageName="Annuaire"
         pain={pain}
         relatedContent={relatedDirectoryItem}
+        typeform={typeform}
       >
         {directoryCategories.map((category) => {
           const categorizedDirectoryItem = relatedDirectoryItem.filter(
@@ -49,17 +53,10 @@ const Directory = ({
             return null;
           }
           return (
-            <div key={category.title} className="directory-container">
-              <h2 className="h3">{category.title} </h2>
-              {categorizedDirectoryItem.map(
-                (directoryItem: DirectoryDetail) => (
-                  <DirectoryItem
-                    contact={directoryItem}
-                    key={directoryItem._id}
-                  />
-                )
-              )}
-            </div>
+            <DirectoryLayout
+              category={category}
+              categorizedDirectoryItem={categorizedDirectoryItem}
+            />
           );
         })}
       </ResourcePageLayout>
@@ -79,7 +76,23 @@ export const getStaticProps = async ({ params }: any) => {
       { currentSlug: pain }
     );
     const fetchedDirectories: DirectoryDetails[] | null = await client.fetch(
-      `*[_type == "directory" && references($painId)]`,
+      `*[_type == "directory" && references($painId)] {
+        ...,
+        relatedPain[]->{
+          name
+        },
+        recommendations[]->{
+          name
+        },
+        addresses[]{
+          ...,
+          accessibility[]->{
+           name
+          },
+        },
+        profession->{name}
+      }
+      }`,
       { painId: fetchedPain?._id }
     );
 
@@ -89,12 +102,21 @@ export const getStaticProps = async ({ params }: any) => {
       };
     }
 
+    const typeform: typeformDetail = await client.fetch(`
+      *[_type == "typeform" && !(_id in path("drafts.**"))] {
+        typeforms[] {
+          typeformName,
+          typeformLink
+        }
+      }`);
+
     return {
       props: {
         pain: fetchedPain,
         directories: fetchedDirectories,
         headerMenu,
         footerMenu,
+        typeform,
       },
     };
   } catch (error) {

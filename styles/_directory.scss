@@ -1,6 +1,6 @@
 .directory-container {
   .directory-item {
-    margin: $reg-space 0;
+    margin: $reg-space 0 !important;
     max-width: 90%;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@
     border: $border-solid $secondary;
 
     // &:not(:last-of-type) {
-    //   border-bottom: $border-solid $secondary;
+    //   margin-bottom: $lg-space;
     // }
 
     .directory-item-title {
@@ -49,6 +49,7 @@
 
 .category-title {
   color: lighten($txt-color, 40);
-  border-bottom: $border-solid lighten($txt-color, 40);
-  padding-bottom: $sm-space;
+  &:first-of-type {
+    margin-top: 0;
+  }
 }

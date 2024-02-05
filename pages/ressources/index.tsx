@@ -36,7 +36,7 @@ const Ressources = ({
           )}
         </div>
         <div>
-          <nav className="nav-directory">
+          <nav className="nav-directory h4">
             <Link href="ressources/agenda">Agenda</Link>
             <Link href="ressources/annuaire">Annuaire</Link>
             <Link href="ressources/exercices">Exercices</Link>

@@ -1,91 +1,71 @@
-import Filters, {
-  mediaCategories,
-  pains,
-} from "../../components/reusables/Filters";
-import { MediaDetail, MediaDetails, MenuDetail, PainDetail } from "../../types";
+import {
+  MediaDetail,
+  MediaDetails,
+  MenuDetail,
+  PainDetail,
+  typeformDetail,
+} from "../../types";
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import Layout from "../../components/Layout";
-import MediaItem from "../../components/mediaItem";
-import RessourceNav from "../../components/ressourceNav";
+import MediaLayout from "../../components/layouts/MediaLayout";
+import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
 import { client } from "../../config/sanity/client";
+import { mediaCategories } from "../../components/reusables/Filters";
 
 const Medias = ({
   media,
   headerMenu,
   footerMenu,
+  typeform,
 }: {
   media: MediaDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  typeform: typeformDetail;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
-
-  const filteredMedias = media.filter((mediaItem) => {
-    return (
-      !selectedFilter ||
-      (mediaItem.relatedPain &&
-        mediaItem.relatedPain.some(
-          (pain: any) =>
-            pain.name.toLowerCase() === selectedFilter.toLowerCase()
-        ))
-    );
-  });
 
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <Breadcrumbs />
-      <div className="double-column-containers-group">
-        <div className="double-column-container">
-          <div className="fixed-container">
-            <h1>
-              Médias <sup>{media.length}</sup>
-            </h1>
-            <RessourceNav />
-            <Filters
-              filterOptions={pains}
-              selectedFilter={selectedFilter}
-              setSelectedFilter={setSelectedFilter}
-            />
-          </div>
-          <div>
-            {mediaCategories.map((category) => {
-              if (typeof category === "string") {
-                return null;
-              }
+      <ResourcePageLayout
+        pageName="Médias"
+        relatedContent={media}
+        typeform={typeform}
+      >
+        {mediaCategories.map((category) => {
+          if (typeof category === "string") {
+            return null;
+          }
 
-              const categorizedMediaItem = filteredMedias.filter(
-                (mediaItem) => mediaItem.filter === category.value
-              );
-
-              if (selectedFilter && categorizedMediaItem.length === 0) {
-                return (
-                  <div key={category.value} className="media-container">
-                    <h2 className="h3">{category.title}</h2>
-                    <div className="msg-box">
-                      <p className="msg info">
-                        Tu as une recommendation? Contacte-nous!
-                      </p>
-                    </div>
-                  </div>
-                );
-              }
-              return (
-                <div key={category.value} className="media-container">
-                  <h2 className="h3">{category.title}</h2>
-                  {categorizedMediaItem.map(
-                    (media: MediaDetail, index: number) => (
-                      <MediaItem mediaItem={media} key={index} />
-                    )
-                  )}
+          const categorizedMediaItem = media.filter(
+            (mediaItem) =>
+              mediaItem.relatedPain &&
+              mediaItem.relatedPain.some(
+                (pain: any) =>
+                  pain.name.toLowerCase() === selectedFilter?.toLowerCase()
+              ) &&
+              mediaItem.filter === category.value
+          );
+          if (selectedFilter && categorizedMediaItem.length === 0) {
+            return (
+              <div key={category.value} className="media-container">
+                <h2 className="h3">{category.title}</h2>
+                <div className="msg-box">
+                  <p className="msg info">
+                    Tu as une recommandation? Contacte-nous!
+                  </p>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+              </div>
+            );
+          }
+
+          return <MediaLayout category={category} categorizedMedia={media} />;
+        })}
+      </ResourcePageLayout>
     </Layout>
   );
 };
@@ -107,8 +87,17 @@ export const getStaticProps = async () => {
     const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
+
+    const typeform: typeformDetail = await client.fetch(`
+      *[_type == "typeform" && !(_id in path("drafts.**"))] {
+        typeforms[] {
+          typeformName,
+          typeformLink
+        }
+      }`);
+
     return {
-      props: { media, pains, headerMenu, footerMenu },
+      props: { media, pains, headerMenu, footerMenu, typeform },
     };
   } catch (error) {
     console.error("Error fetching media:", error);

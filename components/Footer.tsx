@@ -4,7 +4,7 @@ import React from "react";
 
 const Footer = ({ data }: any) => {
   const handleNewsletter = () => {
-    console.log("s'inscrire à la newsletter");
+    // console.log("s'inscrire à la newsletter");
   };
   return (
     <footer>

@@ -54,6 +54,7 @@
   font-weight: normal;
   transition: 0.2s ease-in;
   cursor: pointer !important;
+  font-family: "ESRebond" !important;
 }
 .nav-directory a:after {
   content: " ↗";
@@ -164,12 +165,12 @@
   display: flex;
   align-items: center;
 }
-.fixed-container h1 {
+.fixed-container .title h1 {
   width: 100%;
   display: flex;
   gap: 1rem;
 }
-.fixed-container h1 sup {
+.fixed-container .title h1 sup {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -328,14 +329,6 @@ h4 .colored,
 .h4 .colored {
   line-height: calc(2px + 2ex + 2px);
 }
-h4 .logo,
-.h4 .logo {
-  text-transform: lowercase !important;
-}
-h4 .logo:first-letter,
-.h4 .logo:first-letter {
-  text-transform: lowercase !important;
-}
 h4:first-letter,
 .h4:first-letter {
   text-transform: capitalize;
@@ -353,14 +346,6 @@ h3,
 h3 .colored,
 .h3 .colored {
   line-height: calc(2px + 2ex + 2px);
-}
-h3 .logo,
-.h3 .logo {
-  text-transform: lowercase !important;
-}
-h3 .logo:first-letter,
-.h3 .logo:first-letter {
-  text-transform: lowercase !important;
 }
 h3:first-letter,
 .h3:first-letter {
@@ -380,14 +365,6 @@ h2 .colored,
 .h2 .colored {
   line-height: calc(2px + 2ex + 2px);
 }
-h2 .logo,
-.h2 .logo {
-  text-transform: lowercase !important;
-}
-h2 .logo:first-letter,
-.h2 .logo:first-letter {
-  text-transform: lowercase !important;
-}
 h2:first-letter,
 .h2:first-letter {
   text-transform: capitalize;
@@ -405,14 +382,6 @@ h1,
 h1 .colored,
 .h1 .colored {
   line-height: calc(2px + 2ex + 2px);
-}
-h1 .logo,
-.h1 .logo {
-  text-transform: lowercase !important;
-}
-h1 .logo:first-letter,
-.h1 .logo:first-letter {
-  text-transform: lowercase !important;
 }
 h1:first-letter,
 .h1:first-letter {
@@ -739,9 +708,6 @@ footer .footer-content nav a:hover {
 .double-column-container div:first-child {
   grid-column: 1/6;
 }
-.double-column-container div:first-child h2 {
-  margin-top: 0;
-}
 .double-column-container div:nth-child(2) {
   margin: 0;
   grid-column: 7/13;
@@ -1012,7 +978,6 @@ button.square-button {
 }
 
 .media-container h2 {
-  margin-top: 4rem;
   margin-bottom: 2rem;
 }
 
@@ -1201,7 +1166,7 @@ form .search-bar:focus {
 }
 
 .directory-container .directory-item {
-  margin: 2rem 0;
+  margin: 2rem 0 !important;
   max-width: 90%;
   display: flex;
   flex-direction: column;
@@ -1241,8 +1206,9 @@ form .search-bar:focus {
 
 .category-title {
   color: #a62fee;
-  border-bottom: 1px solid #a62fee;
-  padding-bottom: 1rem;
+}
+.category-title:first-of-type {
+  margin-top: 0;
 }
 
 .msg-box {
@@ -1548,6 +1514,9 @@ form .input-section .showPassword {
 }
 .navBlock:first-of-type {
   border-top: 0;
+}
+.navBlock .nav-directory {
+  font-size: xx-large;
 }
 
 .textImageBlock-wrapper + .navBlock {

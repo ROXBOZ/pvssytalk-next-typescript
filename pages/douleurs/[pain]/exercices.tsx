@@ -11,7 +11,7 @@ import { Exercise } from "../../../components/exercise";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/Layout";
 import React from "react";
-import ResourcePageLayout from "../../../components/reusables/ResourcePageLayout";
+import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";
 import { getStaticPathsPain } from "../../../utils/dataFetching";
 
