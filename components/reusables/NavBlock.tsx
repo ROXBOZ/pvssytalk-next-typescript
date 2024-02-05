@@ -6,7 +6,6 @@ import { PortableText } from "@portabletext/react";
 
 function NavBlock({ data }: any) {
   const isStart = data.anchor === "start";
-  console.log("data", data.navigationType);
   const { anchor } = data;
 
   return (

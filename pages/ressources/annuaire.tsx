@@ -60,8 +60,7 @@ const Directory = ({
     return (
       <div className="dropdown">
         <span className="drowpdown-title">
-          {title}
-          <FontAwesomeIcon className="icon" icon={faChevronDown} />
+          {title} <span className="icon logo">↗</span>
         </span>
         <div className="dropdown-content">
           <ul>
@@ -100,9 +99,6 @@ const Directory = ({
               )}
             </div>
             <RessourceNav />
-            {/* <span>
-              Filtre: Syndrome des ovaires polykystiques, France voisine
-            </span> */}
             <div className="dropdowns-container">
               <DropDown title="Douleurs" array={allPains} />
               <DropDown title="Régions" array={allRegions} />

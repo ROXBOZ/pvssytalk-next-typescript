@@ -1,14 +1,63 @@
+import React, { useMemo, useState } from "react";
+
 // import { Link } from "react-scroll";
 import Link from "next/link";
 import { MenuDetail } from "../types";
-import React from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
-const Header = ({ data }: any) => {
+const Header = ({ data: initialData }: any) => {
   const router = useRouter();
   const { pathname } = router;
   const isHome = pathname === "/";
   const isDirectory = pathname === "/ressources/annuaire";
+  const [isOpen, setIsOpen] = useState(false);
+
+  const data = useMemo(() => {
+    return [
+      {
+        isAction: false,
+        title: "ressources",
+        onClick: () => {
+          setIsOpen(!isOpen);
+        },
+      },
+      ...initialData,
+    ];
+  }, [initialData, isOpen]);
+
+  const Modal = () => {
+    return (
+      <motion.div
+        initial={{
+          width: 0,
+          height: 0,
+        }}
+        animate={{
+          width: "40rem",
+          height: "20rem",
+        }}
+        transition={{
+          duration: 0.01,
+        }}
+        className="header-modal"
+      >
+        <div style={{ backgroundColor: "yellow" }}>
+          <span>S’informer</span>
+        </div>
+        <div style={{ backgroundColor: "orange" }}>
+          <span>Se soigner</span>
+        </div>
+        <div style={{ backgroundColor: "lightblue" }}>
+          <span>Comprendre</span>
+        </div>
+        <div style={{ backgroundColor: "lightgreen" }}>
+          <span>Participer</span>
+        </div>
+      </motion.div>
+    );
+  };
+
   return (
     <header>
       <Link href="/" className="borderless">
@@ -57,6 +106,19 @@ const Header = ({ data }: any) => {
                   </Link>
                 );
               }
+            }
+
+            if (item.title === "ressources") {
+              return (
+                <div
+                  className="modal-open-link"
+                  key={index}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  <span>{item.title}</span>
+                  {isOpen && <Modal />}
+                </div>
+              );
             }
             return null;
           })}

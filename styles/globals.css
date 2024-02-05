@@ -202,7 +202,7 @@
   z-index: 1;
 }
 .dropdowns-container .dropdown:hover .drowpdown-title .icon {
-  transform: rotate(-90deg);
+  transform: rotate(45deg);
   transition: 0.2s ease-in;
 }
 .dropdowns-container .dropdown:hover .dropdown-content {
@@ -459,6 +459,24 @@ header nav a {
 }
 header nav button {
   font-size: 16px;
+}
+header .modal-open-link {
+  cursor: pointer;
+}
+header .modal-open-link .header-modal {
+  background-color: #fefdf4;
+  position: absolute;
+  padding: 2rem;
+  border-radius: 50px;
+  margin-top: 1rem;
+  margin-left: -2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+header .modal-open-link .header-modal div {
+  padding: 1rem;
+  border-radius: 50px;
 }
 
 .landing-view header {

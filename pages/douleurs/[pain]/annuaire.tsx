@@ -48,7 +48,6 @@ const Directory = ({
           if (categorizedDirectoryItem.length === 0) {
             return null;
           }
-
           return (
             <div key={category.title} className="directory-container">
               <h2 className="h3">{category.title} </h2>

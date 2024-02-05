@@ -29,6 +29,26 @@ header {
       font-size: $font-size-basis;
     }
   }
+
+  .modal-open-link {
+    cursor: pointer;
+
+    .header-modal {
+      background-color: $bg-color;
+      position: absolute;
+      padding: $reg-space;
+      border-radius: $border-radius;
+      margin-top: 1rem;
+      margin-left: -2rem;
+      display: flex;
+      flex-direction: column;
+      gap: $sm-space;
+      div {
+        padding: $sm-space;
+        border-radius: $border-radius;
+      }
+    }
+  }
 }
 
 .landing-view {
