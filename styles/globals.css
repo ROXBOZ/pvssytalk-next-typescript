@@ -464,9 +464,10 @@ header .modal-open-link {
   cursor: pointer;
 }
 header .modal-open-link .header-modal {
-  background-color: #fefdf4;
+  z-index: 99;
+  background-color: #faf5c5;
   position: absolute;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   border-radius: 50px;
   margin-top: 1rem;
   margin-left: -2rem;
@@ -475,7 +476,7 @@ header .modal-open-link .header-modal {
   gap: 1rem;
 }
 header .modal-open-link .header-modal div {
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 50px;
 }
 

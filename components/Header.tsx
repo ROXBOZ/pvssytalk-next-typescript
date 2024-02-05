@@ -34,25 +34,56 @@ const Header = ({ data: initialData }: any) => {
           height: 0,
         }}
         animate={{
-          width: "40rem",
-          height: "20rem",
+          width: "45rem",
+          height: "min-content",
         }}
         transition={{
           duration: 0.01,
         }}
         className="header-modal"
       >
+        <div style={{ backgroundColor: "violet" }}>
+          <span>Par où commencer</span>
+          <ul>
+            <li>Introduction aux douleurs</li>
+            <li>Guide d'auto-observation</li>
+            <li>Qui consulter ?</li>
+          </ul>
+        </div>
         <div style={{ backgroundColor: "yellow" }}>
-          <span>S’informer</span>
+          <span>S’informer sur ses douleurs</span>
+          <ul>
+            <li>Endométriose</li>
+            <li>Syndrome des ovaires polykystiques</li>
+            <li>Lich scléreux</li>
+            <li>Sécheresse vaginale</li>
+            <li>Utérus rétroversé</li>
+            <li>Vaginisme</li>
+            <li>Vaginite et mycose</li>
+            <li>Vulvodynie</li>
+          </ul>
         </div>
         <div style={{ backgroundColor: "orange" }}>
           <span>Se soigner</span>
+          <ul>
+            <li>Annuaire</li>
+            <li>Exercices</li>
+          </ul>
         </div>
         <div style={{ backgroundColor: "lightblue" }}>
           <span>Comprendre</span>
+          <ul>
+            <li>Glossaire</li>
+            <li>Médias</li>
+            <li>Agenda</li>
+          </ul>
         </div>
         <div style={{ backgroundColor: "lightgreen" }}>
           <span>Participer</span>
+          <ul>
+            <li>Devenir membre</li>
+            <li>Faire un don</li>
+          </ul>
         </div>
       </motion.div>
     );

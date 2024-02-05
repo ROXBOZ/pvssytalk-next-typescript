@@ -27,14 +27,14 @@ function NavBlock({ data }: any) {
 
           {data.navigationType === "selfCare" && (
             <>
-              <Link href="/ressources/annuaire">Annuaire de spécialistes</Link>
-              <Link href="/ressources/exercices">Exercices sexo</Link>
+              <Link href="/ressources/annuaire">Annuaire</Link>
+              <Link href="/ressources/exercices">Exercices</Link>
             </>
           )}
           {data.navigationType === "selfLearning" && (
             <>
               <Link href="/ressources/glossaire">Glossaire</Link>
-              <Link href="/ressources/medias">Littérature et médias</Link>
+              <Link href="/ressources/medias">Médias</Link>
               <Link href="/ressources/agenda">Agenda</Link>
             </>
           )}

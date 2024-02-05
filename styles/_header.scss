@@ -34,9 +34,10 @@ header {
     cursor: pointer;
 
     .header-modal {
-      background-color: $bg-color;
+      z-index: 99;
+      background-color: darken($bg-color, 10);
       position: absolute;
-      padding: $reg-space;
+      padding: $reg-space * 1.25 $reg-space;
       border-radius: $border-radius;
       margin-top: 1rem;
       margin-left: -2rem;
@@ -44,7 +45,7 @@ header {
       flex-direction: column;
       gap: $sm-space;
       div {
-        padding: $sm-space;
+        padding: $reg-space;
         border-radius: $border-radius;
       }
     }
