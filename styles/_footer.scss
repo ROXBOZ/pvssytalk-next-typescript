@@ -1,3 +1,80 @@
+@keyframes transitionX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee2 {
+  background-color: $txt-color;
+  color: $bg-color;
+  padding: $sm-space 0;
+  overflow: hidden;
+  font-size: x-large;
+
+  .marquee-content {
+    display: flex;
+    gap: 2rem;
+    animation: transitionX 20s linear infinite;
+    .text {
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
+
+      a {
+        border: 0;
+        padding-bottom: 0 !important;
+
+        &.logo {
+          color: $secondary;
+        }
+      }
+    }
+  }
+}
+
+.logos-partners-section {
+  padding: $reg-space;
+  h2,
+  h3 {
+    margin-top: 0;
+  }
+  .logos-partners-container {
+    display: flex;
+  }
+  figure {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+
+    .color-screen {
+      background-color: darken($secondary, 20);
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+      mix-blend-mode: screen;
+    }
+    .placeholder {
+      border-radius: $border-radius-soft;
+      padding: $reg-space;
+      text-align: center;
+      background-color: lighten($secondary, 10);
+    }
+
+    img {
+      max-width: 100%;
+      max-height: fit-content;
+      object-fit: contain;
+    }
+  }
+}
+
 footer {
   background-color: $tierary;
   padding: $reg-space;

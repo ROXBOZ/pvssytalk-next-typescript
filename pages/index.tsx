@@ -3,7 +3,9 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import LogosPartners from "../components/LogosPartners";
 import Marquee from "../components/Marquee";
+import Marquee2 from "../components/Marquee2";
 import NavBlock from "../components/reusables/NavBlock";
 import PainsBlock from "../components/reusables/PainsBlock";
 import Tagline from "../components/Tagline";
@@ -19,19 +21,29 @@ interface HomeDetail {
   navigation: any;
 }
 
+interface LogosDetail {
+  partners: {
+    name: string;
+    logo: any;
+  }[];
+}
+
 const Home = ({
   headerMenu,
   home,
   pains,
   footerMenu,
+  logos,
 }: {
   headerMenu: MenuDetail[];
   pains: PainDetail[];
   home: HomeDetail[];
   footerMenu: MenuDetail[];
+  logos: LogosDetail[];
 }) => {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
+  const partnersLogos = logos[0].partners;
 
   return (
     <div>
@@ -59,15 +71,10 @@ const Home = ({
             }
             return null;
           })}
-          <div style={{ backgroundColor: "yellow" }}>
-            Prochains events (à insérer avant participer ?){" "}
-          </div>
-          <div style={{ backgroundColor: "lightgreen" }}>
-            Marquee "pvssy talk - let's pvssy talk -pvssy talk - let's pvssy
-            talk"{" "}
-          </div>
         </div>
       )}
+      <Marquee2 />
+      <LogosPartners logos={partnersLogos} />
       <Footer data={footerMenuData} />
     </div>
   );
@@ -85,9 +92,12 @@ export const getStaticProps = async () => {
     const pains: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'
     );
+    const logos: LogosDetail[] = await client.fetch(
+      '*[_type == "partnersLogos" && !(_id in path("drafts.**"))]'
+    );
 
     return {
-      props: { headerMenu, footerMenu, pains, home },
+      props: { headerMenu, footerMenu, pains, home, logos },
     };
   } catch (error) {
     console.error("Error fetching pains:", error);
