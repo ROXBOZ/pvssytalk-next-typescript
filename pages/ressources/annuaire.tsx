@@ -111,12 +111,7 @@ export const getStaticProps = async () => {
     );
 
     const typeform: typeformDetail = await client.fetch(`
-      *[_type == "typeform" && !(_id in path("drafts.**"))] {
-        typeforms[] {
-          typeformName,
-          typeformLink
-        }
-      }`);
+      *[_type == "typeform" && !(_id in path("drafts.**"))]`);
 
     return {
       props: {

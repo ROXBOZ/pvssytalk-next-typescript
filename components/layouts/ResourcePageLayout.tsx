@@ -18,17 +18,8 @@ const ResourcePageLayout: React.FC<{
   const router = useRouter();
   const [, setTopList] = useState(0);
 
-  const typeformDirectoryLink =
-    Array.isArray(typeform && typeform[0]?.typeforms) &&
-    typeform[0].typeforms.find(
-      (typeform: any) => typeform.typeformName === "Annuaire"
-    )?.typeformLink;
-
-  const typeformMediaLink =
-    Array.isArray(typeform && typeform[0]?.typeforms) &&
-    typeform[0].typeforms.find(
-      (typeform: any) => typeform.typeformName === "Médias"
-    )?.typeformLink;
+  const typeformDirectoryLink = typeform[0].directoryTypeform;
+  const typeformMediaLink = typeform[0].mediasTypeform;
 
   const typeformLink =
     pageName === "Annuaire"
