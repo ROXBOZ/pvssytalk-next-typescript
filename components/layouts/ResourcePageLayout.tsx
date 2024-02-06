@@ -18,8 +18,8 @@ const ResourcePageLayout: React.FC<{
   const router = useRouter();
   const [, setTopList] = useState(0);
 
-  const typeformDirectoryLink = typeform[0].directoryTypeform;
-  const typeformMediaLink = typeform[0].mediasTypeform;
+  const typeformDirectoryLink = typeform && typeform[0].directoryTypeform;
+  const typeformMediaLink = typeform && typeform[0].mediasTypeform;
 
   const typeformLink =
     pageName === "Annuaire"
@@ -106,13 +106,13 @@ const ResourcePageLayout: React.FC<{
 
           {pain ? <PainNav pain={pain} /> : <RessourceNav />}
 
-          {pageName !== "Glossaire" ||
+          {/* {pageName !== "Glossaire" ||
             (!pain && (
               <div className="dropdowns-container">
                 <DropDown title="Douleurs" array={allPains} />
                 <DropDown title="Régions" array={allRegions} />
               </div>
-            ))}
+            ))} */}
 
           {pageName === "Glossaire" && (
             <div className="letter-link-container">
