@@ -5,7 +5,7 @@ import { urlFor } from "../config/sanity/client";
 function LogosPartners({ logos }: any) {
   return (
     <div className="logos-partners-section">
-      <h2 className="h3">Partenaires</h2>
+      {/* <h2 className="h3">Partenaires</h2> */}
       <div className="logos-partners-container">
         {logos &&
           logos.map((logo: any) => {
