@@ -73,7 +73,7 @@ const Home = ({
           })}
         </div>
       )}
-      <Marquee2 />
+      <Marquee2 repeatTimes={999} />
       <LogosPartners logos={partnersLogos} />
       <Footer data={footerMenuData} />
     </div>

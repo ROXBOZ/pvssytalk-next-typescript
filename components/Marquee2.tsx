@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 
-const Marquee2 = () => {
+const Marquee2 = ({ repeatTimes }: any) => {
   const Content = () => {
     return (
       <div className="text">
@@ -15,27 +15,13 @@ const Marquee2 = () => {
     );
   };
 
+  const contentArray = Array.from({ length: repeatTimes }, (_, index) => (
+    <Content key={index} />
+  ));
+
   return (
     <div className="marquee2">
-      <motion.div className="marquee-content">
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-        <Content />
-      </motion.div>
+      <motion.div className="marquee-content">{contentArray}</motion.div>
     </div>
   );
 };

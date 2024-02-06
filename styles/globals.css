@@ -471,7 +471,7 @@ header .modal-open-link .header-modal div {
 .marquee2 .marquee-content {
   display: flex;
   gap: 2rem;
-  animation: transitionX 20s linear infinite;
+  animation: transitionX 40s linear infinite;
 }
 .marquee2 .marquee-content .text {
   display: flex;
