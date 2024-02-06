@@ -34,21 +34,44 @@
   position: sticky;
   top: 0;
 
-  .switcher {
+  .switch {
+    width: 100%;
+    height: fit-content;
+    border: $border-solid $secondary;
     display: flex;
-    border: $secondary $border-solid;
-    border-radius: $border-radius;
-    button {
-      font-family: $font-logo;
-      font-size: large;
-      width: 100%;
-      border: transparent;
-      background-color: transparent;
+    justify-content: flex-start;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
 
-      &.active {
-        background-color: $secondary;
+    .types {
+      position: absolute;
+      width: 100%;
+
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+      align-items: center;
+      z-index: 9999;
+      span {
+        font-family: $font-logo;
+        font-size: large;
+        padding: 4rem;
       }
     }
+
+    .handle {
+      width: 50%;
+      height: 2.5rem;
+      display: flex;
+      background-color: $secondary;
+      border-radius: 40px;
+      display: flex;
+    }
+  }
+
+  .switch[data-isOn="true"] {
+    justify-content: flex-end;
   }
 
   .ressources-nav {

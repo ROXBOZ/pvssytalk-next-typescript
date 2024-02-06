@@ -4,13 +4,7 @@ import {
   MenuDetail,
   PainDetail,
 } from "../../../types";
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { client, urlFor } from "../../../config/sanity/client";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 

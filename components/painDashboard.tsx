@@ -8,6 +8,7 @@ import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faTelegram } from "@fortawesome/free-brands-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { motion } from "framer-motion";
 import { websiteURL } from "../utils/urls";
 
 const painDashboard = ({
@@ -24,11 +25,6 @@ const painDashboard = ({
     setCurrentURL(constructedURL);
   }, []);
 
-  const switchArticle = () => {
-    setIsMed((prevIsMed) => !prevIsMed);
-    setIsInitialRender(false);
-  };
-
   const copyUrlToClipboard = () => {
     navigator.clipboard.writeText(window.location.href);
     setIsCopied(true);
@@ -37,18 +33,24 @@ const painDashboard = ({
     }, 1500);
   };
 
+  const toggleSwitch = () => setIsMed(!isMed);
+
+  const spring = {
+    type: "spring",
+    stiffness: 700,
+    damping: 30,
+  };
+
   return (
     <nav className="pain-nav">
       <h3>Approche</h3>
-      <div className="switcher">
-        <button onClick={switchArticle} className={`${isMed && "active"}`}>
-          médicale
-        </button>
-        <button onClick={switchArticle} className={`${!isMed && "active"}`}>
-          sexologique
-        </button>
+      <div className="switch" data-isOn={isMed} onClick={toggleSwitch}>
+        <div className="types">
+          <span>sexologique</span>
+          <span>médicale</span>
+        </div>
+        <motion.div className="handle" layout transition={spring} />
       </div>
-
       <div className="ressources-nav">
         <h3>Ressources</h3>
         <Link href={`${pain.slug.current}/annuaire`}>Annuaire</Link>
