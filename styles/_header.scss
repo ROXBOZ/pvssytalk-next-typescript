@@ -18,10 +18,11 @@ header {
     display: flex;
     align-items: baseline;
     gap: $lg-space;
+    z-index: 99999 !important;
 
     a {
       font-family: $font-regular;
-      text-transform: lowercase;
+      // text-transform: lowercase;
       border-bottom: none;
     }
 
@@ -30,23 +31,85 @@ header {
     }
   }
 
-  .modal-open-link {
+  .dropdown {
     cursor: pointer;
+    display: flex;
 
-    .header-modal {
-      z-index: 99;
-      background-color: darken($bg-color, 10);
-      position: absolute;
-      padding: $reg-space * 1.25 $reg-space;
-      border-radius: $border-radius;
-      margin-top: 1rem;
-      margin-left: -2rem;
-      display: flex;
-      flex-direction: column;
+    .dropdown-content-wrapper {
+      z-index: -50 !important;
+      display: none;
       gap: $sm-space;
-      div {
-        padding: $reg-space;
-        border-radius: $border-radius;
+      position: absolute;
+      margin: 0;
+      left: 0;
+      top: 0;
+      right: 0;
+      background-color: $bg-color;
+      padding: $lg-space $reg-space;
+      flex-direction: column;
+      max-width: 100%;
+      // display: flex;
+      min-height: 80vh;
+
+      .dropdown-content {
+        display: flex;
+
+        .blocks-container-wrapper {
+          gap: $reg-space;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .blocks-container {
+          margin-top: $lg-space auto;
+          display: flex;
+          gap: $sm-space;
+          height: fit-content;
+          flex-wrap: wrap;
+
+          .link-block {
+            flex: 1;
+            border: $border-solid $secondary;
+            border-radius: $border-radius;
+            padding: $lg-space;
+            min-width: 25%;
+
+            &:hover {
+              transform: scale(1.01);
+              transition: 700ms;
+              .title {
+                .arrow {
+                  transform: rotate(45deg);
+                  transition: 700ms;
+                }
+              }
+            }
+
+            .title {
+              display: flex;
+              width: 100%;
+
+              justify-content: space-between;
+              font-family: $font-logo;
+              align-items: baseline;
+              &.h4 {
+                margin-top: 0;
+                padding-top: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .dropdown-content-wrapper {
+        display: flex;
+
+        &:hover {
+          display: flex;
+        }
       }
     }
   }

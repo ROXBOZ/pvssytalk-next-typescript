@@ -35,12 +35,14 @@ const Home = ({
   pains,
   footerMenu,
   logos,
+  painsSlugs,
 }: {
   headerMenu: MenuDetail[];
   pains: PainDetail[];
   home: HomeDetail[];
   footerMenu: MenuDetail[];
   logos: LogosDetail[];
+  painsSlugs: any;
 }) => {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
@@ -49,7 +51,7 @@ const Home = ({
   return (
     <PageTransition>
       <div className="landing-view">
-        <Header data={headerMenuData} />
+        <Header data={headerMenuData} pains={painsSlugs} />
         <Tagline tagline={home[0].tagline} />
         {home[0].marquee && <Marquee marquee={home[0].marquee} />}
       </div>
@@ -98,8 +100,12 @@ export const getStaticProps = async () => {
       '*[_type == "partnersLogos" && !(_id in path("drafts.**"))]'
     );
 
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
+
     return {
-      props: { headerMenu, footerMenu, pains, home, logos },
+      props: { headerMenu, footerMenu, pains, home, logos, painsSlugs },
     };
   } catch (error) {
     console.error("Error fetching pains:", error);

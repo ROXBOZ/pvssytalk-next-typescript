@@ -10,6 +10,8 @@ interface MenuDetail {
   };
   link: string;
   isAction: boolean;
+  type?: ["Pages" | "Douleurs" | "Ressources"];
+  pages: any;
 }
 
 interface InfoPageDetail {
