@@ -1,5 +1,5 @@
 import { DirectoryDetail } from "../../types";
-// import DirectoryItem from "../DirectoryItem";
+import DirectoryItem from "../DirectoryItem";
 import React from "react";
 
 function DirectoryLayout({ category, categorizedDirectoryItem }: any) {
@@ -12,13 +12,13 @@ function DirectoryLayout({ category, categorizedDirectoryItem }: any) {
       {validatedItems.length !== 0 && (
         <h2 className="h3 category-title">{category.title} </h2>
       )}
-      {/* {categorizedDirectoryItem.map(
+      {categorizedDirectoryItem.map(
         (directoryItem: DirectoryDetail, index: number) => {
           if (directoryItem.isValidated === true) {
             return <DirectoryItem contact={directoryItem} key={index} />;
           }
         }
-      )} */}
+      )}
     </div>
   );
 }
