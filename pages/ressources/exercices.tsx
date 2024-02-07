@@ -41,8 +41,8 @@ const Exercises = ({
       <ResourcePageLayout pageName="Exercices" relatedContent={exercises}>
         <div className="exercises-container">
           {filteredExercises &&
-            filteredExercises.map((exercise: ExerciseDetail) => {
-              return <Exercise exercise={exercise} />;
+            filteredExercises.map((exercise: ExerciseDetail, index: number) => {
+              return <Exercise key={index} exercise={exercise} />;
             })}
         </div>
       </ResourcePageLayout>

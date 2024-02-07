@@ -40,7 +40,7 @@ const Medias = ({
         relatedContent={relatedMedia}
       >
         <div className="media-container">
-          {mediaCategories.map((category: any) => {
+          {mediaCategories.map((category: any, index: number) => {
             const categorizedMedia = relatedMedia.filter(
               (mediaItem) => mediaItem.filter === category.value
             );
@@ -51,6 +51,7 @@ const Medias = ({
 
             return (
               <MediaLayout
+                key={index}
                 category={category}
                 categorizedMedia={categorizedMedia}
               />

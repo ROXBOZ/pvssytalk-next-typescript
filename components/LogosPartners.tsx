@@ -7,9 +7,9 @@ function LogosPartners({ logos }: any) {
     <div className="logos-partners-section">
       <div className="logos-partners-container">
         {logos &&
-          logos.map((logo: any) => {
+          logos.map((logo: any, index: number) => {
             return (
-              <figure>
+              <figure key={index}>
                 <div className="color-screen" />
                 {logo.logo ? (
                   <Image

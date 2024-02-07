@@ -6,6 +6,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Image from "next/image";
+import PageTransition from "../components/layouts/PageTransition";
 import { PortableText } from "@portabletext/react";
 
 const Page = ({
@@ -23,49 +24,51 @@ const Page = ({
     <>
       <Header data={headerMenuData} />
       <Breadcrumbs />
-      <div className="double-column-containers-group">
-        <div className="double-column-container">
-          <div>
-            <h1>{page.title}</h1>
-
-            {page.image && (
-              <Image
-                className="intro-image"
-                src={urlFor(page.image.asset._ref).url()}
-                width={500}
-                height={300}
-                alt={page.image.alternativeText}
-              />
-            )}
-          </div>
-          <div className="bigger-text">
-            <PortableText value={page.subtitle as any} />
-          </div>
-        </div>
-      </div>
-
-      {page.sections.map((section: any, index: number) => {
-        return (
-          <div key={index} className="double-column-container">
+      <PageTransition>
+        <div className="double-column-containers-group">
+          <div className="double-column-container">
             <div>
-              <h2>{section.sectionTitle}</h2>
-              {section.sectionImage && (
+              <h1>{page.title}</h1>
+
+              {page.image && (
                 <Image
-                  style={{ width: "100%", height: "auto" }}
-                  className={section.sectionTitle}
-                  src={urlFor(section.sectionImage.asset._ref).url()}
+                  className="intro-image"
+                  src={urlFor(page.image.asset._ref).url()}
                   width={500}
                   height={300}
-                  alt={section.sectionImage.alternativeText}
+                  alt={page.image.alternativeText}
                 />
               )}
             </div>
-            <div>
-              <PortableText value={section.sectionContent as any} />
+            <div className="bigger-text">
+              <PortableText value={page.subtitle as any} />
             </div>
           </div>
-        );
-      })}
+        </div>
+
+        {page.sections.map((section: any, index: number) => {
+          return (
+            <div key={index} className="double-column-container">
+              <div>
+                <h2>{section.sectionTitle}</h2>
+                {section.sectionImage && (
+                  <Image
+                    style={{ width: "100%", height: "auto" }}
+                    className={section.sectionTitle}
+                    src={urlFor(section.sectionImage.asset._ref).url()}
+                    width={500}
+                    height={300}
+                    alt={section.sectionImage.alternativeText}
+                  />
+                )}
+              </div>
+              <div>
+                <PortableText value={section.sectionContent as any} />
+              </div>
+            </div>
+          );
+        })}
+      </PageTransition>
       <Footer data={footerMenuData} />
     </>
   );

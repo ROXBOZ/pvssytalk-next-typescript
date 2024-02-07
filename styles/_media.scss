@@ -1,5 +1,9 @@
 .media-container h2 {
   margin-bottom: $reg-space;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
 }
 
 .media-item {

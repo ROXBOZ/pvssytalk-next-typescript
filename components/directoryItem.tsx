@@ -77,9 +77,9 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                         style={{ margin: "1rem 0" }}
                       >
                         {a.accessibility &&
-                          a.accessibility.map((tag: any) => {
+                          a.accessibility.map((tag: any, index: number) => {
                             return (
-                              <div className="tag">
+                              <div className="tag" key={index}>
                                 <span>{tag.name}</span>
                               </div>
                             );
@@ -129,9 +129,9 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
               {contact.recommendations && <h4>Recommendations</h4>}
               <div className="tag-container">
                 {contact.recommendations &&
-                  contact.recommendations.map((tag: any) => {
+                  contact.recommendations.map((tag: any, index: number) => {
                     return (
-                      <div className="tag">
+                      <div className="tag" key={index}>
                         <span>{tag.name}</span>
                       </div>
                     );

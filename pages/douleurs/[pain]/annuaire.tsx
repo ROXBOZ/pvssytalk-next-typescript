@@ -57,6 +57,7 @@ const Directory = ({
 
           return (
             <DirectoryLayout
+              key={category.value}
               category={category}
               categorizedDirectoryItem={categorizedDirectoryItem}
             />

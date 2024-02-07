@@ -51,7 +51,7 @@ const Directory = ({
         typeform={typeform}
         regions={regions[0].regions}
       >
-        {directoryCategories.map((category) => {
+        {directoryCategories.map((category, index) => {
           if (typeof category === "string") {
             return null;
           }
@@ -62,6 +62,7 @@ const Directory = ({
 
           return (
             <DirectoryLayout
+              key={`${category.value}_${index}`} // Ensure each DirectoryLayout component has a unique key
               regions={regions}
               category={category}
               categorizedDirectoryItem={categorizedDirectoryItem}

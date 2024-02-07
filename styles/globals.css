@@ -1073,6 +1073,9 @@ button.square-button {
 .media-container h2 {
   margin-bottom: 2rem;
 }
+.media-container h2:first-of-type {
+  margin-top: 0;
+}
 
 .media-item {
   border-bottom: #e4c7f1 1px solid;

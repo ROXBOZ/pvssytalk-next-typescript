@@ -1,18 +1,19 @@
-import React, { createContext, ReactNode, useState, useEffect } from "react";
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  setPersistence,
-  browserSessionPersistence,
-  browserLocalPersistence,
-  getAuth,
   Auth,
   User,
+  browserLocalPersistence,
+  browserSessionPersistence,
+  createUserWithEmailAndPassword,
+  getAuth,
+  sendPasswordResetEmail,
+  setPersistence,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import React, { ReactNode, createContext, useEffect, useState } from "react";
+
 import { firebaseApp } from "../config/firebase/firebase-config";
 import { sendEmailVerification } from "firebase/auth";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 
 type AuthContextProviderProps = {

@@ -36,7 +36,7 @@ const Medias = ({
         relatedContent={media}
         typeform={typeform}
       >
-        {mediaCategories.map((category) => {
+        {mediaCategories.map((category, index) => {
           if (typeof category === "string") {
             return null;
           }
@@ -50,9 +50,13 @@ const Medias = ({
               ) &&
               mediaItem.filter === category.value
           );
+
           if (selectedFilter && categorizedMediaItem.length === 0) {
             return (
-              <div key={category.value} className="media-container">
+              <div
+                key={`${category.value}_${index}`}
+                className="media-container"
+              >
                 <h2 className="h3">{category.title}</h2>
                 <div className="msg-box">
                   <p className="msg info">
@@ -63,7 +67,13 @@ const Medias = ({
             );
           }
 
-          return <MediaLayout category={category} categorizedMedia={media} />;
+          return (
+            <MediaLayout
+              key={category.value}
+              category={category}
+              categorizedMedia={categorizedMediaItem}
+            />
+          );
         })}
       </ResourcePageLayout>
     </Layout>

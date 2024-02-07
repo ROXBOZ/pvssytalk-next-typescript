@@ -11,12 +11,7 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
 import { websiteURL } from "../utils/urls";
 
-const PainDashboard = ({
-  pain,
-  isMed,
-  setIsMed,
-  setIsInitialRender,
-}: PainDashboardProps) => {
+const PainDashboard = ({ pain, isMed, setIsMed }: PainDashboardProps) => {
   const [currentURL, setCurrentURL] = useState("");
   const [isCopied, setIsCopied] = useState(false);
   useEffect(() => {
@@ -44,7 +39,7 @@ const PainDashboard = ({
   return (
     <nav className="pain-nav">
       <h3>Approche</h3>
-      <div className="switch" data-isOn={isMed} onClick={toggleSwitch}>
+      <div className="switch" data-ison={isMed} onClick={toggleSwitch}>
         <div className="types">
           <span>sexologique</span>
           <span>médicale</span>

@@ -1,6 +1,8 @@
 import Footer from "../Footer";
 import Header from "../Header";
 import { MenuDetail } from "../../types";
+import Page from "../../pages/[page]";
+import PageTransition from "./PageTransition";
 import React from "react";
 
 function Layout({
@@ -18,7 +20,7 @@ function Layout({
   return (
     <div className="layout">
       <Header data={headerMenuData} />
-      {children}
+      <PageTransition>{children}</PageTransition>
       <Footer data={footerMenuData} />
     </div>
   );

@@ -7,6 +7,7 @@ import LogosPartners from "../components/LogosPartners";
 import Marquee from "../components/Marquee";
 import Marquee2 from "../components/Marquee2";
 import NavBlock from "../components/reusables/NavBlock";
+import PageTransition from "../components/layouts/PageTransition";
 import PainsBlock from "../components/reusables/PainsBlock";
 import Tagline from "../components/Tagline";
 import TextImageBlock from "../components/reusables/TextImageBlock";
@@ -46,7 +47,7 @@ const Home = ({
   const partnersLogos = logos[0].partners;
 
   return (
-    <div>
+    <PageTransition>
       <div className="landing-view">
         <Header data={headerMenuData} />
         <Tagline tagline={home[0].tagline} />
@@ -77,7 +78,7 @@ const Home = ({
       <LogosPartners logos={partnersLogos} />
       <Marquee2 repeatTimes={999} />
       <Footer data={footerMenuData} />
-    </div>
+    </PageTransition>
   );
 };
 
