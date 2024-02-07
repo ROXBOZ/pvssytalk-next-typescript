@@ -57,7 +57,6 @@ const Glossary = ({
 
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <div ref={termsContainerRef}>
         <ResourcePageLayout relatedContent={glossary} pageName="Glossaire">
           <GlossaryLayout letters={letters} termGroups={termGroups} />

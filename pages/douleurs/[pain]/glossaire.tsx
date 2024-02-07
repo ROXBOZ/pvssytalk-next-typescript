@@ -60,7 +60,6 @@ const painGlossary = ({
 
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <ResourcePageLayout
         pageName="Glossaire"
         pain={pain}

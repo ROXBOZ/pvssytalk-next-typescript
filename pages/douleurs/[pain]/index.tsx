@@ -104,7 +104,6 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
       {showModal && selectedDiagram && (
         <Modal diagram={selectedDiagram} closeModal={closeModal} />
       )}
-      <Breadcrumbs />
       <main>
         <div className="title-container">
           <div className="title">

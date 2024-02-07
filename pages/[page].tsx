@@ -23,7 +23,7 @@ const Page = ({
   return (
     <>
       <Header data={headerMenuData} />
-      <Breadcrumbs />
+
       <PageTransition>
         <div className="double-column-containers-group">
           <div className="double-column-container">

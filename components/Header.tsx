@@ -98,7 +98,7 @@ const Header = ({ data, pains }: any) => {
                                 pains.map((pain: any, index: number) => (
                                   <LinkBlock
                                     index={index}
-                                    slug={pain.slug.current}
+                                    slug={`douleurs/${pain.slug.current}`}
                                     title={pain.name}
                                     description={pain.description}
                                   />

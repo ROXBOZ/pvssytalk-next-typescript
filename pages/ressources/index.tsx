@@ -21,7 +21,6 @@ const Ressources = ({
 
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <div
         className={`double-column-container ${
           currentURL.endsWith("ressources") && "no-border"

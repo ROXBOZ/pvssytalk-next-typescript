@@ -8,6 +8,10 @@
     padding: $reg-space;
     border: $border-solid $secondary;
 
+    &:first-of-type {
+      margin-top: 0 !important;
+    }
+
     // &:not(:last-of-type) {
     //   margin-bottom: $lg-space;
     // }
@@ -18,6 +22,7 @@
       justify-content: space-between !important;
       align-items: center;
       max-height: fit-content;
+
       h2,
       h3 {
         margin: 0;

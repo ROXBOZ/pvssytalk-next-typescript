@@ -33,7 +33,6 @@ const Medias = ({
 
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <ResourcePageLayout
         pageName="Médias"
         pain={pain}

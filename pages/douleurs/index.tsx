@@ -18,7 +18,6 @@ const Pains = ({
 }) => {
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <PainGrid pains={pains} />
     </Layout>
   );

@@ -37,7 +37,6 @@ const Exercises = ({
 
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <ResourcePageLayout pageName="Exercices" relatedContent={exercises}>
         <div className="exercises-container">
           {filteredExercises &&

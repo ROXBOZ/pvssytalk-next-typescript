@@ -1320,6 +1320,9 @@ form .search-bar:focus {
   padding: 2rem;
   border: 1px solid #e4c7f1;
 }
+.directory-container .directory-item:first-of-type {
+  margin-top: 0 !important;
+}
 .directory-container .directory-item .directory-item-title {
   display: flex;
   gap: 2rem;

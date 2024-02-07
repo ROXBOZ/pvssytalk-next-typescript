@@ -44,7 +44,6 @@ const Directory = ({
 
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <ResourcePageLayout
         pageName="Annuaire"
         relatedContent={directory}

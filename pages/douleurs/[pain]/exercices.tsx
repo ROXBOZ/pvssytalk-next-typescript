@@ -38,7 +38,6 @@ const PainExercises = ({
   const relatedExercises = filterRelatedExercises(exercises, pain._id);
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <ResourcePageLayout
         pageName="Exercices"
         pain={pain}

@@ -43,7 +43,6 @@ const Agenda = ({
   };
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <Breadcrumbs />
       <div className="double-column-containers-group">
         <div className="double-column-container">
           <div className="fixed-container">
