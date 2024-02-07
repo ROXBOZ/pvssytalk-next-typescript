@@ -101,7 +101,8 @@
 .pain-nav .switch .types span {
   font-family: "ESRebond";
   font-size: large;
-  padding: 4rem;
+  width: 100%;
+  text-align: center;
 }
 .pain-nav .switch .handle {
   width: 50%;
