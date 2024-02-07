@@ -5,7 +5,6 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import Layout from "../../components/layouts/Layout";
 import Link from "next/link";
 import { MenuDetail } from "../../types";
-import { client } from "../../config/sanity/client";
 
 const Ressources = ({
   headerMenu,

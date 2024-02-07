@@ -1,5 +1,5 @@
 import { DirectoryDetail } from "../../types";
-import DirectoryItem from "../directoryItem";
+import DirectoryItem from "../DirectoryItem";
 import React from "react";
 
 function DirectoryLayout({ category, categorizedDirectoryItem }: any) {

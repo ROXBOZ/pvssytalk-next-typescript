@@ -3,11 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { cleanUrl } from "../utils/cleanUrl";
 
-export default function DirectoryItem({
-  contact,
-}: {
-  contact: DirectoryDetail;
-}) {
+function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
   return (
     <>
       <div className="directory-item" key={contact._id}>
@@ -148,3 +144,5 @@ export default function DirectoryItem({
     </>
   );
 }
+
+export default DirectoryItem;

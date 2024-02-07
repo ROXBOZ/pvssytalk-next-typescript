@@ -14,7 +14,7 @@ import Image from "next/image";
 import Layout from "../../../components/layouts/Layout";
 import Link from "next/link";
 import Modal from "../../../components/Modal";
-import PainDashboard from "../../../components/painDashboard";
+import PainDashboard from "../../../components/PainDashboard";
 import { PortableText } from "@portabletext/react";
 
 const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {

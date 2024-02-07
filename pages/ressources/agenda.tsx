@@ -6,7 +6,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import Layout from "../../components/layouts/Layout";
 import { MenuDetail } from "../../types";
 import { PortableText } from "@portabletext/react";
-import RessourceNav from "../../components/ressourceNav";
+import RessourceNav from "../../components/RessourceNav";
 import { client } from "../../config/sanity/client";
 
 interface AgendaDetail {

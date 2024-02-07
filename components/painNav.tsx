@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { PainNavProps } from "../types";
 
-const painNav = ({ pain }: PainNavProps) => {
+const PainNav = ({ pain }: PainNavProps) => {
   const [currentURL, setCurrentURL] = useState("");
 
   useEffect(() => {
@@ -68,4 +68,4 @@ const painNav = ({ pain }: PainNavProps) => {
   );
 };
 
-export default painNav;
+export default PainNav;

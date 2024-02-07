@@ -4,15 +4,13 @@ import {
   MenuDetail,
   PainDetail,
 } from "../../types";
-import Filters, { pains } from "../../components/reusables/Filters";
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { Exercise } from "../../components/exercise";
+import { Exercise } from "../../components/Exercise";
 import Layout from "../../components/layouts/Layout";
 import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
-import RessourceNav from "../../components/ressourceNav";
 import { client } from "../../config/sanity/client";
 
 const Exercises = ({

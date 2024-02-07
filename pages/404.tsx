@@ -4,7 +4,6 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 import Layout from "../components/layouts/Layout";
 import Link from "next/link";
 import { MenuDetail } from "../types";
-import { client } from "../config/sanity/client";
 import { useRouter } from "next/router";
 
 function Custom404({

@@ -1,6 +1,6 @@
 // MediaLayout.tsx
 import { MediaDetail } from "../../types";
-import MediaItem from "../mediaItem";
+import MediaItem from "../MediaItem";
 import React from "react";
 
 interface MediaLayoutProps {

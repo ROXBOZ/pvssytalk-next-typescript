@@ -7,7 +7,7 @@ import {
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
-import { Exercise } from "../../../components/exercise";
+import { Exercise } from "../../../components/Exercise";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/layouts/Layout";
 import React from "react";

@@ -2,8 +2,8 @@ import React, { ReactNode, useRef, useState } from "react";
 
 import Link from "next/link";
 import { PainDetail } from "../../types";
-import PainNav from "../painNav";
-import RessourceNav from "../ressourceNav";
+import PainNav from "../PainNav";
+import RessourceNav from "../RessourceNav";
 import { pains } from "../reusables/Filters";
 import { useRouter } from "next/router";
 

@@ -11,7 +11,7 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
 import { websiteURL } from "../utils/urls";
 
-const painDashboard = ({
+const PainDashboard = ({
   pain,
   isMed,
   setIsMed,
@@ -91,4 +91,4 @@ const painDashboard = ({
   );
 };
 
-export default painDashboard;
+export default PainDashboard;
