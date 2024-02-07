@@ -221,7 +221,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.body && (
                   <>
-                    <h3>Moi et mon corps</h3>
+                    <h3 className="h4">Moi et mon corps</h3>
                     <CustomPortableText
                       value={pain.sexologicApproach?.body}
                       slug={pain.slug.current}
@@ -232,7 +232,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.norms && (
                   <>
-                    <h3>Normes genrées</h3>
+                    <h3 className="h4">Normes genrées</h3>
                     <CustomPortableText
                       value={pain.sexologicApproach?.norms}
                       slug={pain.slug.current}
@@ -243,7 +243,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.everydayLife && (
                   <>
-                    <h3>Vie quotidienne</h3>
+                    <h3 className="h4">Vie quotidienne</h3>
                     <CustomPortableText
                       value={pain.sexologicApproach?.everydayLife}
                       slug={pain.slug.current}
@@ -256,7 +256,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.libido && (
                   <>
-                    <h3>Libido</h3>
+                    <h3 className="h4">Libido</h3>
                     <CustomPortableText
                       value={pain.sexologicApproach?.libido}
                       slug={pain.slug.current}
@@ -267,7 +267,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.charge && (
                   <>
-                    <h3>Charge mentale et communication</h3>
+                    <h3 className="h4">Charge mentale et communication</h3>
                     <CustomPortableText
                       value={pain.sexologicApproach?.charge}
                       slug={pain.slug.current}
@@ -278,7 +278,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.consent && (
                   <>
-                    <h3>Sexe et consentement</h3>
+                    <h3 className="h4">Sexe et consentement</h3>
                     <CustomPortableText
                       value={pain.sexologicApproach?.consent}
                       slug={pain.slug.current}
@@ -322,7 +322,7 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
 
                 {pain.sexologicApproach?.treatments && (
                   <>
-                    <h3>Quels traitements pour me soulager ?</h3>
+                    <h3 className="h4">Quels traitements pour me soulager ?</h3>
                     <CustomPortableText
                       value={pain.sexologicApproach?.treatments}
                       slug={pain.slug.current}

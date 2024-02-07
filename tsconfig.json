@@ -21,7 +21,8 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/douleurs/[pain]",
-    "context/authContext.js"
+    "context/authContext.js",
+    "lib/biskoui.js"
   ],
   "exclude": ["node_modules"]
 }

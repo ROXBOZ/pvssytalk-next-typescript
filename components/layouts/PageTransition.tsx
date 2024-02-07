@@ -1,4 +1,3 @@
-import Breadcrumbs from "../Breadcrumbs";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -13,7 +12,6 @@ function PageTransition({ children }: any) {
       }}
       transition={{ duration: 0.25 }}
     >
-      <Breadcrumbs />
       {children}
     </motion.div>
   );
