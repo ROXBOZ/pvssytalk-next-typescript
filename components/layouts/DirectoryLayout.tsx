@@ -10,7 +10,7 @@ function DirectoryLayout({ category, categorizedDirectoryItem }: any) {
   return (
     <div key={category.value} className="directory-container">
       {validatedItems.length !== 0 && (
-        <h2 className="h3 category-title">{category.title}</h2>
+        <h2 className="h3 category-title">{category.title} </h2>
       )}
       {categorizedDirectoryItem.map(
         (directoryItem: DirectoryDetail, index: number) => {

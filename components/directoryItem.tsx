@@ -55,7 +55,7 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                 {contact.addresses && contact.category === "specialist" ? (
                   <h4>Lieux de consultations</h4>
                 ) : (
-                  contact.addresses && <h4>Adresses</h4>
+                  contact.addresses && <h4>Adresses </h4>
                 )}
                 {contact.addresses?.map((a) => {
                   return (
