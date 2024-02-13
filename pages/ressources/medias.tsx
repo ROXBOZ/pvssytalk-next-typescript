@@ -28,6 +28,7 @@ const Medias = ({
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
+  console.log("media", media);
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <ResourcePageLayout
@@ -42,11 +43,8 @@ const Medias = ({
 
           const categorizedMediaItem = media.filter(
             (mediaItem) =>
-              mediaItem.relatedPain &&
-              mediaItem.relatedPain.some(
-                (pain: any) =>
-                  pain.name.toLowerCase() === selectedFilter?.toLowerCase()
-              ) &&
+              mediaItem.filter &&
+              mediaItem.filter &&
               mediaItem.filter === category.value
           );
 
@@ -88,6 +86,7 @@ export const getStaticProps = async () => {
     const media: MediaDetails = await client.fetch(`
       *[_type == "media" && !(_id in path("drafts.**"))]{
         ...,
+        tags[]->{name},
         relatedPain[]->{
           name
         }

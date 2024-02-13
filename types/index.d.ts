@@ -131,6 +131,7 @@ export interface MediaDetail {
   relatedPain?: { _type: "reference"; _ref: string }[]; // Make relatedPain optional
   filter: string;
   url?: string;
+  tags: { name: string }[];
 }
 export type MediaDetails = MediaDetail[];
 

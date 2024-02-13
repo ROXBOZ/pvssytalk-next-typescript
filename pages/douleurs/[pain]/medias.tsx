@@ -73,7 +73,7 @@ export const getStaticProps = async ({ params }: any) => {
       { currentSlug: pain }
     );
     const fetchedMedias: MediaDetails[] | null = await client.fetch(
-      `*[_type == "media" && references($painId)]`,
+      `*[_type == "media" && references($painId)]{..., tags[]->{name}}`,
       { painId: fetchedPain?._id }
     );
 

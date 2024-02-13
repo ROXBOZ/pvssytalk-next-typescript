@@ -1,11 +1,16 @@
-.media-container h2 {
-  margin-bottom: $reg-space;
+.media-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $sm-space;
 
-  &:first-of-type {
-    margin-top: 0;
+  h2 {
+    margin-bottom: $reg-space;
+    color: lighten($txt-color, 40);
   }
-}
 
-.media-item {
-  border-bottom: $secondary $border-solid;
+  .media-item {
+    width: unset !important;
+    border-bottom: $secondary $border-solid;
+  }
 }
