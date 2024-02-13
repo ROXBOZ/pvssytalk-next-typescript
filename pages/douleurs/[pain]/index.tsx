@@ -9,6 +9,7 @@ import { client, urlFor } from "../../../config/sanity/client";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
+import CustomHead from "../../../components/CustomHead";
 import { GetStaticPaths } from "next";
 import Image from "next/image";
 import Layout from "../../../components/layouts/Layout";
@@ -100,261 +101,264 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
   }, [setShowModal]);
 
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      {showModal && selectedDiagram && (
-        <Modal diagram={selectedDiagram} closeModal={closeModal} />
-      )}
-      <main>
-        <div className="title-container">
-          <div className="title">
-            <h1>{pain.name}</h1>
-            <span>
-              Textes de{" "}
-              <Link href="https://aemg-ge.com/medsexplain/" target="_blank">
-                MedSexPlain
-              </Link>{" "}
-              &{" "}
-              <Link href="https://www.sexopraxis.ch/" target="_blank">
-                Sexopraxis
-              </Link>{" "}
-              | Illustrations de{" "}
-              <Link href="https://noemiecreux.com/" target="_blank">
-                Noémie Creux
-              </Link>
-            </span>
+    <>
+      <CustomHead seo={pain.seo} />
+      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+        {showModal && selectedDiagram && (
+          <Modal diagram={selectedDiagram} closeModal={closeModal} />
+        )}
+        <main>
+          <div className="title-container">
+            <div className="title">
+              <h1>{pain.name}</h1>
+              <span>
+                Textes de{" "}
+                <Link href="https://aemg-ge.com/medsexplain/" target="_blank">
+                  MedSexPlain
+                </Link>{" "}
+                &{" "}
+                <Link href="https://www.sexopraxis.ch/" target="_blank">
+                  Sexopraxis
+                </Link>{" "}
+                | Illustrations de{" "}
+                <Link href="https://noemiecreux.com/" target="_blank">
+                  Noémie Creux
+                </Link>
+              </span>
+            </div>
+            {pain.mainImage && (
+              <Image
+                className="pain-illu-cover"
+                src={urlFor(pain.mainImage.asset._ref).url()}
+                width={1000}
+                height={1000}
+                alt={pain.name}
+                style={imageCoverHotspot}
+                priority
+              />
+            )}
           </div>
-          {pain.mainImage && (
-            <Image
-              className="pain-illu-cover"
-              src={urlFor(pain.mainImage.asset._ref).url()}
-              width={1000}
-              height={1000}
-              alt={pain.name}
-              style={imageCoverHotspot}
-              priority
+
+          <div className="pain-nav-article-container">
+            <PainDashboard
+              pain={pain}
+              isMed={isMed}
+              setIsMed={setIsMed}
+              setIsInitialRender={setIsInitialRender}
             />
-          )}
-        </div>
 
-        <div className="pain-nav-article-container">
-          <PainDashboard
-            pain={pain}
-            isMed={isMed}
-            setIsMed={setIsMed}
-            setIsInitialRender={setIsInitialRender}
-          />
+            <div ref={ref} className="pain-article">
+              {isMed ? (
+                <>
+                  {pain.medicalApproach?.def && (
+                    <div>
+                      <h2 className="h3">Définition</h2>
+                      <CustomPortableText
+                        value={pain.medicalApproach?.def}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </div>
+                  )}
 
-          <div ref={ref} className="pain-article">
-            {isMed ? (
-              <>
-                {pain.medicalApproach?.def && (
-                  <div>
-                    <h2 className="h3">Définition</h2>
-                    <CustomPortableText
-                      value={pain.medicalApproach?.def}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </div>
-                )}
+                  {pain.medicalApproach?.sympt && (
+                    <>
+                      <h2 className="h3">Symptômes</h2>
+                      <CustomPortableText
+                        value={pain.medicalApproach?.sympt}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.medicalApproach?.sympt && (
-                  <>
-                    <h2 className="h3">Symptômes</h2>
-                    <CustomPortableText
-                      value={pain.medicalApproach?.sympt}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.medicalApproach?.diag && (
+                    <>
+                      <h2 className="h3">Diagnostic</h2>
+                      <CustomPortableText
+                        value={pain.medicalApproach?.diag}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.medicalApproach?.diag && (
-                  <>
-                    <h2 className="h3">Diagnostic</h2>
-                    <CustomPortableText
-                      value={pain.medicalApproach?.diag}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.medicalApproach?.why && (
+                    <>
+                      <h2 className="h3">Pourquoi ça m’arrive ?</h2>
+                      <CustomPortableText
+                        value={pain.medicalApproach?.why}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.medicalApproach?.why && (
-                  <>
-                    <h2 className="h3">Pourquoi ça m’arrive ?</h2>
-                    <CustomPortableText
-                      value={pain.medicalApproach?.why}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.medicalApproach?.auto && (
+                    <>
+                      <h2 className="h3">Que puis-je faire solo ?</h2>
+                      <CustomPortableText
+                        value={pain.medicalApproach?.auto}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.medicalApproach?.auto && (
-                  <>
-                    <h2 className="h3">Que puis-je faire solo ?</h2>
-                    <CustomPortableText
-                      value={pain.medicalApproach?.auto}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
-
-                {pain.medicalApproach?.pros && (
-                  <>
-                    <h2 className="h3">Qui consulter ?</h2>
-                    <CustomPortableText
-                      value={pain.medicalApproach?.pros}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
-              </>
-            ) : (
-              <>
-                {/* {pain.sexologicApproach && (
+                  {pain.medicalApproach?.pros && (
+                    <>
+                      <h2 className="h3">Qui consulter ?</h2>
+                      <CustomPortableText
+                        value={pain.medicalApproach?.pros}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
+                  {/* {pain.sexologicApproach && (
                   <h2 className="h3">Vivre avec la douleur</h2>
                 )} */}
 
-                {pain.sexologicApproach?.body && (
-                  <>
-                    <h3>Moi et mon corps</h3>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.body}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.body && (
+                    <>
+                      <h3>Moi et mon corps</h3>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.body}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.norms && (
-                  <>
-                    <h3>Normes genrées</h3>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.norms}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.norms && (
+                    <>
+                      <h3>Normes genrées</h3>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.norms}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.everydayLife && (
-                  <>
-                    <h3>Vie quotidienne</h3>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.everydayLife}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.everydayLife && (
+                    <>
+                      <h3>Vie quotidienne</h3>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.everydayLife}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {/* {pain.sexologicApproach && <h2 className="h3">Sexualité</h2>} */}
+                  {/* {pain.sexologicApproach && <h2 className="h3">Sexualité</h2>} */}
 
-                {pain.sexologicApproach?.libido && (
-                  <>
-                    <h3>Libido</h3>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.libido}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.libido && (
+                    <>
+                      <h3>Libido</h3>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.libido}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.charge && (
-                  <>
-                    <h3>Charge mentale et communication</h3>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.charge}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.charge && (
+                    <>
+                      <h3>Charge mentale et communication</h3>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.charge}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.consent && (
-                  <>
-                    <h3>Sexe et consentement</h3>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.consent}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.consent && (
+                    <>
+                      <h3>Sexe et consentement</h3>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.consent}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.mental && (
-                  <>
-                    <h2 className="h3">Santé mentale</h2>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.mental}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.mental && (
+                    <>
+                      <h2 className="h3">Santé mentale</h2>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.mental}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.parenthood && (
-                  <>
-                    <h2 className="h3">Parentalité</h2>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.parenthood}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.parenthood && (
+                    <>
+                      <h2 className="h3">Parentalité</h2>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.parenthood}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.checkup && (
-                  <>
-                    <h2 className="h3">Avec les pros de la santé</h2>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.checkup}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.checkup && (
+                    <>
+                      <h2 className="h3">Avec les pros de la santé</h2>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.checkup}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.treatments && (
-                  <>
-                    <h3>Quels traitements pour me soulager ?</h3>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.treatments}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
+                  {pain.sexologicApproach?.treatments && (
+                    <>
+                      <h3>Quels traitements pour me soulager ?</h3>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.treatments}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
 
-                {pain.sexologicApproach?.pleasure && (
-                  <>
-                    <h2 className="h3">Plaisir/ anti-douleur</h2>
-                    <CustomPortableText
-                      value={pain.sexologicApproach?.pleasure}
-                      slug={pain.slug.current}
-                      glossary={glossary}
-                    />
-                  </>
-                )}
-              </>
+                  {pain.sexologicApproach?.pleasure && (
+                    <>
+                      <h2 className="h3">Plaisir/ anti-douleur</h2>
+                      <CustomPortableText
+                        value={pain.sexologicApproach?.pleasure}
+                        slug={pain.slug.current}
+                        glossary={glossary}
+                      />
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+            {isMed && (
+              <div className="diagrams-container">
+                {pain.medicalApproach &&
+                  pain.medicalApproach.diagrams &&
+                  Array.isArray(pain.medicalApproach.diagrams) &&
+                  pain.medicalApproach.diagrams.map(renderDiagram)}
+              </div>
             )}
           </div>
-          {isMed && (
-            <div className="diagrams-container">
-              {pain.medicalApproach &&
-                pain.medicalApproach.diagrams &&
-                Array.isArray(pain.medicalApproach.diagrams) &&
-                pain.medicalApproach.diagrams.map(renderDiagram)}
-            </div>
-          )}
-        </div>
-      </main>
-    </Layout>
+        </main>
+      </Layout>
+    </>
   );
 };
 

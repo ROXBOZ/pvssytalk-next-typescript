@@ -1,6 +1,7 @@
 import { MenuDetail, PainDetail } from "../types";
 import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
+import CustomHead from "../components/CustomHead";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LogosPartners from "../components/LogosPartners";
@@ -15,6 +16,10 @@ import { client } from "../config/sanity/client";
 
 interface HomeDetail {
   _id: string;
+  seo: {
+    pageTitle: string;
+    metadescription: string;
+  };
   tagline: string;
   marquee: string;
   content: any;
@@ -48,39 +53,44 @@ const Home = ({
   const footerMenuData = footerMenu[0].footerMenu;
   const partnersLogos = logos[0].partners;
 
+  console.log("seo !!", home[0].seo);
+
   return (
-    <PageTransition>
-      <div className="landing-view">
-        <Header data={headerMenuData} pains={painsSlugs} />
-        <Tagline tagline={home[0].tagline} />
-        {home[0].marquee && <Marquee marquee={home[0].marquee} />}
-      </div>
-
-      {home[0].content && (
-        <div className="content">
-          {home[0].content.map((item: any, index: number) => {
-            if (item && item._type) {
-              switch (item._type) {
-                case "navBlock":
-                  return <NavBlock data={item} key={index} />;
-                case "painsBlock":
-                  return <PainsBlock data={item} pains={pains} key={index} />;
-                case "textImageBlock":
-                  return <TextImageBlock data={item} key={index} />;
-
-                default:
-                  return null;
-              }
-            }
-            return null;
-          })}
+    <>
+      <CustomHead seo={home[0].seo} />
+      <PageTransition>
+        <div className="landing-view">
+          <Header data={headerMenuData} pains={painsSlugs} />
+          <Tagline tagline={home[0].tagline} />
+          {home[0].marquee && <Marquee marquee={home[0].marquee} />}
         </div>
-      )}
 
-      <LogosPartners logos={partnersLogos} />
-      <Marquee2 repeatTimes={999} />
-      <Footer data={footerMenuData} />
-    </PageTransition>
+        {home[0].content && (
+          <div className="content">
+            {home[0].content.map((item: any, index: number) => {
+              if (item && item._type) {
+                switch (item._type) {
+                  case "navBlock":
+                    return <NavBlock data={item} key={index} />;
+                  case "painsBlock":
+                    return <PainsBlock data={item} pains={pains} key={index} />;
+                  case "textImageBlock":
+                    return <TextImageBlock data={item} key={index} />;
+
+                  default:
+                    return null;
+                }
+              }
+              return null;
+            })}
+          </div>
+        )}
+
+        <LogosPartners logos={partnersLogos} />
+        <Marquee2 repeatTimes={999} />
+        <Footer data={footerMenuData} />
+      </PageTransition>
+    </>
   );
 };
 

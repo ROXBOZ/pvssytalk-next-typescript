@@ -7,7 +7,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
+import CustomHead from "../../components/CustomHead";
 import GlossaryLayout from "../../components/layouts/GlossaryLayout";
 import Layout from "../../components/layouts/Layout";
 import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
@@ -17,10 +17,12 @@ const Glossary = ({
   glossary,
   headerMenu,
   footerMenu,
+  seo,
 }: {
   glossary: GlossaryDetails;
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  seo: any;
 }) => {
   const sortedGlossary = glossary?.sort((a, b) => a.term.localeCompare(b.term));
   const [, setEntries] = useState<string[]>([]);
@@ -56,13 +58,16 @@ const Glossary = ({
   const letters = Object.keys(termGroups).sort();
 
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <div ref={termsContainerRef}>
-        <ResourcePageLayout relatedContent={glossary} pageName="Glossaire">
-          <GlossaryLayout letters={letters} termGroups={termGroups} />
-        </ResourcePageLayout>
-      </div>
-    </Layout>
+    <>
+      <CustomHead seo={seo[0].glossary} />
+      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+        <div ref={termsContainerRef}>
+          <ResourcePageLayout relatedContent={glossary} pageName="Glossaire">
+            <GlossaryLayout letters={letters} termGroups={termGroups} />
+          </ResourcePageLayout>
+        </div>
+      </Layout>
+    </>
   );
 };
 export const getStaticProps = async () => {
@@ -81,8 +86,11 @@ export const getStaticProps = async () => {
     const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
+    const seo: any = await client.fetch(
+      '*[_type == "seoManager" && !(_id in path("drafts.**"))]'
+    );
     return {
-      props: { glossary, pains, headerMenu, footerMenu },
+      props: { glossary, pains, headerMenu, footerMenu, seo },
     };
   } catch (error) {
     console.error("Error fetching glossary:", error);

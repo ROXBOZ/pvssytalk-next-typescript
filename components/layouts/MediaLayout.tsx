@@ -9,7 +9,6 @@ interface MediaLayoutProps {
 }
 
 function MediaLayout({ category, categorizedMedia }: MediaLayoutProps) {
-  console.log("categorizedMedia", categorizedMedia);
   return (
     <div key={category.value} className="media-container">
       <h2 className="h3">{category.title}</h2>

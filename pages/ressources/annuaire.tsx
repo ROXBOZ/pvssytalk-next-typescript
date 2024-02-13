@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
+import CustomHead from "../../components/CustomHead";
 import DirectoryLayout from "../../components/layouts/DirectoryLayout";
 import Layout from "../../components/layouts/Layout";
 import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
@@ -20,16 +21,15 @@ const Directory = ({
   footerMenu,
   typeform,
   regions,
+  seo,
 }: {
   directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   typeform: any;
   regions: any;
+  seo: any;
 }) => {
-  {
-    /* FIXME  */
-  }
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const filteredDirectoryItems = directory.filter((directoryItem) => {
     return (
@@ -43,33 +43,36 @@ const Directory = ({
   });
 
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <ResourcePageLayout
-        pageName="Annuaire"
-        relatedContent={directory}
-        typeform={typeform}
-        regions={regions[0].regions}
-      >
-        {directoryCategories.map((category, index) => {
-          if (typeof category === "string") {
-            return null;
-          }
+    <>
+      <CustomHead seo={seo[0].directory} />
+      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+        <ResourcePageLayout
+          pageName="Annuaire"
+          relatedContent={directory}
+          typeform={typeform}
+          regions={regions[0].regions}
+        >
+          {directoryCategories.map((category, index) => {
+            if (typeof category === "string") {
+              return null;
+            }
 
-          const categorizedDirectoryItem = filteredDirectoryItems.filter(
-            (directoryItem) => directoryItem.category === category.value
-          );
+            const categorizedDirectoryItem = filteredDirectoryItems.filter(
+              (directoryItem) => directoryItem.category === category.value
+            );
 
-          return (
-            <DirectoryLayout
-              key={`${category.value}_${index}`} // Ensure each DirectoryLayout component has a unique key
-              regions={regions}
-              category={category}
-              categorizedDirectoryItem={categorizedDirectoryItem}
-            />
-          );
-        })}
-      </ResourcePageLayout>
-    </Layout>
+            return (
+              <DirectoryLayout
+                key={`${category.value}_${index}`} // Ensure each DirectoryLayout component has a unique key
+                regions={regions}
+                category={category}
+                categorizedDirectoryItem={categorizedDirectoryItem}
+              />
+            );
+          })}
+        </ResourcePageLayout>
+      </Layout>
+    </>
   );
 };
 
@@ -113,6 +116,10 @@ export const getStaticProps = async () => {
     const typeform: typeformDetail = await client.fetch(`
       *[_type == "typeform" && !(_id in path("drafts.**"))]`);
 
+    const seo: any = await client.fetch(
+      '*[_type == "seoManager" && !(_id in path("drafts.**"))]'
+    );
+
     return {
       props: {
         directory: sortedDirectory,
@@ -120,6 +127,7 @@ export const getStaticProps = async () => {
         footerMenu,
         typeform,
         regions,
+        seo,
       },
     };
   } catch (error) {

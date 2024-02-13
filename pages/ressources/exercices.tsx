@@ -7,7 +7,7 @@ import {
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
+import CustomHead from "../../components/CustomHead";
 import { Exercise } from "../../components/Exercise";
 import Layout from "../../components/layouts/Layout";
 import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
@@ -17,10 +17,12 @@ const Exercises = ({
   exercises,
   headerMenu,
   footerMenu,
+  seo,
 }: {
   exercises: ExerciseDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  seo: any;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
@@ -36,16 +38,21 @@ const Exercises = ({
   });
 
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-      <ResourcePageLayout pageName="Exercices" relatedContent={exercises}>
-        <div className="exercises-container">
-          {filteredExercises &&
-            filteredExercises.map((exercise: ExerciseDetail, index: number) => {
-              return <Exercise key={index} exercise={exercise} />;
-            })}
-        </div>
-      </ResourcePageLayout>
-    </Layout>
+    <>
+      <CustomHead seo={seo[0].exercices} />
+      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+        <ResourcePageLayout pageName="Exercices" relatedContent={exercises}>
+          <div className="exercises-container">
+            {filteredExercises &&
+              filteredExercises.map(
+                (exercise: ExerciseDetail, index: number) => {
+                  return <Exercise key={index} exercise={exercise} />;
+                }
+              )}
+          </div>
+        </ResourcePageLayout>
+      </Layout>
+    </>
   );
 };
 
@@ -60,8 +67,13 @@ export const getStaticProps = async () => {
     const pains: PainDetail = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))]{...}'
     );
+
+    const seo: any = await client.fetch(
+      '*[_type == "seoManager" && !(_id in path("drafts.**"))]'
+    );
+
     return {
-      props: { exercises, pains, headerMenu, footerMenu },
+      props: { exercises, pains, headerMenu, footerMenu, seo },
     };
   } catch (error) {
     console.error("Error fetching exercises:", error);

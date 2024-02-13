@@ -3,6 +3,7 @@ import { client, urlFor } from "../config/sanity/client";
 import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
 import Breadcrumbs from "../components/Breadcrumbs";
+import CustomHead from "../components/CustomHead";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Image from "next/image";
@@ -20,10 +21,11 @@ const Page = ({
 }) => {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
+
   return (
     <>
+      <CustomHead seo={page.seo} />
       <Header data={headerMenuData} />
-
       <PageTransition>
         <div className="double-column-containers-group">
           <div className="double-column-container">
