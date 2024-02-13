@@ -5,7 +5,7 @@ import React from "react";
 export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
   return (
     <div className="media-item" key={mediaItem._id}>
-      <p>
+      <div>
         {mediaItem.url ? (
           <Link href={mediaItem.url} target="_blank">
             <strong>
@@ -32,7 +32,7 @@ export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
               );
             })}
         </div>
-      </p>
+      </div>
     </div>
   );
 };
