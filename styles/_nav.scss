@@ -162,6 +162,7 @@
     padding: 0.25rem 1em;
     border-radius: $border-radius;
     display: flex;
+    cursor: pointer;
 
     .drowpdown-title {
       display: flex;
@@ -182,6 +183,7 @@
 
       ul {
         width: 100%;
+        margin-left: -1em !important;
 
         li {
           cursor: pointer;

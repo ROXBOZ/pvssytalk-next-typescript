@@ -35,9 +35,6 @@ const RessourceNav = () => {
           <span>Médias</span>
         </Link>
       )}
-      <Link href="/ressources">
-        <span>Toutes les ressources</span>
-      </Link>
     </nav>
   );
 };

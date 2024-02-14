@@ -30,6 +30,7 @@ const Directory = ({
   seo: any;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
   const filteredDirectoryItems = directory.filter((directoryItem) => {
     return (
       !selectedFilter ||
@@ -41,6 +42,9 @@ const Directory = ({
     );
   });
 
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+
   return (
     <>
       <CustomHead seo={seo[0].directory} />
@@ -50,6 +54,10 @@ const Directory = ({
           relatedContent={directory}
           typeform={typeform}
           regions={regions[0].regions}
+          selectedPain={selectedPain}
+          setSelectedPain={setSelectedPain}
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
         >
           {directoryCategories.map((category, index) => {
             if (typeof category === "string") {
@@ -66,6 +74,8 @@ const Directory = ({
                 regions={regions}
                 category={category}
                 categorizedDirectoryItem={categorizedDirectoryItem}
+                selectedPain={selectedPain}
+                selectedRegion={selectedRegion}
               />
             );
           })}

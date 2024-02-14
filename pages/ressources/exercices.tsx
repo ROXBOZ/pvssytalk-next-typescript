@@ -37,16 +37,36 @@ const Exercises = ({
     );
   });
 
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+
+  console.log("selectedPain", selectedPain);
+
   return (
     <>
       <CustomHead seo={seo[0].exercices} />
       <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
-        <ResourcePageLayout pageName="Exercices" relatedContent={exercises}>
+        <ResourcePageLayout
+          pageName="Exercices"
+          relatedContent={exercises}
+          selectedPain={selectedPain}
+          setSelectedPain={setSelectedPain}
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
+        >
           <div className="exercises-container">
             {filteredExercises &&
               filteredExercises.map(
                 (exercise: ExerciseDetail, index: number) => {
-                  return <Exercise key={index} exercise={exercise} />;
+                  const itemPains: string[] = (exercise.relatedPain || []).map(
+                    (p: any) => p.name
+                  );
+
+                  console.log("EXERCICE itemPains", itemPains);
+                  if (!selectedPain || itemPains.includes(selectedPain)) {
+                    return <Exercise key={index} exercise={exercise} />;
+                  }
+                  return null;
                 }
               )}
           </div>

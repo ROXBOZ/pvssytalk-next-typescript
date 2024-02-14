@@ -22,16 +22,19 @@ const Medias = ({
   footerMenu,
   typeform,
   seo,
+  regions,
 }: {
   media: MediaDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   typeform: typeformDetail;
   seo: any;
+  regions: any;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
 
-  console.log("seo[0].medias");
   return (
     <>
       <CustomHead seo={seo[0].medias} />
@@ -40,6 +43,11 @@ const Medias = ({
           pageName="Médias"
           relatedContent={media}
           typeform={typeform}
+          selectedPain={selectedPain}
+          setSelectedPain={setSelectedPain}
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
+          regions={regions[0].regions}
         >
           {mediaCategories.map((category, index) => {
             if (typeof category === "string") {
@@ -74,6 +82,7 @@ const Medias = ({
                 key={category.value}
                 category={category}
                 categorizedMedia={categorizedMediaItem}
+                selectedPain={selectedPain}
               />
             );
           })}
@@ -114,8 +123,16 @@ export const getStaticProps = async () => {
         }
       }`);
 
+    const regions: any = await client.fetch(
+      `*[_type == "region" && !(_id in path("drafts.**"))]{
+          regions[]{
+            name
+          }
+        }`
+    );
+
     return {
-      props: { media, pains, headerMenu, footerMenu, typeform, seo },
+      props: { media, pains, headerMenu, footerMenu, typeform, seo, regions },
     };
   } catch (error) {
     console.error("Error fetching media:", error);

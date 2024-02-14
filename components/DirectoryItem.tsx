@@ -22,9 +22,9 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                   ""
                 )}
 
-                {contact.addresses?.map((address: any) =>
+                {contact.addresses?.map((address: any, index: number) =>
                   address.region ? (
-                    <span key={address.id} className="tag">
+                    <span key={index} className="tag">
                       {address.region}
                     </span>
                   ) : null

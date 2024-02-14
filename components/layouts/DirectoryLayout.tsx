@@ -2,25 +2,53 @@ import { DirectoryDetail } from "../../types";
 import DirectoryItem from "../DirectoryItem";
 import React from "react";
 
-function DirectoryLayout({ category, categorizedDirectoryItem }: any) {
+const DirectoryLayout: React.FC<any> = ({
+  category,
+  categorizedDirectoryItem,
+  selectedPain,
+  selectedRegion,
+}) => {
   const validatedItems = categorizedDirectoryItem.filter(
     (directoryItem: DirectoryDetail) => directoryItem.isValidated === true
   );
 
   return (
-    <div key={category.value} className="directory-container">
-      {validatedItems.length !== 0 && (
-        <h2 className="h3 category-title">{category.title} </h2>
-      )}
-      {categorizedDirectoryItem.map(
-        (directoryItem: DirectoryDetail, index: number) => {
-          if (directoryItem.isValidated === true) {
-            return <DirectoryItem contact={directoryItem} key={index} />;
-          }
+    <div className="directory-container">
+      {validatedItems.map((directoryItem: DirectoryDetail, index: number) => {
+        const itemPains: string[] = (directoryItem.relatedPain || []).map(
+          (p: any) => p.name
+        );
+        const itemRegions: string[] = (directoryItem.addresses || []).map(
+          (a: any) => a.region
+        );
+
+        if (
+          (selectedPain &&
+            !selectedRegion &&
+            itemPains.includes(selectedPain)) ||
+          (selectedRegion &&
+            !selectedPain &&
+            itemRegions.includes(selectedRegion)) ||
+          (!selectedRegion && !selectedPain) ||
+          (selectedRegion &&
+            selectedPain &&
+            itemPains.includes(selectedPain) &&
+            itemRegions.includes(selectedRegion))
+        ) {
+          return (
+            <React.Fragment key={index}>
+              {validatedItems.length !== 0 && (
+                <h2 className="h3 category-title">{category.title}</h2>
+              )}
+              <DirectoryItem contact={directoryItem} />
+            </React.Fragment>
+          );
         }
-      )}
+
+        return null;
+      })}
     </div>
   );
-}
+};
 
 export default DirectoryLayout;

@@ -14,30 +14,46 @@ const ResourcePageLayout: React.FC<{
   children?: ReactNode;
   typeform?: any;
   regions?: any;
-}> = ({ pageName, pain, relatedContent, children, typeform, regions }) => {
+  selectedPain: string;
+  setSelectedPain: (value: string) => void;
+  selectedRegion: string;
+  setSelectedRegion: (value: string) => void;
+}> = ({
+  pageName,
+  pain,
+  relatedContent,
+  children,
+  typeform,
+  regions,
+  selectedPain,
+  setSelectedPain,
+  selectedRegion,
+  setSelectedRegion,
+}) => {
   const router = useRouter();
   const [, setTopList] = useState(0);
 
   const typeformDirectoryLink = typeform && typeform[0].directoryTypeform;
   const typeformMediaLink = typeform && typeform[0].mediasTypeform;
+  const typeformAgendaLink = typeform && typeform[0].agendaTypeform;
+
   const typeformLink =
     pageName === "Annuaire"
       ? typeformDirectoryLink
       : pageName === "Médias"
       ? typeformMediaLink
+      : pageName === "Agenda"
+      ? typeformAgendaLink
       : "";
 
   const capitalizeFirstLetter = (input: string): string => {
     return input.charAt(0).toUpperCase() + input.slice(1);
   };
-  const [selectedPain, setSelectedPain] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState("");
 
   const allPains = pains.slice(1).map(capitalizeFirstLetter);
-
   const allRegions = regions && regions.map((region: any) => region.name);
 
-  const [anchorPosition, setAnchorPosition] = useState(0);
+  const [, setAnchorPosition] = useState(0);
   const letterContainerRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToAnchor = (anchor: string) => {
@@ -70,7 +86,40 @@ const ResourcePageLayout: React.FC<{
       : e;
   };
 
-  console.log("acronym(selectedPain)", acronym(selectedPain));
+  /* FIXME STAGGER ANIMATION GSAP IS DELAYED */
+  // const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  // const handleDropdownHover = () => {
+  //   setDropdownVisible(true);
+  // };
+
+  // const handleDropdownLeave = () => {
+  //   setDropdownVisible(false);
+  // };
+
+  // console.log("isDropdownVisible", isDropdownVisible);
+
+  // useLayoutEffect(() => {
+  //   console.log("animate");
+  //   let animation: gsap.core.Animation | undefined;
+  //   if (isDropdownVisible) {
+  //     animation = gsap.fromTo(
+  //       ".animate",
+  //       { scale: 0 },
+  //       { scale: 1, stagger: { amount: 0.75 } }
+  //     );
+  //   }
+
+  //   return () => {
+  //     if (animation) {
+  //       animation.kill();
+  //     }
+  //   };
+  // }, [isDropdownVisible]);
+
+  // onMouseEnter={handleDropdownHover}
+  // onMouseLeave={handleDropdownLeave}
+  /* FIXME END OF STAGGER ANIMATION GSAP*/
 
   const DropDown = ({ title, array }: any) => {
     return (
@@ -92,6 +141,7 @@ const ResourcePageLayout: React.FC<{
             {array &&
               array.map((item: any) => (
                 <li
+                  className="animate"
                   onClick={() => {
                     title === "Douleur"
                       ? setSelectedPain(item)
@@ -140,17 +190,22 @@ const ResourcePageLayout: React.FC<{
 
           {pageName !== "Glossaire" && (
             <div className="dropdowns-container">
-              <DropDown title="Douleur" array={allPains} />
-              <DropDown title="Région" array={allRegions} />
-              <button
-                className="reset-button"
-                onClick={() => {
-                  setSelectedPain("");
-                  setSelectedRegion("");
-                }}
-              >
-                &#x2715;
-              </button>
+              {!pain && <DropDown title="Douleur" array={allPains} />}
+              {pageName === "Annuaire" ||
+                (pageName === "Agenda" && (
+                  <DropDown title="Région" array={allRegions} />
+                ))}
+              {!pain || pageName === "Annuaire" ? (
+                <button
+                  className="reset-button"
+                  onClick={() => {
+                    setSelectedPain("");
+                    setSelectedRegion("");
+                  }}
+                >
+                  &#x2715;
+                </button>
+              ) : null}
             </div>
           )}
 

@@ -132,6 +132,7 @@ export interface MediaDetail {
   filter: string;
   url?: string;
   tags: { name: string }[];
+  isValidated: boolean;
 }
 export type MediaDetails = MediaDetail[];
 
@@ -202,3 +203,16 @@ export type EventDetails = EventDetail[];
 
 export interface typeformDetail {}
 [];
+
+interface AgendaDetail {
+  title: string;
+  eventDuration: "oneDay" | "manyDays";
+  eventDate: string;
+  eventStartTime: string;
+  eventEndTime: string;
+  eventStartDate: string;
+  eventEndDate: string;
+  shortDef: any;
+  relatedPain: { name: string }[];
+  region: string;
+}

@@ -5,13 +5,12 @@ import {
   PainDetail,
   typeformDetail,
 } from "../../../types";
+import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
-import Breadcrumbs from "../../../components/Breadcrumbs";
 import DirectoryLayout from "../../../components/layouts/DirectoryLayout";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/layouts/Layout";
-import React from "react";
 import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";
 import { directoryCategories } from "../../../components/reusables/Filters";
@@ -23,12 +22,14 @@ const Directory = ({
   headerMenu,
   footerMenu,
   typeform,
+  regions,
 }: {
   pain: PainDetail;
   directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   typeform: typeformDetail;
+  regions: any;
 }) => {
   const relatedDirectoryItem = directory.filter(
     (directoryItem: DirectoryDetail) =>
@@ -37,13 +38,21 @@ const Directory = ({
       })
   );
 
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <ResourcePageLayout
+        regions={regions[0].regions}
         pageName="Annuaire"
         pain={pain}
         relatedContent={relatedDirectoryItem}
         typeform={typeform}
+        selectedPain={selectedPain}
+        setSelectedPain={setSelectedPain}
+        selectedRegion={selectedRegion}
+        setSelectedRegion={setSelectedRegion}
       >
         {directoryCategories.map((category) => {
           const categorizedDirectoryItem = relatedDirectoryItem.filter(
@@ -59,6 +68,8 @@ const Directory = ({
               key={category.value}
               category={category}
               categorizedDirectoryItem={categorizedDirectoryItem}
+              selectedPain={selectedPain}
+              selectedRegion={selectedRegion}
             />
           );
         })}
@@ -98,6 +109,14 @@ export const getStaticProps = async ({ params }: any) => {
       { painId: fetchedPain?._id }
     );
 
+    const regions: any = await client.fetch(
+      `*[_type == "region" && !(_id in path("drafts.**"))]{
+          regions[]{
+            name
+          }
+        }`
+    );
+
     if (!fetchedPain || !directory) {
       return {
         notFound: true,
@@ -119,6 +138,7 @@ export const getStaticProps = async ({ params }: any) => {
         headerMenu,
         footerMenu,
         typeform,
+        regions,
       },
     };
   } catch (error) {

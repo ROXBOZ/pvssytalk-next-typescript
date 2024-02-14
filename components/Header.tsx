@@ -82,7 +82,7 @@ const Header = ({ data, pains }: any) => {
                           {item.pages &&
                             item.pages.map((page: any, index: number) => (
                               <LinkBlock
-                                index={index}
+                                key={index}
                                 slug={page.slug.current}
                                 title={page.title}
                                 description={page.description}

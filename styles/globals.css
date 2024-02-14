@@ -207,6 +207,7 @@
   padding: 0.25rem 1em;
   border-radius: 50px;
   display: flex;
+  cursor: pointer;
 }
 .dropdowns-container .dropdown .drowpdown-title {
   display: flex;
@@ -227,6 +228,7 @@
 }
 .dropdowns-container .dropdown .dropdown-content ul {
   width: 100%;
+  margin-left: -1em !important;
 }
 .dropdowns-container .dropdown .dropdown-content ul li {
   cursor: pointer;
