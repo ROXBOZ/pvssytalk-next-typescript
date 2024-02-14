@@ -191,11 +191,10 @@ const ResourcePageLayout: React.FC<{
           {pageName !== "Glossaire" && (
             <div className="dropdowns-container">
               {!pain && <DropDown title="Douleur" array={allPains} />}
-              {pageName === "Annuaire" ||
-                (pageName === "Agenda" && (
-                  <DropDown title="Région" array={allRegions} />
-                ))}
-              {!pain || pageName === "Annuaire" ? (
+              {(pageName === "Annuaire" || pageName === "Agenda") && (
+                <DropDown title="Région" array={allRegions} />
+              )}
+              {(!pain || pageName === "Annuaire" || pageName === "Agenda") && (
                 <button
                   className="reset-button"
                   onClick={() => {
@@ -205,7 +204,7 @@ const ResourcePageLayout: React.FC<{
                 >
                   &#x2715;
                 </button>
-              ) : null}
+              )}
             </div>
           )}
 

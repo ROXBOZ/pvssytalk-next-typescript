@@ -26,14 +26,20 @@ function AgendaLayout({
   const itemPains: string[] = (event.relatedPain || []).map((p: any) => p.name);
   const itemRegions = event.region;
 
+  console.log("event", event);
+
   if (
     (selectedPain && !selectedRegion && itemPains.includes(selectedPain)) ||
-    (selectedRegion && !selectedPain && itemRegions.includes(selectedRegion)) ||
+    (selectedRegion &&
+      !selectedPain &&
+      itemRegions &&
+      itemRegions.includes(selectedRegion)) ||
     (!selectedRegion && !selectedPain) ||
     (selectedRegion &&
       selectedPain &&
       itemPains.includes(selectedPain) &&
-      itemRegions.includes(selectedRegion))
+      itemRegions.includes(selectedRegion)) ||
+    (selectedRegion && event.eventLocation === "online")
   ) {
     return (
       <div>

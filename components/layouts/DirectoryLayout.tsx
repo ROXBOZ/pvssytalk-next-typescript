@@ -22,6 +22,8 @@ const DirectoryLayout: React.FC<any> = ({
           (a: any) => a.region
         );
 
+        console.log("itemRegions", itemRegions);
+
         if (
           (selectedPain &&
             !selectedRegion &&
@@ -33,7 +35,8 @@ const DirectoryLayout: React.FC<any> = ({
           (selectedRegion &&
             selectedPain &&
             itemPains.includes(selectedPain) &&
-            itemRegions.includes(selectedRegion))
+            itemRegions.includes(selectedRegion)) ||
+          (selectedRegion && itemRegions.length === 0)
         ) {
           return (
             <React.Fragment key={index}>

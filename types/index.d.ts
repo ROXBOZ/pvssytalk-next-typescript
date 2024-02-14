@@ -215,4 +215,5 @@ interface AgendaDetail {
   shortDef: any;
   relatedPain: { name: string }[];
   region: string;
+  eventLocation: "online" | "onSite";
 }
