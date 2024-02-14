@@ -76,7 +76,8 @@
 
   .ressources-nav {
     a {
-      font-family: $font-regular;
+      font-family: $font-logo;
+      font-size: large;
       padding: 0.75rem 0 0.25rem;
       display: flex;
       justify-content: space-between;
@@ -101,14 +102,17 @@
       padding: 0.5rem;
       display: flex;
       align-items: center;
-      border: $border-solid $primary;
+      background-color: lighten($txt-color, 40);
+      &:hover {
+        background-color: lighten($txt-color, 30);
+        transition: $animation-transition;
+      }
 
-      @include painful;
       svg {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         font-size: x-large;
-        color: darken($primary, 10);
+        color: $bg-color;
         path {
           width: 100%;
         }
@@ -145,23 +149,55 @@
 .dropdowns-container {
   display: flex;
   gap: $sm-space;
+
+  .reset-button {
+    max-width: fit-content;
+    aspect-ratio: 1/1;
+    padding: 0 0.75rem;
+  }
   .dropdown {
     position: relative;
     flex: 1;
     border: $border-solid $secondary;
     padding: 0.25rem 1em;
     border-radius: $border-radius;
+    display: flex;
+
     .drowpdown-title {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
+      .placeholder {
+        color: lighten($txt-color, 40);
+      }
     }
     .dropdown-content {
+      margin-top: 2rem;
       display: none;
       position: absolute;
-      min-width: fit-content;
-      padding: $sm-space;
       z-index: 1;
+      width: 100%;
+      padding-right: 0;
+
+      ul {
+        width: 100%;
+
+        li {
+          cursor: pointer;
+          padding: 0.25rem 1em;
+          background-color: lighten($secondary, 10);
+          border-radius: $border-radius;
+
+          &:hover {
+            background-color: $secondary;
+          }
+        }
+      }
+
+      &:hover {
+        display: flex;
+      }
     }
 
     &:hover {
@@ -179,8 +215,7 @@
           max-width: 90%;
           li {
             list-style: none;
-            border-bottom: $border-solid $secondary;
-            padding-bottom: 0.25rem;
+            padding-right: 0;
           }
         }
       }

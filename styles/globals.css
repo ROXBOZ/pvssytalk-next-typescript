@@ -31,14 +31,14 @@
 /*-----Animations-----*/
 .primary-button {
   font-family: "ESRebond";
-  border: 1px solid #e4c7f1;
-  background-color: #fe7768;
-}
-.primary-button:hover {
+  border: 1px solid #fd4a36;
   background-color: #fd4a36;
 }
+.primary-button:hover {
+  background-color: #fe7768;
+}
 .primary-button:active {
-  background-color: #fd331d;
+  background-color: #fea59b;
 }
 
 .nav-directory {
@@ -116,7 +116,8 @@
   justify-content: flex-end;
 }
 .pain-nav .ressources-nav a {
-  font-family: "ESKlarheit-Book";
+  font-family: "ESRebond";
+  font-size: large;
   padding: 0.75rem 0 0.25rem;
   display: flex;
   justify-content: space-between;
@@ -149,30 +150,19 @@
   padding: 0.5rem;
   display: flex;
   align-items: center;
-  border: 1px solid #fd4a36;
+  background-color: #a62fee;
 }
 .pain-nav .partage-nav a:hover,
 .pain-nav .partage-nav .a:hover {
-  border: 1px solid #ffd2cd;
-  background-color: #ffd2cd;
-}
-.pain-nav .partage-nav a:active,
-.pain-nav .partage-nav .a:active {
-  background-color: #fea59b;
-  border: 1px solid #fea59b;
-}
-.pain-nav .partage-nav a.active,
-.pain-nav .partage-nav .a.active {
-  border: 1px solid #fe7768;
-  background-color: #fe7768;
-  animation: glow 8s infinite;
+  background-color: #8e11d9;
+  transition: 0.2s ease-in;
 }
 .pain-nav .partage-nav a svg,
 .pain-nav .partage-nav .a svg {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   font-size: x-large;
-  color: #fc1d04;
+  color: #fefdf4;
 }
 .pain-nav .partage-nav a svg path,
 .pain-nav .partage-nav .a svg path {
@@ -204,25 +194,51 @@
   display: flex;
   gap: 1rem;
 }
+.dropdowns-container .reset-button {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  aspect-ratio: 1/1;
+  padding: 0 0.75rem;
+}
 .dropdowns-container .dropdown {
   position: relative;
   flex: 1;
   border: 1px solid #e4c7f1;
   padding: 0.25rem 1em;
   border-radius: 50px;
+  display: flex;
 }
 .dropdowns-container .dropdown .drowpdown-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+}
+.dropdowns-container .dropdown .drowpdown-title .placeholder {
+  color: #a62fee;
 }
 .dropdowns-container .dropdown .dropdown-content {
+  margin-top: 2rem;
   display: none;
   position: absolute;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-  padding: 1rem;
   z-index: 1;
+  width: 100%;
+  padding-right: 0;
+}
+.dropdowns-container .dropdown .dropdown-content ul {
+  width: 100%;
+}
+.dropdowns-container .dropdown .dropdown-content ul li {
+  cursor: pointer;
+  padding: 0.25rem 1em;
+  background-color: #f8f0fb;
+  border-radius: 50px;
+}
+.dropdowns-container .dropdown .dropdown-content ul li:hover {
+  background-color: #e4c7f1;
+}
+.dropdowns-container .dropdown .dropdown-content:hover {
+  display: flex;
 }
 .dropdowns-container .dropdown:hover .drowpdown-title .icon {
   transform: rotate(45deg);
@@ -237,8 +253,7 @@
 }
 .dropdowns-container .dropdown:hover .dropdown-content ul li {
   list-style: none;
-  border-bottom: 1px solid #e4c7f1;
-  padding-bottom: 0.25rem;
+  padding-right: 0;
 }
 
 h2,
@@ -704,14 +719,14 @@ footer .footer-content nav a:hover {
 }
 .landing-view .marquee button {
   font-family: "ESRebond";
-  border: 1px solid #e4c7f1;
-  background-color: #fe7768;
-}
-.landing-view .marquee button:hover {
+  border: 1px solid #fd4a36;
   background-color: #fd4a36;
 }
+.landing-view .marquee button:hover {
+  background-color: #fe7768;
+}
 .landing-view .marquee button:active {
-  background-color: #fd331d;
+  background-color: #fea59b;
 }
 
 @keyframes gradient {
@@ -817,8 +832,8 @@ footer .footer-content nav a:hover {
   max-width: -moz-fit-content;
   max-width: fit-content;
   padding: 0.25rem 1em;
-  border: 1px solid #fc1d04;
-  color: #fc1d04;
+  border: 1px solid #ffd2cd;
+  color: #fd4a36;
   border-radius: 50px;
   font-size: small;
   max-height: -moz-max-content;
@@ -937,10 +952,27 @@ footer .footer-content nav a:hover {
 .title-container .pain-illu-cover {
   grid-column: 3/11;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 50px;
   -o-object-fit: cover;
      object-fit: cover;
   height: auto;
+  overflow: hidden;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  transition: 3s;
+}
+.title-container .pain-illu-cover img {
+  height: -moz-fit-content;
+  height: fit-content;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  transition: 3s;
+}
+.title-container .pain-illu-cover:hover img {
+  transform: scale(1.05);
 }
 
 .pain-article {

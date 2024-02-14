@@ -7,7 +7,6 @@ import {
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
 import CustomHead from "../../components/CustomHead";
 import DirectoryLayout from "../../components/layouts/DirectoryLayout";
 import Layout from "../../components/layouts/Layout";
@@ -63,7 +62,7 @@ const Directory = ({
 
             return (
               <DirectoryLayout
-                key={`${category.value}_${index}`} // Ensure each DirectoryLayout component has a unique key
+                key={`${category.value}_${index}`}
                 regions={regions}
                 category={category}
                 categorizedDirectoryItem={categorizedDirectoryItem}

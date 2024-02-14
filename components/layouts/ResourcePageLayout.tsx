@@ -20,7 +20,6 @@ const ResourcePageLayout: React.FC<{
 
   const typeformDirectoryLink = typeform && typeform[0].directoryTypeform;
   const typeformMediaLink = typeform && typeform[0].mediasTypeform;
-
   const typeformLink =
     pageName === "Annuaire"
       ? typeformDirectoryLink
@@ -28,10 +27,17 @@ const ResourcePageLayout: React.FC<{
       ? typeformMediaLink
       : "";
 
-  const allPains = pains.slice(1);
+  const capitalizeFirstLetter = (input: string): string => {
+    return input.charAt(0).toUpperCase() + input.slice(1);
+  };
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+
+  const allPains = pains.slice(1).map(capitalizeFirstLetter);
+
   const allRegions = regions && regions.map((region: any) => region.name);
 
-  const [, setAnchorPosition] = useState(0);
+  const [anchorPosition, setAnchorPosition] = useState(0);
   const letterContainerRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToAnchor = (anchor: string) => {
@@ -55,21 +61,47 @@ const ResourcePageLayout: React.FC<{
     });
   };
 
-  const acronym =
-    pain?.name === "Syndrome des ovaires polykystiques" ||
-    pain?.name === "Syndrôme des ovaires polykystiques"
+  const acronym = (e: string): string => {
+    return e === "Syndrome des ovaires polykystiques" ||
+      e === "Syndrôme des ovaires polykystiques" ||
+      e === "syndrome des ovaires polykystiques" ||
+      e === "syndrôme des ovaires polykystiques"
       ? "SOPK"
-      : pain?.name.toLowerCase() ?? "";
+      : e;
+  };
+
+  console.log("acronym(selectedPain)", acronym(selectedPain));
 
   const DropDown = ({ title, array }: any) => {
     return (
       <div className="dropdown">
         <span className="drowpdown-title">
-          {title} <span className="icon logo">↗</span>
+          {title === "Douleur" && selectedPain ? (
+            capitalizeFirstLetter(acronym(selectedPain))
+          ) : title === "Douleur" && !selectedPain ? (
+            <span className="placeholder">{title}</span>
+          ) : title !== "Douleur" && selectedRegion ? (
+            selectedRegion
+          ) : (
+            <span className="placeholder">{title}</span>
+          )}
+          <span className="icon logo">↗</span>
         </span>
         <div className="dropdown-content">
           <ul>
-            {array && array.map((item: any) => <li key={item}>{item}</li>)}
+            {array &&
+              array.map((item: any) => (
+                <li
+                  onClick={() => {
+                    title === "Douleur"
+                      ? setSelectedPain(item)
+                      : setSelectedRegion(item);
+                  }}
+                  key={item}
+                >
+                  {acronym(item)}
+                </li>
+              ))}
           </ul>
         </div>
       </div>
@@ -85,7 +117,7 @@ const ResourcePageLayout: React.FC<{
               {pageName}{" "}
               {pain && pain.name && (
                 <Link href="./" className="colored logo">
-                  {acronym}
+                  {acronym(pain.name)}
                 </Link>
               )}{" "}
               <sup className={`${pain ? "no-color" : "color"}`}>
@@ -106,13 +138,21 @@ const ResourcePageLayout: React.FC<{
 
           {pain ? <PainNav pain={pain} /> : <RessourceNav />}
 
-          {/* {pageName !== "Glossaire" ||
-            (!pain && (
-              <div className="dropdowns-container">
-                <DropDown title="Douleurs" array={allPains} />
-                <DropDown title="Régions" array={allRegions} />
-              </div>
-            ))} */}
+          {pageName !== "Glossaire" && (
+            <div className="dropdowns-container">
+              <DropDown title="Douleur" array={allPains} />
+              <DropDown title="Région" array={allRegions} />
+              <button
+                className="reset-button"
+                onClick={() => {
+                  setSelectedPain("");
+                  setSelectedRegion("");
+                }}
+              >
+                &#x2715;
+              </button>
+            </div>
+          )}
 
           {pageName === "Glossaire" && (
             <div className="letter-link-container">

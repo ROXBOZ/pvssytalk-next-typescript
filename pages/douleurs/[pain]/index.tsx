@@ -8,7 +8,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { client, urlFor } from "../../../config/sanity/client";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
-import Breadcrumbs from "../../../components/Breadcrumbs";
 import CustomHead from "../../../components/CustomHead";
 import { GetStaticPaths } from "next";
 import Image from "next/image";
@@ -126,16 +125,18 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
                 </Link>
               </span>
             </div>
+
             {pain.mainImage && (
-              <Image
-                className="pain-illu-cover"
-                src={urlFor(pain.mainImage.asset._ref).url()}
-                width={1000}
-                height={1000}
-                alt={pain.name}
-                style={imageCoverHotspot}
-                priority
-              />
+              <div className="pain-illu-cover">
+                <Image
+                  src={urlFor(pain.mainImage.asset._ref).url()}
+                  width={1000}
+                  height={1000}
+                  alt={pain.name}
+                  style={imageCoverHotspot}
+                  priority
+                />
+              </div>
             )}
           </div>
 

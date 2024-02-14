@@ -40,13 +40,13 @@
 
 @mixin primarybutton {
   font-family: $font-logo;
-  border: $border-solid $secondary;
-  background-color: lighten($primary, 10);
+  border: $border-solid $primary;
+  background-color: $primary;
   &:hover {
-    background-color: $primary;
+    background-color: lighten($primary, 10);
   }
   &:active {
-    background-color: darken($primary, 5);
+    background-color: lighten($primary, 20);
   }
 }
 

@@ -82,8 +82,8 @@
   white-space: nowrap;
   max-width: fit-content;
   padding: 0.25rem 1em;
-  border: $border-solid darken($primary, 10);
-  color: darken($primary, 10);
+  border: $border-solid lighten($primary, 30);
+  color: $primary;
   border-radius: $border-radius;
   font-size: small;
   max-height: max-content;
