@@ -57,13 +57,18 @@ const painGlossary = ({
   }, [sortedGlossary, setEntries]);
 
   const letters = Object.keys(termGroups).sort();
-
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <ResourcePageLayout
         pageName="Glossaire"
         pain={pain}
         relatedContent={sortedGlossary}
+        selectedPain={selectedPain}
+        setSelectedPain={setSelectedPain}
+        selectedRegion={selectedRegion}
+        setSelectedRegion={setSelectedRegion}
       >
         <GlossaryLayout letters={letters} termGroups={termGroups} />
       </ResourcePageLayout>

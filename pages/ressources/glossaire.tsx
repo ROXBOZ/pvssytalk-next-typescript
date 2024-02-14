@@ -57,12 +57,22 @@ const Glossary = ({
 
   const letters = Object.keys(termGroups).sort();
 
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+
   return (
     <>
       <CustomHead seo={seo[0].glossary} />
       <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
         <div ref={termsContainerRef}>
-          <ResourcePageLayout relatedContent={glossary} pageName="Glossaire">
+          <ResourcePageLayout
+            relatedContent={glossary}
+            pageName="Glossaire"
+            selectedPain={selectedPain}
+            setSelectedPain={setSelectedPain}
+            selectedRegion={selectedRegion}
+            setSelectedRegion={setSelectedRegion}
+          >
             <GlossaryLayout letters={letters} termGroups={termGroups} />
           </ResourcePageLayout>
         </div>

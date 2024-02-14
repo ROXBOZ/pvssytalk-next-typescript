@@ -4,13 +4,13 @@ import {
   MenuDetail,
   PainDetail,
 } from "../../../types";
+import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { Exercise } from "../../../components/Exercise";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/layouts/Layout";
-import React from "react";
 import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";
 import { getStaticPathsPain } from "../../../utils/dataFetching";
@@ -36,12 +36,18 @@ const PainExercises = ({
   footerMenu: MenuDetail[];
 }) => {
   const relatedExercises = filterRelatedExercises(exercises, pain._id);
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <ResourcePageLayout
         pageName="Exercices"
         pain={pain}
         relatedContent={relatedExercises}
+        selectedPain={selectedPain}
+        setSelectedPain={setSelectedPain}
+        selectedRegion={selectedRegion}
+        setSelectedRegion={setSelectedRegion}
       >
         <div className="exercises-container">
           {relatedExercises &&

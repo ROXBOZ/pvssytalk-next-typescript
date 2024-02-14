@@ -4,13 +4,13 @@ import {
   MenuDetail,
   PainDetail,
 } from "../../../types";
+import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/layouts/Layout";
 import MediaLayout from "../../../components/layouts/MediaLayout";
-import React from "react";
 import ResourcePageLayout from "../../../components/layouts/ResourcePageLayout";
 import { client } from "../../../config/sanity/client";
 import { getStaticPathsPain } from "../../../utils/dataFetching";
@@ -30,13 +30,18 @@ const Medias = ({
   const relatedMedia = medias.filter((mediaItem: MediaDetail) =>
     mediaItem.relatedPain?.some((related) => related._ref === pain._id)
   );
-
+  const [selectedPain, setSelectedPain] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
       <ResourcePageLayout
         pageName="Médias"
         pain={pain}
         relatedContent={relatedMedia}
+        selectedPain={selectedPain}
+        setSelectedPain={setSelectedPain}
+        selectedRegion={selectedRegion}
+        setSelectedRegion={setSelectedRegion}
       >
         <div className="media-container">
           {mediaCategories.map((category: any, index: number) => {
@@ -53,6 +58,7 @@ const Medias = ({
                 key={index}
                 category={category}
                 categorizedMedia={categorizedMedia}
+                selectedPain={selectedPain}
               />
             );
           })}
