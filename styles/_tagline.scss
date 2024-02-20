@@ -13,7 +13,7 @@
     animation: gradient 4s infinite alternate;
 
     * {
-      color: $txt-color2;
+      color: lighten($txt-color, 40);
       text-align: center;
       max-width: 60%;
       line-height: 1;

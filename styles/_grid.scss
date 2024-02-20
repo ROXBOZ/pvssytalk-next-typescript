@@ -15,7 +15,7 @@
 
   div {
     &:first-child {
-      grid-column: 1/6;
+      grid-column: 1/5;
 
       // h2 {
       //   margin-top: 0;
@@ -24,7 +24,7 @@
 
     &:nth-child(2) {
       margin: 0;
-      grid-column: #{$grid-second-half};
+      grid-column: 6/13;
       width: 100%;
     }
   }

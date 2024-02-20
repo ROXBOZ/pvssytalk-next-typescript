@@ -12,16 +12,10 @@
       margin-top: 0 !important;
     }
 
-    // &:not(:last-of-type) {
-    //   margin-bottom: $lg-space;
-    // }
-
     .directory-item-title {
       display: flex;
       gap: 2rem;
-      justify-content: space-between !important;
       align-items: center;
-      max-height: fit-content;
 
       h2,
       h3 {

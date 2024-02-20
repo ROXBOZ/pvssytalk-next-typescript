@@ -74,19 +74,38 @@
   // padding: $sm-space 0;
   max-width: fit-content;
   display: flex;
-  gap: 0.5rem;
   flex-wrap: wrap;
+  column-gap: 0.75rem;
+  row-gap: 0.25rem;
 }
 
 .tag {
   white-space: nowrap;
   max-width: fit-content;
   padding: 0.25rem 1em;
-  border: $border-solid lighten($primary, 30);
-  color: $primary;
+  // border: $border-solid lighten($primary, 30);
+  // color: $primary;
+  background-color: lighten($secondary, 5);
   border-radius: $border-radius;
   font-size: small;
   max-height: max-content;
   display: flex;
   align-items: center;
+  height: fit-content;
+
+  &.recommendation {
+    background-color: transparent;
+    border-color: transparent;
+    color: $txt-color;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    .dot {
+      width: 12px;
+      height: 12px;
+      background-color: lighten($txt-color, 50);
+      border-radius: 50%;
+    }
+  }
 }

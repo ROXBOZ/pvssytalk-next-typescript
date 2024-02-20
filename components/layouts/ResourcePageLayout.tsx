@@ -86,41 +86,6 @@ const ResourcePageLayout: React.FC<{
       : e;
   };
 
-  /* FIXME STAGGER ANIMATION GSAP IS DELAYED */
-  // const [isDropdownVisible, setDropdownVisible] = useState(false);
-
-  // const handleDropdownHover = () => {
-  //   setDropdownVisible(true);
-  // };
-
-  // const handleDropdownLeave = () => {
-  //   setDropdownVisible(false);
-  // };
-
-  // console.log("isDropdownVisible", isDropdownVisible);
-
-  // useLayoutEffect(() => {
-  //   console.log("animate");
-  //   let animation: gsap.core.Animation | undefined;
-  //   if (isDropdownVisible) {
-  //     animation = gsap.fromTo(
-  //       ".animate",
-  //       { scale: 0 },
-  //       { scale: 1, stagger: { amount: 0.75 } }
-  //     );
-  //   }
-
-  //   return () => {
-  //     if (animation) {
-  //       animation.kill();
-  //     }
-  //   };
-  // }, [isDropdownVisible]);
-
-  // onMouseEnter={handleDropdownHover}
-  // onMouseLeave={handleDropdownLeave}
-  /* FIXME END OF STAGGER ANIMATION GSAP*/
-
   const DropDown = ({ title, array }: any) => {
     return (
       <div className="dropdown">
@@ -134,7 +99,9 @@ const ResourcePageLayout: React.FC<{
           ) : (
             <span className="placeholder">{title}</span>
           )}
-          <span className="icon logo">↗</span>
+          <span className="icon logo" style={{ rotate: "45deg" }}>
+            &#x2715;
+          </span>
         </span>
         <div className="dropdown-content">
           <ul>
@@ -180,7 +147,7 @@ const ResourcePageLayout: React.FC<{
             {!pain && typeformLink && (
               <Link target="_blank" style={{ border: 0 }} href={typeformLink}>
                 <button className="primary-button">
-                  faire une recommendation
+                  recommander <span className="icon logo">→</span>
                 </button>
               </Link>
             )}

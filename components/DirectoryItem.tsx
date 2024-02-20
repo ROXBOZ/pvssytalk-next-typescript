@@ -51,44 +51,7 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                   </>
                 )}
               </div>
-              <div>
-                {contact.addresses && contact.category === "specialist" ? (
-                  <h4>Lieux de consultations</h4>
-                ) : (
-                  contact.addresses && <h4>Adresses </h4>
-                )}
-                {contact.addresses?.map((a) => {
-                  return (
-                    <div className="directory-item-address" key={a._key}>
-                      <span>{a.address}</span>
-                      <br />
-                      {a.phoneIndicator && a.phone && (
-                        <Link
-                          href={`tel:${a.phoneIndicator}${a.phone
-                            .substring(1)
-                            .replace(/\s/g, "")}`}
-                        >
-                          {a.phone}
-                        </Link>
-                      )}
-                      <br />
-                      <div
-                        className="tag-container"
-                        style={{ margin: "1rem 0" }}
-                      >
-                        {a.accessibility &&
-                          a.accessibility.map((tag: any, index: number) => {
-                            return (
-                              <div className="tag" key={index}>
-                                <span>{tag.name}</span>
-                              </div>
-                            );
-                          })}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+
               <div>
                 {contact.pricing && (
                   <div>
@@ -125,14 +88,50 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                 )}
               </div>
             </div>
+
             <div>
+              <div>
+                {contact.addresses && contact.category === "specialist" ? (
+                  <h4>Lieux de consultations</h4>
+                ) : (
+                  contact.addresses && <h4>Adresses </h4>
+                )}
+                {contact.addresses?.map((a) => {
+                  return (
+                    <div className="directory-item-address" key={a._key}>
+                      <span>{a.address}</span>
+                      <br />
+                      {a.phoneIndicator && a.phone && (
+                        <Link
+                          href={`tel:${a.phoneIndicator}${a.phone
+                            .substring(1)
+                            .replace(/\s/g, "")}`}
+                        >
+                          {a.phone}
+                        </Link>
+                      )}
+                      <br />
+                      <div className="tag-container">
+                        {a.accessibility &&
+                          a.accessibility.map((tag: any, index: number) => {
+                            return (
+                              <div className="tag" key={index}>
+                                <span>{tag.name}</span>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
               {contact.recommendations && <h4>Recommendations</h4>}
               <div className="tag-container">
                 {contact.recommendations &&
                   contact.recommendations.map((tag: any, index: number) => {
                     return (
-                      <div className="tag" key={index}>
-                        <span>{tag.name}</span>
+                      <div className="tag recommendation" key={index}>
+                        <div className="dot" /> <span>{tag.name}</span>
                       </div>
                     );
                   })}

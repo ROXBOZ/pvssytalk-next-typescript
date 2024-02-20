@@ -2,7 +2,6 @@ import { InfoPageDetail, MenuDetail } from "../types";
 import { client, urlFor } from "../config/sanity/client";
 import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
-import Breadcrumbs from "../components/Breadcrumbs";
 import CustomHead from "../components/CustomHead";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
