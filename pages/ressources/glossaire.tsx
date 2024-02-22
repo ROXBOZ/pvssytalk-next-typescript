@@ -18,11 +18,13 @@ const Glossary = ({
   headerMenu,
   footerMenu,
   seo,
+  painsSlugs,
 }: {
   glossary: GlossaryDetails;
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   seo: any;
+  painsSlugs: any;
 }) => {
   const sortedGlossary = glossary?.sort((a, b) => a.term.localeCompare(b.term));
   const [, setEntries] = useState<string[]>([]);
@@ -63,7 +65,11 @@ const Glossary = ({
   return (
     <>
       <CustomHead seo={seo[0].glossary} />
-      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Layout
+        painsSlugs={painsSlugs}
+        headerMenu={headerMenu}
+        footerMenu={footerMenu}
+      >
         <div ref={termsContainerRef}>
           <ResourcePageLayout
             relatedContent={glossary}
@@ -99,8 +105,11 @@ export const getStaticProps = async () => {
     const seo: any = await client.fetch(
       '*[_type == "seoManager" && !(_id in path("drafts.**"))]'
     );
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
     return {
-      props: { glossary, pains, headerMenu, footerMenu, seo },
+      props: { glossary, pains, headerMenu, footerMenu, seo, painsSlugs },
     };
   } catch (error) {
     console.error("Error fetching glossary:", error);

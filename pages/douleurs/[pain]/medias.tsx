@@ -7,7 +7,6 @@ import {
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
-import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/layouts/Layout";
 import MediaLayout from "../../../components/layouts/MediaLayout";
@@ -21,11 +20,13 @@ const Medias = ({
   medias,
   headerMenu,
   footerMenu,
+  painsSlugs,
 }: {
   pain: PainDetail;
   medias: MediaDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  painsSlugs: any;
 }) => {
   const relatedMedia = medias.filter((mediaItem: MediaDetail) =>
     mediaItem.relatedPain?.some((related) => related._ref === pain._id)
@@ -33,7 +34,11 @@ const Medias = ({
   const [selectedPain, setSelectedPain] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+    <Layout
+      painsSlugs={painsSlugs}
+      headerMenu={headerMenu}
+      footerMenu={footerMenu}
+    >
       <ResourcePageLayout
         pageName="Médias"
         pain={pain}
@@ -82,6 +87,9 @@ export const getStaticProps = async ({ params }: any) => {
       `*[_type == "media" && references($painId)]{..., tags[]->{name}}`,
       { painId: fetchedPain?._id }
     );
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
 
     if (!fetchedPain || !fetchedMedias) {
       return {
@@ -95,6 +103,7 @@ export const getStaticProps = async ({ params }: any) => {
         medias: fetchedMedias,
         headerMenu,
         footerMenu,
+        painsSlugs,
       },
     };
   } catch (error) {

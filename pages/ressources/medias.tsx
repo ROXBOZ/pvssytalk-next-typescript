@@ -8,7 +8,6 @@ import {
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
 import CustomHead from "../../components/CustomHead";
 import Layout from "../../components/layouts/Layout";
 import MediaLayout from "../../components/layouts/MediaLayout";
@@ -23,6 +22,7 @@ const Medias = ({
   typeform,
   seo,
   regions,
+  painsSlugs,
 }: {
   media: MediaDetail[];
   headerMenu: MenuDetail[];
@@ -30,6 +30,7 @@ const Medias = ({
   typeform: typeformDetail;
   seo: any;
   regions: any;
+  painsSlugs: any;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [selectedPain, setSelectedPain] = useState("");
@@ -38,7 +39,11 @@ const Medias = ({
   return (
     <>
       <CustomHead seo={seo[0].medias} />
-      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Layout
+        painsSlugs={painsSlugs}
+        headerMenu={headerMenu}
+        footerMenu={footerMenu}
+      >
         <ResourcePageLayout
           pageName="Médias"
           relatedContent={media}
@@ -122,6 +127,9 @@ export const getStaticProps = async () => {
           typeformLink
         }
       }`);
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
 
     const regions: any = await client.fetch(
       `*[_type == "region" && !(_id in path("drafts.**"))]{
@@ -132,7 +140,16 @@ export const getStaticProps = async () => {
     );
 
     return {
-      props: { media, pains, headerMenu, footerMenu, typeform, seo, regions },
+      props: {
+        media,
+        pains,
+        headerMenu,
+        footerMenu,
+        typeform,
+        seo,
+        regions,
+        painsSlugs,
+      },
     };
   } catch (error) {
     console.error("Error fetching media:", error);

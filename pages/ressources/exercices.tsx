@@ -18,11 +18,13 @@ const Exercises = ({
   headerMenu,
   footerMenu,
   seo,
+  painsSlugs,
 }: {
   exercises: ExerciseDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   seo: any;
+  painsSlugs: any;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
@@ -40,12 +42,14 @@ const Exercises = ({
   const [selectedPain, setSelectedPain] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
 
-  console.log("selectedPain", selectedPain);
-
   return (
     <>
       <CustomHead seo={seo[0].exercices} />
-      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Layout
+        painsSlugs={painsSlugs}
+        headerMenu={headerMenu}
+        footerMenu={footerMenu}
+      >
         <ResourcePageLayout
           pageName="Exercices"
           relatedContent={exercises}
@@ -91,9 +95,12 @@ export const getStaticProps = async () => {
     const seo: any = await client.fetch(
       '*[_type == "seoManager" && !(_id in path("drafts.**"))]'
     );
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
 
     return {
-      props: { exercises, pains, headerMenu, footerMenu, seo },
+      props: { exercises, pains, headerMenu, footerMenu, seo, painsSlugs },
     };
   } catch (error) {
     console.error("Error fetching exercises:", error);

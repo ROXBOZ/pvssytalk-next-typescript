@@ -7,7 +7,6 @@ import {
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
-import Breadcrumbs from "../../../components/Breadcrumbs";
 import { Exercise } from "../../../components/Exercise";
 import { GetStaticPaths } from "next";
 import Layout from "../../../components/layouts/Layout";
@@ -29,17 +28,23 @@ const PainExercises = ({
   pain,
   headerMenu,
   footerMenu,
+  painsSlugs,
 }: {
   pain: PainDetail;
   exercises: ExerciseDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  painsSlugs: any;
 }) => {
   const relatedExercises = filterRelatedExercises(exercises, pain._id);
   const [selectedPain, setSelectedPain] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+    <Layout
+      painsSlugs={painsSlugs}
+      headerMenu={headerMenu}
+      footerMenu={footerMenu}
+    >
       <ResourcePageLayout
         pageName="Exercices"
         pain={pain}
@@ -75,6 +80,9 @@ export const getStaticProps = async ({ params }: any) => {
       `*[_type == "exercise" && references($painId)]`,
       { painId: fetchedPain?._id }
     );
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
 
     if (!fetchedPain || !fetchedExercises) {
       return {
@@ -88,6 +96,7 @@ export const getStaticProps = async ({ params }: any) => {
         exercises: fetchedExercises,
         headerMenu,
         footerMenu,
+        painsSlugs,
       },
     };
   } catch (error) {

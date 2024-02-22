@@ -1,4 +1,9 @@
-import { AgendaDetail, MenuDetail, typeformDetail } from "../../types";
+import {
+  AgendaDetail,
+  MenuDetail,
+  PainDetail,
+  typeformDetail,
+} from "../../types";
 import React, { useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
@@ -15,6 +20,7 @@ const Agenda = ({
   seo,
   regions,
   typeform,
+  painsSlugs,
 }: {
   agenda: AgendaDetail[];
   headerMenu: MenuDetail[];
@@ -22,6 +28,7 @@ const Agenda = ({
   regions: any;
   seo: any;
   typeform: any;
+  painsSlugs: any;
 }) => {
   const [selectedPain, setSelectedPain] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -29,7 +36,11 @@ const Agenda = ({
   return (
     <>
       <CustomHead seo={seo[0].agenda} />
-      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Layout
+        painsSlugs={painsSlugs}
+        headerMenu={headerMenu}
+        footerMenu={footerMenu}
+      >
         <ResourcePageLayout
           pageName="Agenda"
           relatedContent={agenda}
@@ -81,8 +92,19 @@ export const getStaticProps = async () => {
           }
         }`
     );
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
     return {
-      props: { headerMenu, footerMenu, agenda: event, seo, regions, typeform },
+      props: {
+        headerMenu,
+        footerMenu,
+        agenda: event,
+        seo,
+        regions,
+        typeform,
+        painsSlugs,
+      },
     };
   } catch (error) {
     console.error("Error fetching agenda:", error);

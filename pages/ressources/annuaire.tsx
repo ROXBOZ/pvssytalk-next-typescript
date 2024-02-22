@@ -2,6 +2,7 @@ import {
   DirectoryDetail,
   DirectoryDetails,
   MenuDetail,
+  PainDetail,
   typeformDetail,
 } from "../../types";
 import React, { useState } from "react";
@@ -21,6 +22,7 @@ const Directory = ({
   typeform,
   regions,
   seo,
+  painsSlugs,
 }: {
   directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
@@ -28,6 +30,7 @@ const Directory = ({
   typeform: any;
   regions: any;
   seo: any;
+  painsSlugs: any;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
@@ -48,7 +51,11 @@ const Directory = ({
   return (
     <>
       <CustomHead seo={seo[0].directory} />
-      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Layout
+        painsSlugs={painsSlugs}
+        headerMenu={headerMenu}
+        footerMenu={footerMenu}
+      >
         <ResourcePageLayout
           pageName="Annuaire"
           relatedContent={directory}
@@ -128,6 +135,9 @@ export const getStaticProps = async () => {
     const seo: any = await client.fetch(
       '*[_type == "seoManager" && !(_id in path("drafts.**"))]'
     );
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
 
     return {
       props: {
@@ -137,6 +147,7 @@ export const getStaticProps = async () => {
         typeform,
         regions,
         seo,
+        painsSlugs,
       },
     };
   } catch (error) {

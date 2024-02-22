@@ -4,10 +4,9 @@ import {
   MenuDetail,
   PainDetail,
 } from "../../../types";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../../lib/queries";
 
-import Breadcrumbs from "../../../components/Breadcrumbs";
 import { GetStaticPaths } from "next";
 import GlossaryLayout from "../../../components/layouts/GlossaryLayout";
 import Layout from "../../../components/layouts/Layout";
@@ -20,11 +19,13 @@ const painGlossary = ({
   pain,
   headerMenu,
   footerMenu,
+  painsSlugs,
 }: {
   pain: PainDetail;
   glossary: GlossaryDetails;
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  painsSlugs: any;
 }) => {
   const sortedGlossary = glossary?.sort((a, b) => a.term.localeCompare(b.term));
   const [, setEntries] = useState<string[]>([]);
@@ -60,7 +61,11 @@ const painGlossary = ({
   const [selectedPain, setSelectedPain] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+    <Layout
+      painsSlugs={painsSlugs}
+      headerMenu={headerMenu}
+      footerMenu={footerMenu}
+    >
       <ResourcePageLayout
         pageName="Glossaire"
         pain={pain}
@@ -99,6 +104,9 @@ export const getStaticProps = async ({ params }: any) => {
     const fetchedGlossary: GlossaryDetails[] | null = await client.fetch(
       `*[_type == "glossary" && references($painId)]`,
       { painId: fetchedPain?._id }
+    );
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
 
     if (!fetchedPain || !fetchedGlossary) {
