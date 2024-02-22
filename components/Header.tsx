@@ -9,8 +9,8 @@ const Header = ({ data, pains }: any) => {
   const { pathname } = router;
   const isHome = pathname === "/";
   const isDirectory = pathname === "/ressources/annuaire";
-
   const [isSelected, setIsSelected] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header>
@@ -71,6 +71,7 @@ const Header = ({ data, pains }: any) => {
                 <div
                   onMouseEnter={() => {
                     setIsSelected(item.title);
+                    setIsOpen(true);
                   }}
                   onMouseLeave={() => {
                     setIsSelected("");
