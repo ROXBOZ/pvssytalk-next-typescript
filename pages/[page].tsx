@@ -1,4 +1,4 @@
-import { InfoPageDetail, MenuDetail } from "../types";
+import { InfoPageDetail, MenuDetail, PainDetail } from "../types";
 import { client, urlFor } from "../config/sanity/client";
 import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
@@ -13,10 +13,12 @@ const Page = ({
   headerMenu,
   page,
   footerMenu,
+  painsSlugs,
 }: {
   headerMenu: MenuDetail[];
   page: any;
   footerMenu: MenuDetail[];
+  painsSlugs: any;
 }) => {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
@@ -24,7 +26,7 @@ const Page = ({
   return (
     <>
       <CustomHead seo={page.seo} />
-      <Header data={headerMenuData} />
+      <Header data={headerMenuData} pains={painsSlugs} />
       <PageTransition>
         <div className="double-column-containers-group">
           <div className="double-column-container">
@@ -113,9 +115,11 @@ export const getStaticProps = async ({
       '*[_type == "page" && slug.current == $page && !(_id in path("drafts.**"))]{...}',
       { page }
     );
-
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
     return {
-      props: { page: currentPage, headerMenu, footerMenu },
+      props: { page: currentPage, headerMenu, footerMenu, painsSlugs },
     };
   } catch (error) {
     console.error("Error fetching pages:", error);

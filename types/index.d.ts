@@ -8,6 +8,8 @@ interface MenuDetail {
   slug: {
     current: string;
   };
+  description: string;
+  content: any;
   link: string;
   isAction: boolean;
   type?: ["Pages" | "Douleurs" | "Ressources"];

@@ -9,17 +9,19 @@ function Layout({
   children,
   headerMenu,
   footerMenu,
+  painsSlugs,
 }: {
   children: any;
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  painsSlugs: any;
 }) {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
 
   return (
     <>
-      <Header data={headerMenuData} />
+      <Header data={headerMenuData} pains={painsSlugs} />
       <Breadcrumbs />
       <PageTransition>{children}</PageTransition>
       <Footer data={footerMenuData} />

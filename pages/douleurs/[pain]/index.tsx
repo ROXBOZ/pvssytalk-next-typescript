@@ -17,7 +17,13 @@ import Modal from "../../../components/Modal";
 import PainDashboard from "../../../components/PainDashboard";
 import { PortableText } from "@portabletext/react";
 
-const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
+const ArticlePain = ({
+  pain,
+  glossary,
+  headerMenu,
+  footerMenu,
+  painsSlugs,
+}: any) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMed, setIsMed] = useState<boolean>(true);
   const imgHotspot = pain.mainImage.hotspot;
@@ -102,7 +108,11 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
   return (
     <>
       <CustomHead seo={pain.seo} />
-      <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+      <Layout
+        headerMenu={headerMenu}
+        painsSlugs={painsSlugs}
+        footerMenu={footerMenu}
+      >
         {showModal && selectedDiagram && (
           <Modal diagram={selectedDiagram} closeModal={closeModal} />
         )}
@@ -219,10 +229,6 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
                 </>
               ) : (
                 <>
-                  {/* {pain.sexologicApproach && (
-                  <h2 className="h3">Vivre avec la douleur</h2>
-                )} */}
-
                   {pain.sexologicApproach?.body && (
                     <>
                       <h3>Moi et mon corps</h3>
@@ -255,8 +261,6 @@ const ArticlePain = ({ pain, glossary, headerMenu, footerMenu }: any) => {
                       />
                     </>
                   )}
-
-                  {/* {pain.sexologicApproach && <h2 className="h3">Sexualité</h2>} */}
 
                   {pain.sexologicApproach?.libido && (
                     <>
@@ -423,12 +427,17 @@ export const getStaticProps = async ({
       };
     }
 
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
+
     return {
       props: {
         headerMenu,
         footerMenu,
         pain: fetchedPain,
         glossary: fetchedGlossary,
+        painsSlugs,
       },
     };
   } catch (error) {

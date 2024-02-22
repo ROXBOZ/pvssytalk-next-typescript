@@ -53,8 +53,6 @@ const Home = ({
   const footerMenuData = footerMenu[0].footerMenu;
   const partnersLogos = logos[0].partners;
 
-  console.log("seo !!", home[0].seo);
-
   return (
     <>
       <CustomHead seo={home[0].seo} />
