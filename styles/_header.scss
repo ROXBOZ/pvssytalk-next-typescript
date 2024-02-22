@@ -121,7 +121,7 @@ header {
               &:hover {
                 background-color: $secondary;
                 .resource {
-                  border-bottom: $border-solid $secondary;
+                  border-bottom-color: $secondary;
                 }
 
                 .arrow {
@@ -135,6 +135,7 @@ header {
               max-height: fit-content;
               padding: 0 0 $sm-space 0;
               gap: 0;
+              border-bottom: $border-solid transparent;
 
               p {
                 margin: 0;

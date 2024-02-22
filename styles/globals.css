@@ -541,7 +541,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .link
   background-color: #e4c7f1;
 }
 header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .link-resource:hover .resource {
-  border-bottom: 1px solid #e4c7f1;
+  border-bottom-color: #e4c7f1;
 }
 header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .link-resource:hover .arrow {
   transform: rotate(45deg);
@@ -553,6 +553,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   max-height: fit-content;
   padding: 0 0 1rem 0;
   gap: 0;
+  border-bottom: 1px solid transparent;
 }
 header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .resource p {
   margin: 0;
