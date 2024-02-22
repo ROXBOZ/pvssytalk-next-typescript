@@ -514,7 +514,6 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .h4 {
 header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col {
   flex: 1;
   width: 100%;
-  opacity: 0;
 }
 header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col nav {
   display: flex;
