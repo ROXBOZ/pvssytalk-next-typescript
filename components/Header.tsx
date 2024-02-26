@@ -129,10 +129,7 @@ const Header = ({ data, pains }: any) => {
                                   <p className="h3 not-clickable">
                                     {menu.title}
                                   </p>
-                                  <p
-                                    className="bigger-text not-clickable"
-                                    style={{ margin: "2rem 0" }}
-                                  >
+                                  <p className="bigger-text not-clickable">
                                     {menu.description}
                                   </p>
                                   <nav>
@@ -160,10 +157,7 @@ const Header = ({ data, pains }: any) => {
                               return (
                                 <div className="col" key={index}>
                                   <p className="h3 not-clickable">Douleurs</p>
-                                  <p
-                                    className="bigger-text not-clickable"
-                                    style={{ margin: "2rem 0" }}
-                                  >
+                                  <p className="bigger-text not-clickable">
                                     {menu.description}
                                   </p>
                                   <nav>

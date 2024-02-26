@@ -10,13 +10,20 @@ const Page = ({
   headerMenu,
   page,
   footerMenu,
+  painsSlugs,
 }: {
   headerMenu: MenuDetail[];
   page: any;
   footerMenu: MenuDetail[];
+  painsSlugs: any;
 }) => {
   return (
-    <Layout seo={page.seo} headerMenu={headerMenu} footerMenu={footerMenu}>
+    <Layout
+      seo={page.seo}
+      headerMenu={headerMenu}
+      painsSlugs={painsSlugs}
+      footerMenu={footerMenu}
+    >
       <div className="double-column-containers-group">
         <div className="double-column-container">
           <div>

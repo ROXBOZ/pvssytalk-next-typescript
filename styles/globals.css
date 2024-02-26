@@ -578,7 +578,11 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 
 .not-clickable {
-  color: #e4c7f1;
+  color: #ce8df6;
+}
+
+.h3.not-clickable + .bigger-text.not-clickable {
+  margin-top: 2.25rem;
 }
 
 @keyframes transitionX {
