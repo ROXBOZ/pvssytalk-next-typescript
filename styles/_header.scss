@@ -1,21 +1,28 @@
 header {
-  padding: $sm-space $reg-space;
-  align-items: baseline;
   display: flex;
   width: -webkit-fill-available;
   justify-content: space-between;
+
   &.fixed {
     position: fixed;
-  }
+    z-index: 999999;
 
-  a.borderless {
-    z-index: 9999999999;
+    .logo {
+      z-index: 999999;
+      position: fixed;
+    }
+
+    .header-nav {
+      position: fixed;
+      right: 0;
+    }
   }
 
   .logo {
+    display: flex;
     color: $txt-color;
     font-size: 150%;
-
+    padding: $sm-space $reg-space !important;
     sup {
       color: $txt-color;
     }
@@ -25,7 +32,7 @@ header {
     display: flex;
     align-items: baseline;
     gap: $lg-space;
-    z-index: 50;
+    padding: $sm-space $reg-space;
 
     a {
       font-family: $font-regular;
@@ -54,8 +61,8 @@ header {
     }
 
     .dropdown-content-wrapper {
-      z-index: -50 !important;
       display: none;
+      z-index: -10;
       gap: $sm-space;
       position: fixed;
       margin: 0;
@@ -63,6 +70,7 @@ header {
       top: 0;
       right: 0;
       background-color: $bg-color;
+
       padding: $lg-space $reg-space;
       flex-direction: column;
       box-shadow: 0px 20px 70px $txt-color;

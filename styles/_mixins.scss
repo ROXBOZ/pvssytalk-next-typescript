@@ -38,29 +38,16 @@
   }
 }
 
-// @mixin primarybutton {
-//   font-family: $font-logo;
-//   font-size: large;
-//   border: $border-solid $primary;
-//   background-color: $primary;
-//   &:hover {
-//     background-color: lighten($primary, 10);
-//   }
-//   &:active {
-//     background-color: lighten($primary, 20);
-//   }
-// }
-
 @mixin primarybutton {
   font-family: $font-logo;
   font-size: large;
-  border: $border-solid $tierary;
-  background-color: $tierary;
+  border: $border-solid $primary;
+  background-color: $primary;
   &:hover {
-    background-color: lighten($tierary, 10);
+    background-color: lighten($primary, 10);
   }
   &:active {
-    background-color: lighten($tierary, 20);
+    background-color: lighten($primary, 20);
   }
 }
 

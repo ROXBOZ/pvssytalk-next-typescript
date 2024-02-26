@@ -1,12 +1,13 @@
 .landing-view {
-  height: 100vh;
-  position: relative;
+  min-height: 100vh;
   margin-bottom: $lg-space;
+  bottom: 0;
 
   .tagline {
     background: $gradient;
     width: 100%;
-    height: 100%;
+
+    height: 92.5vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +26,7 @@
     padding: $sm-space 0;
     font-size: $bigger-text;
     display: flex;
-    position: absolute;
+
     left: 0;
     right: 0;
     bottom: 0;

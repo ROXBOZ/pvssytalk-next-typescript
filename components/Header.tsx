@@ -14,7 +14,7 @@ const Header = ({ data, pains }: any) => {
 
   return (
     <header
-      className={`${isOpen && "fixed"}`}
+      className={`${isOpen ? "fixed" : "not-fixed"}`}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === "Escape") {
           setIsSelected("");
@@ -27,7 +27,7 @@ const Header = ({ data, pains }: any) => {
           pvssy talk <sup>1.0</sup>
         </span>
       </Link>
-      <nav>
+      <nav className="header-nav">
         {data &&
           data.map((item: MenuDetail, index: number) => {
             if (item._type === "page") {
