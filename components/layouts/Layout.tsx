@@ -14,7 +14,7 @@ function Layout({
   children: any;
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
-  painsSlugs: any;
+  painsSlugs?: any;
 }) {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
