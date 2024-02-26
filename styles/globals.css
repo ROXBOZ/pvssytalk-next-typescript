@@ -460,21 +460,21 @@ header .logo {
 header .logo sup {
   color: #31064b;
 }
-header nav {
+header .header-nav {
   display: flex;
   align-items: baseline;
   gap: 4rem;
   padding: 1rem 2rem;
 }
-header nav a {
+header .header-nav a {
   font-family: "ESKlarheit-Book";
   border-bottom: none;
 }
-header nav .page-link:hover {
+header .header-nav .page-link:hover {
   color: #a62fee;
   font-family: "ESKlarheit-Bold";
 }
-header nav button {
+header .header-nav button {
   font-size: 16px;
 }
 header .dropdown {
