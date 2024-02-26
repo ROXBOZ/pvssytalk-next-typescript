@@ -129,7 +129,7 @@ const ArticlePain = ({
                 <Link href="https://www.sexopraxis.ch/" target="_blank">
                   Sexopraxis
                 </Link>{" "}
-                | Illustrations de{" "}
+                · Illustrations de{" "}
                 <Link href="https://noemiecreux.com/" target="_blank">
                   Noémie Creux
                 </Link>

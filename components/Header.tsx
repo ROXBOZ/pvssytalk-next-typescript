@@ -15,9 +15,7 @@ const Header = ({ data, pains }: any) => {
   return (
     <header className={`${isOpen ? "fixed" : "not-fixed"}`}>
       <Link href="/" className="borderless">
-        <span className="logo nowrap">
-          pvssy talk <sup>1.0</sup>
-        </span>
+        <span className="logo nowrap">pvssy talk</span>
       </Link>
       <nav className="header-nav">
         {data &&
@@ -69,13 +67,13 @@ const Header = ({ data, pains }: any) => {
             if (item._type === "map") {
               return (
                 <div
+                  className="dropdown"
+                  key={index}
+                  tabIndex={0}
                   onClick={() => {
                     setIsSelected(item.title);
                     setIsOpen(true);
                   }}
-                  className="dropdown"
-                  key={index}
-                  tabIndex={0}
                 >
                   <span
                     className={`nav-title ${
@@ -90,16 +88,11 @@ const Header = ({ data, pains }: any) => {
                     }`}
                     onClick={(e) => {
                       e.stopPropagation();
+                      setIsSelected("");
+                      setIsOpen(false);
                     }}
                   >
-                    <div
-                      className="dropdown-content"
-                      onClick={() => {
-                        console.log("click");
-                        setIsSelected("");
-                        setIsOpen(false);
-                      }}
-                    >
+                    <div className="dropdown-content">
                       <div className="contenu">
                         {item.content &&
                           item.content.map((menu: any, index: number) => {
