@@ -26,6 +26,10 @@ const Header = ({ data, pains }: any) => {
                   className="page-link"
                   key={index}
                   href={`/${item.slug.current}`}
+                  onClick={() => {
+                    setIsSelected("");
+                    setIsOpen(false);
+                  }}
                 >
                   {item.title}
                 </Link>
