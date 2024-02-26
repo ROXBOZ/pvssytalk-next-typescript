@@ -4,6 +4,9 @@ header {
   display: flex;
   width: -webkit-fill-available;
   justify-content: space-between;
+  &.fixed {
+    position: fixed;
+  }
 
   a.borderless {
     z-index: 9999999999;
@@ -54,7 +57,7 @@ header {
       z-index: -50 !important;
       display: none;
       gap: $sm-space;
-      position: absolute;
+      position: fixed;
       margin: 0;
       left: 0;
       top: 0;
@@ -63,6 +66,10 @@ header {
       padding: $lg-space $reg-space;
       flex-direction: column;
       box-shadow: 0px 20px 70px $txt-color;
+
+      &.selected {
+        display: flex;
+      }
 
       .dropdown-content {
         display: flex;
@@ -119,7 +126,6 @@ header {
                 margin-bottom: 0;
               }
               &:hover {
-                background-color: $secondary;
                 .resource {
                   border-bottom-color: $secondary;
                 }
@@ -146,16 +152,6 @@ header {
         }
       }
     }
-
-    &:hover {
-      .dropdown-content-wrapper {
-        display: flex;
-
-        &:hover {
-          display: flex;
-        }
-      }
-    }
   }
 }
 
@@ -163,4 +159,8 @@ header {
   header {
     position: absolute;
   }
+}
+
+.not-clickable {
+  color: $secondary;
 }

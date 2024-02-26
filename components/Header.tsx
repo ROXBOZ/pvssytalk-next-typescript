@@ -13,7 +13,15 @@ const Header = ({ data, pains }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header>
+    <header
+      className={`${isOpen && "fixed"}`}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === "Escape") {
+          setIsSelected("");
+          setIsOpen(false);
+        }
+      }}
+    >
       <Link href="/" className="borderless">
         <span className="logo nowrap">
           pvssy talk <sup>1.0</sup>
@@ -69,15 +77,13 @@ const Header = ({ data, pains }: any) => {
             if (item._type === "map") {
               return (
                 <div
-                  onMouseEnter={() => {
+                  onClick={() => {
                     setIsSelected(item.title);
                     setIsOpen(true);
                   }}
-                  onMouseLeave={() => {
-                    setIsSelected("");
-                  }}
                   className="dropdown"
                   key={index}
+                  tabIndex={0}
                 >
                   <span
                     className={`nav-title ${
@@ -86,17 +92,32 @@ const Header = ({ data, pains }: any) => {
                   >
                     {item.title}
                   </span>
-                  <div className="dropdown-content-wrapper">
-                    <div className="dropdown-content">
+                  <div
+                    className={`dropdown-content-wrapper ${
+                      isSelected === item.title ? "selected" : "not-selected"
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    <div
+                      className="dropdown-content"
+                      onClick={() => {
+                        setIsSelected("");
+                        setIsOpen(false);
+                      }}
+                    >
                       <div className="contenu">
                         {item.content &&
                           item.content.map((menu: any, index: number) => {
                             if (menu._type === "pagesMenu") {
                               return (
                                 <div className="col" key={index}>
-                                  <p className="h3">{menu.title}</p>
+                                  <p className="h3 not-clickable">
+                                    {menu.title}
+                                  </p>
                                   <p
-                                    className="bigger-text"
+                                    className="bigger-text not-clickable"
                                     style={{ margin: "2rem 0" }}
                                   >
                                     {menu.description}
@@ -125,9 +146,9 @@ const Header = ({ data, pains }: any) => {
                             if (menu._type === "painsMenu") {
                               return (
                                 <div className="col" key={index}>
-                                  <p className="h3">Douleurs</p>
+                                  <p className="h3 not-clickable">Douleurs</p>
                                   <p
-                                    className="bigger-text"
+                                    className="bigger-text not-clickable"
                                     style={{ margin: "2rem 0" }}
                                   >
                                     {menu.description}
