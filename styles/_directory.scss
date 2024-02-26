@@ -1,4 +1,8 @@
 .directory-container {
+  a {
+    font-family: $font-regular;
+    border-bottom: $border-solid $txt-color;
+  }
   .directory-item {
     margin: $reg-space 0 !important;
     max-width: 90%;

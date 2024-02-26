@@ -22,7 +22,7 @@ export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
         {mediaItem.author && <span>, {mediaItem.author}</span>}
         {mediaItem.editor && <span>, {mediaItem.editor}</span>}
         {mediaItem.year && <span> ({mediaItem.year})</span>}
-        <div className="tag-container" style={{ margin: "1rem 0" }}>
+        <div className="tag-container">
           {mediaItem.tags &&
             mediaItem.tags.map((tag: any, index: number) => {
               return (

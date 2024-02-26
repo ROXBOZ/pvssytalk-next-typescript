@@ -1,8 +1,9 @@
-import { MenuDetail, PainDetail } from "../types";
+import { AgendaDetail, MenuDetail, PainDetail } from "../types";
 import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
 import CustomHead from "../components/CustomHead";
 import Footer from "../components/Footer";
+import FutureEvents from "../components/FutureEvents";
 import Header from "../components/Header";
 import LogosPartners from "../components/LogosPartners";
 import Marquee from "../components/Marquee";
@@ -41,6 +42,7 @@ const Home = ({
   footerMenu,
   logos,
   painsSlugs,
+  agenda,
 }: {
   headerMenu: MenuDetail[];
   pains: PainDetail[];
@@ -48,6 +50,7 @@ const Home = ({
   footerMenu: MenuDetail[];
   logos: LogosDetail[];
   painsSlugs: any;
+  agenda: AgendaDetail[];
 }) => {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
@@ -83,7 +86,7 @@ const Home = ({
             })}
           </div>
         )}
-
+        <FutureEvents events={agenda} />
         <LogosPartners logos={partnersLogos} />
         <Marquee2 repeatTimes={999} />
         <Footer data={footerMenuData} />
@@ -111,9 +114,12 @@ export const getStaticProps = async () => {
     const painsSlugs: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
+    const agenda: AgendaDetail[] = await client.fetch(
+      '*[_type == "event" && !(_id in path("drafts.**"))]'
+    );
 
     return {
-      props: { headerMenu, footerMenu, pains, home, logos, painsSlugs },
+      props: { headerMenu, footerMenu, pains, home, logos, painsSlugs, agenda },
     };
   } catch (error) {
     console.error("Error fetching pains:", error);

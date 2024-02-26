@@ -21,8 +21,9 @@
 @import "bootstrap";
 @import "animatedData";
 @import "navBlock";
-@import "textImageBlock";
 
+@import "textImageBlock";
+@import "events";
 html {
   scroll-behavior: smooth;
 }

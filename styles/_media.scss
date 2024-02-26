@@ -9,8 +9,16 @@
     color: lighten($txt-color, 40);
   }
 
+  a {
+    border-bottom: $border-solid $txt-color;
+  }
+
   .media-item {
     width: unset !important;
     border-bottom: $secondary $border-solid;
+    padding-bottom: $sm-space;
+    .tag-container {
+      margin-top: 0.25rem;
+    }
   }
 }

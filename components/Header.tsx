@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import { MenuDetail } from "../types";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { useRouter } from "next/router";
 
 const Header = ({ data, pains }: any) => {
@@ -11,6 +13,27 @@ const Header = ({ data, pains }: any) => {
   const isDirectory = pathname === "/ressources/annuaire";
   const [isSelected, setIsSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  // useEffect(() => {
+  //   gsap
+  //     .timeline()
+  //     .fromTo(
+  //       ".animate-wrapper",
+  //       { y: "-100%" },
+  //       {
+  //         y: "0%",
+  //         ease: "power2.out",
+  //       }
+  //     )
+  //     .fromTo(
+  //       ".animate-content",
+  //       { opacity: 0 },
+  //       {
+  //         opacity: 1,
+  //         stagger: 0.1,
+  //       }
+  //     );
+  // }, [isSelected, isOpen]);
 
   return (
     <header className={`${isOpen ? "fixed" : "not-fixed"}`}>
@@ -87,7 +110,7 @@ const Header = ({ data, pains }: any) => {
                     {item.title}
                   </span>
                   <div
-                    className={`dropdown-content-wrapper ${
+                    className={`animate-wrapper dropdown-content-wrapper ${
                       isSelected === item.title ? "selected" : "not-selected"
                     }`}
                     onClick={(e) => {
@@ -96,7 +119,7 @@ const Header = ({ data, pains }: any) => {
                       setIsOpen(false);
                     }}
                   >
-                    <div className="dropdown-content">
+                    <div className="animate-content dropdown-content">
                       <div className="contenu">
                         {item.content &&
                           item.content.map((menu: any, index: number) => {

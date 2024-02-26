@@ -44,6 +44,7 @@ function AgendaLayout({
     return (
       <div>
         <h2 className="h3">{event.title}</h2>
+
         {event.eventDuration && event.eventDuration === "oneDay" && (
           <p style={{ backgroundColor: "orange" }}>
             <span>{formatFrenchDate(event.eventDate)}</span>, de{" "}

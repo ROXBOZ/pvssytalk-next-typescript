@@ -1,17 +1,12 @@
-import {
-  AgendaDetail,
-  MenuDetail,
-  PainDetail,
-  typeformDetail,
-} from "../../types";
+import { AgendaDetail, MenuDetail, PainDetail, typeformDetail } from "../types";
 import React, { useState } from "react";
-import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
+import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
-import AgendaLayout from "../../components/layouts/AgendaLayout";
-import CustomHead from "../../components/CustomHead";
-import Layout from "../../components/layouts/Layout";
-import ResourcePageLayout from "../../components/layouts/ResourcePageLayout";
-import { client } from "../../config/sanity/client";
+import AgendaLayout from "../components/layouts/AgendaLayout";
+import CustomHead from "../components/CustomHead";
+import Layout from "../components/layouts/Layout";
+import ResourcePageLayout from "../components/layouts/ResourcePageLayout";
+import { client } from "../config/sanity/client";
 
 const Agenda = ({
   agenda,

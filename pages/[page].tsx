@@ -2,78 +2,65 @@ import { InfoPageDetail, MenuDetail, PainDetail } from "../types";
 import { client, urlFor } from "../config/sanity/client";
 import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
-import CustomHead from "../components/CustomHead";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import Image from "next/image";
-import PageTransition from "../components/layouts/PageTransition";
+import Layout from "../components/layouts/Layout";
 import { PortableText } from "@portabletext/react";
 
 const Page = ({
   headerMenu,
   page,
   footerMenu,
-  painsSlugs,
 }: {
   headerMenu: MenuDetail[];
   page: any;
   footerMenu: MenuDetail[];
-  painsSlugs: any;
 }) => {
-  const headerMenuData = headerMenu[0].headerMenu;
-  const footerMenuData = footerMenu[0].footerMenu;
-
   return (
-    <>
-      <CustomHead seo={page.seo} />
-      <Header data={headerMenuData} pains={painsSlugs} />
-      <PageTransition>
-        <div className="double-column-containers-group">
-          <div className="double-column-container">
-            <div>
-              <h1>{page.title}</h1>
+    <Layout seo={page.seo} headerMenu={headerMenu} footerMenu={footerMenu}>
+      <div className="double-column-containers-group">
+        <div className="double-column-container">
+          <div>
+            <h1>{page.title}</h1>
 
-              {page.image && (
+            {page.image && (
+              <Image
+                className="intro-image"
+                src={urlFor(page.image.asset._ref).url()}
+                width={500}
+                height={300}
+                alt={page.image.alternativeText}
+              />
+            )}
+          </div>
+          <div className="bigger-text">
+            <PortableText value={page.subtitle as any} />
+          </div>
+        </div>
+      </div>
+
+      {page.sections.map((section: any, index: number) => {
+        return (
+          <div key={index} className="double-column-container">
+            <div>
+              <h2>{section.sectionTitle}</h2>
+              {section.sectionImage && (
                 <Image
-                  className="intro-image"
-                  src={urlFor(page.image.asset._ref).url()}
+                  style={{ width: "100%", height: "auto" }}
+                  className={section.sectionTitle}
+                  src={urlFor(section.sectionImage.asset._ref).url()}
                   width={500}
                   height={300}
-                  alt={page.image.alternativeText}
+                  alt={section.sectionImage.alternativeText}
                 />
               )}
             </div>
-            <div className="bigger-text">
-              <PortableText value={page.subtitle as any} />
+            <div>
+              <PortableText value={section.sectionContent as any} />
             </div>
           </div>
-        </div>
-
-        {page.sections.map((section: any, index: number) => {
-          return (
-            <div key={index} className="double-column-container">
-              <div>
-                <h2>{section.sectionTitle}</h2>
-                {section.sectionImage && (
-                  <Image
-                    style={{ width: "100%", height: "auto" }}
-                    className={section.sectionTitle}
-                    src={urlFor(section.sectionImage.asset._ref).url()}
-                    width={500}
-                    height={300}
-                    alt={section.sectionImage.alternativeText}
-                  />
-                )}
-              </div>
-              <div>
-                <PortableText value={section.sectionContent as any} />
-              </div>
-            </div>
-          );
-        })}
-      </PageTransition>
-      <Footer data={footerMenuData} />
-    </>
+        );
+      })}
+    </Layout>
   );
 };
 
