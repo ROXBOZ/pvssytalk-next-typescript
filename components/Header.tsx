@@ -13,15 +13,7 @@ const Header = ({ data, pains }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header
-      className={`${isOpen ? "fixed" : "not-fixed"}`}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === "Escape") {
-          setIsSelected("");
-          setIsOpen(false);
-        }
-      }}
-    >
+    <header className={`${isOpen ? "fixed" : "not-fixed"}`}>
       <Link href="/" className="borderless">
         <span className="logo nowrap">
           pvssy talk <sup>1.0</sup>
@@ -103,6 +95,7 @@ const Header = ({ data, pains }: any) => {
                     <div
                       className="dropdown-content"
                       onClick={() => {
+                        console.log("click");
                         setIsSelected("");
                         setIsOpen(false);
                       }}
