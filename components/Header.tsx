@@ -78,7 +78,8 @@ const Header = ({ data, pains }: any) => {
               if (
                 item.isAction === true &&
                 isHome === false &&
-                isDirectory === false
+                isDirectory === false &&
+                !is600Max
               ) {
                 return (
                   <Link
