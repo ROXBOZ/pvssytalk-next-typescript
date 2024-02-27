@@ -510,6 +510,9 @@ header {
   width: -webkit-fill-available;
   justify-content: space-between;
 }
+header.relative {
+  position: relative;
+}
 header.fixed {
   position: fixed;
   z-index: 999999;
@@ -528,6 +531,14 @@ header .header-nav {
   padding: 1rem 2rem;
   text-transform: lowercase;
 }
+header .header-nav .burger-icon {
+  cursor: pointer;
+  z-index: 9999;
+}
+header .header-nav .burger-icon.fixed {
+  position: fixed;
+  margin: -1rem;
+}
 header .header-nav a {
   font-family: "ESKlarheit-Book";
   border-bottom: none;
@@ -537,13 +548,22 @@ header .header-nav button {
 }
 @media only screen and (max-width: 600px) {
   header .header-nav {
+    align-items: center;
+  }
+}
+@media only screen and (max-width: 600px) {
+  header .header-nav .page-link {
     display: none;
-    visibility: hidden;
   }
 }
 header .dropdown {
   cursor: pointer;
   display: flex;
+}
+@media only screen and (max-width: 600px) {
+  header .dropdown {
+    display: none;
+  }
 }
 header .dropdown .nav-title.selected {
   color: #a62fee;
@@ -639,6 +659,15 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 
 .h3.not-clickable + .bigger-text.not-clickable {
   margin-top: 2.25rem;
+}
+
+.mobile-menu {
+  background-color: #fefdf4;
+  padding: 2rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 100dvh;
 }
 
 @keyframes transitionX {

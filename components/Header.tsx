@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { MenuDetail } from "../types";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { useRouter } from "next/router";
+import useWindowSize from "../utils/useWindowSize";
+
+const MobileMenu = () => {
+  return <div className="mobile-menu">menu mobile</div>;
+};
 
 const Header = ({ data, pains }: any) => {
   const router = useRouter();
@@ -13,34 +18,29 @@ const Header = ({ data, pains }: any) => {
   const isDirectory = pathname === "/ressources/annuaire";
   const [isSelected, setIsSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
-  // useEffect(() => {
-  //   gsap
-  //     .timeline()
-  //     .fromTo(
-  //       ".animate-wrapper",
-  //       { y: "-100%" },
-  //       {
-  //         y: "0%",
-  //         ease: "power2.out",
-  //       }
-  //     )
-  //     .fromTo(
-  //       ".animate-content",
-  //       { opacity: 0 },
-  //       {
-  //         opacity: 1,
-  //         stagger: 0.1,
-  //       }
-  //     );
-  // }, [isSelected, isOpen]);
+  const is600Max = useWindowSize();
+  const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
   return (
-    <header className={`${isOpen ? "fixed" : "not-fixed"}`}>
+    <header
+      className={`${isOpen ? "fixed" : "not-fixed"} ${is600Max && "relative"}`}
+    >
       <Link href="/" className="borderless">
         <span className="logo nowrap">pvssy talk</span>
       </Link>
+
+      {is600Max && mobileMenuIsOpen && <MobileMenu />}
+
       <nav className="header-nav">
+        {is600Max && (
+          <FontAwesomeIcon
+            onClick={() => {
+              setMobileMenuIsOpen(!mobileMenuIsOpen);
+            }}
+            className={`burger-icon ${mobileMenuIsOpen && "fixed"}`}
+            icon={!mobileMenuIsOpen ? faBars : faClose}
+          />
+        )}
         {data &&
           data.map((item: MenuDetail, index: number) => {
             if (item._type === "page") {

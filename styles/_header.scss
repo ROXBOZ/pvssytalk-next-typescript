@@ -3,6 +3,10 @@ header {
   width: -webkit-fill-available;
   justify-content: space-between;
 
+  &.relative {
+    position: relative;
+  }
+
   &.fixed {
     position: fixed;
     z-index: 999999;
@@ -23,6 +27,16 @@ header {
     padding: $sm-space $reg-space;
     text-transform: lowercase;
 
+    .burger-icon {
+      cursor: pointer;
+      z-index: 9999;
+
+      &.fixed {
+        position: fixed;
+        margin: -1rem;
+      }
+    }
+
     a {
       font-family: $font-regular;
       border-bottom: none;
@@ -33,14 +47,23 @@ header {
     }
 
     @media only screen and (max-width: 600px) {
-      display: none;
-      visibility: hidden;
+      align-items: center;
+    }
+
+    .page-link {
+      @media only screen and (max-width: 600px) {
+        display: none;
+      }
     }
   }
 
   .dropdown {
     cursor: pointer;
     display: flex;
+
+    @media only screen and (max-width: 600px) {
+      display: none;
+    }
 
     .nav-title.selected {
       color: lighten($txt-color, 40);
@@ -157,4 +180,13 @@ header {
 
 .h3.not-clickable + .bigger-text.not-clickable {
   margin-top: $reg-space + 0.25rem;
+}
+
+.mobile-menu {
+  background-color: $bg-color;
+  padding: $reg-space;
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 100dvh;
 }
