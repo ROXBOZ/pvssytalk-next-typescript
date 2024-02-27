@@ -20,6 +20,11 @@
       display: flex;
       gap: 2rem;
       align-items: center;
+      @media only screen and (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
 
       h2,
       h3 {
@@ -35,8 +40,19 @@
     .directory-item-content-container {
       display: flex;
 
+      @media only screen and (max-width: 600px) {
+        flex-direction: column;
+      }
+
       .col1 {
         min-width: 50%;
+
+        @media only screen and (max-width: 600px) {
+          min-width: 100%;
+          p {
+            margin-block-end: 0;
+          }
+        }
       }
 
       .directory-item-address:not(:first-of-type) {

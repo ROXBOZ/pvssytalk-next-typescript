@@ -3,9 +3,6 @@ import { MenuDetail } from "../types";
 import React from "react";
 
 const Footer = ({ data }: any) => {
-  const handleNewsletter = () => {
-    // console.log("s'inscrire à la newsletter");
-  };
   return (
     <footer>
       <div className="footer-content">
@@ -17,7 +14,7 @@ const Footer = ({ data }: any) => {
             </span>
              !
           </p>
-          <button onClick={handleNewsletter}>s'inscrire à la newsletter</button>
+          <button>s'inscrire à la newsletter</button>
         </div>
         <nav>
           <ul>

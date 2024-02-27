@@ -15,6 +15,7 @@ import Layout from "../../../components/layouts/Layout";
 import Link from "next/link";
 import Modal from "../../../components/Modal";
 import PainDashboard from "../../../components/PainDashboard";
+import PartageNav from "../../../components/PartageNav";
 import { PortableText } from "@portabletext/react";
 
 const ArticlePain = ({
@@ -33,6 +34,21 @@ const ArticlePain = ({
   const imageCoverHotspot = {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };
+  const [is600Max, setIs600Max] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIs600Max(window.innerWidth < 600);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const renderDiagram = (diagram: Diagram, index: number) => (
     <div
@@ -149,7 +165,6 @@ const ArticlePain = ({
               </div>
             )}
           </div>
-
           <div className="pain-nav-article-container">
             <PainDashboard
               pain={pain}
@@ -157,7 +172,6 @@ const ArticlePain = ({
               setIsMed={setIsMed}
               setIsInitialRender={setIsInitialRender}
             />
-
             <div ref={ref} className="pain-article">
               {isMed ? (
                 <>
@@ -350,6 +364,22 @@ const ArticlePain = ({
                     </>
                   )}
                 </>
+              )}
+              {is600Max && (
+                <nav className="pain-nav">
+                  <div className="ressources-nav">
+                    <h3>Ressources</h3>
+                    <Link href={`${pain.slug.current}/annuaire`}>Annuaire</Link>
+                    <Link href={`${pain.slug.current}/exercices`}>
+                      Exercices
+                    </Link>
+                    <Link href={`${pain.slug.current}/glossaire`}>
+                      Glossaire
+                    </Link>
+                    <Link href={`${pain.slug.current}/medias`}>Médias</Link>
+                  </div>
+                  <PartageNav pain={pain.name} />
+                </nav>
               )}
             </div>
             {isMed && (

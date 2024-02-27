@@ -6,16 +6,7 @@ header {
   &.fixed {
     position: fixed;
     z-index: 999999;
-
-    .logo {
-      z-index: 999999;
-      position: fixed;
-    }
-
-    .header-nav {
-      position: fixed;
-      right: 0;
-    }
+    right: 0;
   }
 
   .logo {
@@ -23,9 +14,6 @@ header {
     color: $txt-color;
     font-size: 150%;
     padding: $sm-space $reg-space !important;
-    sup {
-      color: $txt-color;
-    }
   }
 
   .header-nav {
@@ -33,21 +21,20 @@ header {
     align-items: baseline;
     gap: $lg-space;
     padding: $sm-space $reg-space;
+    text-transform: lowercase;
 
     a {
       font-family: $font-regular;
       border-bottom: none;
     }
 
-    .page-link {
-      &:hover {
-        color: lighten($txt-color, 40);
-        font-family: $font-bold;
-      }
-    }
-
     button {
       font-size: $font-size-basis;
+    }
+
+    @media only screen and (max-width: 600px) {
+      display: none;
+      visibility: hidden;
     }
   }
 
@@ -57,13 +44,12 @@ header {
 
     .nav-title.selected {
       color: lighten($txt-color, 40);
-      font-family: $font-bold;
     }
 
     .dropdown-content-wrapper {
       display: none;
-      z-index: -10;
-      gap: $sm-space;
+      z-index: -1;
+
       position: fixed;
       margin: 0;
       left: 0;
@@ -95,10 +81,6 @@ header {
           margin: auto;
           justify-content: center;
           min-width: 25%;
-          .h4 {
-            margin-top: 0;
-            font-family: $font-logo;
-          }
 
           .col {
             flex: 1;

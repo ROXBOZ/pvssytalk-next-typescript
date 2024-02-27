@@ -143,14 +143,18 @@ const ResourcePageLayout: React.FC<{
                     (item: any) => item.isValidated === true
                   ).length}
               </sup>
+              {!pain && typeformLink && (
+                <Link
+                  target="_blank"
+                  style={{ border: "0" }}
+                  href={typeformLink}
+                >
+                  <button className="primary-button">
+                    recommander <span className="icon logo">→</span>
+                  </button>
+                </Link>
+              )}
             </h1>
-            {!pain && typeformLink && (
-              <Link target="_blank" style={{ border: 0 }} href={typeformLink}>
-                <button className="primary-button">
-                  recommander <span className="icon logo">→</span>
-                </button>
-              </Link>
-            )}
           </div>
 
           {pain ? <PainNav pain={pain} /> : <RessourceNav />}

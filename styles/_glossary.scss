@@ -55,10 +55,6 @@ form {
       font-size: $font-size-basis;
       font-family: $font-regular;
     }
-
-    &:focus {
-      border: $border-solid red !important;
-    }
   }
 }
 

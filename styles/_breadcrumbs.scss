@@ -24,11 +24,8 @@
       }
     }
   }
-}
 
-@media screen and (max-width: map-get($breakpoints, "lg")) {
-  .breadcrumbs {
-    margin-top: 15vh;
-    overflow-x: auto;
+  @media only screen and (max-width: 600px) {
+    padding: $reg-space;
   }
 }

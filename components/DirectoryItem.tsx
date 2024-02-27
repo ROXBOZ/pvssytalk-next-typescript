@@ -52,44 +52,41 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                 )}
               </div>
 
-              <div>
-                {contact.pricing && (
-                  <div>
-                    {contact.pricing.pricingMin && (
-                      <h4>Tarifs de consultation</h4>
-                    )}
+              {contact.pricing && (
+                <div>
+                  {contact.pricing.pricingMin && (
+                    <h4>Tarifs de consultation</h4>
+                  )}
 
-                    {contact.pricing && (
-                      <p>
-                        {(contact.pricing.pricingMin ||
-                          contact.pricing.pricingMax) && <span>CHF </span>}
-                        {contact.pricing.pricingMin &&
-                          contact.pricing.pricingMin}
-                        {contact.pricing.pricingMax && (
-                          <span>-{contact.pricing.pricingMax}</span>
-                        )}
-                        {(contact.pricing.pricingMin ||
-                          contact.pricing.pricingMax) && <span>.-</span>}
-                      </p>
-                    )}
-
-                    {contact.pricing.isReimbursed === true &&
-                      contact.pricing.isReimbursedComp === false && (
-                        <div className="tag">
-                          <span>remboursé par l’assurance de base</span>
-                        </div>
+                  {contact.pricing && (
+                    <p>
+                      {(contact.pricing.pricingMin ||
+                        contact.pricing.pricingMax) && <span>CHF </span>}
+                      {contact.pricing.pricingMin && contact.pricing.pricingMin}
+                      {contact.pricing.pricingMax && (
+                        <span>-{contact.pricing.pricingMax}</span>
                       )}
-                    {contact.pricing.isReimbursedComp === true && (
+                      {(contact.pricing.pricingMin ||
+                        contact.pricing.pricingMax) && <span>.-</span>}
+                    </p>
+                  )}
+
+                  {contact.pricing.isReimbursed === true &&
+                    contact.pricing.isReimbursedComp === false && (
                       <div className="tag">
-                        <span>remboursé par la complémentaire</span>
+                        <span>remboursé par l’assurance de base</span>
                       </div>
                     )}
-                  </div>
-                )}
-              </div>
+                  {contact.pricing.isReimbursedComp === true && (
+                    <div className="tag">
+                      <span>remboursé par la complémentaire</span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
-            <div>
+            <div className="col2">
               <div>
                 {contact.addresses && contact.category === "specialist" ? (
                   <h4>Lieux de consultations</h4>

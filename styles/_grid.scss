@@ -16,16 +16,12 @@
   div {
     &:first-child {
       grid-column: 1/5;
-
-      // h2 {
-      //   margin-top: 0;
-      // }
     }
 
     &:nth-child(2) {
       margin: 0;
       grid-column: 6/13;
-      width: 100%;
+      // width: 100%;
     }
   }
 
@@ -130,8 +126,18 @@
   border-left: $border-solid $txt-color-lighten;
   padding: 0 $reg-space;
   max-width: 100%;
-  h2:first-child {
-    margin-top: 0;
+
+  @media only screen and (min-width: 600px) {
+    h2:first-child,
+    h3:first-child {
+      margin-top: 0;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    border-left: none;
+    padding: 0;
   }
 }
 
@@ -139,4 +145,8 @@
   align-items: baseline;
   width: 100%;
   @include grid;
+
+  @media only screen and (max-width: 600px) {
+    display: flex;
+  }
 }

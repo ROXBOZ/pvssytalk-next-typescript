@@ -81,6 +81,7 @@ footer {
 
   .footer-content {
     @include grid;
+
     p {
       margin-top: 0;
       font-size: 200%;
@@ -106,8 +107,14 @@ footer {
 
       ul {
         display: flex;
-        flex-wrap: wrap;
         padding-left: 0;
+        @media only screen and (min-width: 600px) {
+          flex-wrap: wrap;
+        }
+        @media only screen and (max-width: 600px) {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
       }
 
       li {
