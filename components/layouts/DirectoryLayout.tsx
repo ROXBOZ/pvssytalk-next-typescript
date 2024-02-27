@@ -22,8 +22,6 @@ const DirectoryLayout: React.FC<any> = ({
           (a: any) => a.region
         );
 
-        console.log("itemRegions", itemRegions);
-
         if (
           (selectedPain &&
             !selectedRegion &&

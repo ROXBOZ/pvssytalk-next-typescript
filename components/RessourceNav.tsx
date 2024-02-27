@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
+import useWindowSize from "../utils/useWindowSize";
 
 const RessourceNav = () => {
   const [currentURL, setCurrentURL] = useState("");
+  const is600Max = useWindowSize();
   useEffect(() => {
     setCurrentURL(window.location.href);
   }, []);
 
   return (
-    <nav className="nav-directory h4">
-      {!currentURL.endsWith("agenda") && (
-        <Link href="agenda">
-          <span>Agenda</span>
-        </Link>
-      )}
+    <nav className={`nav-directory ${!is600Max && "h4"}`}>
       {!currentURL.endsWith("annuaire") && (
         <Link href="annuaire">
           <span>Annuaire</span>

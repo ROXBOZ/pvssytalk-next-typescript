@@ -17,6 +17,7 @@ import Modal from "../../../components/Modal";
 import PainDashboard from "../../../components/PainDashboard";
 import PartageNav from "../../../components/PartageNav";
 import { PortableText } from "@portabletext/react";
+import useWindowSize from "../../../utils/useWindowSize";
 
 const ArticlePain = ({
   pain,
@@ -34,21 +35,7 @@ const ArticlePain = ({
   const imageCoverHotspot = {
     objectPosition: `${imgHotspot?.x * 100}% ${imgHotspot?.y * 100}%`,
   };
-  const [is600Max, setIs600Max] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIs600Max(window.innerWidth < 600);
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const is600Max = useWindowSize();
 
   const renderDiagram = (diagram: Diagram, index: number) => (
     <div
@@ -183,6 +170,15 @@ const ArticlePain = ({
                         slug={pain.slug.current}
                         glossary={glossary}
                       />
+                    </div>
+                  )}
+
+                  {is600Max && isMed && (
+                    <div className="diagrams-container">
+                      {pain.medicalApproach &&
+                        pain.medicalApproach.diagrams &&
+                        Array.isArray(pain.medicalApproach.diagrams) &&
+                        pain.medicalApproach.diagrams.map(renderDiagram)}
                     </div>
                   )}
 
@@ -382,7 +378,7 @@ const ArticlePain = ({
                 </nav>
               )}
             </div>
-            {isMed && (
+            {!is600Max && isMed && (
               <div className="diagrams-container">
                 {pain.medicalApproach &&
                   pain.medicalApproach.diagrams &&

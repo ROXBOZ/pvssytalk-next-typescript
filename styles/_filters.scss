@@ -83,11 +83,8 @@
   white-space: nowrap;
   max-width: fit-content;
   padding: 0.25rem 1em;
-  // border: $border-solid lighten($primary, 30);
-  // color: $primary;
   background-color: lighten($secondary, 5);
   border-radius: $border-radius;
-  font-size: small;
   max-height: max-content;
   display: flex;
   align-items: center;

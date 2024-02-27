@@ -47,11 +47,18 @@
   flex-direction: column;
   padding-bottom: 4rem;
 }
+@media only screen and (max-width: 600px) {
+  .nav-directory {
+    padding-bottom: 0;
+    margin: 0;
+    font-size: large;
+  }
+}
 .nav-directory a {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding-top: 1rem;
+  padding: 0.75rem 0 0.25rem;
   font-weight: normal;
   transition: 0.2s ease-in;
   cursor: pointer !important;
@@ -70,6 +77,11 @@
 }
 .nav-directory a span {
   font-family: "ESRebond" !important;
+}
+@media only screen and (max-width: 600px) {
+  .nav-directory a {
+    padding-bottom: 0;
+  }
 }
 
 .pain-nav {
@@ -193,21 +205,29 @@
 }
 
 .fixed-container {
+  position: sticky;
   top: 4rem;
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 600px) {
   .fixed-container {
-    position: sticky;
+    position: relative;
+    width: 100%;
   }
 }
 .fixed-container .title {
   display: flex;
-  align-items: center;
 }
 .fixed-container .title h1 {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
+  line-height: 0.5;
   align-items: baseline;
+}
+@media only screen and (max-width: 600px) {
+  .fixed-container .title h1 {
+    margin-bottom: 0;
+  }
 }
 .fixed-container .title h1 sup {
   display: flex;
@@ -230,7 +250,7 @@
   .dropdowns-container {
     flex-direction: column;
     width: 100%;
-    border: 2px solid red;
+    gap: 0.5rem;
   }
 }
 .dropdowns-container .reset-button {
@@ -252,11 +272,6 @@
   background-color: #eedbf6;
   padding: 0.5rem 1em;
   border-radius: 50px;
-}
-@media only screen and (max-width: 600px) {
-  .dropdowns-container .dropdown .drowpdown-title {
-    width: 100%;
-  }
 }
 .dropdowns-container .dropdown .dropdown-content {
   display: none;
@@ -291,6 +306,19 @@
 .dropdowns-container .dropdown:hover .dropdown-content ul li {
   list-style: none;
   padding-right: 0;
+}
+
+.resources-nav-mobile {
+  width: 100%;
+  margin-top: 4rem;
+}
+.resources-nav-mobile h3 {
+  margin-top: 0;
+  border-top: 1px solid #e4c7f1;
+  padding-top: 1rem;
+}
+.resources-nav-mobile a {
+  padding-top: 0.5rem;
 }
 
 h2,
@@ -532,6 +560,7 @@ header .dropdown .dropdown-content-wrapper {
   padding: 4rem 2rem;
   flex-direction: column;
   box-shadow: 0px 20px 70px #31064b;
+  cursor: default;
 }
 header .dropdown .dropdown-content-wrapper.selected {
   display: flex;
@@ -919,7 +948,6 @@ footer .footer-content nav a:hover {
   padding: 0.25rem 1em;
   background-color: #eedbf6;
   border-radius: 50px;
-  font-size: small;
   max-height: -moz-max-content;
   max-height: max-content;
   display: flex;
@@ -974,6 +1002,11 @@ footer .footer-content nav a:hover {
 .double-column-container .nav-directory {
   grid-column-start: 7;
   grid-column-end: 12;
+}
+@media only screen and (max-width: 600px) {
+  .double-column-container .nav-directory {
+    width: 100%;
+  }
 }
 
 .pain-cards-container {
@@ -1139,6 +1172,7 @@ footer .footer-content nav a:hover {
 @media only screen and (max-width: 600px) {
   .breadcrumbs {
     padding: 2rem;
+    flex-wrap: wrap;
   }
 }
 
@@ -1362,8 +1396,13 @@ ol li {
 }
 .letter-title:first-child .h1 {
   border-top: none;
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+  padding-top: 0;
+  margin-top: 0;
+}
+@media only screen and (max-width: 600px) {
+  .letter-title:first-child {
+    margin-top: 2rem;
+  }
 }
 
 .term-entry h2 {
@@ -1428,6 +1467,11 @@ form .search-bar::placeholder {
   width: 100%;
   flex-wrap: wrap;
 }
+@media only screen and (max-width: 600px) {
+  .letter-link-container {
+    margin: 2rem 0 4rem;
+  }
+}
 .letter-link-container .letter-link {
   border: 1px solid transparent;
   border-radius: 50px;
@@ -1469,16 +1513,20 @@ form .search-bar::placeholder {
 
 .directory-container a {
   font-family: "ESKlarheit-Book";
-  border-bottom: 1px solid #31064b;
 }
 .directory-container .directory-item {
   margin: 2rem 0 !important;
-  max-width: 90%;
   display: flex;
+  width: 92%;
   flex-direction: column;
   border-radius: 10px;
   padding: 2rem;
   border: 1px solid #e4c7f1;
+}
+@media only screen and (max-width: 600px) {
+  .directory-container .directory-item {
+    width: 75%;
+  }
 }
 .directory-container .directory-item:first-of-type {
   margin-top: 0 !important;
@@ -1490,7 +1538,6 @@ form .search-bar::placeholder {
 }
 @media only screen and (max-width: 600px) {
   .directory-container .directory-item .directory-item-title {
-    flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
@@ -1531,10 +1578,16 @@ form .search-bar::placeholder {
 }
 
 .category-title {
-  color: #a62fee;
+  color: #ba5ef2;
+  max-width: 100%;
 }
 .category-title:first-of-type {
   margin-top: 0;
+}
+@media only screen and (max-width: 600px) {
+  .category-title:first-of-type {
+    margin-top: 8rem;
+  }
 }
 
 .msg-box {

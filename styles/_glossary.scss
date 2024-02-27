@@ -9,8 +9,12 @@
   &:first-child {
     .h1 {
       border-top: none;
-      padding-top: 0 !important;
-      margin-top: 0 !important;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    @media only screen and (max-width: 600px) {
+      margin-top: $reg-space;
     }
   }
 }
@@ -64,6 +68,10 @@ form {
   height: fit-content;
   width: 100%;
   flex-wrap: wrap;
+
+  @media only screen and (max-width: 600px) {
+    margin: $reg-space 0 $lg-space;
+  }
 
   .letter-link {
     border: $border-solid transparent;

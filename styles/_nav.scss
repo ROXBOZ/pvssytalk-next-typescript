@@ -3,11 +3,17 @@
   flex-direction: column;
   padding-bottom: $lg-space;
 
+  @media only screen and (max-width: 600px) {
+    padding-bottom: 0;
+    margin: 0;
+    font-size: large;
+  }
+
   a {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding-top: $sm-space;
+    padding: 0.75rem 0 0.25rem;
     font-weight: normal;
     transition: $animation-transition;
     cursor: pointer !important;
@@ -17,6 +23,9 @@
 
     span {
       font-family: $font-logo !important;
+    }
+    @media only screen and (max-width: 600px) {
+      padding-bottom: 0;
     }
   }
 }
@@ -138,21 +147,26 @@
 
 // NAVIGATION fixed
 .fixed-container {
-  @media only screen and (min-width: 600px) {
-    position: -webkit-sticky;
-    position: sticky;
-  }
-
+  position: -webkit-sticky;
+  position: sticky;
   top: $lg-space;
+  @media only screen and (max-width: 600px) {
+    position: relative;
+    width: 100%;
+  }
 
   .title {
     display: flex;
-    align-items: center;
 
     h1 {
       display: flex;
       gap: $sm-space;
+      flex-wrap: wrap;
+      line-height: 0.5;
       align-items: baseline;
+      @media only screen and (max-width: 600px) {
+        margin-bottom: 0;
+      }
 
       sup {
         display: flex;
@@ -177,7 +191,7 @@
   @media only screen and (max-width: 600px) {
     flex-direction: column;
     width: 100%;
-    border: 2px solid red;
+    gap: 0.5rem;
   }
 
   .reset-button {
@@ -198,10 +212,6 @@
       background-color: lighten($secondary, 5);
       padding: 0.5rem 1em;
       border-radius: $border-radius;
-
-      @media only screen and (max-width: 600px) {
-        width: 100%;
-      }
     }
     .dropdown-content {
       display: none;
@@ -248,5 +258,18 @@
         }
       }
     }
+  }
+}
+
+.resources-nav-mobile {
+  width: 100%;
+  margin-top: $lg-space;
+  h3 {
+    margin-top: 0;
+    border-top: $border-solid $secondary;
+    padding-top: $sm-space;
+  }
+  a {
+    padding-top: 0.5rem;
   }
 }

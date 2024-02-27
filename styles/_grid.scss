@@ -28,6 +28,10 @@
   .nav-directory {
     grid-column-start: 7;
     grid-column-end: 12;
+
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
   }
 }
 

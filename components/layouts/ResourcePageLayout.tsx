@@ -6,6 +6,7 @@ import PainNav from "../PainNav";
 import RessourceNav from "../RessourceNav";
 import { pains } from "../reusables/Filters";
 import { useRouter } from "next/router";
+import useWindowSize from "../../utils/useWindowSize";
 
 const ResourcePageLayout: React.FC<{
   pageName: string;
@@ -32,6 +33,7 @@ const ResourcePageLayout: React.FC<{
 }) => {
   const router = useRouter();
   const [, setTopList] = useState(0);
+  const is600Max = useWindowSize();
 
   const typeformDirectoryLink = typeform && typeform[0].directoryTypeform;
   const typeformMediaLink = typeform && typeform[0].mediasTypeform;
@@ -87,6 +89,8 @@ const ResourcePageLayout: React.FC<{
   };
 
   const DropDown = ({ title, array }: any) => {
+    const [isOpened, setIsOpened] = useState("");
+    console.log("isOpened :", isOpened);
     return (
       <div className="dropdown">
         <span className="drowpdown-title">
@@ -99,9 +103,7 @@ const ResourcePageLayout: React.FC<{
           ) : (
             <span className="placeholder">{title}</span>
           )}
-          <span className="icon logo" style={{ rotate: "45deg" }}>
-            &#x2715;
-          </span>
+          <span className="icon logo">↗</span>
         </span>
         <div className="dropdown-content">
           <ul>
@@ -157,7 +159,7 @@ const ResourcePageLayout: React.FC<{
             </h1>
           </div>
 
-          {pain ? <PainNav pain={pain} /> : <RessourceNav />}
+          {pain ? <PainNav pain={pain} /> : !is600Max ? <RessourceNav /> : null}
 
           {pageName !== "Glossaire" && (
             <div className="dropdowns-container">
@@ -200,6 +202,12 @@ const ResourcePageLayout: React.FC<{
           )}
         </div>
         <div>{children}</div>
+        {!pain && is600Max && (
+          <div className="resources-nav-mobile">
+            <h3>Autres ressources</h3>
+            <RessourceNav />
+          </div>
+        )}
       </div>
     </div>
   );
