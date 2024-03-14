@@ -66,7 +66,6 @@ const Exercises = ({
                     (p: any) => p.name
                   );
 
-                  console.log("EXERCICE itemPains", itemPains);
                   if (!selectedPain || itemPains.includes(selectedPain)) {
                     return <Exercise key={index} exercise={exercise} />;
                   }

@@ -251,6 +251,7 @@
     flex-direction: column;
     width: 100%;
     gap: 0.5rem;
+    padding: 2rem 0;
   }
 }
 .dropdowns-container .reset-button {
@@ -258,6 +259,11 @@
   max-width: fit-content;
   aspect-ratio: 1/1;
   padding: 0 0.75rem;
+}
+@media only screen and (max-width: 600px) {
+  .dropdowns-container .reset-button {
+    display: none;
+  }
 }
 .dropdowns-container .dropdown {
   flex: 1;
@@ -662,12 +668,31 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 
 .mobile-menu {
-  background-color: #fefdf4;
-  padding: 2rem;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
-  height: 100dvh;
+  height: 100vh;
+  background-color: #fefdf4;
+}
+.mobile-menu .logo {
+  position: fixed;
+}
+.mobile-menu .mobile-menu-content {
+  margin-top: 4rem;
+  background-color: #fefdf4;
+  padding: 2rem;
+}
+.mobile-menu .mobile-menu-content .title {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+.mobile-menu .mobile-menu-content .title a {
+  width: 100% !important;
+}
+.mobile-menu .mobile-menu-content nav {
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes transitionX {
@@ -1034,7 +1059,7 @@ footer .footer-content nav a:hover {
 }
 @media only screen and (max-width: 600px) {
   .double-column-container .nav-directory {
-    width: 100%;
+    width: 80vw;
   }
 }
 
@@ -1351,6 +1376,23 @@ button.square-button {
   margin-top: 0.25rem;
 }
 
+.exercise h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.exercise h2 button {
+  border: none !important;
+  padding: 0 1rem;
+  aspect-ratio: 1/1;
+  width: 3rem;
+  font-family: "ESRebond";
+  font-size: 120%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .exercise:not(:first-child) {
   margin-top: 2rem !important;
   border-top: 1px solid #e4c7f1;
@@ -1405,12 +1447,17 @@ button.square-button {
 }
 .exercise-steps ul li {
   list-style: none;
-  padding: 1rem 0;
-  border-bottom: 1px solid #e4c7f1;
+  padding: 0;
 }
 
 ol {
   padding-left: 0;
+}
+ol .step h4 li {
+  font-family: "ESRebond" !important;
+}
+ol .step h4 li::marker {
+  color: #a62fee;
 }
 ol li {
   padding: 1rem 0 0;
@@ -1431,6 +1478,7 @@ ol li {
 @media only screen and (max-width: 600px) {
   .letter-title:first-child {
     margin-top: 2rem;
+    padding-top: 2rem;
   }
 }
 
@@ -1498,7 +1546,7 @@ form .search-bar::placeholder {
 }
 @media only screen and (max-width: 600px) {
   .letter-link-container {
-    margin: 2rem 0 4rem;
+    display: none;
   }
 }
 .letter-link-container .letter-link {

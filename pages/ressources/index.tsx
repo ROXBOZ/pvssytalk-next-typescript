@@ -28,14 +28,14 @@ const Ressources = ({
       >
         <div>
           {currentURL.endsWith("ressources") ? (
-            <h1>Ressources supplémentaires</h1>
+            <h1>Ressources</h1>
           ) : (
-            <h2>Ressources supplémentaires</h2>
+            <h2>Ressources</h2>
           )}
         </div>
         <div>
           <nav className="nav-directory h4">
-            <Link href="ressources/agenda">Agenda</Link>
+            {/* <Link href="ressources/agenda">Agenda</Link> */}
             <Link href="ressources/annuaire">Annuaire</Link>
             <Link href="ressources/exercices">Exercices</Link>
             <Link href="ressources/glossaire">Glossaire</Link>

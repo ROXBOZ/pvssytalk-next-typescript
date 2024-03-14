@@ -89,8 +89,6 @@ const ResourcePageLayout: React.FC<{
   };
 
   const DropDown = ({ title, array }: any) => {
-    const [isOpened, setIsOpened] = useState("");
-    console.log("isOpened :", isOpened);
     return (
       <div className="dropdown">
         <span className="drowpdown-title">
@@ -144,18 +142,18 @@ const ResourcePageLayout: React.FC<{
                   relatedContent.filter(
                     (item: any) => item.isValidated === true
                   ).length}
+                {!pain && typeformLink && (
+                  <Link
+                    target="_blank"
+                    style={{ border: "0" }}
+                    href={typeformLink}
+                  >
+                    <button className="primary-button">
+                      recommander <span className="icon logo">→</span>
+                    </button>
+                  </Link>
+                )}
               </sup>
-              {!pain && typeformLink && (
-                <Link
-                  target="_blank"
-                  style={{ border: "0" }}
-                  href={typeformLink}
-                >
-                  <button className="primary-button">
-                    recommander <span className="icon logo">→</span>
-                  </button>
-                </Link>
-              )}
             </h1>
           </div>
 

@@ -192,12 +192,16 @@
     flex-direction: column;
     width: 100%;
     gap: 0.5rem;
+    padding: $reg-space 0;
   }
 
   .reset-button {
     max-width: fit-content;
     aspect-ratio: 1/1;
     padding: 0 0.75rem;
+    @media only screen and (max-width: 600px) {
+      display: none;
+    }
   }
   .dropdown {
     flex: 1;

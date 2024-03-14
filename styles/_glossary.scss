@@ -15,6 +15,7 @@
 
     @media only screen and (max-width: 600px) {
       margin-top: $reg-space;
+      padding-top: $reg-space;
     }
   }
 }
@@ -70,7 +71,7 @@ form {
   flex-wrap: wrap;
 
   @media only screen and (max-width: 600px) {
-    margin: $reg-space 0 $lg-space;
+    display: none;
   }
 
   .letter-link {

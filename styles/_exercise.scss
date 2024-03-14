@@ -1,3 +1,22 @@
+.exercise {
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      border: none !important;
+      padding: 0 1rem;
+      aspect-ratio: 1/1;
+      width: 3rem;
+      font-family: $font-logo;
+      font-size: 120%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
 .exercise:not(:first-child) {
   margin-top: $reg-space !important;
   border-top: $border-solid $secondary;
@@ -37,6 +56,7 @@
 
 .exercise-steps {
   height: fit-content;
+
   iframe {
     display: flex;
     margin: $reg-space 0;
@@ -47,14 +67,23 @@
     padding-left: 0;
     li {
       list-style: none;
-      padding: $sm-space 0;
-      border-bottom: $border-solid $secondary;
+      padding: 0;
     }
   }
 }
 
 ol {
   padding-left: 0;
+  .step {
+    h4 {
+      li {
+        font-family: $font-logo !important;
+        &::marker {
+          color: lighten($txt-color, 40%);
+        }
+      }
+    }
+  }
   li {
     padding: $sm-space 0 0;
   }

@@ -86,7 +86,7 @@ const Home = ({
             })}
           </div>
         )}
-        <FutureEvents events={agenda} />
+
         <LogosPartners logos={partnersLogos} />
         <Marquee2 repeatTimes={999} />
         <Footer data={footerMenuData} />

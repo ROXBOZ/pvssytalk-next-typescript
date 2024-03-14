@@ -10,6 +10,21 @@ const GlossaryLayout: React.FC<GlossaryLayoutProps> = ({
   letters,
   termGroups,
 }) => {
+  const sluglify = (text: string) => {
+    return text
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/à/g, "a")
+      .replace(/é/g, "e")
+      .replace(/è/g, "e")
+      .replace(/ü/g, "u")
+      .replace(/ï/g, "i")
+      .replace(/ê/g, "e")
+      .replace(/ù/g, "u")
+      .replace(/'/g, "-")
+      .replace(/’/g, "-")
+      .replace(/œ/g, "oe");
+  };
   return (
     <>
       {letters.map((letter) => (
@@ -19,7 +34,11 @@ const GlossaryLayout: React.FC<GlossaryLayoutProps> = ({
             {letter.toLowerCase()}
           </p>
           {termGroups[letter].map((term: any) => (
-            <div className="glossary-term" key={term._id}>
+            <div
+              id={sluglify(term.term)}
+              className="glossary-term"
+              key={term._id}
+            >
               <h2 className="h3 term-entry" style={{ marginTop: "revert" }}>
                 {term.term}
               </h2>

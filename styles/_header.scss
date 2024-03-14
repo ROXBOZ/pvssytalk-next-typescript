@@ -183,10 +183,33 @@ header {
 }
 
 .mobile-menu {
-  background-color: $bg-color;
-  padding: $reg-space;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
-  height: 100dvh;
+  height: 100vh;
+  background-color: $bg-color;
+
+  .logo {
+    position: fixed;
+  }
+
+  .mobile-menu-content {
+    margin-top: $lg-space;
+    background-color: $bg-color;
+    padding: $reg-space;
+
+    .title {
+      margin-top: 0.75rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      a {
+        width: 100% !important;
+      }
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
