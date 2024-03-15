@@ -2065,6 +2065,7 @@ form .input-section .showPassword {
 html {
   scroll-behavior: smooth;
   overscroll-behavior-y: contain;
+  background-color: #c8ffa5;
 }
 
 body {
