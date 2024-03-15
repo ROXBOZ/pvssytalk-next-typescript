@@ -197,15 +197,34 @@ header {
     margin-top: $lg-space;
     padding: $reg-space;
 
+    a {
+      border-bottom: 0;
+    }
+
     .title {
       display: flex;
       padding: 0.5rem 0;
+      background-color: red;
+      border: 1px solid yellow;
+      font-family: $font-logo;
+      font-size: 1.5rem;
 
-      &.plus,
-      &.arrow {
+      &.plus {
         width: 100%;
         display: flex;
         justify-content: space-between;
+
+        a {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        span {
+          padding: 0;
+          font-family: $font-logo;
+          margin: 0;
+          align-items: center;
+        }
 
         .plus-icon,
         .minus-icon {

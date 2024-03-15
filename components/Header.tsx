@@ -160,15 +160,16 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
       <Link href="/" className="borderless">
         <span className="logo nowrap">pvssy talk</span>
       </Link>
+
       <div className="mobile-menu-content">
         {data &&
           data.map((item: any, index: number) => {
             return (
-              <div key={index}>
+              <>
                 {item._type === "page" && (
                   <div className="title plus">
-                    <Link className="title arrow" href={item.slug.current}>
-                      {item.title}
+                    <Link key={index} href={item.slug.current}>
+                      <span>{item.title}</span>
                       <span className="arrow">→</span>
                     </Link>
                   </div>
@@ -178,29 +179,27 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                   item.content &&
                   item.content.map((contentItem: any, index: number) => {
                     return (
-                      <div key={index}>
+                      <>
                         <div
+                          key={index}
                           className="title plus"
                           onClick={() => {
                             expandMenu(contentItem._key);
                           }}
                         >
                           {contentItem._type === "painsMenu" ? (
-                            <strong>Douleurs</strong>
+                            <span>Douleurs</span>
                           ) : contentItem._type === "resources" ? (
                             <Link
-                              className="title arrow"
                               href={`/ressources/${contentItem.resource
                                 .toLowerCase()
                                 .replace("é", "e")}`}
                             >
-                              {contentItem.resource}
+                              <span>{contentItem.resource}</span>
                               <span className="arrow">↗</span>
                             </Link>
                           ) : (
-                            <div className="title plus">
-                              <strong>{contentItem.title}</strong>
-                            </div>
+                            <span>{contentItem.title}</span>
                           )}
                           {contentItem._type !== "resources" && (
                             <>
@@ -251,10 +250,10 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                                 })}
                             </nav>
                           )}
-                      </div>
+                      </>
                     );
                   })}
-              </div>
+              </>
             );
           })}
       </div>

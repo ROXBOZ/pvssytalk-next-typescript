@@ -681,21 +681,37 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   margin-top: 4rem;
   padding: 2rem;
 }
+.mobile-menu .mobile-menu-content a {
+  border-bottom: 0;
+}
 .mobile-menu .mobile-menu-content .title {
   display: flex;
   padding: 0.5rem 0;
+  background-color: red;
+  border: 1px solid yellow;
+  font-family: "ESRebond";
+  font-size: 1.5rem;
 }
-.mobile-menu .mobile-menu-content .title.plus, .mobile-menu .mobile-menu-content .title.arrow {
+.mobile-menu .mobile-menu-content .title.plus {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
+.mobile-menu .mobile-menu-content .title.plus a {
+  display: flex;
+  justify-content: space-between;
+}
+.mobile-menu .mobile-menu-content .title.plus span {
+  padding: 0;
+  font-family: "ESRebond";
+  margin: 0;
+  align-items: center;
+}
 .mobile-menu .mobile-menu-content .title.plus .plus-icon,
-.mobile-menu .mobile-menu-content .title.plus .minus-icon, .mobile-menu .mobile-menu-content .title.arrow .plus-icon,
-.mobile-menu .mobile-menu-content .title.arrow .minus-icon {
+.mobile-menu .mobile-menu-content .title.plus .minus-icon {
   font-size: larger;
 }
-.mobile-menu .mobile-menu-content .title.plus .minus-icon, .mobile-menu .mobile-menu-content .title.arrow .minus-icon {
+.mobile-menu .mobile-menu-content .title.plus .minus-icon {
   margin-top: -1px;
 }
 .mobile-menu .mobile-menu-content .title a {
