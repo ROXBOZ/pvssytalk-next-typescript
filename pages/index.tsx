@@ -42,7 +42,6 @@ const Home = ({
   footerMenu,
   logos,
   painsSlugs,
-  agenda,
 }: {
   headerMenu: MenuDetail[];
   pains: PainDetail[];
@@ -50,7 +49,6 @@ const Home = ({
   footerMenu: MenuDetail[];
   logos: LogosDetail[];
   painsSlugs: any;
-  agenda: AgendaDetail[];
 }) => {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;

@@ -4,6 +4,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
 import Image from "next/image";
 import Layout from "../components/layouts/Layout";
+import PageNav from "../components/PageNav";
 import { PortableText } from "@portabletext/react";
 
 export default function Page({
@@ -11,11 +12,13 @@ export default function Page({
   page,
   footerMenu,
   painsSlugs,
+  pages,
 }: {
   headerMenu: MenuDetail[];
   page: any;
   footerMenu: MenuDetail[];
   painsSlugs: any;
+  pages: any;
 }) {
   return (
     <Layout
@@ -26,9 +29,10 @@ export default function Page({
     >
       <div className="double-column-containers-group">
         <div className="double-column-container">
+          <div>{/* <PageNav pages={pages} /> */}</div>
           <div>
             <h1>{page.title}</h1>
-
+            <PortableText value={page.subtitle as any} />
             {page.image && (
               <Image
                 className="intro-image"
@@ -39,15 +43,13 @@ export default function Page({
               />
             )}
           </div>
-          <div className="bigger-text">
-            <PortableText value={page.subtitle as any} />
-          </div>
         </div>
       </div>
 
       {page.sections.map((section: any, index: number) => {
         return (
           <div key={index} className="double-column-container">
+            <div></div>
             <div>
               <h2>{section.sectionTitle}</h2>
               {section.sectionImage && (
@@ -60,8 +62,6 @@ export default function Page({
                   alt={section.sectionImage.alternativeText}
                 />
               )}
-            </div>
-            <div>
               <PortableText value={section.sectionContent as any} />
             </div>
           </div>
@@ -111,8 +111,11 @@ export const getStaticProps = async ({
     const painsSlugs: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
+    const pages: InfoPageDetail[] = await client.fetch(
+      '*[_type == "page" && !(_id in path("drafts.**"))] {title, slug {current}, isArticle}'
+    );
     return {
-      props: { page: currentPage, headerMenu, footerMenu, painsSlugs },
+      props: { page: currentPage, headerMenu, footerMenu, painsSlugs, pages },
     };
   } catch (error) {
     console.error("Error fetching pages:", error);

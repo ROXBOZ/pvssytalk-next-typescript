@@ -188,7 +188,7 @@ header {
   right: 0;
   height: 100vh;
   background-color: $bg-color;
-
+  z-index: 999;
   .logo {
     position: fixed;
   }
