@@ -13,6 +13,10 @@
   border-top: $border-solid $secondary;
   padding-top: $reg-space;
 
+  h2 {
+    margin-top: 0;
+  }
+
   div {
     &:first-child {
       grid-column: 1/5;

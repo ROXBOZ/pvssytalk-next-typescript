@@ -1083,6 +1083,9 @@ footer .footer-content nav a:hover {
     flex-direction: column;
   }
 }
+.double-column-container h2 {
+  margin-top: 0;
+}
 .double-column-container div:first-child {
   grid-column: 1/5;
 }
@@ -2061,6 +2064,7 @@ form .input-section .showPassword {
 
 html {
   scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
 }
 
 body {
