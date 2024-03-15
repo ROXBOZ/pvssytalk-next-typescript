@@ -706,11 +706,12 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   display: flex;
   flex-direction: column;
 }
-.mobile-menu .mobile-menu-content nav.pain-nav {
+.mobile-menu .mobile-menu-content nav.mobile-nav-content {
+  border: 1px solid red;
   width: -moz-fit-content;
   width: fit-content;
 }
-.mobile-menu .mobile-menu-content nav.pain-nav a {
+.mobile-menu .mobile-menu-content nav.mobile-nav-content a {
   font-family: "ESKlarheit-Book";
   border-bottom: none;
   padding: 0.75rem 0;

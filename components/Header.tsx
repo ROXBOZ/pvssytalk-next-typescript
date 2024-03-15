@@ -152,10 +152,9 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
 
 const MobileMenu = ({ data, pains, setIsOpen }: any) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const expandMenu = (index: number) => {
+  const expandMenu = (index: any) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
-
   return (
     <div className="mobile-menu">
       <Link href="/" className="borderless">
@@ -191,18 +190,13 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                               <span className="arrow">↗</span>
                             </Link>
                           ) : (
-                            <div
-                              className="title plus"
-                              onClick={() => {
-                                expandMenu(index);
-                              }}
-                            >
+                            <div className="title plus">
                               <strong>{contentItem.title}</strong>
                             </div>
                           )}
                           {contentItem._type !== "resources" && (
                             <>
-                              {expandedIndex !== index ? (
+                              {expandedIndex !== contentItem._key ? (
                                 <span className="plus-icon">+</span>
                               ) : (
                                 <span className="minus-icon">-</span>
@@ -211,7 +205,7 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                           )}
                         </div>
                         {expandedIndex === contentItem._key && (
-                          <nav>
+                          <nav className="mobile-nav-content">
                             {contentItem.pages &&
                               contentItem.pages.map(
                                 (page: any, index: number) => {
@@ -232,7 +226,7 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                         )}
                         {contentItem._type === "painsMenu" &&
                           expandedIndex === contentItem._key && (
-                            <nav className="pain-nav">
+                            <nav className="mobile-nav-content">
                               {pains &&
                                 pains.map((pain: PainDetail, index: number) => {
                                   return (

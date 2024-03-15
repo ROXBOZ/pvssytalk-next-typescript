@@ -227,7 +227,8 @@ header {
       display: flex;
       flex-direction: column;
 
-      &.pain-nav {
+      &.mobile-nav-content {
+        border: 1px solid red;
         width: fit-content;
         a {
           font-family: $font-regular;
