@@ -196,6 +196,9 @@ header {
   .mobile-menu-content {
     margin-top: $lg-space;
     padding: $reg-space;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
     a {
       border-bottom: 0;
@@ -203,9 +206,8 @@ header {
 
     .title {
       display: flex;
-      padding: 0.5rem 0;
-      background-color: red;
-      border: 1px solid yellow;
+      // background-color: red;
+      // border: 1px solid yellow;
       font-family: $font-logo;
       font-size: 1.5rem;
 
@@ -213,7 +215,7 @@ header {
         width: 100%;
         display: flex;
         justify-content: space-between;
-
+        height: fit-content;
         a {
           display: flex;
           justify-content: space-between;
@@ -226,11 +228,6 @@ header {
           align-items: center;
         }
 
-        .plus-icon,
-        .minus-icon {
-          font-size: larger;
-        }
-
         .minus-icon {
           margin-top: -1px;
         }
@@ -240,16 +237,20 @@ header {
       }
     }
 
-    nav {
+    nav.mobile-nav-content {
       display: flex;
       flex-direction: column;
+      width: 100%;
+      margin-bottom: 1rem;
 
-      &.mobile-nav-content {
-        width: fit-content;
-        a {
-          font-family: $font-regular;
-          border-bottom: none;
-          padding: 0.75rem 0;
+      a {
+        display: flex;
+        padding-top: 1rem;
+        span {
+          font-family: $font-logo !important;
+          border-bottom: $border-solid $secondary;
+          width: 100%;
+          font-size: 105%;
         }
       }
     }

@@ -211,43 +211,51 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                             </>
                           )}
                         </div>
-                        {expandedIndex === contentItem._key && (
-                          <nav className="mobile-nav-content">
-                            {contentItem.pages &&
-                              contentItem.pages.map(
-                                (page: any, index: number) => {
-                                  return (
-                                    <Link
-                                      key={index}
-                                      href={`/${page.slug.current}`}
-                                      onClick={() => {
-                                        setIsOpen(false);
-                                      }}
-                                    >
-                                      <span>{page.title}</span>
-                                    </Link>
-                                  );
-                                }
-                              )}
-                          </nav>
-                        )}
+                        {expandedIndex === contentItem._key &&
+                          contentItem._type !== "painsMenu" && (
+                            <nav className="mobile-nav-content">
+                              {contentItem.pages &&
+                                contentItem.pages.map(
+                                  (page: any, index: number) => {
+                                    return (
+                                      <Link
+                                        key={index}
+                                        href={`/${page.slug.current}`}
+                                        onClick={() => {
+                                          setIsOpen(false);
+                                        }}
+                                      >
+                                        <span>{page.title}</span>
+                                      </Link>
+                                    );
+                                  }
+                                )}
+                            </nav>
+                          )}
                         {contentItem._type === "painsMenu" &&
                           expandedIndex === contentItem._key && (
                             <nav className="mobile-nav-content">
                               {pains &&
-                                pains.map((pain: PainDetail, index: number) => {
-                                  return (
+                                pains
+                                  .slice()
+                                  .sort((a: any, b: any) => {
+                                    if (a.name < b.name) return -1;
+                                    if (a.name > b.name) return 1;
+                                    return 0;
+                                  })
+                                  .map((pain: PainDetail, index: number) => (
                                     <Link
                                       key={index}
                                       href={`/douleurs/${pain.slug.current}`}
                                     >
-                                      {pain.name ===
-                                      "Syndrome des ovaires polykystiques"
-                                        ? "SOPK"
-                                        : pain.name}
+                                      <span>
+                                        {pain.name ===
+                                        "Syndrome des ovaires polykystiques"
+                                          ? "SOPK"
+                                          : pain.name}
+                                      </span>
                                     </Link>
-                                  );
-                                })}
+                                  ))}
                             </nav>
                           )}
                       </>
