@@ -24,7 +24,7 @@ header {
     display: flex;
     align-items: baseline;
     gap: $lg-space;
-    padding: $sm-space $reg-space;
+    padding: $sm-space 1.75rem;
     text-transform: lowercase;
 
     .burger-icon {
@@ -183,11 +183,13 @@ header {
 }
 
 .mobile-menu {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   height: 100vh;
   background-color: $bg-color;
+  background-color: yellow;
+  // z-index: 999999;
 
   .logo {
     position: fixed;
@@ -195,7 +197,6 @@ header {
 
   .mobile-menu-content {
     margin-top: $lg-space;
-    background-color: $bg-color;
     padding: $reg-space;
 
     .title {
@@ -208,8 +209,13 @@ header {
         display: flex;
         justify-content: space-between;
 
-        .plus-icon {
+        .plus-icon,
+        .minus-icon {
           font-size: larger;
+        }
+
+        .minus-icon {
+          margin-top: -1px;
         }
       }
       a {
@@ -220,6 +226,15 @@ header {
     nav {
       display: flex;
       flex-direction: column;
+
+      &.pain-nav {
+        width: fit-content;
+        a {
+          font-family: $font-regular;
+          border-bottom: none;
+          padding: 0.75rem 0;
+        }
+      }
     }
   }
 }

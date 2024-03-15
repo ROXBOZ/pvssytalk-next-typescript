@@ -534,7 +534,7 @@ header .header-nav {
   display: flex;
   align-items: baseline;
   gap: 4rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1.75rem;
   text-transform: lowercase;
 }
 header .header-nav .burger-icon {
@@ -668,18 +668,18 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 
 .mobile-menu {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   height: 100vh;
   background-color: #fefdf4;
+  background-color: yellow;
 }
 .mobile-menu .logo {
   position: fixed;
 }
 .mobile-menu .mobile-menu-content {
   margin-top: 4rem;
-  background-color: #fefdf4;
   padding: 2rem;
 }
 .mobile-menu .mobile-menu-content .title {
@@ -691,8 +691,13 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   display: flex;
   justify-content: space-between;
 }
-.mobile-menu .mobile-menu-content .title.plus .plus-icon, .mobile-menu .mobile-menu-content .title.arrow .plus-icon {
+.mobile-menu .mobile-menu-content .title.plus .plus-icon,
+.mobile-menu .mobile-menu-content .title.plus .minus-icon, .mobile-menu .mobile-menu-content .title.arrow .plus-icon,
+.mobile-menu .mobile-menu-content .title.arrow .minus-icon {
   font-size: larger;
+}
+.mobile-menu .mobile-menu-content .title.plus .minus-icon, .mobile-menu .mobile-menu-content .title.arrow .minus-icon {
+  margin-top: -1px;
 }
 .mobile-menu .mobile-menu-content .title a {
   width: 100% !important;
@@ -700,6 +705,15 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 .mobile-menu .mobile-menu-content nav {
   display: flex;
   flex-direction: column;
+}
+.mobile-menu .mobile-menu-content nav.pain-nav {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.mobile-menu .mobile-menu-content nav.pain-nav a {
+  font-family: "ESKlarheit-Book";
+  border-bottom: none;
+  padding: 0.75rem 0;
 }
 
 @keyframes transitionX {

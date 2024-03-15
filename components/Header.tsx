@@ -152,10 +152,10 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
 
 const MobileMenu = ({ data, pains, setIsOpen }: any) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
   const expandMenu = (index: number) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
+
   return (
     <div className="mobile-menu">
       <Link href="/" className="borderless">
@@ -175,14 +175,11 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                         <div
                           className="title plus"
                           onClick={() => {
-                            expandMenu(index);
+                            expandMenu(contentItem._key);
                           }}
                         >
                           {contentItem._type === "painsMenu" ? (
-                            <>
-                              <strong>Douleurs</strong>
-                              <span className="plus-icon">+</span>
-                            </>
+                            <strong>Douleurs</strong>
                           ) : contentItem._type === "resources" ? (
                             <Link
                               className="title arrow"
@@ -201,11 +198,19 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                               }}
                             >
                               <strong>{contentItem.title}</strong>
-                              <span className="plus-icon">+</span>
                             </div>
                           )}
+                          {contentItem._type !== "resources" && (
+                            <>
+                              {expandedIndex !== index ? (
+                                <span className="plus-icon">+</span>
+                              ) : (
+                                <span className="minus-icon">-</span>
+                              )}
+                            </>
+                          )}
                         </div>
-                        {expandedIndex === index && (
+                        {expandedIndex === contentItem._key && (
                           <nav>
                             {contentItem.pages &&
                               contentItem.pages.map(
@@ -225,15 +230,20 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                               )}
                           </nav>
                         )}
-
                         {contentItem._type === "painsMenu" &&
-                          expandedIndex === index && (
-                            <nav>
+                          expandedIndex === contentItem._key && (
+                            <nav className="pain-nav">
                               {pains &&
                                 pains.map((pain: PainDetail, index: number) => {
                                   return (
-                                    <Link key={index} href={pain.slug.current}>
-                                      {pain.name}
+                                    <Link
+                                      key={index}
+                                      href={`/douleurs/${pain.slug.current}`}
+                                    >
+                                      {pain.name ===
+                                      "Syndrome des ovaires polykystiques"
+                                        ? "SOPK"
+                                        : pain.name}
                                     </Link>
                                   );
                                 })}
