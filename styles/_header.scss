@@ -199,9 +199,19 @@ header {
     padding: $reg-space;
 
     .title {
-      margin-top: 0.75rem;
-      margin-bottom: 0.5rem;
       display: flex;
+      padding: 0.5rem 0;
+
+      &.plus,
+      &.arrow {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .plus-icon {
+          font-size: larger;
+        }
+      }
       a {
         width: 100% !important;
       }

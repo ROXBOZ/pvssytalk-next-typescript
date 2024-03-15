@@ -683,9 +683,16 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   padding: 2rem;
 }
 .mobile-menu .mobile-menu-content .title {
-  margin-top: 0.75rem;
-  margin-bottom: 0.5rem;
   display: flex;
+  padding: 0.5rem 0;
+}
+.mobile-menu .mobile-menu-content .title.plus, .mobile-menu .mobile-menu-content .title.arrow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.mobile-menu .mobile-menu-content .title.plus .plus-icon, .mobile-menu .mobile-menu-content .title.arrow .plus-icon {
+  font-size: larger;
 }
 .mobile-menu .mobile-menu-content .title a {
   width: 100% !important;

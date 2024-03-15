@@ -8,6 +8,7 @@ import useWindowSize from "../utils/useWindowSize";
 
 const RenderMenu = ({ data, pains, setIsOpen }: any) => {
   const [isSelected, setIsSelected] = useState("");
+
   return (
     <>
       {data &&
@@ -70,19 +71,17 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
                                 <nav>
                                   {menu.pages &&
                                     menu.pages.map(
-                                      (page: any, index: number) => {
-                                        return (
-                                          <Link
-                                            key={index}
-                                            href={`/${page.slug.current}`}
-                                          >
-                                            <span className="title">
-                                              {page.title}
-                                            </span>
-                                            <span className="arrow">↗</span>
-                                          </Link>
-                                        );
-                                      }
+                                      (page: any, index: number) => (
+                                        <Link
+                                          key={index}
+                                          href={`/${page.slug.current}`}
+                                        >
+                                          <span className="title">
+                                            {page.title}
+                                          </span>
+                                          <span className="arrow">↗</span>
+                                        </Link>
+                                      )
                                     )}
                                 </nav>
                               </div>
@@ -130,7 +129,6 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
                                     <p className="h3">{menu.resource}</p>
                                     <span className="h3 arrow">↗</span>
                                   </div>
-
                                   <p className="bigger-text">
                                     {menu.description}
                                   </p>
@@ -153,6 +151,11 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
 };
 
 const MobileMenu = ({ data, pains, setIsOpen }: any) => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const expandMenu = (index: number) => {
+    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
   return (
     <div className="mobile-menu">
       <Link href="/" className="borderless">
@@ -162,36 +165,27 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
         {data &&
           data.map((item: any, index: number) => {
             return (
-              <div>
+              <div key={index}>
                 {item._type &&
                   item._type === "map" &&
                   item.content &&
                   item.content.map((contentItem: any, index: number) => {
                     return (
                       <div key={index}>
-                        <div className="title">
+                        <div
+                          className="title plus"
+                          onClick={() => {
+                            expandMenu(index);
+                          }}
+                        >
                           {contentItem._type === "painsMenu" ? (
-                            <div
-                              style={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "space-between",
-                              }}
-                            >
+                            <>
                               <strong>Douleurs</strong>
-                              <span
-                                className="plus"
-                                style={{ fontSize: "larger" }}
-                              >
-                                +
-                              </span>
-                            </div>
+                              <span className="plus-icon">+</span>
+                            </>
                           ) : contentItem._type === "resources" ? (
                             <Link
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                              }}
+                              className="title arrow"
                               href={`/ressources/${contentItem.resource
                                 .toLowerCase()
                                 .replace("é", "e")}`}
@@ -201,53 +195,50 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                             </Link>
                           ) : (
                             <div
-                              style={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "space-between",
+                              className="title plus"
+                              onClick={() => {
+                                expandMenu(index);
                               }}
                             >
                               <strong>{contentItem.title}</strong>
-                              <span
-                                className="plus"
-                                style={{ fontSize: "larger" }}
-                              >
-                                +
-                              </span>
+                              <span className="plus-icon">+</span>
                             </div>
                           )}
                         </div>
-
-                        <nav>
-                          {contentItem.pages &&
-                            contentItem.pages.map(
-                              (page: any, index: number) => {
-                                return (
-                                  <Link
-                                    key={index}
-                                    href={`/${page.slug.current}`}
-                                    onClick={() => {
-                                      setIsOpen(false);
-                                    }}
-                                  >
-                                    <span>{page.title}</span>
-                                  </Link>
-                                );
-                              }
-                            )}
-                        </nav>
-                        {contentItem._type === "painsMenu" && (
+                        {expandedIndex === index && (
                           <nav>
-                            {pains &&
-                              pains.map((pain: PainDetail, index: number) => {
-                                return (
-                                  <Link key={index} href={pain.slug.current}>
-                                    {pain.name}
-                                  </Link>
-                                );
-                              })}
+                            {contentItem.pages &&
+                              contentItem.pages.map(
+                                (page: any, index: number) => {
+                                  return (
+                                    <Link
+                                      key={index}
+                                      href={`/${page.slug.current}`}
+                                      onClick={() => {
+                                        setIsOpen(false);
+                                      }}
+                                    >
+                                      <span>{page.title}</span>
+                                    </Link>
+                                  );
+                                }
+                              )}
                           </nav>
                         )}
+
+                        {contentItem._type === "painsMenu" &&
+                          expandedIndex === index && (
+                            <nav>
+                              {pains &&
+                                pains.map((pain: PainDetail, index: number) => {
+                                  return (
+                                    <Link key={index} href={pain.slug.current}>
+                                      {pain.name}
+                                    </Link>
+                                  );
+                                })}
+                            </nav>
+                          )}
                       </div>
                     );
                   })}
@@ -258,13 +249,17 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
     </div>
   );
 };
+
 const Header = ({ data, pains }: any) => {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const is600Max = useWindowSize();
+
   return (
     <header
-      className={`${isOpen ? "fixed" : "not-fixed"} ${is600Max && "relative"}`}
+      className={`header ${isOpen ? "fixed" : ""} ${
+        is600Max ? "relative" : ""
+      }`}
     >
       <Link href="/" className="borderless">
         <span className="logo nowrap">pvssy talk</span>
@@ -285,11 +280,10 @@ const Header = ({ data, pains }: any) => {
             onClick={() => {
               setMobileMenuIsOpen(!mobileMenuIsOpen);
             }}
-            className={`burger-icon ${mobileMenuIsOpen && "fixed"}`}
-            icon={!mobileMenuIsOpen ? faBars : faClose}
+            className={`burger-icon ${mobileMenuIsOpen ? "fixed" : ""}`}
+            icon={mobileMenuIsOpen ? faClose : faBars}
           />
         )}
-
         <RenderMenu data={data} pains={pains} setIsOpen={setIsOpen} />
       </nav>
     </header>
