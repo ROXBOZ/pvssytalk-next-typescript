@@ -673,7 +673,6 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   right: 0;
   height: 100vh;
   background-color: #fefdf4;
-  background-color: yellow;
 }
 .mobile-menu .logo {
   position: fixed;
@@ -707,7 +706,6 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   flex-direction: column;
 }
 .mobile-menu .mobile-menu-content nav.mobile-nav-content {
-  border: 1px solid red;
   width: -moz-fit-content;
   width: fit-content;
 }

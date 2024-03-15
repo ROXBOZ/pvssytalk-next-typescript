@@ -188,8 +188,6 @@ header {
   right: 0;
   height: 100vh;
   background-color: $bg-color;
-  background-color: yellow;
-  // z-index: 999999;
 
   .logo {
     position: fixed;
@@ -228,7 +226,6 @@ header {
       flex-direction: column;
 
       &.mobile-nav-content {
-        border: 1px solid red;
         width: fit-content;
         a {
           font-family: $font-regular;

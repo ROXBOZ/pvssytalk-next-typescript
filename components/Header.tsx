@@ -165,6 +165,14 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
           data.map((item: any, index: number) => {
             return (
               <div key={index}>
+                {item._type === "page" && (
+                  <div className="title plus">
+                    <Link className="title arrow" href={item.slug.current}>
+                      {item.title}
+                      <span className="arrow">→</span>
+                    </Link>
+                  </div>
+                )}
                 {item._type &&
                   item._type === "map" &&
                   item.content &&
