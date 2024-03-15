@@ -6,7 +6,7 @@ import Image from "next/image";
 import Layout from "../components/layouts/Layout";
 import { PortableText } from "@portabletext/react";
 
-const Page = ({
+export default function Page({
   headerMenu,
   page,
   footerMenu,
@@ -16,7 +16,7 @@ const Page = ({
   page: any;
   footerMenu: MenuDetail[];
   painsSlugs: any;
-}) => {
+}) {
   return (
     <Layout
       seo={page.seo}
@@ -69,18 +69,17 @@ const Page = ({
       })}
     </Layout>
   );
-};
-
-export default Page;
+}
 
 export const getStaticPaths = async () => {
   try {
     const slugs: string[] = await client.fetch(
       `*[_type == "page"].slug.current`
     );
+    const filteredSlugs = slugs.filter((slug) => typeof slug === "string");
 
-    const paths = slugs.map((slug) => ({
-      params: { page: slug },
+    const paths = filteredSlugs.map((slug) => ({
+      params: { page: slug.toString() },
     }));
 
     return {
