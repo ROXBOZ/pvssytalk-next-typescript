@@ -21,6 +21,22 @@
   font-family: "ESKlarheit-Bold-Italic";
   src: url("../assets/fonts/ESKlarheitGrotesk-BdIt.woff2") format("woff2");
 }
+em {
+  font-family: "ESKlarheit-Book-Italic", sans-serif;
+  font-style: italic;
+}
+
+strong {
+  font-family: "ESKlarheit-Bold", sans-serif;
+  font-weight: bold;
+}
+
+strong em {
+  font-family: "ESKlarheit-Bold-Italic", sans-serif;
+  font-style: italic;
+  font-weight: bold;
+}
+
 /*-----Typography-----*/
 /*-----Paddings & Gap-----*/
 /*-----Borders-----*/
