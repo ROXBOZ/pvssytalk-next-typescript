@@ -13,6 +13,7 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
     <>
       {data &&
         data.map((item: MenuDetail, index: number) => {
+          console.log("item :", item);
           if (item._type === "page") {
             return (
               <Link
@@ -144,6 +145,14 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
             );
           }
 
+          if (item._type === "customLink" && item.isAction === true) {
+            return (
+              <Link key={index} href={`${item.link}`} target="_blank">
+                <button className="primary-button">{item.title}</button>
+              </Link>
+            );
+          }
+
           return null;
         })}
     </>
@@ -166,14 +175,21 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
           data.map((item: any, index: number) => {
             return (
               <>
+                {item._type === "customLink" && item.isAction === true && (
+                  <Link key={index} href={`${item.link}`} target="_blank">
+                    <button className="primary-button">{item.title}</button>
+                  </Link>
+                )}
+
                 {item._type === "page" && (
                   <div className="title plus">
                     <Link key={index} href={item.slug.current}>
-                      <span>{item.title}</span>
+                      <span>{item.title.toLowerCase()}</span>
                       <span className="arrow">→</span>
                     </Link>
                   </div>
                 )}
+
                 {item._type &&
                   item._type === "map" &&
                   item.content &&
@@ -188,18 +204,18 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                           }}
                         >
                           {contentItem._type === "painsMenu" ? (
-                            <span>Douleurs</span>
+                            <span>douleurs</span>
                           ) : contentItem._type === "resources" ? (
                             <Link
                               href={`/ressources/${contentItem.resource
                                 .toLowerCase()
                                 .replace("é", "e")}`}
                             >
-                              <span>{contentItem.resource}</span>
+                              <span>{contentItem.resource.toLowerCase()}</span>
                               <span className="arrow">↗</span>
                             </Link>
                           ) : (
-                            <span>{contentItem.title}</span>
+                            <span>{contentItem.title.toLowerCase()}</span>
                           )}
                           {contentItem._type !== "resources" && (
                             <>
@@ -225,7 +241,7 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                                           setIsOpen(false);
                                         }}
                                       >
-                                        <span>{page.title}</span>
+                                        <span>{page.title.toLowerCase()}</span>
                                       </Link>
                                     );
                                   }
@@ -294,7 +310,7 @@ const Header = ({ data, pains }: any) => {
       )}
 
       <nav className="header-nav">
-        {is600Max && (
+        {is600Max ? (
           <FontAwesomeIcon
             onClick={() => {
               setMobileMenuIsOpen(!mobileMenuIsOpen);
@@ -302,8 +318,9 @@ const Header = ({ data, pains }: any) => {
             className={`burger-icon ${mobileMenuIsOpen ? "fixed" : ""}`}
             icon={mobileMenuIsOpen ? faClose : faBars}
           />
+        ) : (
+          <RenderMenu data={data} pains={pains} setIsOpen={setIsOpen} />
         )}
-        <RenderMenu data={data} pains={pains} setIsOpen={setIsOpen} />
       </nav>
     </header>
   );

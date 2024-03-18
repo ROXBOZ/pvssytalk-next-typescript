@@ -41,7 +41,6 @@
 
 @mixin primarybutton {
   font-family: $font-logo;
-  font-size: large;
   border: $border-solid $primary;
   background-color: $primary;
   &:hover {

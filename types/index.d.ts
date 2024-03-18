@@ -11,7 +11,7 @@ interface MenuDetail {
   description: string;
   content: any;
   link: string;
-  isAction: boolean;
+  isAction?: boolean;
   type?: ["Pages" | "Douleurs" | "Ressources"];
   pages: any;
 }

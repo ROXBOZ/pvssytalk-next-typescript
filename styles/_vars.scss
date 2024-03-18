@@ -28,28 +28,28 @@ $font-logo: "ESRebond";
 
 @font-face {
   font-family: "ESKlarheit-Book";
-  src: url("../assets/fonts/ESKlarheitGrotesk-Bk.woff2") format("woff"),
+  src: url("../assets/fonts/ESKlarheitGrotesk-Bk.woff") format("woff"),
     url("../assets/fonts/ESKlarheitGrotesk-Bk.woff2") format("woff2");
 }
 $font-regular: "ESKlarheit-Book";
 
 @font-face {
   font-family: "ESKlarheit-Book-Italic";
-  src: url("../assets/fonts/ESKlarheitGrotesk-BkIt.woff2") format("woff"),
+  src: url("../assets/fonts/ESKlarheitGrotesk-BkIt.woff") format("woff"),
     url("../assets/fonts/ESKlarheitGrotesk-BkIt.woff2") format("woff2");
 }
 $font-regular-italic: "ESKlarheit-Book-Italic";
 
 @font-face {
   font-family: "ESKlarheit-Bold";
-  src: url("../assets/fonts/ESKlarheitGrotesk-Bd.woff2") format("woff"),
+  src: url("../assets/fonts/ESKlarheitGrotesk-Bd.woff") format("woff"),
     url("../assets/fonts/ESKlarheitGrotesk-Bd.woff2") format("woff2");
 }
 $font-bold: "ESKlarheit-Bold";
 
 @font-face {
   font-family: "ESKlarheit-Bold-Italic";
-  src: url("../assets/fonts/ESKlarheitGrotesk-BdIt.woff2") format("woff"),
+  src: url("../assets/fonts/ESKlarheitGrotesk-BdIt.woff") format("woff"),
     url("../assets/fonts/ESKlarheitGrotesk-BdIt.woff2") format("woff2");
 }
 $font-bold-italic: "ESKlarheit-Bold-Italic";
@@ -69,6 +69,7 @@ $sm-space: $reg-space / 2;
 $xs-space: $sm-space / 2;
 $lg-space: $reg-space * 2;
 $padding-btn: 0.5em 1.5em;
+$padding-btn-mobile: 0.5em 0.75em;
 
 /*-----Borders-----*/
 
