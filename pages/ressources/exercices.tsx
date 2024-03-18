@@ -42,6 +42,12 @@ const Exercises = ({
   const [selectedPain, setSelectedPain] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
 
+  const [openExerciseId, setOpenExerciseId] = useState(null);
+
+  const handleExerciseToggle = (id: any) => {
+    setOpenExerciseId(id === openExerciseId ? null : id);
+  };
+
   return (
     <>
       <CustomHead seo={seo[0].exercices} />
@@ -67,7 +73,14 @@ const Exercises = ({
                   );
 
                   if (!selectedPain || itemPains.includes(selectedPain)) {
-                    return <Exercise key={index} exercise={exercise} />;
+                    return (
+                      <Exercise
+                        key={index}
+                        exercise={exercise}
+                        isOpen={exercise._id === openExerciseId}
+                        onToggle={handleExerciseToggle}
+                      />
+                    );
                   }
                   return null;
                 }

@@ -1,32 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { ExerciseDetail } from "../types";
 import { PortableText } from "@portabletext/react";
 
-export const Exercise = ({ exercise }: { exercise: ExerciseDetail }) => {
-  const [openExerciseId, setOpenExerciseId] = useState(null);
-  const isExerciseOpen = openExerciseId === exercise._id;
-
-  const handleExerciseToggle = (id: any) => {
-    setOpenExerciseId((prevId) => (prevId === id ? null : id));
-  };
-
+export const Exercise = ({
+  exercise,
+  isOpen,
+  onToggle,
+}: {
+  exercise: ExerciseDetail;
+  isOpen: boolean;
+  onToggle: any;
+}) => {
   const extractVideoId = (url: string) => {
     const lastSlashIndex = url.lastIndexOf("/");
     return url.substring(lastSlashIndex + 1);
   };
 
+  const exerciseRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen && exerciseRef.current) {
+      exerciseRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [isOpen]);
+
   return (
-    <div className="exercise" key={exercise._id}>
+    <div ref={exerciseRef} className="exercise">
       <>
         <h2 className="h3">
           {exercise.title}{" "}
-          <button onClick={() => handleExerciseToggle(exercise._id)}>
-            {isExerciseOpen ? "–" : "+"}
+          <button onClick={() => onToggle(exercise._id)}>
+            {isOpen ? "–" : "+"}
           </button>
         </h2>
       </>
-      {isExerciseOpen && (
+      {isOpen && (
         <>
           <div className="exercise-intro">
             <PortableText value={exercise.exerciseIntro as any} />

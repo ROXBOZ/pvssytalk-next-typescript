@@ -27,6 +27,7 @@ function Layout({
       <CustomHead seo={seo} />
       <Header data={headerMenuData} pains={painsSlugs} />
       <Breadcrumbs />
+
       <PageTransition>{children}</PageTransition>
       <Footer data={footerMenuData} />
     </>

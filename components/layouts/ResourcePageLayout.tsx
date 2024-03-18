@@ -139,7 +139,10 @@ const ResourcePageLayout: React.FC<{
                 }}
               >
                 {pain && pain.name && (
-                  <Link href="./" className="colored logo">
+                  <Link
+                    href={`/douleurs/${pain.slug.current}`}
+                    className="colored logo"
+                  >
                     {acronym(pain.name)}
                   </Link>
                 )}{" "}

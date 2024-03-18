@@ -73,10 +73,13 @@ const ArticlePain = ({
               (term) => term._id === value.reference?._ref
             );
             const href = foo?.slug?.current ?? "";
+            {
+              /* NOTE if using <Link> instead of <a> > anchor stop working. */
+            }
             return (
-              <Link className="arrow-link" href={`${slug}/glossaire/#${href}`}>
+              <a className="arrow-link" href={`${slug}/glossaire#${href}`}>
                 {children}
-              </Link>
+              </a>
             );
           },
         },

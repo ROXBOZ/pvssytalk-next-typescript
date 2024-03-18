@@ -39,6 +39,13 @@ const PainExercises = ({
   const relatedExercises = filterRelatedExercises(exercises, pain._id);
   const [selectedPain, setSelectedPain] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
+
+  const [openExerciseId, setOpenExerciseId] = useState(null);
+
+  const handleExerciseToggle = (id: any) => {
+    setOpenExerciseId(id === openExerciseId ? null : id);
+  };
+
   return (
     <Layout
       painsSlugs={painsSlugs}
@@ -56,8 +63,13 @@ const PainExercises = ({
       >
         <div className="exercises-container">
           {relatedExercises &&
-            relatedExercises.map((exercise: ExerciseDetail, index: number) => (
-              <Exercise exercise={exercise} key={index} />
+            relatedExercises.map((exercise: ExerciseDetail) => (
+              <Exercise
+                exercise={exercise}
+                key={exercise._id}
+                isOpen={exercise._id === openExerciseId}
+                onToggle={handleExerciseToggle}
+              />
             ))}
         </div>
       </ResourcePageLayout>

@@ -7,13 +7,17 @@ export default function Breadcrumbs() {
   if (router.pathname === "/") {
     return null;
   }
-
   const crumbs = router.asPath
     .split("/")
     .filter((crumb) => crumb !== "")
     .map((crumb, index, arr) => {
       const currentLink = `/${arr.slice(0, index + 1).join("/")}`;
-      const decodedCrumb = decodeURIComponent(crumb);
+      let decodedCrumb = decodeURIComponent(crumb);
+
+      const hashIndex = decodedCrumb.indexOf("#");
+      if (hashIndex !== -1) {
+        decodedCrumb = decodedCrumb.substring(0, hashIndex);
+      }
 
       const isLastCrumb = index === arr.length - 1;
 
