@@ -75,6 +75,9 @@ strong {
 
   em {
     font-family: $font-bold-italic;
+    border: 1px splid fuchsia;
+    font-style: italic;
+    font-display: swap;
   }
 }
 
