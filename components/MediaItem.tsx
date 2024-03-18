@@ -13,11 +13,9 @@ export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
             </strong>
           </Link>
         ) : (
-          <span>
-            <strong>
-              <em>{mediaItem.title}</em>
-            </strong>
-          </span>
+          <em>
+            <strong>{mediaItem.title}</strong>
+          </em>
         )}
         {mediaItem.author && <span>, {mediaItem.author}</span>}
         {mediaItem.editor && <span>, {mediaItem.editor}</span>}

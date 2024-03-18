@@ -121,12 +121,17 @@ strong em {
   font-family: "ESKlarheit-Bold-Italic";
   border: 1px solid fuchsia;
   font-style: italic;
-  font-display: swap;
 }
 
 em,
 i {
   font-family: "ESKlarheit-Book-Italic";
+}
+em strong,
+i strong {
+  font-family: "ESKlarheit-Bold-Italic";
+  border: 1px solid fuchsia;
+  font-style: italic;
 }
 
 .arrow-link {

@@ -77,13 +77,18 @@ strong {
     font-family: $font-bold-italic;
     border: 1px solid fuchsia;
     font-style: italic;
-    font-display: swap;
   }
 }
 
 em,
 i {
   font-family: $font-regular-italic;
+
+  strong {
+    font-family: $font-bold-italic;
+    border: 1px solid fuchsia;
+    font-style: italic;
+  }
 }
 
 .arrow-link {
