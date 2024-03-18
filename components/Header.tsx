@@ -15,7 +15,7 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
   const [isSelected, setIsSelected] = useState("");
 
   return (
-    <>
+    <nav className="header-nav">
       {data &&
         data.map((item: MenuDetail, index: number) => {
           if (item._type === "page") {
@@ -159,7 +159,7 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
 
           return null;
         })}
-    </>
+    </nav>
   );
 };
 

@@ -48,26 +48,24 @@ const Medias = ({
         selectedRegion={selectedRegion}
         setSelectedRegion={setSelectedRegion}
       >
-        <div className="media-container">
-          {mediaCategories.map((category: any, index: number) => {
-            const categorizedMedia = relatedMedia.filter(
-              (mediaItem) => mediaItem.filter === category.value
-            );
+        {mediaCategories.map((category: any, index: number) => {
+          const categorizedMedia = relatedMedia.filter(
+            (mediaItem) => mediaItem.filter === category.value
+          );
 
-            if (categorizedMedia.length === 0) {
-              return null;
-            }
+          if (categorizedMedia.length === 0) {
+            return null;
+          }
 
-            return (
-              <MediaLayout
-                key={index}
-                category={category}
-                categorizedMedia={categorizedMedia}
-                selectedPain={selectedPain}
-              />
-            );
-          })}
-        </div>
+          return (
+            <MediaLayout
+              key={index}
+              category={category}
+              categorizedMedia={categorizedMedia}
+              selectedPain={selectedPain}
+            />
+          );
+        })}
       </ResourcePageLayout>
     </Layout>
   );

@@ -26,8 +26,11 @@ header {
     gap: $lg-space;
     padding: $sm-space 2rem;
     text-transform: lowercase;
-    width: 1.5rem;
-    justify-content: center;
+
+    @media only screen and (max-width: 600px) {
+      width: 1.5rem;
+      justify-content: center;
+    }
 
     svg {
       font-size: 1.5rem;
