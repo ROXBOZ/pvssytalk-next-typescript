@@ -315,8 +315,8 @@ const Header = ({ data, pains }: any) => {
         />
       )}
 
-      <nav className="header-nav">
-        {is600Max ? (
+      {is600Max ? (
+        <nav className="header-nav">
           <FontAwesomeIcon
             onClick={() => {
               setMobileMenuIsOpen(!mobileMenuIsOpen);
@@ -324,10 +324,10 @@ const Header = ({ data, pains }: any) => {
             className={`burger-icon ${mobileMenuIsOpen ? "fixed" : ""}`}
             icon={mobileMenuIsOpen ? faClose : faBars}
           />
-        ) : (
-          <RenderMenu data={data} pains={pains} setIsOpen={setIsOpen} />
-        )}
-      </nav>
+        </nav>
+      ) : (
+        <RenderMenu data={data} pains={pains} setIsOpen={setIsOpen} />
+      )}
     </header>
   );
 };
