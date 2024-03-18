@@ -172,7 +172,9 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
   return (
     <div className="mobile-menu">
       <Link href="/" className="borderless">
-        <span className="logo nowrap">pvssy talk</span>
+        <span className="logo nowrap" style={{ border: "1px solid blue" }}>
+          pvssy talk
+        </span>
       </Link>
 
       <div className="mobile-menu-content">
@@ -316,7 +318,10 @@ const Header = ({ data, pains }: any) => {
       )}
 
       {is600Max ? (
-        <nav className="header-nav">
+        <nav
+          className="header-nav"
+          style={{ border: "1px solid blue", zIndex: "999" }}
+        >
           <FontAwesomeIcon
             onClick={() => {
               setMobileMenuIsOpen(!mobileMenuIsOpen);
