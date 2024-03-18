@@ -33,11 +33,10 @@ h1 {
 
 a {
   font-family: $font-bold;
-  font-weight: 400;
+  font-weight: 700;
   text-decoration: none;
   color: $txt-color;
   border-bottom: $border-solid $secondary;
-  background-color: yellow;
   &.borderless {
     border-bottom: none;
   }
