@@ -133,13 +133,13 @@ strong em {
   justify-content: space-between;
   height: 100%;
   align-items: center;
-  z-index: 9999;
 }
 .pain-nav .switch .types span {
   font-family: "ESRebond";
   font-size: large;
   width: 100%;
   text-align: center;
+  z-index: 99;
 }
 .pain-nav .switch .handle {
   width: 50%;
@@ -551,6 +551,8 @@ header .header-nav {
   gap: 4rem;
   padding: 1rem 2rem;
   text-transform: lowercase;
+}
+header .header-nav svg {
   font-size: 1.5rem;
 }
 header .header-nav .burger-icon {

@@ -169,8 +169,6 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  console.log("setMobileMenuIsOpen :", setMobileMenuIsOpen);
-
   return (
     <div className="mobile-menu">
       <Link href="/" className="borderless">
@@ -275,7 +273,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
                                         {pain.name ===
                                         "Syndrome des ovaires polykystiques"
                                           ? "SOPK"
-                                          : pain.name}
+                                          : pain.name.toLowerCase()}
                                       </span>
                                     </Link>
                                   ))}

@@ -26,7 +26,10 @@ header {
     gap: $lg-space;
     padding: $sm-space 2rem;
     text-transform: lowercase;
-    font-size: 1.5rem;
+
+    svg {
+      font-size: 1.5rem;
+    }
 
     .burger-icon {
       cursor: pointer;
