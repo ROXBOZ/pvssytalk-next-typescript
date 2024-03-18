@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Breadcrumbs() {
   const router = useRouter();
@@ -44,7 +44,7 @@ export default function Breadcrumbs() {
       );
     });
 
-  const homeLink = "/#start";
+  const homeLink = "#start";
   const homeCrumb = (
     <div className="crumb" key="home">
       <Link href={homeLink}>Par où commencer</Link>
