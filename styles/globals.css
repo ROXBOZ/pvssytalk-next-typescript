@@ -231,6 +231,7 @@ strong em {
 }
 .fixed-container .title {
   display: flex;
+  flex-wrap: wrap;
 }
 .fixed-container .title h1 {
   display: flex;
@@ -250,6 +251,7 @@ strong em {
   gap: 1rem;
   max-width: -moz-fit-content;
   max-width: fit-content;
+  font-family: "ESRebond";
 }
 @media only screen and (max-width: 600px) {
   .fixed-container .title h1 button {
@@ -1457,6 +1459,7 @@ button.square-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 0;
 }
 .exercise h2 button {
   border: none !important;
@@ -1471,7 +1474,6 @@ button.square-button {
 }
 
 .exercise:not(:first-child) {
-  margin-top: 2rem !important;
   border-top: 1px solid #e4c7f1;
   padding-top: 2rem;
 }

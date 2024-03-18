@@ -18,20 +18,19 @@ export const Exercise = ({ exercise }: { exercise: ExerciseDetail }) => {
 
   return (
     <div className="exercise" key={exercise._id}>
-      <div className="">
+      <>
         <h2 className="h3">
           {exercise.title}{" "}
           <button onClick={() => handleExerciseToggle(exercise._id)}>
             {isExerciseOpen ? "–" : "+"}
           </button>
         </h2>
-
-        <div className="exercise-intro">
-          <PortableText value={exercise.exerciseIntro as any} />
-        </div>
-      </div>
+      </>
       {isExerciseOpen && (
         <>
+          <div className="exercise-intro">
+            <PortableText value={exercise.exerciseIntro as any} />
+          </div>
           <div className="exercise-steps">
             {exercise.video && (
               <iframe

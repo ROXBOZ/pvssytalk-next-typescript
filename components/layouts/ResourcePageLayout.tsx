@@ -132,28 +132,35 @@ const ResourcePageLayout: React.FC<{
           <div className="title">
             <h1>
               {pageName}{" "}
-              {pain && pain.name && (
-                <Link href="./" className="colored logo">
-                  {acronym(pain.name)}
-                </Link>
-              )}{" "}
-              <sup className={`${pain ? "no-color" : "color"}`}>
-                {relatedContent &&
-                  relatedContent.filter(
-                    (item: any) => item.isValidated === true
-                  ).length}
-                {!pain && typeformLink && (
-                  <Link
-                    target="_blank"
-                    style={{ border: "0" }}
-                    href={typeformLink}
-                  >
-                    <button className="primary-button">
-                      recommander <span className="icon logo">→</span>
-                    </button>
+              <span
+                style={{
+                  display: "flex",
+                  gap: "1rem",
+                }}
+              >
+                {pain && pain.name && (
+                  <Link href="./" className="colored logo">
+                    {acronym(pain.name)}
                   </Link>
-                )}
-              </sup>
+                )}{" "}
+                <sup className={`${pain ? "no-color" : "color"}`}>
+                  {relatedContent &&
+                    relatedContent.filter(
+                      (item: any) => item.isValidated === true
+                    ).length}
+                  {!pain && typeformLink && (
+                    <Link
+                      target="_blank"
+                      style={{ border: "0" }}
+                      href={typeformLink}
+                    >
+                      <button className="primary-button">
+                        recommander <span className="icon logo">→</span>
+                      </button>
+                    </Link>
+                  )}
+                </sup>
+              </span>
             </h1>
           </div>
 

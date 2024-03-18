@@ -159,6 +159,7 @@
 
   .title {
     display: flex;
+    flex-wrap: wrap;
 
     h1 {
       display: flex;
@@ -175,6 +176,7 @@
         align-items: center;
         gap: $sm-space;
         max-width: fit-content;
+        font-family: $font-logo;
       }
 
       @media only screen and (max-width: 600px) {
