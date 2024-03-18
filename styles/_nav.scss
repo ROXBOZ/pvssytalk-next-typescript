@@ -164,6 +164,7 @@
       gap: $sm-space;
       flex-wrap: wrap;
       line-height: 0.5;
+      align-items: center;
       @media only screen and (max-width: 600px) {
         margin-bottom: 0;
       }

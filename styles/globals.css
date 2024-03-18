@@ -237,6 +237,7 @@ strong em {
   gap: 1rem;
   flex-wrap: wrap;
   line-height: 0.5;
+  align-items: center;
 }
 @media only screen and (max-width: 600px) {
   .fixed-container .title h1 {
@@ -542,7 +543,7 @@ header .logo {
   display: flex;
   color: #31064b;
   font-size: 150%;
-  padding: 1rem 1.5rem !important;
+  padding: 1rem 2rem;
 }
 header .header-nav {
   display: flex;
@@ -1421,6 +1422,11 @@ button.square-button {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+@media only screen and (max-width: 600px) {
+  .media-container {
+    margin-top: 4rem;
+  }
 }
 .media-container h2 {
   margin-bottom: 2rem;

@@ -44,10 +44,10 @@ export default function Breadcrumbs() {
       );
     });
 
-  const homeLink = "#start";
+  const homeLink = "/";
   const homeCrumb = (
     <div className="crumb" key="home">
-      <Link href={homeLink}>Par où commencer</Link>
+      <Link href={homeLink}>accueil</Link>
     </div>
   );
 

@@ -17,7 +17,7 @@ header {
     display: flex;
     color: $txt-color;
     font-size: 150%;
-    padding: $sm-space 1.5rem !important;
+    padding: $sm-space $reg-space;
   }
 
   .header-nav {

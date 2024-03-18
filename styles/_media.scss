@@ -4,6 +4,10 @@
   flex-direction: column;
   gap: $sm-space;
 
+  @media only screen and (max-width: 600px) {
+    margin-top: $lg-space;
+  }
+
   h2 {
     margin-bottom: $reg-space;
     color: lighten($txt-color, 40);

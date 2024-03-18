@@ -157,7 +157,11 @@ const ResourcePageLayout: React.FC<{
             </h1>
           </div>
 
-          {pain ? <PainNav pain={pain} /> : !is600Max ? <RessourceNav /> : null}
+          {pain && !is600Max ? (
+            <PainNav pain={pain} />
+          ) : !pain && !is600Max ? (
+            <RessourceNav />
+          ) : null}
 
           {pageName !== "Glossaire" && (
             <div className="dropdowns-container">
@@ -200,12 +204,17 @@ const ResourcePageLayout: React.FC<{
           )}
         </div>
         <div>{children}</div>
-        {!pain && is600Max && (
+        {!pain && is600Max ? (
           <div className="resources-nav-mobile">
             <h3>Autres ressources</h3>
             <RessourceNav />
           </div>
-        )}
+        ) : pain && is600Max ? (
+          <div className="resources-nav-mobile">
+            <h3>Autres ressources</h3>
+            <PainNav pain={pain} />
+          </div>
+        ) : null}
       </div>
     </div>
   );
