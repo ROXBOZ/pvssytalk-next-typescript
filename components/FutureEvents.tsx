@@ -10,7 +10,6 @@ function FutureEvents({ events }: FutureEventsProps) {
     try {
       const eventDate = new Date(dateString);
       if (isNaN(eventDate.getTime())) {
-        console.error(`Invalid date string: ${dateString}`);
         return "Invalid Date";
       }
 
@@ -23,7 +22,6 @@ function FutureEvents({ events }: FutureEventsProps) {
       });
       return dateFormatter.format(eventDate);
     } catch (error) {
-      console.error(`Error formatting date: ${error}`);
       return "Error";
     }
   };
@@ -31,7 +29,6 @@ function FutureEvents({ events }: FutureEventsProps) {
   return (
     <div className="events">
       {events.map((event: AgendaDetail, index: number) => {
-        console.log("event :", event);
         return (
           <div className="event" key={index}>
             <p className="h4">{event.title}</p>

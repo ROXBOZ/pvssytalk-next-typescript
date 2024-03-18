@@ -86,7 +86,6 @@ export const getStaticProps = async () => {
       props: { pains },
     };
   } catch (error) {
-    console.error("Error fetching pains:", error);
     return {
       props: { pains: [] },
     };

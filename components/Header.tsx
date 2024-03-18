@@ -18,7 +18,6 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
     <>
       {data &&
         data.map((item: MenuDetail, index: number) => {
-          console.log("item :", item);
           if (item._type === "page") {
             return (
               <Link
@@ -164,11 +163,14 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
   );
 };
 
-const MobileMenu = ({ data, pains, setIsOpen }: any) => {
+const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const expandMenu = (index: any) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
+
+  console.log("setMobileMenuIsOpen :", setMobileMenuIsOpen);
+
   return (
     <div className="mobile-menu">
       <Link href="/" className="borderless">
@@ -243,7 +245,7 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                                         key={index}
                                         href={`/${page.slug.current}`}
                                         onClick={() => {
-                                          setIsOpen(false);
+                                          setMobileMenuIsOpen(false);
                                         }}
                                       >
                                         <span>{page.title.toLowerCase()}</span>
@@ -310,7 +312,8 @@ const Header = ({ data, pains }: any) => {
           data={data}
           pains={pains}
           is600Max={is600Max}
-          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          setMobileMenuIsOpen={setMobileMenuIsOpen}
         />
       )}
 

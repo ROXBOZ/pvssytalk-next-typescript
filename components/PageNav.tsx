@@ -5,7 +5,6 @@ import Link from "next/link";
 import useWindowSize from "../utils/useWindowSize";
 
 const PageNav = ({ pages }: { pages: any }) => {
-  console.log("pages :", pages);
   const is600Max = useWindowSize();
 
   return (
