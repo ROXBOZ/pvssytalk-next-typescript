@@ -119,7 +119,7 @@ strong {
 }
 strong em {
   font-family: "ESKlarheit-Bold-Italic";
-  border: 1px splid fuchsia;
+  border: 1px solid fuchsia;
   font-style: italic;
   font-display: swap;
 }
