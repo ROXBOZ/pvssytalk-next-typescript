@@ -119,13 +119,11 @@ strong {
 }
 strong em {
   font-family: "ESKlarheit-Bold-Italic";
-  font-style: italic !important;
 }
 
 em,
 i {
   font-family: "ESKlarheit-Book-Italic";
-  font-style: italic;
 }
 
 .arrow-link {

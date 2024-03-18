@@ -27,7 +27,7 @@ export const MediaItem = ({ mediaItem }: { mediaItem: MediaDetail }) => {
             mediaItem.tags.map((tag: any, index: number) => {
               return (
                 <div className="tag" key={index}>
-                  <span>{tag.name}</span>
+                  <span>{tag.name.toLowerCase()}</span>
                 </div>
               );
             })}
