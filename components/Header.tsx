@@ -1,6 +1,11 @@
 import { MenuDetail, PainDetail } from "../types";
 import React, { useState } from "react";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faClose,
+  faMinus,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -183,7 +188,7 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
 
                 {item._type === "page" && (
                   <div className="title plus">
-                    <Link key={index} href={item.slug.current}>
+                    <Link key={index} href={`/${item.slug.current}`}>
                       <span>{item.title.toLowerCase()}</span>
                       <span className="arrow">→</span>
                     </Link>
@@ -220,9 +225,9 @@ const MobileMenu = ({ data, pains, setIsOpen }: any) => {
                           {contentItem._type !== "resources" && (
                             <>
                               {expandedIndex !== contentItem._key ? (
-                                <span className="plus-icon">+</span>
+                                <FontAwesomeIcon icon={faPlus} />
                               ) : (
-                                <span className="minus-icon">-</span>
+                                <FontAwesomeIcon icon={faMinus} />
                               )}
                             </>
                           )}
