@@ -3,7 +3,6 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
 import CustomHead from "../components/CustomHead";
 import Footer from "../components/Footer";
-import FutureEvents from "../components/FutureEvents";
 import Header from "../components/Header";
 import LogosPartners from "../components/LogosPartners";
 import Marquee from "../components/Marquee";

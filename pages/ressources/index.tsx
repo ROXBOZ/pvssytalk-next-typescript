@@ -1,17 +1,19 @@
+import { MenuDetail, PainDetail } from "../../types";
 import React, { useEffect, useState } from "react";
 import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
 import Layout from "../../components/layouts/Layout";
 import Link from "next/link";
-import { MenuDetail } from "../../types";
+import { client } from "../../config/sanity/client";
 
 const Ressources = ({
   headerMenu,
   footerMenu,
+  painsSlugs,
 }: {
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  painsSlugs: any;
 }) => {
   const [currentURL, setCurrentURL] = useState("");
 
@@ -20,7 +22,11 @@ const Ressources = ({
   }, []);
 
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+    <Layout
+      headerMenu={headerMenu}
+      footerMenu={footerMenu}
+      painsSlugs={painsSlugs}
+    >
       <div
         className={`double-column-container ${
           currentURL.endsWith("ressources") && "no-border"
@@ -35,7 +41,6 @@ const Ressources = ({
         </div>
         <div>
           <nav className="nav-directory h4">
-            {/* <Link href="ressources/agenda">Agenda</Link> */}
             <Link href="ressources/annuaire">Annuaire</Link>
             <Link href="ressources/exercices">Exercices</Link>
             <Link href="ressources/glossaire">Glossaire</Link>
@@ -58,8 +63,12 @@ export const getStaticProps = async ({
     const headerMenu: MenuDetail[] = await fetchHeaderMenu();
     const footerMenu: MenuDetail[] = await fetchFooterMenu();
 
+    const painsSlugs: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+    );
+
     return {
-      props: { headerMenu, footerMenu },
+      props: { headerMenu, footerMenu, painsSlugs },
     };
   } catch (error) {
     console.error("Error fetching pages:", error);

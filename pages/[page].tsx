@@ -12,13 +12,11 @@ export default function Page({
   page,
   footerMenu,
   painsSlugs,
-  pages,
 }: {
   headerMenu: MenuDetail[];
   page: any;
   footerMenu: MenuDetail[];
   painsSlugs: any;
-  pages: any;
 }) {
   return (
     <Layout
@@ -29,7 +27,6 @@ export default function Page({
     >
       <div className="double-column-containers-group">
         <div className="double-column-container">
-          <div>{/* <PageNav pages={pages} /> */}</div>
           <div>
             <h1>{page.title}</h1>
             <PortableText value={page.subtitle as any} />
