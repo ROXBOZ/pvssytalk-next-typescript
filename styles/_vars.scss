@@ -50,25 +50,6 @@ $font-bold: "ESKlarheit-Bold";
 }
 $font-bold-italic: "ESKlarheit-Bold-Italic";
 
-em {
-  font-family: "ESKlarheit-Book-Italic", sans-serif;
-  font-style: italic;
-  // color: red;
-}
-
-strong {
-  font-family: "ESKlarheit-Bold", sans-serif;
-  font-weight: bold;
-  // color: red;
-}
-
-strong em {
-  font-family: "ESKlarheit-Bold-Italic", sans-serif;
-  font-style: italic;
-  font-weight: bold;
-  // color: red;
-}
-
 /*-----Typography-----*/
 
 $font-size-basis: 16px;

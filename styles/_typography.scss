@@ -78,6 +78,9 @@ strong {
 
 em {
   font-family: $font-regular-italic;
+  strong {
+    font-family: $font-bold-italic;
+  }
 }
 
 .arrow-link {
