@@ -21,32 +21,32 @@ $quarterary: #ffc3ee;
 
 @font-face {
   font-family: "ESRebond";
-  src: url("../assets/fonts/ESRebondGrotesque-Semibold.otf") format("otf"),
-    url("../assets/fonts/ESRebondGrotesque-Semibold.ttf") format("truetype");
+  src: url("../public/fonts/ESRebondGrotesque-Semibold.otf") format("otf"),
+    url("../public/fonts/ESRebondGrotesque-Semibold.ttf") format("truetype");
 }
 $font-logo: "ESRebond";
 
 @font-face {
   font-family: "ESKlarheit-Book";
-  src: url("../assets/fonts/ESKlarheitGrotesk-Bk.woff2") format("woff2");
+  src: url("../public/fonts/ESKlarheitGrotesk-Bk.woff2") format("woff2");
 }
 $font-regular: "ESKlarheit-Book";
 
 @font-face {
   font-family: "ESKlarheit-Book-Italic";
-  src: url("../assets/fonts/ESKlarheitGrotesk-BkIt.woff2") format("woff2");
+  src: url("../public/fonts/ESKlarheitGrotesk-BkIt.woff2") format("woff2");
 }
 $font-regular-italic: "ESKlarheit-Book-Italic";
 
 @font-face {
   font-family: "ESKlarheit-Bold";
-  src: url("../assets/fonts/ESKlarheitGrotesk-Bd.woff2") format("woff2");
+  src: url("../public/fonts/ESKlarheitGrotesk-Bd.woff2") format("woff2");
 }
 $font-bold: "ESKlarheit-Bold";
 
 @font-face {
   font-family: "ESKlarheit-Bold-Italic";
-  src: url("../assets/fonts/ESKlarheitGrotesk-BdIt.woff2") format("woff2");
+  src: url("../public/fonts/ESKlarheitGrotesk-BdIt.woff2") format("woff2");
 }
 $font-bold-italic: "ESKlarheit-Bold-Italic";
 

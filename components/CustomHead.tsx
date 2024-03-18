@@ -5,10 +5,7 @@ function CustomHead({ seo }: any) {
   return (
     <Head>
       <>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0"
-        ></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {seo && seo.pageTitle && <title>{seo.pageTitle}</title>}
         {seo && seo.metaDescription && (
           <meta name="description" content={seo.metaDescription} />
