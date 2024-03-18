@@ -3,23 +3,23 @@
 /*-----Fonts-----*/
 @font-face {
   font-family: "ESRebond";
-  src: url("../public/fonts/ESRebondGrotesque-Semibold.otf") format("otf"), url("../public/fonts/ESRebondGrotesque-Semibold.ttf") format("truetype");
+  src: url("../assets/fonts/ESRebondGrotesque-Semibold.otf") format("otf"), url("../assets/fonts/ESRebondGrotesque-Semibold.ttf") format("truetype");
 }
 @font-face {
   font-family: "ESKlarheit-Book";
-  src: url("../public/fonts/ESKlarheitGrotesk-Bk.woff2") format("woff2");
+  src: url("../assets/fonts/ESKlarheitGrotesk-Bk.woff2") format("woff2");
 }
 @font-face {
   font-family: "ESKlarheit-Book-Italic";
-  src: url("../public/fonts/ESKlarheitGrotesk-BkIt.woff2") format("woff2");
+  src: url("../assets/fonts/ESKlarheitGrotesk-BkIt.woff2") format("woff2");
 }
 @font-face {
   font-family: "ESKlarheit-Bold";
-  src: url("../public/fonts/ESKlarheitGrotesk-Bd.woff2") format("woff2");
+  src: url("../assets/fonts/ESKlarheitGrotesk-Bd.woff2") format("woff2");
 }
 @font-face {
   font-family: "ESKlarheit-Bold-Italic";
-  src: url("../public/fonts/ESKlarheitGrotesk-BdIt.woff2") format("woff2");
+  src: url("../assets/fonts/ESKlarheitGrotesk-BdIt.woff2") format("woff2");
 }
 /*-----Typography-----*/
 /*-----Paddings & Gap-----*/
@@ -46,6 +46,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: "ESKlarheit-Book";
   font-family: "ESRebond";
   font-weight: 500;
   line-height: 1.5;
@@ -113,12 +114,11 @@ sup {
 }
 
 strong {
-  border: 1px solid orange;
+  font-family: "ESKlarheit-Bold";
 }
 strong em,
 strong i {
   font-family: "ESKlarheit-Bold-Italic";
-  color: red;
 }
 
 em,

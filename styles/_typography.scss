@@ -3,7 +3,7 @@ h3,
 h4,
 h5,
 h6 {
-  // font-family: $font-regular;
+  font-family: $font-regular;
   font-family: $font-logo;
   font-weight: 500;
   line-height: $line-height;
@@ -70,12 +70,11 @@ sup {
 }
 
 strong {
-  // font-family: $font-bold;
-  border: 1px solid orange;
+  font-family: $font-bold;
+
   em,
   i {
     font-family: $font-bold-italic;
-    color: red;
   }
 }
 

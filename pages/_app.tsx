@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import "../public/styles.css";
 
 import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
