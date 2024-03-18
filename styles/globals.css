@@ -119,7 +119,7 @@ sup {
 }
 
 strong {
-  font-family: "ESKlarheit-Bold";
+  font-family: "ESKlarheit-Bold", sans-serif;
   font-weight: 500;
 }
 strong em {
@@ -132,7 +132,7 @@ em {
   font-style: italic;
 }
 em strong {
-  font-family: "ESKlarheit-Bold-Italic";
+  font-family: "ESKlarheit-Bold-Italic" sans-serif;
   font-weight: 500;
 }
 
