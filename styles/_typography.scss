@@ -71,18 +71,17 @@ sup {
 
 strong {
   font-family: $font-bold;
-  em {
+  border: 1px solid orange;
+  em,
+  i {
     font-family: $font-bold-italic;
-    color: blue;
+    color: red;
   }
 }
 
-em {
+em,
+i {
   font-family: $font-regular-italic;
-  strong {
-    font-family: $font-bold-italic;
-    color: green;
-  }
 }
 
 .arrow-link {

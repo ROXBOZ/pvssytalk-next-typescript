@@ -114,18 +114,17 @@ sup {
 
 strong {
   font-family: "ESKlarheit-Bold";
+  border: 1px solid orange;
 }
-strong em {
+strong em,
+strong i {
   font-family: "ESKlarheit-Bold-Italic";
-  color: blue;
+  color: red;
 }
 
-em {
+em,
+i {
   font-family: "ESKlarheit-Book-Italic";
-}
-em strong {
-  font-family: "ESKlarheit-Bold-Italic";
-  color: green;
 }
 
 .arrow-link {
