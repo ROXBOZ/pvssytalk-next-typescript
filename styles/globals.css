@@ -77,9 +77,11 @@ h1 {
 
 a {
   font-family: "ESKlarheit-Bold";
+  font-weight: 400;
   text-decoration: none;
   color: #31064b;
   border-bottom: 1px solid #e4c7f1;
+  background-color: yellow;
 }
 a.borderless {
   border-bottom: none;
