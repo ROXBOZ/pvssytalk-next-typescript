@@ -116,11 +116,10 @@ sup {
 strong {
   font-family: "ESKlarheit-Bold";
   font-weight: 500;
-  border: 1px solid red;
 }
 strong em {
   font-family: "ESKlarheit-Bold-Italic";
-  font-style: italic;
+  font-style: italic !important;
 }
 
 em,

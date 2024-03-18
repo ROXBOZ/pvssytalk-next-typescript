@@ -72,11 +72,10 @@ sup {
 strong {
   font-family: $font-bold;
   font-weight: 500;
-  border: 1px solid red;
 
   em {
     font-family: $font-bold-italic;
-    font-style: italic;
+    font-style: italic !important;
   }
 }
 
