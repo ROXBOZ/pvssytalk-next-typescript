@@ -157,3 +157,24 @@ $level-size: $type-base-size;
 @function type-style($key) {
   @return map-get($type-styles, $key);
 }
+
+.to-continue {
+  margin-top: $lg-space;
+  border-top: $border-solid $secondary;
+  padding-top: $sm-space;
+  display: flex;
+  flex-direction: column;
+  gap: $sm-space;
+  align-items: baseline;
+  background-color: yellow;
+
+  .switch-approach {
+    display: flex;
+    gap: $sm-space;
+    align-items: baseline;
+  }
+  .similar-pains {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -224,6 +224,26 @@ h1:first-letter,
   text-transform: capitalize;
 }
 
+.to-continue {
+  margin-top: 4rem;
+  border-top: 1px solid #e4c7f1;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: baseline;
+  background-color: yellow;
+}
+.to-continue .switch-approach {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+.to-continue .similar-pains {
+  display: flex;
+  flex-direction: column;
+}
+
 .nav-directory {
   display: flex;
   flex-direction: column;

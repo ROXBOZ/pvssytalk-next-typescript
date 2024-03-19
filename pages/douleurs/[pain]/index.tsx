@@ -19,12 +19,62 @@ import PartageNav from "../../../components/PartageNav";
 import { PortableText } from "@portabletext/react";
 import useWindowSize from "../../../utils/useWindowSize";
 
+const ToContinue = ({
+  isMed,
+  setIsMed,
+  filters,
+  otherPains,
+}: {
+  isMed: boolean;
+  setIsMed: React.Dispatch<React.SetStateAction<boolean>>;
+  filters: any;
+  otherPains: PainDetail;
+}) => {
+  const similarPains = otherPains.filter((pain: PainDetail) => {
+    return pain.filters.some((painFilter) => filters.includes(painFilter));
+  });
+
+  const handleClick = useCallback(() => {
+    setIsMed((prev) => !prev);
+    const targetId = isMed ? "startMed" : "startSex";
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isMed, setIsMed]);
+
+  return (
+    <div className="to-continue">
+      <div className="switch-approach">
+        <span>
+          C’était l'approche {isMed === true ? "médicale" : "sexologique"}.
+        </span>
+        <button className="logo" onClick={handleClick}>
+          approche {isMed === true ? "sexologique" : "médicale"}
+        </button>
+      </div>
+      <div className="similar-pains">
+        {similarPains && <span>Douleurs similaires</span>}
+        {similarPains &&
+          similarPains.map((pain: PainDetail, index: number) => {
+            return (
+              <Link href={pain.slug.current} key={index}>
+                {pain.name}
+              </Link>
+            );
+          })}
+      </div>
+    </div>
+  );
+};
+
 const ArticlePain = ({
   pain,
   glossary,
   headerMenu,
   footerMenu,
   painsSlugs,
+  otherPains,
 }: any) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMed, setIsMed] = useState<boolean>(true);
@@ -164,7 +214,7 @@ const ArticlePain = ({
             />
             <div ref={ref} className="pain-article">
               {isMed ? (
-                <>
+                <div id="startMed">
                   {pain.medicalApproach?.def && (
                     <div>
                       <h2 className="h3">Définition</h2>
@@ -239,9 +289,18 @@ const ArticlePain = ({
                       />
                     </>
                   )}
-                </>
+
+                  {pain.medicalApproach && (
+                    <ToContinue
+                      isMed={isMed}
+                      setIsMed={setIsMed}
+                      filters={pain.filters}
+                      otherPains={otherPains}
+                    />
+                  )}
+                </div>
               ) : (
-                <>
+                <div id="startSex">
                   {pain.sexologicApproach?.body && (
                     <>
                       <h3>Moi et mon corps</h3>
@@ -362,7 +421,16 @@ const ArticlePain = ({
                       />
                     </>
                   )}
-                </>
+
+                  {pain.sexologicApproach && (
+                    <ToContinue
+                      isMed={isMed}
+                      setIsMed={setIsMed}
+                      filters={pain.filters}
+                      otherPains={otherPains}
+                    />
+                  )}
+                </div>
               )}
               {is600Max && (
                 <nav className="pain-nav">
@@ -460,6 +528,10 @@ export const getStaticProps = async ({
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
 
+    const otherPains: PainDetail[] = await client.fetch(
+      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, filters, slug{current}}'
+    );
+
     return {
       props: {
         headerMenu,
@@ -467,6 +539,7 @@ export const getStaticProps = async ({
         pain: fetchedPain,
         glossary: fetchedGlossary,
         painsSlugs,
+        otherPains,
       },
     };
   } catch (error) {
