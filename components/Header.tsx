@@ -70,7 +70,7 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
                             return (
                               <div className="col" key={index}>
                                 <p className="h3 not-clickable">{menu.title}</p>
-                                <p className="bigger-text not-clickable">
+                                <p className="not-clickable">
                                   {menu.description}
                                 </p>
                                 <nav>
@@ -96,7 +96,7 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
                             return (
                               <div className="col" key={index}>
                                 <p className="h3 not-clickable">Douleurs</p>
-                                <p className="bigger-text not-clickable">
+                                <p className="not-clickable">
                                   {menu.description}
                                 </p>
                                 <nav>
@@ -134,9 +134,7 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
                                     <p className="h3">{menu.resource}</p>
                                     <span className="h3 arrow">↗</span>
                                   </div>
-                                  <p className="bigger-text">
-                                    {menu.description}
-                                  </p>
+                                  <p>{menu.description}</p>
                                 </Link>
                               </div>
                             );
