@@ -19,10 +19,12 @@ const Exercises = ({
   footerMenu,
   seo,
   painsSlugs,
+  marquee,
 }: {
   exercises: ExerciseDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  marquee: any;
   seo: any;
   painsSlugs: any;
 }) => {
@@ -55,6 +57,7 @@ const Exercises = ({
         painsSlugs={painsSlugs}
         headerMenu={headerMenu}
         footerMenu={footerMenu}
+        marquee={marquee}
       >
         <ResourcePageLayout
           pageName="Exercices"
@@ -111,8 +114,20 @@ export const getStaticProps = async () => {
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
+
     return {
-      props: { exercises, pains, headerMenu, footerMenu, seo, painsSlugs },
+      props: {
+        exercises,
+        pains,
+        headerMenu,
+        footerMenu,
+        seo,
+        painsSlugs,
+        marquee,
+      },
     };
   } catch (error) {
     console.error("Error fetching exercises:", error);

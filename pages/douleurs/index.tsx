@@ -10,13 +10,15 @@ const Pains = ({
   pains,
   headerMenu,
   footerMenu,
+  marquee,
 }: {
   pains: PainDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  marquee: any;
 }) => {
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+    <Layout headerMenu={headerMenu} footerMenu={footerMenu} marquee={marquee}>
       <PainGrid pains={pains} />
     </Layout>
   );
@@ -31,8 +33,11 @@ export const getStaticProps = async () => {
     const pains: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'
     );
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
     return {
-      props: { pains, headerMenu, footerMenu },
+      props: { pains, headerMenu, footerMenu, marquee },
     };
   } catch (error) {
     console.error("Error fetching pains:", error);

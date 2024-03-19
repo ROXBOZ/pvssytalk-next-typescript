@@ -12,12 +12,14 @@ function Layout({
   footerMenu,
   painsSlugs,
   seo,
+  marquee,
 }: {
   children: any;
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   painsSlugs?: any;
   seo?: any;
+  marquee: any;
 }) {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
@@ -25,7 +27,7 @@ function Layout({
   return (
     <>
       <CustomHead seo={seo} />
-      <Header data={headerMenuData} pains={painsSlugs} />
+      <Header data={headerMenuData} pains={painsSlugs} marquee={marquee} />
       <Breadcrumbs />
 
       <PageTransition>{children}</PageTransition>

@@ -23,6 +23,7 @@ const Medias = ({
   seo,
   regions,
   painsSlugs,
+  marquee,
 }: {
   media: MediaDetail[];
   headerMenu: MenuDetail[];
@@ -31,6 +32,7 @@ const Medias = ({
   seo: any;
   regions: any;
   painsSlugs: any;
+  marquee: any;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [selectedPain, setSelectedPain] = useState("");
@@ -43,6 +45,7 @@ const Medias = ({
         painsSlugs={painsSlugs}
         headerMenu={headerMenu}
         footerMenu={footerMenu}
+        marquee={marquee}
       >
         <ResourcePageLayout
           pageName="Médias"
@@ -139,6 +142,10 @@ export const getStaticProps = async () => {
         }`
     );
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
+
     return {
       props: {
         media,
@@ -149,6 +156,7 @@ export const getStaticProps = async () => {
         seo,
         regions,
         painsSlugs,
+        marquee,
       },
     };
   } catch (error) {

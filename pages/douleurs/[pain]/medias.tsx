@@ -21,12 +21,14 @@ const Medias = ({
   headerMenu,
   footerMenu,
   painsSlugs,
+  marquee,
 }: {
   pain: PainDetail;
   medias: MediaDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   painsSlugs: any;
+  marquee: any;
 }) => {
   const relatedMedia = medias.filter((mediaItem: MediaDetail) =>
     mediaItem.relatedPain?.some((related) => related._ref === pain._id)
@@ -38,6 +40,7 @@ const Medias = ({
       painsSlugs={painsSlugs}
       headerMenu={headerMenu}
       footerMenu={footerMenu}
+      marquee={marquee}
     >
       <ResourcePageLayout
         pageName="Médias"
@@ -89,6 +92,10 @@ export const getStaticProps = async ({ params }: any) => {
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
+
     if (!fetchedPain || !fetchedMedias) {
       return {
         notFound: true,
@@ -102,6 +109,7 @@ export const getStaticProps = async ({ params }: any) => {
         headerMenu,
         footerMenu,
         painsSlugs,
+        marquee,
       },
     };
   } catch (error) {

@@ -23,6 +23,7 @@ const Directory = ({
   regions,
   seo,
   painsSlugs,
+  marquee,
 }: {
   directory: DirectoryDetail[];
   headerMenu: MenuDetail[];
@@ -31,6 +32,7 @@ const Directory = ({
   regions: any;
   seo: any;
   painsSlugs: any;
+  marquee: any;
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
@@ -55,6 +57,7 @@ const Directory = ({
         painsSlugs={painsSlugs}
         headerMenu={headerMenu}
         footerMenu={footerMenu}
+        marquee={marquee}
       >
         <ResourcePageLayout
           pageName="Annuaire"
@@ -139,6 +142,9 @@ export const getStaticProps = async () => {
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
     return {
       props: {
         directory: sortedDirectory,
@@ -148,6 +154,7 @@ export const getStaticProps = async () => {
         regions,
         seo,
         painsSlugs,
+        marquee,
       },
     };
   } catch (error) {

@@ -16,6 +16,7 @@ const Agenda = ({
   regions,
   typeform,
   painsSlugs,
+  marquee,
 }: {
   agenda: AgendaDetail[];
   headerMenu: MenuDetail[];
@@ -24,6 +25,7 @@ const Agenda = ({
   seo: any;
   typeform: any;
   painsSlugs: any;
+  marquee: any;
 }) => {
   const [selectedPain, setSelectedPain] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -35,6 +37,7 @@ const Agenda = ({
         painsSlugs={painsSlugs}
         headerMenu={headerMenu}
         footerMenu={footerMenu}
+        marquee={marquee}
       >
         <ResourcePageLayout
           pageName="Agenda"
@@ -90,6 +93,10 @@ export const getStaticProps = async () => {
     const painsSlugs: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
+
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
     return {
       props: {
         headerMenu,
@@ -99,6 +106,7 @@ export const getStaticProps = async () => {
         regions,
         typeform,
         painsSlugs,
+        marquee,
       },
     };
   } catch (error) {

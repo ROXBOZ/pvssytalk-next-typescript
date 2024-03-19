@@ -564,6 +564,10 @@ header .logo {
   font-size: 150%;
   padding: 1rem 2rem;
 }
+header .logo.fixed {
+  z-index: 99999999999;
+  position: fixed;
+}
 header .header-nav {
   display: flex;
   align-items: baseline;
@@ -579,6 +583,9 @@ header .header-nav {
 }
 header .header-nav svg {
   font-size: 1.5rem;
+}
+header .header-nav.fixed {
+  right: 0;
 }
 header .header-nav .burger-icon {
   cursor: pointer;
@@ -626,7 +633,6 @@ header .dropdown .dropdown-content-wrapper {
   top: 0;
   right: 0;
   background-color: #fefdf4;
-  padding: 4rem 2rem;
   flex-direction: column;
   box-shadow: 0px 20px 70px #31064b;
   cursor: default;
@@ -635,6 +641,7 @@ header .dropdown .dropdown-content-wrapper.selected {
   display: flex;
 }
 header .dropdown .dropdown-content-wrapper .dropdown-content {
+  padding: 4rem 2rem;
   display: flex;
   margin: 4rem;
   flex-direction: column;
@@ -781,6 +788,34 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   font-family: "ESRebond" !important;
   border-bottom: 1px solid #e4c7f1;
   width: 100%;
+}
+
+.marquee {
+  background-color: #c8ffa5;
+  padding: 1rem 0;
+  display: flex;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+.marquee p {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+.marquee button {
+  font-family: "ESRebond";
+  border: 1px solid #fd4a36;
+  background-color: #fd4a36;
+}
+.marquee button:hover {
+  background-color: #fe7768;
+}
+.marquee button:active {
+  background-color: #fea59b;
 }
 
 @keyframes transitionX {
@@ -952,33 +987,6 @@ footer .footer-content nav a:hover {
   text-align: center;
   max-width: 60%;
   line-height: 1;
-}
-.landing-view .marquee {
-  background-color: #c8ffa5;
-  padding: 1rem 0;
-  display: flex;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-}
-.landing-view .marquee p {
-  padding: 0;
-  margin: 0;
-  max-width: 100%;
-}
-.landing-view .marquee button {
-  font-family: "ESRebond";
-  border: 1px solid #fd4a36;
-  background-color: #fd4a36;
-}
-.landing-view .marquee button:hover {
-  background-color: #fe7768;
-}
-.landing-view .marquee button:active {
-  background-color: #fea59b;
 }
 
 @keyframes gradient {
@@ -1292,6 +1300,7 @@ footer .footer-content nav a:hover {
   padding: 4rem 2rem 8rem;
   color: #31064b;
   font-size: 80%;
+  margin-top: 4rem;
 }
 .breadcrumbs .crumb a {
   white-space: nowrap;
@@ -2182,6 +2191,16 @@ a.colored.logo {
 
 .no-border {
   border-top: none;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .unknown__pt__mark__internalLink {

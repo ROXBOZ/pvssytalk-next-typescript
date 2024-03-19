@@ -75,6 +75,7 @@ const ArticlePain = ({
   footerMenu,
   painsSlugs,
   otherPains,
+  marquee,
 }: any) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMed, setIsMed] = useState<boolean>(true);
@@ -168,6 +169,7 @@ const ArticlePain = ({
         headerMenu={headerMenu}
         painsSlugs={painsSlugs}
         footerMenu={footerMenu}
+        marquee={marquee}
       >
         {showModal && selectedDiagram && (
           <Modal diagram={selectedDiagram} closeModal={closeModal} />
@@ -532,6 +534,10 @@ export const getStaticProps = async ({
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, filters, slug{current}}'
     );
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
+
     return {
       props: {
         headerMenu,
@@ -540,6 +546,7 @@ export const getStaticProps = async ({
         glossary: fetchedGlossary,
         painsSlugs,
         otherPains,
+        marquee,
       },
     };
   } catch (error) {

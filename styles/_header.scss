@@ -18,6 +18,11 @@ header {
     color: $txt-color;
     font-size: 150%;
     padding: $sm-space $reg-space;
+
+    &.fixed {
+      z-index: 99999999999;
+      position: fixed;
+    }
   }
 
   .header-nav {
@@ -34,6 +39,10 @@ header {
 
     svg {
       font-size: 1.5rem;
+    }
+
+    &.fixed {
+      right: 0;
     }
 
     .burger-icon {
@@ -88,7 +97,6 @@ header {
       top: 0;
       right: 0;
       background-color: $bg-color;
-      padding: $lg-space $reg-space;
       flex-direction: column;
       box-shadow: 0px 20px 70px $txt-color;
 
@@ -98,6 +106,7 @@ header {
       }
 
       .dropdown-content {
+        padding: $lg-space $reg-space;
         display: flex;
         margin: $lg-space;
         flex-direction: column;
@@ -272,5 +281,29 @@ header {
         }
       }
     }
+  }
+}
+
+.marquee {
+  background-color: $tierary;
+  padding: $sm-space 0;
+
+  display: flex;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  gap: $sm-space;
+  align-items: center;
+
+  p {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  button {
+    @include primarybutton;
   }
 }

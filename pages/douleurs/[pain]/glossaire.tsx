@@ -20,12 +20,14 @@ const painGlossary = ({
   headerMenu,
   footerMenu,
   painsSlugs,
+  marquee,
 }: {
   pain: PainDetail;
   glossary: GlossaryDetails;
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   painsSlugs: any;
+  marquee: any;
 }) => {
   const sortedGlossary = glossary?.sort((a, b) => a.term.localeCompare(b.term));
   const [, setEntries] = useState<string[]>([]);
@@ -65,6 +67,7 @@ const painGlossary = ({
       painsSlugs={painsSlugs}
       headerMenu={headerMenu}
       footerMenu={footerMenu}
+      marquee={marquee}
     >
       <ResourcePageLayout
         pageName="Glossaire"
@@ -105,8 +108,9 @@ export const getStaticProps = async ({ params }: any) => {
       `*[_type == "glossary" && references($painId)]`,
       { painId: fetchedPain?._id }
     );
-    const painsSlugs: PainDetail[] = await client.fetch(
-      '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
+
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
     );
 
     if (!fetchedPain || !fetchedGlossary) {
@@ -120,6 +124,7 @@ export const getStaticProps = async ({ params }: any) => {
         glossary: fetchedGlossary,
         headerMenu,
         footerMenu,
+        marquee,
       },
     };
   } catch (error) {

@@ -10,10 +10,12 @@ const Ressources = ({
   headerMenu,
   footerMenu,
   painsSlugs,
+  marquee,
 }: {
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   painsSlugs: any;
+  marquee: any;
 }) => {
   const [currentURL, setCurrentURL] = useState("");
 
@@ -26,6 +28,7 @@ const Ressources = ({
       headerMenu={headerMenu}
       footerMenu={footerMenu}
       painsSlugs={painsSlugs}
+      marquee={marquee}
     >
       <div
         className={`double-column-container ${
@@ -67,8 +70,12 @@ export const getStaticProps = async ({
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
+
     return {
-      props: { headerMenu, footerMenu, painsSlugs },
+      props: { headerMenu, footerMenu, painsSlugs, marquee },
     };
   } catch (error) {
     console.error("Error fetching pages:", error);

@@ -85,6 +85,16 @@ a.colored.logo {
   border-top: none;
 }
 
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .unknown__pt__mark__internalLink {
   background-color: yellow;
 }

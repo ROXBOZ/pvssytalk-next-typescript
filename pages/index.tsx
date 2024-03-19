@@ -21,7 +21,6 @@ interface HomeDetail {
     metadescription: string;
   };
   tagline: string;
-  marquee: string;
   content: any;
   intro: any;
   navigation: any;
@@ -41,6 +40,7 @@ const Home = ({
   footerMenu,
   logos,
   painsSlugs,
+  marquee,
 }: {
   headerMenu: MenuDetail[];
   pains: PainDetail[];
@@ -48,6 +48,7 @@ const Home = ({
   footerMenu: MenuDetail[];
   logos: LogosDetail[];
   painsSlugs: any;
+  marquee: any;
 }) => {
   const headerMenuData = headerMenu[0].headerMenu;
   const footerMenuData = footerMenu[0].footerMenu;
@@ -58,9 +59,8 @@ const Home = ({
       <CustomHead seo={home[0].seo} />
       <PageTransition>
         <div className="landing-view">
-          <Header data={headerMenuData} pains={painsSlugs} />
+          <Header data={headerMenuData} pains={painsSlugs} marquee={marquee} />
           <Tagline tagline={home[0].tagline} />
-          {home[0].marquee && <Marquee marquee={home[0].marquee} />}
         </div>
 
         {home[0].content && (
@@ -111,12 +111,21 @@ export const getStaticProps = async () => {
     const painsSlugs: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
-    const agenda: AgendaDetail[] = await client.fetch(
-      '*[_type == "event" && !(_id in path("drafts.**"))]'
+
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
     );
 
     return {
-      props: { headerMenu, footerMenu, pains, home, logos, painsSlugs, agenda },
+      props: {
+        headerMenu,
+        footerMenu,
+        pains,
+        home,
+        logos,
+        painsSlugs,
+        marquee,
+      },
     };
   } catch (error) {
     console.error("Error fetching pains:", error);

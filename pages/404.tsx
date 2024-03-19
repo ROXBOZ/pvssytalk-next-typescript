@@ -4,14 +4,17 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 import Layout from "../components/layouts/Layout";
 import Link from "next/link";
 import { MenuDetail } from "../types";
+import { client } from "../config/sanity/client";
 import { useRouter } from "next/router";
 
 function Custom404({
   headerMenu,
   footerMenu,
+  marquee,
 }: {
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  marquee: any;
 }) {
   const router = useRouter();
   const [countdown, setCountdown] = useState(10);
@@ -30,7 +33,7 @@ function Custom404({
   }, [countdown, router]);
 
   return (
-    <Layout headerMenu={headerMenu} footerMenu={footerMenu}>
+    <Layout headerMenu={headerMenu} footerMenu={footerMenu} marquee={marquee}>
       <div className="error-page-container">
         <div className="error-page-content">
           <h1>Erreur 404</h1>
@@ -63,8 +66,12 @@ export const getStaticProps = async ({
     const headerMenu: MenuDetail[] = await fetchHeaderMenu();
     const footerMenu: MenuDetail[] = await fetchFooterMenu();
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
+
     return {
-      props: { headerMenu, footerMenu },
+      props: { headerMenu, footerMenu, marquee },
     };
   } catch (error) {
     console.error("Error fetching pages:", error);

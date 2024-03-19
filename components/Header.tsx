@@ -9,13 +9,14 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import Marquee from "./Marquee";
 import useWindowSize from "../utils/useWindowSize";
 
-const RenderMenu = ({ data, pains, setIsOpen }: any) => {
+const RenderMenu = ({ data, pains, setIsOpen, isOpen, marquee }: any) => {
   const [isSelected, setIsSelected] = useState("");
 
   return (
-    <nav className="header-nav">
+    <nav className={`header-nav ${isOpen ? "fixed" : ""}`}>
       {data &&
         data.map((item: MenuDetail, index: number) => {
           if (item._type === "page") {
@@ -142,6 +143,7 @@ const RenderMenu = ({ data, pains, setIsOpen }: any) => {
                         })}
                     </div>
                   </div>
+                  {marquee && <Marquee marquee={marquee} />}
                 </div>
               </div>
             );
@@ -288,7 +290,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
   );
 };
 
-const Header = ({ data, pains }: any) => {
+const Header = ({ data, pains, marquee }: any) => {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const is600Max = useWindowSize();
@@ -299,8 +301,10 @@ const Header = ({ data, pains }: any) => {
         is600Max ? "relative" : ""
       }`}
     >
-      <Link href="/" className="borderless">
-        <span className="logo nowrap">pvssy talk</span>
+      <Link href="/" className={`borderless`}>
+        <span className={`logo nowrap ${isOpen && !is600Max ? "fixed" : ""}`}>
+          pvssy talk
+        </span>
       </Link>
 
       {is600Max && mobileMenuIsOpen && (
@@ -324,7 +328,13 @@ const Header = ({ data, pains }: any) => {
           />
         </nav>
       ) : (
-        <RenderMenu data={data} pains={pains} setIsOpen={setIsOpen} />
+        <RenderMenu
+          data={data}
+          pains={pains}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          marquee={marquee}
+        />
       )}
     </header>
   );

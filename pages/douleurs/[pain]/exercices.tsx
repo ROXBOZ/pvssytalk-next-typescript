@@ -29,12 +29,14 @@ const PainExercises = ({
   headerMenu,
   footerMenu,
   painsSlugs,
+  marquee,
 }: {
   pain: PainDetail;
   exercises: ExerciseDetail[];
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
   painsSlugs: any;
+  marquee: any;
 }) => {
   const relatedExercises = filterRelatedExercises(exercises, pain._id);
   const [selectedPain, setSelectedPain] = useState("");
@@ -51,6 +53,7 @@ const PainExercises = ({
       painsSlugs={painsSlugs}
       headerMenu={headerMenu}
       footerMenu={footerMenu}
+      marquee={marquee}
     >
       <ResourcePageLayout
         pageName="Exercices"
@@ -96,6 +99,10 @@ export const getStaticProps = async ({ params }: any) => {
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
+
     if (!fetchedPain || !fetchedExercises) {
       return {
         notFound: true,
@@ -109,6 +116,7 @@ export const getStaticProps = async ({ params }: any) => {
         headerMenu,
         footerMenu,
         painsSlugs,
+        marquee,
       },
     };
   } catch (error) {

@@ -24,6 +24,7 @@ const Directory = ({
   typeform,
   regions,
   painsSlugs,
+  marquee,
 }: {
   pain: PainDetail;
   directory: DirectoryDetail[];
@@ -32,6 +33,7 @@ const Directory = ({
   typeform: typeformDetail;
   regions: any;
   painsSlugs: any;
+  marquee: any;
 }) => {
   const relatedDirectoryItem = directory.filter(
     (directoryItem: DirectoryDetail) =>
@@ -48,6 +50,7 @@ const Directory = ({
       painsSlugs={painsSlugs}
       headerMenu={headerMenu}
       footerMenu={footerMenu}
+      marquee={marquee}
     >
       <ResourcePageLayout
         regions={regions[0].regions}
@@ -140,6 +143,10 @@ export const getStaticProps = async ({ params }: any) => {
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
 
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
+
     return {
       props: {
         pain: fetchedPain,
@@ -149,6 +156,7 @@ export const getStaticProps = async ({ params }: any) => {
         typeform,
         regions,
         painsSlugs,
+        marquee,
       },
     };
   } catch (error) {

@@ -20,30 +20,6 @@
       line-height: 1;
     }
   }
-
-  .marquee {
-    background-color: $tierary;
-    padding: $sm-space 0;
-
-    display: flex;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    gap: $sm-space;
-    align-items: center;
-
-    p {
-      padding: 0;
-      margin: 0;
-      max-width: 100%;
-    }
-
-    button {
-      @include primarybutton;
-    }
-  }
 }
 
 @keyframes gradient {

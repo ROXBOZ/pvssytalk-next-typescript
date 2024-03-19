@@ -12,11 +12,13 @@ export default function Page({
   page,
   footerMenu,
   painsSlugs,
+  marquee,
 }: {
   headerMenu: MenuDetail[];
   page: any;
   footerMenu: MenuDetail[];
   painsSlugs: any;
+  marquee: any;
 }) {
   return (
     <Layout
@@ -24,6 +26,7 @@ export default function Page({
       headerMenu={headerMenu}
       painsSlugs={painsSlugs}
       footerMenu={footerMenu}
+      marquee={marquee}
     >
       <div className="double-column-containers-group">
         <div className="double-column-container">
@@ -115,8 +118,18 @@ export const getStaticProps = async ({
     const pages: InfoPageDetail[] = await client.fetch(
       '*[_type == "page" && !(_id in path("drafts.**"))] {title, slug {current}, isArticle}'
     );
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
     return {
-      props: { page: currentPage, headerMenu, footerMenu, painsSlugs, pages },
+      props: {
+        page: currentPage,
+        headerMenu,
+        footerMenu,
+        painsSlugs,
+        pages,
+        marquee,
+      },
     };
   } catch (error) {
     console.error("Error fetching pages:", error);

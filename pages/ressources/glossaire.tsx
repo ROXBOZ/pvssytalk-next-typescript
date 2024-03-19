@@ -19,10 +19,12 @@ const Glossary = ({
   footerMenu,
   seo,
   painsSlugs,
+  marquee,
 }: {
   glossary: GlossaryDetails;
   headerMenu: MenuDetail[];
   footerMenu: MenuDetail[];
+  marquee: any;
   seo: any;
   painsSlugs: any;
 }) => {
@@ -69,6 +71,7 @@ const Glossary = ({
         painsSlugs={painsSlugs}
         headerMenu={headerMenu}
         footerMenu={footerMenu}
+        marquee={marquee}
       >
         <div ref={termsContainerRef}>
           <ResourcePageLayout
@@ -108,8 +111,19 @@ export const getStaticProps = async () => {
     const painsSlugs: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {name, slug {current}, description}'
     );
+    const marquee: any = await client.fetch(
+      '*[_type == "menu" && !(_id in path("drafts.**"))]{marquee}'
+    );
     return {
-      props: { glossary, pains, headerMenu, footerMenu, seo, painsSlugs },
+      props: {
+        glossary,
+        pains,
+        headerMenu,
+        footerMenu,
+        seo,
+        painsSlugs,
+        marquee,
+      },
     };
   } catch (error) {
     console.error("Error fetching glossary:", error);
