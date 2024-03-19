@@ -432,10 +432,10 @@ h1:first-letter,
 }
 @media only screen and (max-width: 600px) {
   .dropdowns-container {
-    flex-direction: column;
     width: 100%;
     gap: 0.5rem;
     padding: 2rem 0;
+    flex-wrap: wrap;
   }
 }
 .dropdowns-container .reset-button {
@@ -444,16 +444,16 @@ h1:first-letter,
   aspect-ratio: 1/1;
   padding: 0 0.75rem;
 }
-@media only screen and (max-width: 600px) {
-  .dropdowns-container .reset-button {
-    display: none;
-  }
-}
 .dropdowns-container .dropdown {
   flex: 1;
   display: flex;
   cursor: pointer;
   flex-direction: column;
+}
+@media only screen and (max-width: 600px) {
+  .dropdowns-container .dropdown:first-of-type {
+    min-width: 100%;
+  }
 }
 .dropdowns-container .dropdown .drowpdown-title {
   display: flex;
@@ -1393,7 +1393,7 @@ button {
 }
 @media only screen and (max-width: 600px) {
   button {
-    padding: 0.5em 0.75em;
+    padding: 0.25em 0.75em;
   }
 }
 button:disabled {
