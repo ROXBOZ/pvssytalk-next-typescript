@@ -190,7 +190,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
                   <div className="title plus">
                     <Link key={index} href={`/${item.slug.current}`}>
                       <span>{item.title.toLowerCase()}</span>
-                      <span className="arrow">→</span>
+                      {/* <span className="arrow">→</span> */}
                     </Link>
                   </div>
                 )}
@@ -217,7 +217,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
                                 .replace("é", "e")}`}
                             >
                               <span>{contentItem.resource.toLowerCase()}</span>
-                              <span className="arrow">↗</span>
+                              {/* <span className="arrow">↗</span> */}
                             </Link>
                           ) : (
                             <span>{contentItem.title.toLowerCase()}</span>

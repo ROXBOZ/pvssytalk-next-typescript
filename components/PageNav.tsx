@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from "react";
-
-import { HeadingProps } from "react-markdown/lib/ast-to-react";
 import Link from "next/link";
+import React from "react";
 import useWindowSize from "../utils/useWindowSize";
 
-const PageNav = ({ pages }: { pages: any }) => {
+const PageNav = ({ headerMenu }: { headerMenu: any }) => {
   const is600Max = useWindowSize();
+  const fooMenu = headerMenu[0]?.headerMenu[0]?.content[0]?.pages;
+  const fooMenuIsValid =
+    "231c35637a06" === headerMenu[0]?.headerMenu[0]?.content[0]?._key;
+
+  const fooMenuTitle = headerMenu[0]?.headerMenu[0]?.content[0]?.title;
 
   return (
-    <nav className={`nav-directory ${!is600Max && "h4"}`}>
-      {pages &&
-        pages.map((page: any, index: number) => {
-          if (page.isArticle === true) {
-            return (
+    <>
+      {!is600Max && (
+        <nav className={`nav-directory`}>
+          <h3>{fooMenuTitle}</h3>
+          {fooMenuIsValid &&
+            fooMenu &&
+            fooMenu.map((page: any, index: number) => (
               <Link href={page.slug.current} key={index}>
                 <span>{page.title}</span>
               </Link>
-            );
-          }
-          return null;
-        })}
-    </nav>
+            ))}
+        </nav>
+      )}
+    </>
   );
 };
 

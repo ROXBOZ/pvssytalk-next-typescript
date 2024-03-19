@@ -28,6 +28,10 @@ export default function Page({
       <div className="double-column-containers-group">
         <div className="double-column-container">
           <div>
+            <PageNav headerMenu={headerMenu} />
+          </div>
+
+          <div>
             <h1>{page.title}</h1>
             <PortableText value={page.subtitle as any} />
             {page.image && (
