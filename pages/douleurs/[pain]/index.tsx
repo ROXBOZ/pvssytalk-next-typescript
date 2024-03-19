@@ -19,54 +19,54 @@ import PartageNav from "../../../components/PartageNav";
 import { PortableText } from "@portabletext/react";
 import useWindowSize from "../../../utils/useWindowSize";
 
-const ToContinue = ({
-  isMed,
-  setIsMed,
-  filters,
-  otherPains,
-}: {
-  isMed: boolean;
-  setIsMed: React.Dispatch<React.SetStateAction<boolean>>;
-  filters: any;
-  otherPains: PainDetail;
-}) => {
-  const similarPains = otherPains.filter((pain: PainDetail) => {
-    return pain.filters.some((painFilter) => filters.includes(painFilter));
-  });
+// const ToContinue = ({
+//   isMed,
+//   setIsMed,
+//   filters,
+//   otherPains,
+// }: {
+//   isMed: boolean;
+//   setIsMed: React.Dispatch<React.SetStateAction<boolean>>;
+//   filters: any;
+//   otherPains: PainDetail;
+// }) => {
+//   const similarPains = otherPains.filter((pain: PainDetail) => {
+//     return pain.filters.some((painFilter) => filters.includes(painFilter));
+//   });
 
-  const handleClick = useCallback(() => {
-    setIsMed((prev) => !prev);
-    const targetId = isMed ? "startMed" : "startSex";
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [isMed, setIsMed]);
+//   const handleClick = useCallback(() => {
+//     setIsMed((prev) => !prev);
+//     const targetId = isMed ? "startMed" : "startSex";
+//     const targetElement = document.getElementById(targetId);
+//     if (targetElement) {
+//       targetElement.scrollIntoView({ behavior: "smooth" });
+//     }
+//   }, [isMed, setIsMed]);
 
-  return (
-    <div className="to-continue">
-      <div className="switch-approach">
-        <span>
-          C’était l'approche {isMed === true ? "médicale" : "sexologique"}.
-        </span>
-        <button className="logo" onClick={handleClick}>
-          approche {isMed === true ? "sexologique" : "médicale"}
-        </button>
-      </div>
-      <div className="similar-pains">
-        {similarPains && <span>Douleurs similaires</span>}
-        {similarPains &&
-          similarPains.map((pain: PainDetail, index: number) => {
-            return (
-              <Link href={pain.slug.current} key={index}>
-                {pain.name}
-              </Link>
-            );
-          })}
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className="to-continue">
+//       <div className="switch-approach">
+//         <span>
+//           C’était l'approche {isMed === true ? "médicale" : "sexologique"}.
+//         </span>
+//         <button className="logo" onClick={handleClick}>
+//           approche {isMed === true ? "sexologique" : "médicale"}
+//         </button>
+//       </div>
+//       <div className="similar-pains">
+//         {similarPains && <span>Douleurs similaires</span>}
+//         {similarPains &&
+//           similarPains.map((pain: PainDetail, index: number) => {
+//             return (
+//               <Link href={pain.slug.current} key={index}>
+//                 {pain.name}
+//               </Link>
+//             );
+//           })}
+//       </div>
+//     </div>
+//   );
+// };
 
 const ArticlePain = ({
   pain,
@@ -290,14 +290,14 @@ const ArticlePain = ({
                     </>
                   )}
 
-                  {pain.medicalApproach && (
+                  {/* {pain.medicalApproach && (
                     <ToContinue
                       isMed={isMed}
                       setIsMed={setIsMed}
                       filters={pain.filters}
                       otherPains={otherPains}
                     />
-                  )}
+                  )} */}
                 </div>
               ) : (
                 <div id="startSex">
@@ -422,14 +422,14 @@ const ArticlePain = ({
                     </>
                   )}
 
-                  {pain.sexologicApproach && (
+                  {/* {pain.sexologicApproach && (
                     <ToContinue
                       isMed={isMed}
                       setIsMed={setIsMed}
                       filters={pain.filters}
                       otherPains={otherPains}
                     />
-                  )}
+                  )} */}
                 </div>
               )}
               {is600Max && (
