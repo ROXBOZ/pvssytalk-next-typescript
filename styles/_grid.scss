@@ -114,6 +114,7 @@
     display: flex;
     justify-content: center;
     transition: 3s;
+    margin-top: $reg-space;
     img {
       height: fit-content;
       object-fit: contain;

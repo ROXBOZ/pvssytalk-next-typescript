@@ -378,7 +378,7 @@ h1:first-letter,
   width: -moz-fit-content;
   width: fit-content;
   height: auto;
-  border-radius: 50px;
+  border-radius: 20px;
   padding: 0.5rem;
   display: flex;
   align-items: center;
@@ -481,7 +481,7 @@ h1:first-letter,
   justify-content: space-between;
   background-color: #eedbf6;
   padding: 0.5rem 1em;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 .dropdowns-container .dropdown .dropdown-content {
   display: none;
@@ -495,7 +495,7 @@ h1:first-letter,
   cursor: pointer;
   padding: 0.25rem 1em;
   background-color: #f8f0fb;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 .dropdowns-container .dropdown .dropdown-content ul li:hover {
   background-color: #e4c7f1;
@@ -653,15 +653,15 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .h3 {
 header .dropdown .dropdown-content-wrapper .dropdown-content .contenu {
   display: flex;
   gap: 4rem;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
+  width: 100%;
   margin: auto;
   justify-content: center;
-  min-width: 25%;
 }
 header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col {
   flex: 1;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 25%;
 }
 header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col nav {
   display: flex;
@@ -1040,7 +1040,7 @@ footer .footer-content nav a:hover {
   align-items: center;
   white-space: nowrap;
   padding: 0.25em 1em;
-  border-radius: 50px;
+  border-radius: 20px;
   text-transform: lowercase;
   height: -moz-fit-content;
   height: fit-content;
@@ -1067,7 +1067,7 @@ footer .footer-content nav a:hover {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border-radius: 50px;
+  border-radius: 20px;
   cursor: url("../assets/images/cursor-pointer.svg"), auto;
   text-transform: lowercase !important;
   height: -moz-fit-content;
@@ -1095,7 +1095,7 @@ footer .footer-content nav a:hover {
   max-width: fit-content;
   padding: 0.25rem 1em;
   background-color: #eedbf6;
-  border-radius: 50px;
+  border-radius: 20px;
   max-height: -moz-max-content;
   max-height: max-content;
   display: flex;
@@ -1182,7 +1182,7 @@ footer .footer-content nav a:hover {
 .pain-card .pain-card-content {
   border: 1px solid #e4c7f1;
   overflow: hidden;
-  border-radius: 50px;
+  border-radius: 20px;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -1232,7 +1232,7 @@ footer .footer-content nav a:hover {
 .title-container .pain-illu-cover {
   grid-column: 3/11;
   width: 100%;
-  border-radius: 50px;
+  border-radius: 20px;
   -o-object-fit: cover;
      object-fit: cover;
   height: auto;
@@ -1242,6 +1242,7 @@ footer .footer-content nav a:hover {
   display: flex;
   justify-content: center;
   transition: 3s;
+  margin-top: 2rem;
 }
 .title-container .pain-illu-cover img {
   height: -moz-fit-content;
@@ -1410,7 +1411,7 @@ button {
   border: 1px solid #e4c7f1;
   padding: 0.5em 1.5em;
   background-color: transparent;
-  border-radius: 50px;
+  border-radius: 20px;
   cursor: pointer;
   color: #31064b;
   white-space: nowrap;
@@ -1638,7 +1639,7 @@ form {
 form .search-bar {
   padding: 0.5rem 1rem;
   border: 1px solid #e4c7f1;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 form .search-bar::-moz-placeholder {
   color: #31064b;
@@ -1668,7 +1669,7 @@ form .search-bar::placeholder {
 }
 .letter-link-container .letter-link {
   border: 1px solid transparent;
-  border-radius: 50px;
+  border-radius: 20px;
   padding: 0.5em;
   width: 1em;
   display: flex;
@@ -1682,7 +1683,7 @@ form .search-bar::placeholder {
 .letter-link-container .letter-link:hover {
   cursor: pointer;
   border: 1px solid #e4c7f1;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 .letter-link-container .letter-link:active {
   background-color: #e4c7f1;

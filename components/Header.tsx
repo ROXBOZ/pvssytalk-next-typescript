@@ -163,7 +163,7 @@ const RenderMenu = ({ data, pains, setIsOpen, isOpen, marquee }: any) => {
   );
 };
 
-const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
+const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const expandMenu = (index: any) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -286,6 +286,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen }: any) => {
             );
           })}
       </div>
+      <Marquee marquee={marquee} />
     </div>
   );
 };
@@ -314,6 +315,7 @@ const Header = ({ data, pains, marquee }: any) => {
           is600Max={is600Max}
           isOpen={isOpen}
           setMobileMenuIsOpen={setMobileMenuIsOpen}
+          marquee={marquee}
         />
       )}
 
