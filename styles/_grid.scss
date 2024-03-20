@@ -13,9 +13,9 @@
   border-top: $border-solid $secondary;
   padding-top: $reg-space;
 
-  // h2 {
-  //   margin-top: 0;
-  // }
+  h2 {
+    margin-top: 0;
+  }
 
   div {
     &:first-child {
@@ -23,9 +23,7 @@
     }
 
     &:nth-child(2) {
-      // margin: 0;
       grid-column: 6/13;
-      // width: 100%;
     }
   }
 
@@ -98,6 +96,11 @@
 .title-container {
   @include grid;
   padding-bottom: $reg-space;
+  padding-top: 1rem;
+
+  @media only screen and (min-width: 600px) {
+    padding-top: 0;
+  }
 
   .title {
     grid-column: #{$grid-center};

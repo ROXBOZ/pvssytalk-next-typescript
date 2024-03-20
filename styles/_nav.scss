@@ -8,7 +8,9 @@
     margin: 0;
     font-size: large;
   }
-
+  h3 {
+    margin-top: 0;
+  }
   a {
     display: flex;
     justify-content: space-between;
@@ -151,10 +153,11 @@
 .fixed-container {
   position: -webkit-sticky;
   position: sticky;
-  top: $lg-space;
+
   @media only screen and (max-width: 600px) {
     position: relative;
     width: 100%;
+    border: 1px solid orange;
   }
 
   .title {
@@ -165,7 +168,6 @@
       display: flex;
       gap: $sm-space;
       flex-wrap: wrap;
-      line-height: 0.5;
       align-items: center;
       @media only screen and (max-width: 600px) {
         margin-bottom: 0;
@@ -193,10 +195,9 @@
   gap: $sm-space;
 
   @media only screen and (max-width: 600px) {
-    // flex-direction: column;
     width: 100%;
     gap: 0.5rem;
-    padding: $reg-space 0;
+    padding: $reg-space 0 0;
     flex-wrap: wrap;
   }
 
@@ -212,7 +213,7 @@
     cursor: pointer;
     flex-direction: column;
 
-    &:first-of-type {
+    &:first-of-type:not(:only-of-type) {
       @media only screen and (max-width: 600px) {
         min-width: 100%;
       }
@@ -284,5 +285,11 @@
   }
   a {
     padding-top: 0.5rem;
+  }
+}
+
+.page-nav {
+  @media only screen and (max-width: 600px) {
+    display: none;
   }
 }

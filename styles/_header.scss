@@ -232,7 +232,6 @@ header {
 
     a {
       position: relative;
-      border-bottom: 0;
     }
 
     .title {
@@ -283,9 +282,7 @@ header {
         padding-top: 1rem;
         span {
           font-family: $font-logo !important;
-          border-bottom: $border-solid $secondary;
           width: 100%;
-          // font-size: 105%;
         }
       }
     }
@@ -294,7 +291,7 @@ header {
 
 .marquee {
   background-color: $tierary;
-  padding: $reg-space;
+  padding: $sm-space;
   display: flex;
   left: 0;
   right: 0;
@@ -303,10 +300,14 @@ header {
   gap: $sm-space;
   align-items: center;
 
-  p {
-    padding: 0;
-    margin: 0;
-    max-width: 100%;
+  @media only screen and (max-width: 600px) {
+    padding: $sm-space $reg-space;
+  }
+
+  .content {
+    a {
+      border-bottom: $border-solid $secondary;
+    }
   }
 
   button {

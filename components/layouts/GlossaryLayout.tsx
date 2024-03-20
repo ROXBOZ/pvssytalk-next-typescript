@@ -26,7 +26,7 @@ const GlossaryLayout: React.FC<GlossaryLayoutProps> = ({
       .replace(/œ/g, "oe");
   };
   return (
-    <>
+    <div className="glossary-container">
       {letters.map((letter) => (
         <div className="letter-title" key={letter}>
           <p id={letter} className="h1">
@@ -47,7 +47,7 @@ const GlossaryLayout: React.FC<GlossaryLayoutProps> = ({
           ))}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

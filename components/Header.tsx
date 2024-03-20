@@ -181,16 +181,24 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
             return (
               <>
                 {item._type === "customLink" && item.isAction === true && (
-                  <Link key={index} href={`${item.link}`} target="_blank">
+                  <Link
+                    className="borderless"
+                    key={index}
+                    href={`${item.link}`}
+                    target="_blank"
+                  >
                     <button className="primary-button">{item.title}</button>
                   </Link>
                 )}
 
                 {item._type === "page" && (
                   <div className="title plus">
-                    <Link key={index} href={`/${item.slug.current}`}>
+                    <Link
+                      className="borderless"
+                      key={index}
+                      href={`/${item.slug.current}`}
+                    >
                       <span>{item.title.toLowerCase()}</span>
-                      {/* <span className="arrow">→</span> */}
                     </Link>
                   </div>
                 )}
@@ -212,12 +220,12 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
                             <span>douleurs</span>
                           ) : contentItem._type === "resources" ? (
                             <Link
+                              className="borderless"
                               href={`/ressources/${contentItem.resource
                                 .toLowerCase()
                                 .replace("é", "e")}`}
                             >
                               <span>{contentItem.resource.toLowerCase()}</span>
-                              {/* <span className="arrow">↗</span> */}
                             </Link>
                           ) : (
                             <span>{contentItem.title.toLowerCase()}</span>
@@ -234,7 +242,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
                         </div>
                         {expandedIndex === contentItem._key &&
                           contentItem._type !== "painsMenu" && (
-                            <nav className="mobile-nav-content">
+                            <>
                               {contentItem.pages &&
                                 contentItem.pages.map(
                                   (page: any, index: number) => {
@@ -251,7 +259,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
                                     );
                                   }
                                 )}
-                            </nav>
+                            </>
                           )}
                         {contentItem._type === "painsMenu" &&
                           expandedIndex === contentItem._key && (

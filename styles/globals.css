@@ -256,6 +256,9 @@ h1:first-letter,
     font-size: large;
   }
 }
+.nav-directory h3 {
+  margin-top: 0;
+}
 .nav-directory a {
   display: flex;
   justify-content: space-between;
@@ -408,12 +411,12 @@ h1:first-letter,
 
 .fixed-container {
   position: sticky;
-  top: 4rem;
 }
 @media only screen and (max-width: 600px) {
   .fixed-container {
     position: relative;
     width: 100%;
+    border: 1px solid orange;
   }
 }
 .fixed-container .title {
@@ -424,7 +427,6 @@ h1:first-letter,
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  line-height: 0.5;
   align-items: center;
 }
 @media only screen and (max-width: 600px) {
@@ -454,7 +456,7 @@ h1:first-letter,
   .dropdowns-container {
     width: 100%;
     gap: 0.5rem;
-    padding: 2rem 0;
+    padding: 2rem 0 0;
     flex-wrap: wrap;
   }
 }
@@ -471,7 +473,7 @@ h1:first-letter,
   flex-direction: column;
 }
 @media only screen and (max-width: 600px) {
-  .dropdowns-container .dropdown:first-of-type {
+  .dropdowns-container .dropdown:first-of-type:not(:only-of-type) {
     min-width: 100%;
   }
 }
@@ -529,6 +531,12 @@ h1:first-letter,
 }
 .resources-nav-mobile a {
   padding-top: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .page-nav {
+    display: none;
+  }
 }
 
 .screen-reader-text {
@@ -746,7 +754,6 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 .mobile-menu .mobile-menu-content a {
   position: relative;
-  border-bottom: 0;
 }
 .mobile-menu .mobile-menu-content .title {
   display: flex;
@@ -792,13 +799,12 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 .mobile-menu .mobile-menu-content nav.mobile-nav-content a span {
   font-family: "ESRebond" !important;
-  border-bottom: 1px solid #e4c7f1;
   width: 100%;
 }
 
 .marquee {
   background-color: #c8ffa5;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   left: 0;
   right: 0;
@@ -807,10 +813,13 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   gap: 1rem;
   align-items: center;
 }
-.marquee p {
-  padding: 0;
-  margin: 0;
-  max-width: 100%;
+@media only screen and (max-width: 600px) {
+  .marquee {
+    padding: 1rem 2rem;
+  }
+}
+.marquee .content a {
+  border-bottom: 1px solid #e4c7f1;
 }
 .marquee button {
   font-family: "ESRebond";
@@ -1146,6 +1155,9 @@ footer .footer-content nav a:hover {
     flex-direction: column;
   }
 }
+.double-column-container h2 {
+  margin-top: 0;
+}
 .double-column-container div:first-child {
   grid-column: 1/5;
 }
@@ -1225,11 +1237,17 @@ footer .footer-content nav a:hover {
   gap: 1rem;
   padding: 2rem 0 8rem;
   padding-bottom: 2rem;
+  padding-top: 1rem;
 }
 @media screen and (max-width: 768px) {
   .title-container {
     display: flex;
     flex-direction: column;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .title-container {
+    padding-top: 0;
   }
 }
 .title-container .title {
@@ -1467,11 +1485,6 @@ button.square-button {
   flex-direction: column;
   gap: 1rem;
 }
-@media only screen and (max-width: 600px) {
-  .media-container {
-    margin-top: 4rem;
-  }
-}
 .media-container h2 {
   margin-bottom: 2rem;
   color: #a62fee;
@@ -1486,12 +1499,6 @@ button.square-button {
 }
 .media-container .media-item .tag-container {
   margin-top: 0.25rem;
-}
-
-@media only screen and (max-width: 600px) {
-  .exercises-container {
-    margin-top: 4rem;
-  }
 }
 
 .exercise {
@@ -1589,20 +1596,17 @@ ol li {
   color: #fd4a36;
   border-top: 1px solid #e4c7f1;
   font-family: "ESRebond";
-  padding-top: 1rem;
-  margin-top: 4rem;
+}
+@media only screen and (max-width: 600px) {
+  .letter-title .h1 {
+    margin-top: 0;
+  }
 }
 @media only screen and (min-width: 600px) {
   .letter-title:first-child .h1 {
     border-top: none;
     padding-top: 0;
     margin-top: 0;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .letter-title {
-    margin-top: 2rem;
-    padding-top: 2rem;
   }
 }
 
@@ -1784,11 +1788,6 @@ form .search-bar::placeholder {
 }
 .category-title:first-of-type {
   margin-top: 0;
-}
-@media only screen and (max-width: 600px) {
-  .category-title:first-of-type {
-    margin-top: 8rem;
-  }
 }
 
 .msg-box {
@@ -2141,9 +2140,6 @@ form .input-section .showPassword {
 .events {
   display: flex;
   gap: 1rem;
-}
-.events .event {
-  border: 1px solid red;
 }
 
 html {

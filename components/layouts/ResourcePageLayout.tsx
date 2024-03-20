@@ -157,9 +157,7 @@ const ResourcePageLayout: React.FC<{
                       style={{ border: "0" }}
                       href={typeformLink}
                     >
-                      <button className="primary-button">
-                        recommander <span className="icon logo">→</span>
-                      </button>
+                      <button className="primary-button">recommander</button>
                     </Link>
                   )}
                 </sup>
