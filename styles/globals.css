@@ -165,10 +165,6 @@ h4 .colored,
 .h4 .colored {
   line-height: calc(2px + 2ex + 2px);
 }
-h4:first-letter,
-.h4:first-letter {
-  text-transform: capitalize;
-}
 
 h3,
 .h3 {
@@ -182,10 +178,6 @@ h3,
 h3 .colored,
 .h3 .colored {
   line-height: calc(2px + 2ex + 2px);
-}
-h3:first-letter,
-.h3:first-letter {
-  text-transform: capitalize;
 }
 
 h2,
@@ -201,10 +193,6 @@ h2 .colored,
 .h2 .colored {
   line-height: calc(2px + 2ex + 2px);
 }
-h2:first-letter,
-.h2:first-letter {
-  text-transform: capitalize;
-}
 
 h1,
 .h1 {
@@ -218,10 +206,6 @@ h1,
 h1 .colored,
 .h1 .colored {
   line-height: calc(2px + 2ex + 2px);
-}
-h1:first-letter,
-.h1:first-letter {
-  text-transform: capitalize;
 }
 
 .to-continue {

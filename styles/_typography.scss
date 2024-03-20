@@ -126,10 +126,6 @@ $level-size: $type-base-size;
     margin-top: calc(#{$level-size}* 2);
     margin-bottom: calc(#{$level-size}/ 2);
 
-    &:first-letter {
-      text-transform: capitalize;
-    }
-
     @if ($type-size-ratio > 1.2) {
       $level-unitless: $level-size / ($level-size * 0 + 1);
       $fluid-reduction: if($level-size > 4, 0.5, 0.33);
