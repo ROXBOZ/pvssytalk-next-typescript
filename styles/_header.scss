@@ -220,11 +220,15 @@ header {
     gap: 0.5rem;
 
     button {
-      font-size: 1.5rem;
+      font-size: 1rem;
       margin-left: -1.25rem;
+      margin-top: $reg-space;
+      right: 0;
+      position: absolute;
     }
 
     a {
+      position: relative;
       border-bottom: 0;
     }
 
@@ -233,8 +237,8 @@ header {
       // background-color: red;
       // border: 1px solid yellow;
       font-family: $font-logo;
-      font-size: 1.5rem;
-      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      margin: 0.25rem 0;
 
       &.plus {
         width: 100%;
@@ -287,16 +291,18 @@ header {
 
 .marquee {
   background-color: $tierary;
-  padding: $sm-space 0;
-
+  padding: $reg-space;
   display: flex;
-
   left: 0;
   right: 0;
   bottom: 0;
   justify-content: center;
   gap: $sm-space;
   align-items: center;
+
+  @media only screen and (max-width: 600px) {
+    position: absolute;
+  }
 
   p {
     padding: 0;

@@ -124,9 +124,9 @@
       padding: 0.5rem;
       display: flex;
       align-items: center;
-      background-color: lighten($txt-color, 40);
+      background-color: $secondary;
       &:hover {
-        background-color: lighten($txt-color, 30);
+        background-color: darken($secondary, 10);
         transition: $animation-transition;
       }
 
@@ -134,7 +134,7 @@
         width: 20px;
         height: 20px;
         font-size: x-large;
-        color: $bg-color;
+        color: $txt-color;
         path {
           width: 100%;
         }
