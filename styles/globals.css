@@ -641,7 +641,7 @@ header .dropdown .dropdown-content-wrapper.selected {
   display: flex;
 }
 header .dropdown .dropdown-content-wrapper .dropdown-content {
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 0;
   display: flex;
   margin: 4rem;
   flex-direction: column;
@@ -1307,7 +1307,7 @@ footer .footer-content nav a:hover {
   padding: 4rem 2rem 8rem;
   color: #31064b;
   font-size: 80%;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 .breadcrumbs .crumb a {
   white-space: nowrap;

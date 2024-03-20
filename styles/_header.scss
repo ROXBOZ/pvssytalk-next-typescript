@@ -106,7 +106,7 @@ header {
       }
 
       .dropdown-content {
-        padding: $lg-space $reg-space;
+        padding: $lg-space $reg-space 0;
         display: flex;
         margin: $lg-space;
         flex-direction: column;
