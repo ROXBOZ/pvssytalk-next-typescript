@@ -151,7 +151,12 @@ const RenderMenu = ({ data, pains, setIsOpen, isOpen, marquee }: any) => {
 
           if (item._type === "customLink" && item.isAction === true) {
             return (
-              <Link key={index} href={`${item.link}`} target="_blank">
+              <Link
+                className="desktop-only"
+                key={index}
+                href={`${item.link}`}
+                target="_blank"
+              >
                 <button className="primary-button">{item.title}</button>
               </Link>
             );

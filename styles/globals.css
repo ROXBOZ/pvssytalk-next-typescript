@@ -718,7 +718,6 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   z-index: 999;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 .mobile-menu .logo {
   position: fixed;
@@ -729,6 +728,8 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  overflow-y: auto;
+  position: relative;
 }
 .mobile-menu .mobile-menu-content button {
   font-size: 1rem;
@@ -787,7 +788,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 
 .marquee {
-  background-color: #c8ffa5;
+  background-color: rgb(221, 255, 171);
   padding: 1rem;
   display: flex;
   left: 0;
@@ -797,10 +798,33 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   gap: 1rem;
   align-items: center;
 }
+.marquee.closed {
+  display: none;
+}
+.marquee .close-button {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+}
+.marquee .close-button svg {
+  width: 15px;
+}
+@media only screen and (min-width: 600px) {
+  .marquee .close-button {
+    display: none;
+  }
+}
 @media only screen and (max-width: 600px) {
   .marquee {
     padding: 1rem 2rem;
+    position: absolute;
+    bottom: 0;
   }
+}
+.marquee .content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 .marquee .content a {
   border-bottom: 1px solid #e4c7f1;
@@ -890,7 +914,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 
 footer {
-  background-color: #c8ffa5;
+  background-color: rgb(221, 255, 171);
   padding: 2rem;
 }
 footer .footer-content {
@@ -1803,7 +1827,7 @@ form .search-bar::placeholder {
   margin: 0;
 }
 .msg.success {
-  border-bottom: 1px solid #c8ffa5;
+  border-bottom: 1px solid rgb(221, 255, 171);
 }
 .msg.success:before {
   content: "👏  ";
@@ -2093,7 +2117,7 @@ form .input-section .showPassword {
   background-color: #e4c7f1;
 }
 .textImageBlock-wrapper.tierary {
-  background-color: #c8ffa5;
+  background-color: rgb(221, 255, 171);
 }
 .textImageBlock-wrapper .textImageBlock {
   align-items: center;
@@ -2230,4 +2254,10 @@ a.colored.logo {
 }
 .error-page-container .error-page-content p {
   align-self: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .desktop-only {
+    display: none;
+  }
 }/*# sourceMappingURL=globals.css.map */
