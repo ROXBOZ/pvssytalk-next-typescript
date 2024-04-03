@@ -2178,15 +2178,26 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  /*NOTE TESTING*/
+  /* NOTE END TESTING*/
+}
+.dots-zone .dots-container .dot:after {
+  display: none;
+}
+@media only screen and (max-width: 600px) {
+  .dots-zone .dots-container .dot {
+    width: 3rem;
+    height: 3rem;
+  }
 }
 .dots-zone .dots-container .dot:nth-of-type(1) {
-  top: 20%;
+  top: 16%;
   left: 50%;
 }
 .dots-zone .dots-container .dot:nth-of-type(1):after {
@@ -2200,7 +2211,7 @@ form .input-section .showPassword {
   content: "2";
 }
 .dots-zone .dots-container .dot:nth-of-type(3) {
-  top: 12%;
+  top: 2%;
   left: 60%;
 }
 .dots-zone .dots-container .dot:nth-of-type(3):after {
@@ -2214,14 +2225,14 @@ form .input-section .showPassword {
   content: "4";
 }
 .dots-zone .dots-container .dot:nth-of-type(5) {
-  top: 20%;
+  top: 16%;
   left: 30%;
 }
 .dots-zone .dots-container .dot:nth-of-type(5):after {
   content: "5";
 }
 .dots-zone .dots-container .dot:nth-of-type(6) {
-  top: 10%;
+  top: 25%;
   left: 5%;
 }
 .dots-zone .dots-container .dot:nth-of-type(6):after {
@@ -2229,14 +2240,14 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot:nth-of-type(7) {
   top: 5%;
-  left: 45%;
+  left: 38%;
 }
 .dots-zone .dots-container .dot:nth-of-type(7):after {
   content: "7";
 }
 .dots-zone .dots-container .dot:nth-of-type(8) {
   top: 85%;
-  left: 10%;
+  left: 4%;
 }
 .dots-zone .dots-container .dot:nth-of-type(8):after {
   content: "8";
@@ -2256,8 +2267,8 @@ form .input-section .showPassword {
   content: "10";
 }
 .dots-zone .dots-container .dot:nth-of-type(11) {
-  top: 70%;
-  left: 78%;
+  top: 56%;
+  left: 92%;
 }
 .dots-zone .dots-container .dot:nth-of-type(11):after {
   content: "11";
@@ -2277,8 +2288,8 @@ form .input-section .showPassword {
   content: "13";
 }
 .dots-zone .dots-container .dot:nth-of-type(14) {
-  top: 55%;
-  left: 10%;
+  top: 52%;
+  left: 6%;
 }
 .dots-zone .dots-container .dot:nth-of-type(14):after {
   content: "14";
@@ -2292,14 +2303,14 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot:nth-of-type(16) {
   top: 60%;
-  left: 22%;
+  left: 20%;
 }
 .dots-zone .dots-container .dot:nth-of-type(16):after {
   content: "16";
 }
 .dots-zone .dots-container .dot:nth-of-type(17) {
-  top: 78%;
-  left: 67%;
+  top: 84%;
+  left: 75%;
 }
 .dots-zone .dots-container .dot:nth-of-type(17):after {
   content: "17";
@@ -2319,29 +2330,29 @@ form .input-section .showPassword {
   content: "19";
 }
 .dots-zone .dots-container .dot:nth-of-type(20) {
-  top: 80%;
+  top: 83%;
   left: 55%;
 }
 .dots-zone .dots-container .dot:nth-of-type(20):after {
   content: "20";
 }
 .dots-zone .dots-container .dot:nth-of-type(21) {
-  top: 66%;
+  top: 78%;
   left: 65%;
 }
 .dots-zone .dots-container .dot:nth-of-type(21):after {
   content: "21";
 }
 .dots-zone .dots-container .dot:nth-of-type(22) {
-  top: 70%;
-  left: 25%;
+  top: 88%;
+  left: 33%;
 }
 .dots-zone .dots-container .dot:nth-of-type(22):after {
   content: "22";
 }
 .dots-zone .dots-container .dot:nth-of-type(23) {
   top: 72%;
-  left: 16%;
+  left: 12%;
 }
 .dots-zone .dots-container .dot:nth-of-type(23):after {
   content: "23";
@@ -2354,8 +2365,8 @@ form .input-section .showPassword {
   content: "24";
 }
 .dots-zone .dots-container .dot:nth-of-type(25) {
-  top: 2%;
-  left: 6%;
+  top: 6%;
+  left: 92%;
 }
 .dots-zone .dots-container .dot:nth-of-type(25):after {
   content: "25";
@@ -2369,14 +2380,15 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot.primary {
   background-color: #f02b00;
+  animation: smallGlow 8s infinite;
 }
 .dots-zone .dots-container .dot.secondary {
   background-color: #e09cff;
+  filter: blur(2px);
 }
 .dots-zone .content {
   width: 50%;
   height: 50%;
-  border: 2px solid red;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -2388,6 +2400,11 @@ form .input-section .showPassword {
   margin: 0 auto;
   line-height: 1.1;
   font-family: "ESRebond";
+}
+@media only screen and (max-width: 600px) {
+  .dots-zone .content .h2 {
+    text-align: left;
+  }
 }
 .dots-zone .content a {
   max-width: -moz-fit-content;

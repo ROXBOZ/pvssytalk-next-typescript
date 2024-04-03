@@ -13,17 +13,25 @@
     z-index: -1;
     .dot {
       position: absolute;
-      width: 60px;
-      height: 60px;
+      width: 4rem;
+      height: 4rem;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      //   filter: blur(2px);
-      // left : 0-25 ou entre 75-100
-      //top : 0-20 ou entre 75-100
+      /*NOTE TESTING*/
+
+      &:after {
+        display: none;
+      }
+      /* NOTE END TESTING*/
+      @media only screen and (max-width: 600px) {
+        width: 3rem;
+        height: 3rem;
+      }
+
       &:nth-of-type(1) {
-        top: 20%;
+        top: 16%;
         left: 50%;
 
         &:after {
@@ -41,7 +49,7 @@
       }
 
       &:nth-of-type(3) {
-        top: 12%;
+        top: 2%;
         left: 60%;
 
         &:after {
@@ -59,7 +67,7 @@
       }
 
       &:nth-of-type(5) {
-        top: 20%;
+        top: 16%;
         left: 30%;
 
         &:after {
@@ -68,7 +76,7 @@
       }
 
       &:nth-of-type(6) {
-        top: 10%;
+        top: 25%;
         left: 5%;
 
         &:after {
@@ -78,7 +86,7 @@
 
       &:nth-of-type(7) {
         top: 5%;
-        left: 45%;
+        left: 38%;
 
         &:after {
           content: "7";
@@ -87,7 +95,7 @@
 
       &:nth-of-type(8) {
         top: 85%;
-        left: 10%;
+        left: 4%;
 
         &:after {
           content: "8";
@@ -113,8 +121,8 @@
       }
 
       &:nth-of-type(11) {
-        top: 70%;
-        left: 78%;
+        top: 56%;
+        left: 92%;
 
         &:after {
           content: "11";
@@ -140,8 +148,8 @@
       }
 
       &:nth-of-type(14) {
-        top: 55%;
-        left: 10%;
+        top: 52%;
+        left: 6%;
 
         &:after {
           content: "14";
@@ -159,7 +167,7 @@
 
       &:nth-of-type(16) {
         top: 60%;
-        left: 22%;
+        left: 20%;
 
         &:after {
           content: "16";
@@ -167,8 +175,8 @@
       }
 
       &:nth-of-type(17) {
-        top: 78%;
-        left: 67%;
+        top: 84%;
+        left: 75%;
 
         &:after {
           content: "17";
@@ -194,7 +202,7 @@
       }
 
       &:nth-of-type(20) {
-        top: 80%;
+        top: 83%;
         left: 55%;
 
         &:after {
@@ -203,7 +211,7 @@
       }
 
       &:nth-of-type(21) {
-        top: 66%;
+        top: 78%;
         left: 65%;
 
         &:after {
@@ -212,8 +220,8 @@
       }
 
       &:nth-of-type(22) {
-        top: 70%;
-        left: 25%;
+        top: 88%;
+        left: 33%;
 
         &:after {
           content: "22";
@@ -222,7 +230,7 @@
 
       &:nth-of-type(23) {
         top: 72%;
-        left: 16%;
+        left: 12%;
 
         &:after {
           content: "23";
@@ -239,8 +247,8 @@
       }
 
       &:nth-of-type(25) {
-        top: 2%;
-        left: 6%;
+        top: 6%;
+        left: 92%;
 
         &:after {
           content: "25";
@@ -258,26 +266,32 @@
 
       &.primary {
         background-color: $primary;
+        animation: smallGlow 8s infinite;
       }
       &.secondary {
         background-color: $secondary;
+        filter: blur(2px);
       }
     }
   }
   .content {
     width: 50%;
     height: 50%;
-    border: 2px solid red;
+    // border: 2px solid red;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $reg-space;
+
     .h2 {
       text-align: center;
       margin: 0 auto;
       line-height: 1.1;
       font-family: $font-logo;
+      @media only screen and (max-width: 600px) {
+        text-align: left;
+      }
     }
     a {
       max-width: fit-content;
