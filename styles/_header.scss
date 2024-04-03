@@ -1,7 +1,8 @@
 header {
-  display: flex;
-  width: -webkit-fill-available;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  align-items: baseline;
 
   &.relative {
     position: relative;
@@ -17,7 +18,8 @@ header {
     display: flex;
     color: $txt-color;
     font-size: 150%;
-    padding: $sm-space $reg-space;
+    padding: 0.5rem;
+    margin-left: $sm-space;
 
     &.fixed {
       z-index: 99999999999;
@@ -28,9 +30,9 @@ header {
   .header-nav {
     display: flex;
     align-items: baseline;
-    gap: $lg-space;
-    padding: $sm-space 2rem;
+    justify-content: space-between;
     text-transform: lowercase;
+    height: fit-content;
 
     @media only screen and (max-width: 600px) {
       width: 1.5rem;
@@ -62,6 +64,7 @@ header {
 
     button {
       font-size: $font-size-basis;
+      margin-right: $sm-space;
     }
 
     @media only screen and (max-width: 600px) {
