@@ -996,7 +996,6 @@ footer .footer-content nav a:hover {
 
 .landing-view {
   min-height: 100vh;
-  margin-bottom: 4rem;
   bottom: 0;
   overflow-x: hidden;
 }
@@ -2162,9 +2161,254 @@ form .input-section .showPassword {
   gap: 1rem;
 }
 
+.dots-zone {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+}
+.dots-zone .dots-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+.dots-zone .dots-container .dot {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dots-zone .dots-container .dot:nth-of-type(1) {
+  top: 20%;
+  left: 50%;
+}
+.dots-zone .dots-container .dot:nth-of-type(1):after {
+  content: "1";
+}
+.dots-zone .dots-container .dot:nth-of-type(2) {
+  top: 10%;
+  left: 20%;
+}
+.dots-zone .dots-container .dot:nth-of-type(2):after {
+  content: "2";
+}
+.dots-zone .dots-container .dot:nth-of-type(3) {
+  top: 12%;
+  left: 60%;
+}
+.dots-zone .dots-container .dot:nth-of-type(3):after {
+  content: "3";
+}
+.dots-zone .dots-container .dot:nth-of-type(4) {
+  top: 18%;
+  left: 70%;
+}
+.dots-zone .dots-container .dot:nth-of-type(4):after {
+  content: "4";
+}
+.dots-zone .dots-container .dot:nth-of-type(5) {
+  top: 20%;
+  left: 30%;
+}
+.dots-zone .dots-container .dot:nth-of-type(5):after {
+  content: "5";
+}
+.dots-zone .dots-container .dot:nth-of-type(6) {
+  top: 10%;
+  left: 5%;
+}
+.dots-zone .dots-container .dot:nth-of-type(6):after {
+  content: "6";
+}
+.dots-zone .dots-container .dot:nth-of-type(7) {
+  top: 5%;
+  left: 45%;
+}
+.dots-zone .dots-container .dot:nth-of-type(7):after {
+  content: "7";
+}
+.dots-zone .dots-container .dot:nth-of-type(8) {
+  top: 85%;
+  left: 10%;
+}
+.dots-zone .dots-container .dot:nth-of-type(8):after {
+  content: "8";
+}
+.dots-zone .dots-container .dot:nth-of-type(9) {
+  top: 16%;
+  left: 80%;
+}
+.dots-zone .dots-container .dot:nth-of-type(9):after {
+  content: "9";
+}
+.dots-zone .dots-container .dot:nth-of-type(10) {
+  top: 35%;
+  left: 18%;
+}
+.dots-zone .dots-container .dot:nth-of-type(10):after {
+  content: "10";
+}
+.dots-zone .dots-container .dot:nth-of-type(11) {
+  top: 70%;
+  left: 78%;
+}
+.dots-zone .dots-container .dot:nth-of-type(11):after {
+  content: "11";
+}
+.dots-zone .dots-container .dot:nth-of-type(12) {
+  top: 78%;
+  left: 25%;
+}
+.dots-zone .dots-container .dot:nth-of-type(12):after {
+  content: "12";
+}
+.dots-zone .dots-container .dot:nth-of-type(13) {
+  top: 32%;
+  left: 86%;
+}
+.dots-zone .dots-container .dot:nth-of-type(13):after {
+  content: "13";
+}
+.dots-zone .dots-container .dot:nth-of-type(14) {
+  top: 55%;
+  left: 10%;
+}
+.dots-zone .dots-container .dot:nth-of-type(14):after {
+  content: "14";
+}
+.dots-zone .dots-container .dot:nth-of-type(15) {
+  top: 48%;
+  left: 82%;
+}
+.dots-zone .dots-container .dot:nth-of-type(15):after {
+  content: "15";
+}
+.dots-zone .dots-container .dot:nth-of-type(16) {
+  top: 60%;
+  left: 22%;
+}
+.dots-zone .dots-container .dot:nth-of-type(16):after {
+  content: "16";
+}
+.dots-zone .dots-container .dot:nth-of-type(17) {
+  top: 78%;
+  left: 67%;
+}
+.dots-zone .dots-container .dot:nth-of-type(17):after {
+  content: "17";
+}
+.dots-zone .dots-container .dot:nth-of-type(18) {
+  top: 90%;
+  left: 45%;
+}
+.dots-zone .dots-container .dot:nth-of-type(18):after {
+  content: "18";
+}
+.dots-zone .dots-container .dot:nth-of-type(19) {
+  top: 80%;
+  left: 88%;
+}
+.dots-zone .dots-container .dot:nth-of-type(19):after {
+  content: "19";
+}
+.dots-zone .dots-container .dot:nth-of-type(20) {
+  top: 80%;
+  left: 55%;
+}
+.dots-zone .dots-container .dot:nth-of-type(20):after {
+  content: "20";
+}
+.dots-zone .dots-container .dot:nth-of-type(21) {
+  top: 66%;
+  left: 65%;
+}
+.dots-zone .dots-container .dot:nth-of-type(21):after {
+  content: "21";
+}
+.dots-zone .dots-container .dot:nth-of-type(22) {
+  top: 70%;
+  left: 25%;
+}
+.dots-zone .dots-container .dot:nth-of-type(22):after {
+  content: "22";
+}
+.dots-zone .dots-container .dot:nth-of-type(23) {
+  top: 72%;
+  left: 16%;
+}
+.dots-zone .dots-container .dot:nth-of-type(23):after {
+  content: "23";
+}
+.dots-zone .dots-container .dot:nth-of-type(24) {
+  top: 2%;
+  left: 2%;
+}
+.dots-zone .dots-container .dot:nth-of-type(24):after {
+  content: "24";
+}
+.dots-zone .dots-container .dot:nth-of-type(25) {
+  top: 2%;
+  left: 6%;
+}
+.dots-zone .dots-container .dot:nth-of-type(25):after {
+  content: "25";
+}
+.dots-zone .dots-container .dot:nth-of-type(26) {
+  top: 2%;
+  left: 12%;
+}
+.dots-zone .dots-container .dot:nth-of-type(26):after {
+  content: "26";
+}
+.dots-zone .dots-container .dot.primary {
+  background-color: #f02b00;
+}
+.dots-zone .dots-container .dot.secondary {
+  background-color: #e09cff;
+}
+.dots-zone .content {
+  width: 50%;
+  height: 50%;
+  border: 2px solid red;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.dots-zone .content .h2 {
+  text-align: center;
+  margin: 0 auto;
+  line-height: 1.1;
+  font-family: "ESRebond";
+}
+.dots-zone .content a {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+.dots-zone .content a button {
+  background-color: #31064b;
+  border: 1px solid #31064b;
+  color: #f0cfff;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.dots-zone .content a button:after {
+  content: "→";
+}
+
 html {
   scroll-behavior: smooth;
   overscroll-behavior-y: contain;
+  overflow-x: hidden;
 }
 
 body {

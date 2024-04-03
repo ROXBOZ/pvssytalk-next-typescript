@@ -1,0 +1,297 @@
+.dots-zone {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  .dots-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    .dot {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //   filter: blur(2px);
+      // left : 0-25 ou entre 75-100
+      //top : 0-20 ou entre 75-100
+      &:nth-of-type(1) {
+        top: 20%;
+        left: 50%;
+
+        &:after {
+          content: "1";
+        }
+      }
+
+      &:nth-of-type(2) {
+        top: 10%;
+        left: 20%;
+
+        &:after {
+          content: "2";
+        }
+      }
+
+      &:nth-of-type(3) {
+        top: 12%;
+        left: 60%;
+
+        &:after {
+          content: "3";
+        }
+      }
+
+      &:nth-of-type(4) {
+        top: 18%;
+        left: 70%;
+
+        &:after {
+          content: "4";
+        }
+      }
+
+      &:nth-of-type(5) {
+        top: 20%;
+        left: 30%;
+
+        &:after {
+          content: "5";
+        }
+      }
+
+      &:nth-of-type(6) {
+        top: 10%;
+        left: 5%;
+
+        &:after {
+          content: "6";
+        }
+      }
+
+      &:nth-of-type(7) {
+        top: 5%;
+        left: 45%;
+
+        &:after {
+          content: "7";
+        }
+      }
+
+      &:nth-of-type(8) {
+        top: 85%;
+        left: 10%;
+
+        &:after {
+          content: "8";
+        }
+      }
+
+      &:nth-of-type(9) {
+        top: 16%;
+        left: 80%;
+
+        &:after {
+          content: "9";
+        }
+      }
+
+      &:nth-of-type(10) {
+        top: 35%;
+        left: 18%;
+
+        &:after {
+          content: "10";
+        }
+      }
+
+      &:nth-of-type(11) {
+        top: 70%;
+        left: 78%;
+
+        &:after {
+          content: "11";
+        }
+      }
+
+      &:nth-of-type(12) {
+        top: 78%;
+        left: 25%;
+
+        &:after {
+          content: "12";
+        }
+      }
+
+      &:nth-of-type(13) {
+        top: 32%;
+        left: 86%;
+
+        &:after {
+          content: "13";
+        }
+      }
+
+      &:nth-of-type(14) {
+        top: 55%;
+        left: 10%;
+
+        &:after {
+          content: "14";
+        }
+      }
+
+      &:nth-of-type(15) {
+        top: 48%;
+        left: 82%;
+
+        &:after {
+          content: "15";
+        }
+      }
+
+      &:nth-of-type(16) {
+        top: 60%;
+        left: 22%;
+
+        &:after {
+          content: "16";
+        }
+      }
+
+      &:nth-of-type(17) {
+        top: 78%;
+        left: 67%;
+
+        &:after {
+          content: "17";
+        }
+      }
+
+      &:nth-of-type(18) {
+        top: 90%;
+        left: 45%;
+
+        &:after {
+          content: "18";
+        }
+      }
+
+      &:nth-of-type(19) {
+        top: 80%;
+        left: 88%;
+
+        &:after {
+          content: "19";
+        }
+      }
+
+      &:nth-of-type(20) {
+        top: 80%;
+        left: 55%;
+
+        &:after {
+          content: "20";
+        }
+      }
+
+      &:nth-of-type(21) {
+        top: 66%;
+        left: 65%;
+
+        &:after {
+          content: "21";
+        }
+      }
+
+      &:nth-of-type(22) {
+        top: 70%;
+        left: 25%;
+
+        &:after {
+          content: "22";
+        }
+      }
+
+      &:nth-of-type(23) {
+        top: 72%;
+        left: 16%;
+
+        &:after {
+          content: "23";
+        }
+      }
+
+      &:nth-of-type(24) {
+        top: 2%;
+        left: 2%;
+
+        &:after {
+          content: "24";
+        }
+      }
+
+      &:nth-of-type(25) {
+        top: 2%;
+        left: 6%;
+
+        &:after {
+          content: "25";
+        }
+      }
+
+      &:nth-of-type(26) {
+        top: 2%;
+        left: 12%;
+
+        &:after {
+          content: "26";
+        }
+      }
+
+      &.primary {
+        background-color: $primary;
+      }
+      &.secondary {
+        background-color: $secondary;
+      }
+    }
+  }
+  .content {
+    width: 50%;
+    height: 50%;
+    border: 2px solid red;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $reg-space;
+    .h2 {
+      text-align: center;
+      margin: 0 auto;
+      line-height: 1.1;
+      font-family: $font-logo;
+    }
+    a {
+      max-width: fit-content;
+      button {
+        background-color: $txt-color;
+        border: $border-solid $txt-color;
+        color: lighten($secondary, 10%);
+        display: flex;
+        gap: $sm-space;
+        align-items: center;
+        &:after {
+          content: "→";
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
-import { AgendaDetail, MenuDetail, PainDetail } from "../types";
+import { HomeDetail, LogosDetail, MenuDetail, PainDetail } from "../types";
 import { fetchFooterMenu, fetchHeaderMenu } from "../lib/queries";
 
 import CustomHead from "../components/CustomHead";
+import DotsZone from "../components/DotsZone";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LogosPartners from "../components/LogosPartners";
-import Marquee from "../components/Marquee";
 import Marquee2 from "../components/Marquee2";
 import NavBlock from "../components/reusables/NavBlock";
 import PageTransition from "../components/layouts/PageTransition";
@@ -13,25 +13,6 @@ import PainsBlock from "../components/reusables/PainsBlock";
 import Tagline from "../components/Tagline";
 import TextImageBlock from "../components/reusables/TextImageBlock";
 import { client } from "../config/sanity/client";
-
-interface HomeDetail {
-  _id: string;
-  seo: {
-    pageTitle: string;
-    metadescription: string;
-  };
-  tagline: string;
-  content: any;
-  intro: any;
-  navigation: any;
-}
-
-interface LogosDetail {
-  partners: {
-    name: string;
-    logo: any;
-  }[];
-}
 
 const Home = ({
   headerMenu,
@@ -62,6 +43,8 @@ const Home = ({
           <Header data={headerMenuData} pains={painsSlugs} marquee={marquee} />
           <Tagline tagline={home[0].tagline} />
         </div>
+
+        {home[0].dotsZone && <DotsZone data={[home[0].dotsZone]} />}
 
         {home[0].content && (
           <div className="content">
@@ -99,7 +82,7 @@ export const getStaticProps = async () => {
     const headerMenu: MenuDetail[] = await fetchHeaderMenu();
     const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const home: HomeDetail[] = await client.fetch(
-      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., content[] { ..., _type =="textImageBlock" => {..., callToAction {..., link->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
+      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., dotsZone, content[] { ..., _type =="textImageBlock" => {..., callToAction {..., link->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
     );
     const pains: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'

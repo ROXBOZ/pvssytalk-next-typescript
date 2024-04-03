@@ -1,3 +1,22 @@
+interface HomeDetail {
+  _id: string;
+  seo: {
+    pageTitle: string;
+    metadescription: string;
+  };
+  tagline: string;
+  content: any;
+  intro: any;
+  navigation: any;
+  dotsZone: DotsZoneProps;
+}
+
+interface LogosDetail {
+  partners: {
+    name: string;
+    logo: any;
+  }[];
+}
 // types.ts
 interface MenuDetail {
   footerMenu?: MenuDetail[];
@@ -14,6 +33,18 @@ interface MenuDetail {
   isAction?: boolean;
   type?: ["Pages" | "Douleurs" | "Ressources"];
   pages: any;
+}
+
+interface DotsZoneProps {
+  text: string;
+  callToAction?: {
+    label: string;
+    link?: {
+      slug: {
+        current: string;
+      };
+    };
+  };
 }
 
 interface InfoPageDetail {

@@ -26,10 +26,12 @@
 
 @import "textImageBlock";
 @import "events";
+@import "dots-zone";
 
 html {
   scroll-behavior: smooth;
   overscroll-behavior-y: contain;
+  overflow-x: hidden;
 }
 
 body {
