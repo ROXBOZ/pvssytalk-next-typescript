@@ -4,12 +4,13 @@ import React from "react";
 function DotsZone(data: any) {
   const text = data.data[0].text;
   const label = data.data[0].callToAction.label;
-
+  const url = data.data[0].callToAction.link.slug.current;
+  console.log("url :", url);
   return (
-    <div className="dots-zone">
+    <div className="dots-zone snap-section">
       <div className="content">
         <p className="h2">{text}</p>
-        <Link href="" style={{ borderBottom: 0 }}>
+        <Link href={`/${url}`} style={{ borderBottom: 0 }}>
           <button>{label}</button>
         </Link>
       </div>

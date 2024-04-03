@@ -42,9 +42,12 @@
     margin-top: 0;
   }
   .logos-partners-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: $sm-space;
   }
   figure {
+    grid-template-columns: 1;
     flex: 1;
     display: flex;
     align-items: center;
@@ -53,12 +56,11 @@
     margin: 0;
 
     .color-screen {
-      background-color: darken($secondary, 20);
       width: 100%;
       height: 100%;
 
       position: absolute;
-      mix-blend-mode: screen;
+      mix-blend-mode: multiply;
     }
     .placeholder {
       border-radius: $border-radius-soft;
@@ -76,22 +78,30 @@
 }
 
 footer {
-  background-color: $tierary;
-  padding: $reg-space;
+  border-top: $border-solid lighten($txt-color, 50%);
+  margin: $reg-space;
 
   .footer-content {
-    @include grid;
+    display: flex;
+    justify-content: space-between;
+    padding: $reg-space 0 $lg-space;
 
-    p {
-      margin-top: 0;
-      font-size: 200%;
-      grid-column: #{$grid-first-half};
-      color: $txt-color;
+    .lets {
+      grid-column: #{$grid-first-third};
 
       .logo {
-        .talk {
-          color: darken($secondary, 20);
+        font-size: 200%;
+        letter-spacing: 0;
+
+        span {
+          font-family: $font-logo;
         }
+        .colored {
+          font-family: $font-logo;
+        }
+      }
+      p {
+        margin: 0;
       }
     }
 
@@ -101,6 +111,7 @@ footer {
 
     nav {
       grid-column: #{$grid-last-third};
+
       display: flex;
       gap: $lg-space;
       text-transform: lowercase;
@@ -130,7 +141,9 @@ footer {
         height: fit-content;
         width: fit-content;
         display: inline-block;
-        font-family: $font-regular !important;
+        font-family: $font-logo;
+        font-size: large;
+
         border-bottom: none;
         &:hover {
           border-bottom: none;

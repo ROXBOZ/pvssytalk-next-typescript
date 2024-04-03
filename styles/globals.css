@@ -885,9 +885,12 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   margin-top: 0;
 }
 .logos-partners-section .logos-partners-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1rem;
 }
 .logos-partners-section figure {
+  grid-template-columns: 1;
   flex: 1;
   display: flex;
   align-items: center;
@@ -896,11 +899,10 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   margin: 0;
 }
 .logos-partners-section figure .color-screen {
-  background-color: #c036ff;
   width: 100%;
   height: 100%;
   position: absolute;
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
 }
 .logos-partners-section figure .placeholder {
   border-radius: 10px;
@@ -917,29 +919,29 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 
 footer {
-  background-color: rgb(221, 255, 171);
-  padding: 2rem;
+  border-top: 1px solid #ba5ef2;
+  margin: 2rem;
 }
 footer .footer-content {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  padding: 2rem 0 8rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0 4rem;
 }
-@media screen and (max-width: 768px) {
-  footer .footer-content {
-    display: flex;
-    flex-direction: column;
-  }
+footer .footer-content .lets {
+  grid-column: 1/4;
 }
-footer .footer-content p {
-  margin-top: 0;
+footer .footer-content .lets .logo {
   font-size: 200%;
-  grid-column: 1/7;
-  color: #31064b;
+  letter-spacing: 0;
 }
-footer .footer-content p .logo .talk {
-  color: #c036ff;
+footer .footer-content .lets .logo span {
+  font-family: "ESRebond";
+}
+footer .footer-content .lets .logo .colored {
+  font-family: "ESRebond";
+}
+footer .footer-content .lets p {
+  margin: 0;
 }
 footer .footer-content button {
   font-family: "ESRebond";
@@ -987,7 +989,8 @@ footer .footer-content nav a {
   width: -moz-fit-content;
   width: fit-content;
   display: inline-block;
-  font-family: "ESKlarheit-Book" !important;
+  font-family: "ESRebond";
+  font-size: large;
   border-bottom: none;
 }
 footer .footer-content nav a:hover {
@@ -2172,9 +2175,10 @@ form .input-section .showPassword {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  width: 96%;
+  height: 92%;
   z-index: -1;
+  margin: 2%;
 }
 .dots-zone .dots-container .dot {
   position: absolute;
@@ -2186,9 +2190,6 @@ form .input-section .showPassword {
   justify-content: center;
   /*NOTE TESTING*/
   /* NOTE END TESTING*/
-}
-.dots-zone .dots-container .dot:after {
-  display: none;
 }
 @media only screen and (max-width: 600px) {
   .dots-zone .dots-container .dot {
@@ -2384,7 +2385,6 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot.secondary {
   background-color: #e09cff;
-  filter: blur(2px);
 }
 .dots-zone .content {
   width: 50%;

@@ -7,7 +7,7 @@ import { urlFor } from "../../config/sanity/client";
 function TextImageBlock({ data }: any) {
   return (
     <div
-      className={`textImageBlock-wrapper ${
+      className={`snap-section textImageBlock-wrapper ${
         data.color === "primary"
           ? "primary"
           : data.color === "secondary"

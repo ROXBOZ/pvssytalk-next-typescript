@@ -6,7 +6,7 @@ function NavBlock({ data }: any) {
   const { anchor } = data;
 
   return (
-    <div id={anchor} className="navBlock double-column-container">
+    <div id={anchor} className="navBlock double-column-container snap-section">
       <div>
         <h2>{data.pitch}</h2>
       </div>

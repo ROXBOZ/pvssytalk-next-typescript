@@ -19,7 +19,7 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
 
   return (
     <>
-      <div className="double-column-container">
+      <div className="double-column-container snap-section">
         <div>
           <h2>{data.title}</h2>
         </div>

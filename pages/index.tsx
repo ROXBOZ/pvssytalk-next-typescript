@@ -36,10 +36,10 @@ const Home = ({
   const partnersLogos = logos[0].partners;
 
   return (
-    <>
+    <div className="snap-container">
       <CustomHead seo={home[0].seo} />
       <PageTransition>
-        <div className="landing-view">
+        <div className="landing-view snap-section">
           <Header data={headerMenuData} pains={painsSlugs} marquee={marquee} />
           <Tagline tagline={home[0].tagline} />
         </div>
@@ -68,10 +68,10 @@ const Home = ({
         )}
 
         <LogosPartners logos={partnersLogos} />
-        <Marquee2 repeatTimes={999} />
+        {/* <Marquee2 repeatTimes={999} /> */}
         <Footer data={footerMenuData} />
       </PageTransition>
-    </>
+    </div>
   );
 };
 
@@ -82,7 +82,7 @@ export const getStaticProps = async () => {
     const headerMenu: MenuDetail[] = await fetchHeaderMenu();
     const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const home: HomeDetail[] = await client.fetch(
-      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., dotsZone, content[] { ..., _type =="textImageBlock" => {..., callToAction {..., link->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
+      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., dotsZone {..., callToAction{label, link->{slug{current}}}}, content[] { ..., _type =="textImageBlock" => {..., callToAction {..., link->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
     );
     const pains: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'

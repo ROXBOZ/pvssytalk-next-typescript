@@ -6,16 +6,41 @@ const Footer = ({ data }: any) => {
   return (
     <footer>
       <div className="footer-content">
-        <div>
-          <p>
-            Let’s 
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <div className="lets">
+            <div className="logo">
+              <span>Let’s pvssy</span>{" "}
+              <Link
+                // style={{ borderBottom: "0" }}
+                href={"mailto:info@pvssy-talk.org"}
+                className="colored"
+              >
+                talk
+              </Link>
+            </div>
+            <p>
+              N’hésite pas à nous laisser un message, un retour ou nous proposer
+              une collaboration.
+            </p>
+          </div>
+
+          <div className="lets">
             <span className="logo">
-              pvssy <span className="logo talk">talk</span>
+              <span>Inscris-toi à notre</span>{" "}
+              <Link
+                href="https://pvssy-talk.us13.list-manage.com/subscribe?u=c202f1a11b2efe147dfbb7c77&id=ad8e7a08e3"
+                // style={{ borderBottom: "0" }}
+                className="colored"
+              >
+                Newsletter
+              </Link>
             </span>
-             !
-          </p>
-          <button>s'inscrire à la newsletter</button>
+            <p>
+              Pour suivre notre actualité et nos projets ou évènements à venir.
+            </p>
+          </div>
         </div>
+
         <nav>
           <ul>
             {data &&
