@@ -100,7 +100,7 @@
       img {
         display: flex;
         min-height: 100%;
-        min-width: 100%;
+        min-width: 100% !important;
         object-fit: cover;
       }
     }

@@ -1299,7 +1299,7 @@ footer .footer-content nav a:hover {
 .card .card-content .card-image-container img {
   display: flex;
   min-height: 100%;
-  min-width: 100%;
+  min-width: 100% !important;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -1438,7 +1438,6 @@ footer .footer-content nav a:hover {
   height: fit-content;
   margin: 1rem;
   background-color: #e8b6ff;
-  aspect-ratio: 3/2;
 }
 .card-image-container .card-image {
   width: 100%;
@@ -1446,6 +1445,7 @@ footer .footer-content nav a:hover {
   display: flex;
   -o-object-fit: cover;
      object-fit: cover;
+  aspect-ratio: 3/2;
 }
 
 .intro-image,
