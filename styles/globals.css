@@ -1299,6 +1299,7 @@ footer .footer-content nav a:hover {
   display: flex;
   -o-object-fit: cover;
      object-fit: cover;
+  border: 5px solid red;
 }
 .card .card-content:hover img {
   transform: scale(1.02);
