@@ -1068,7 +1068,7 @@ footer .footer-content nav a:hover {
 @media only screen and (max-width: 600px) {
   .landing-view .tagline .content h1 {
     font-size: 400%;
-    text-align: center;
+    text-align: left;
   }
 }
 
@@ -1219,6 +1219,11 @@ footer .footer-content nav a:hover {
   .double-column-container {
     display: flex;
     flex-direction: column;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .double-column-container {
+    margin: 4rem 1rem;
   }
 }
 .double-column-container h2 {
@@ -2193,6 +2198,7 @@ form .input-section .showPassword {
   justify-content: space-between;
   padding: 0;
   display: flex;
+  min-height: 100vh;
 }
 @media only screen and (max-width: 600px) {
   .textImageBlock-wrapper .textImageBlock {

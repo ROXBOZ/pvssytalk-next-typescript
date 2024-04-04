@@ -8,10 +8,11 @@
 
 .double-column-container {
   @include grid;
-  // display: flex;
   align-items: first baseline;
   margin: $lg-space $reg-space;
-  // border-top: $border-solid $secondary;
+  @media only screen and (max-width: 600px) {
+    margin: $lg-space $sm-space;
+  }
   padding-top: $reg-space;
 
   h2 {
