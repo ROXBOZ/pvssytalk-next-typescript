@@ -4,9 +4,8 @@ import React from "react";
 import { urlFor } from "../config/sanity/client";
 
 function LinkCards({ data }: any) {
-  console.log("data :", data);
   return (
-    <>
+    <div className="snap-section">
       <div className="double-column-container" style={{ marginBottom: "0" }}>
         <div>
           <h2>{data.title}</h2>
@@ -58,7 +57,7 @@ function LinkCards({ data }: any) {
             );
           })}
       </div>
-    </>
+    </div>
   );
 }
 

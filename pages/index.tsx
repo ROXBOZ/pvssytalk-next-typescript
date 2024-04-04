@@ -45,7 +45,7 @@ const Home = ({
         </div>
 
         {home[0].content && (
-          <div className="content">
+          <>
             {home[0].content.map((item: any, index: number) => {
               if (item && item._type) {
                 switch (item._type) {
@@ -53,8 +53,6 @@ const Home = ({
                     return <DotsZone data={item} key={index} />;
                   case "linkCards":
                     return <LinkCards data={item} key={index} />;
-                  // case "navBlock":
-                  //   return <NavBlock data={item} key={index} />;
                   case "painsBlock":
                     return <PainsBlock data={item} pains={pains} key={index} />;
                   case "textImageBlock":
@@ -66,7 +64,7 @@ const Home = ({
               }
               return null;
             })}
-          </div>
+          </>
         )}
 
         <LogosPartners logos={partnersLogos} />

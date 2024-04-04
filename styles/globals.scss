@@ -32,20 +32,13 @@ html {
   scroll-behavior: smooth;
   overscroll-behavior-y: contain;
   overflow-x: hidden;
+  scroll-snap-type: y proximity;
 }
 
-// .snap-container {
-//   scroll-snap-type: y mandatory;
-//   // border: 5px solid green;
-//   scroll-snap-points-y: repeat(100vh);
-//   overflow: scroll;
-// }
-
-// .snap-section {
-//   border: 5px solid blue;
-//   height: 100vh;
-//   scroll-snap-align: start;
-// }
+.snap-section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
 
 body {
   margin: 0;

@@ -54,6 +54,11 @@ button {
   display: flex;
   gap: $sm-space;
   align-items: center;
+  transition: $animation-transition;
+  &:hover {
+    background-color: lighten($secondary, 5%);
+    border: $border-solid lighten($secondary, 5%);
+  }
   &:after {
     content: "→";
   }
