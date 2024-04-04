@@ -400,6 +400,7 @@ h1 .colored,
   .fixed-container {
     position: relative;
     width: 100%;
+    margin-bottom: 4rem;
   }
 }
 .fixed-container .title {
@@ -2513,13 +2514,11 @@ html {
   scroll-behavior: smooth;
   overscroll-behavior-y: contain;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
 }
 
 .snap-section {
-  min-height: 100vh;
-  scroll-snap-align: start;
-  border: 5px solid red;
+  scroll-snap-align: center;
 }
 
 body {

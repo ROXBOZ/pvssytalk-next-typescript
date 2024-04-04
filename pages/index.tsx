@@ -36,10 +36,10 @@ const Home = ({
   const partnersLogos = logos[0].partners;
 
   return (
-    <div className="snap-container">
+    <div>
       <CustomHead seo={home[0].seo} />
       <PageTransition>
-        <div className="landing-view snap-section">
+        <div className="landing-view">
           <Header data={headerMenuData} pains={painsSlugs} marquee={marquee} />
           <Tagline tagline={home[0].tagline} />
         </div>
