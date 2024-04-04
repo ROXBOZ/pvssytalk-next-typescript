@@ -1430,13 +1430,15 @@ footer .footer-content nav a:hover {
   height: -moz-fit-content;
   height: fit-content;
   margin: 1rem;
-  background-color: #e09cff;
+  background-color: #e8b6ff;
   aspect-ratio: 3/2;
 }
 .card-image-container .card-image {
   width: 100%;
   height: 100%;
   display: flex;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .intro-image,
