@@ -46,3 +46,14 @@ button {
   background-color: transparent;
   width: 100%;
 }
+
+.secondary-button {
+  background-color: $secondary;
+  border: $border-solid $secondary;
+  display: flex;
+  gap: $sm-space;
+  align-items: center;
+  &:after {
+    content: "→";
+  }
+}

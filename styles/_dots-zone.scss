@@ -4,7 +4,6 @@
   align-items: center;
   position: relative;
   justify-content: center;
-
   margin: $lg-space * 2 $reg-space;
   .dots-container {
     position: absolute;
@@ -302,17 +301,6 @@
     }
     a {
       max-width: fit-content;
-      button {
-        background-color: $txt-color;
-        border: $border-solid $txt-color;
-        color: lighten($secondary, 10%);
-        display: flex;
-        gap: $sm-space;
-        align-items: center;
-        &:after {
-          content: "→";
-        }
-      }
     }
   }
 }

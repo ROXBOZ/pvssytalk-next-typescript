@@ -5,13 +5,12 @@ function DotsZone(data: any) {
   const text = data.data[0].text;
   const label = data.data[0].callToAction.label;
   const url = data.data[0].callToAction.link.slug.current;
-  console.log("url :", url);
   return (
     <div className="dots-zone snap-section">
       <div className="content">
         <p className="h3">{text}</p>
         <Link href={`/${url}`} style={{ borderBottom: 0 }}>
-          <button>{label}</button>
+          <button className="secondary-button">{label}</button>
         </Link>
       </div>
       <div className="dots-container">

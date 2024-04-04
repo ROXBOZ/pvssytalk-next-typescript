@@ -6,7 +6,6 @@ import DotsZone from "../components/DotsZone";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LogosPartners from "../components/LogosPartners";
-import Marquee2 from "../components/Marquee2";
 import NavBlock from "../components/reusables/NavBlock";
 import PageTransition from "../components/layouts/PageTransition";
 import PainsBlock from "../components/reusables/PainsBlock";
@@ -68,7 +67,6 @@ const Home = ({
         )}
 
         <LogosPartners logos={partnersLogos} />
-        {/* <Marquee2 repeatTimes={999} /> */}
         <Footer data={footerMenuData} />
       </PageTransition>
     </div>

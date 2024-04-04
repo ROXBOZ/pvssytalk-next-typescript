@@ -886,8 +886,8 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 .logos-partners-section .logos-partners-container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
 }
 .logos-partners-section figure {
   grid-template-columns: 1;
@@ -898,17 +898,15 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   position: relative;
   margin: 0;
 }
-.logos-partners-section figure .color-screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  mix-blend-mode: multiply;
+.logos-partners-section figure figure img {
+  transition: 0.2s ease-in;
 }
 .logos-partners-section figure .placeholder {
   border-radius: 10px;
   padding: 2rem;
   text-align: center;
   background-color: #f0cfff;
+  width: 100%;
 }
 .logos-partners-section figure img {
   max-width: 100%;
@@ -1492,6 +1490,17 @@ button.square-button {
   padding: 0.5rem 0;
   background-color: transparent;
   width: 100%;
+}
+
+.secondary-button {
+  background-color: #e09cff;
+  border: 1px solid #e09cff;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.secondary-button:after {
+  content: "→";
 }
 
 .media-container {
@@ -2117,24 +2126,15 @@ form .input-section .showPassword {
   border-top: 0;
 }
 
-.textImageBlock-wrapper.primary {
-  background-color: #ff360b;
-}
-.textImageBlock-wrapper.secondary {
-  background-color: #e09cff;
-}
-.textImageBlock-wrapper.tierary {
-  background-color: rgb(221, 255, 171);
-}
 .textImageBlock-wrapper .textImageBlock {
   align-items: center;
   justify-content: space-between;
   padding: 0;
   display: flex;
-  gap: 2rem;
 }
 .textImageBlock-wrapper .textImageBlock .text-container {
-  margin-left: 2rem;
+  width: 70ch;
+  margin: auto;
 }
 .textImageBlock-wrapper .textImageBlock .text-container h2 {
   margin-top: 0;
@@ -2145,11 +2145,13 @@ form .input-section .showPassword {
 .textImageBlock-wrapper .textImageBlock .image-container {
   display: flex;
   max-width: 50%;
+  justify-content: center;
+  align-items: center;
 }
 .textImageBlock-wrapper .textImageBlock .image-container img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  max-width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 80%;
 }
 
 .events {
@@ -2409,17 +2411,6 @@ form .input-section .showPassword {
 .dots-zone .content a {
   max-width: -moz-fit-content;
   max-width: fit-content;
-}
-.dots-zone .content a button {
-  background-color: #31064b;
-  border: 1px solid #31064b;
-  color: #f0cfff;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-.dots-zone .content a button:after {
-  content: "→";
 }
 
 html {
