@@ -2,9 +2,9 @@ import Link from "next/link";
 import React from "react";
 
 function DotsZone(data: any) {
-  const text = data.data[0].text;
-  const label = data.data[0].callToAction.label;
-  const url = data.data[0].callToAction.link.slug.current;
+  const text = data.data.text;
+  const label = data.data.callToAction.label;
+  const url = data.data.callToAction.link.slug.current;
   return (
     <div className="dots-zone snap-section">
       <div className="content">

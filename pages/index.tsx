@@ -43,13 +43,15 @@ const Home = ({
           <Tagline tagline={home[0].tagline} />
         </div>
 
-        {home[0].dotsZone && <DotsZone data={[home[0].dotsZone]} />}
+        {/* {home[0].dotsZone && <DotsZone data={[home[0].dotsZone]} />} */}
 
         {home[0].content && (
           <div className="content">
             {home[0].content.map((item: any, index: number) => {
               if (item && item._type) {
                 switch (item._type) {
+                  case "dotsZone":
+                    return <DotsZone data={item} key={index} />;
                   case "navBlock":
                     return <NavBlock data={item} key={index} />;
                   case "painsBlock":
@@ -80,7 +82,7 @@ export const getStaticProps = async () => {
     const headerMenu: MenuDetail[] = await fetchHeaderMenu();
     const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const home: HomeDetail[] = await client.fetch(
-      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., dotsZone {..., callToAction{label, link->{slug{current}}}}, content[] { ..., _type =="textImageBlock" => {..., callToAction {..., link->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
+      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., content[] { ..., _type =="dotsZone" =>{..., callToAction{...,link->{slug{current}}}}, _type =="textImageBlock" => {..., callToAction {..., linkRef->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
     );
     const pains: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'

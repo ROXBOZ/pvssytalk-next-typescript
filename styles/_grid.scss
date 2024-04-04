@@ -7,8 +7,8 @@
 }
 
 .double-column-container {
-  // @include grid;
-  display: flex;
+  @include grid;
+  // display: flex;
   align-items: first baseline;
   margin: $lg-space $reg-space;
   // border-top: $border-solid $secondary;
@@ -96,7 +96,7 @@
 
     &:hover {
       img {
-        transform: scale(1.1);
+        transform: scale(1.02);
         transition: 700ms;
       }
     }

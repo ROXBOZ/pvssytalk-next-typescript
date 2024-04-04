@@ -5,15 +5,6 @@ import React from "react";
 import { urlFor } from "../../config/sanity/client";
 
 function TextImageBlock({ data }: any) {
-  // ${
-  //   data.color === "primary"
-  //     ? "primary"
-  //     : data.color === "secondary"
-  //     ? "secondary"
-  //     : data.color === "tierary"
-  //     ? "tierary"
-  //     : ""
-  //   }
   return (
     <div className="snap-section textImageBlock-wrapper">
       <div className="textImageBlock">
@@ -23,7 +14,11 @@ function TextImageBlock({ data }: any) {
           {data.callToAction && (
             <Link
               style={{ border: "0" }}
-              href={data.callToAction.link.slug.current}
+              href={`${
+                data.callToAction.linkType === "page"
+                  ? data.callToAction.linkRef.slug.current
+                  : `/ressources/${data.callToAction.linkRes}`
+              }`}
             >
               <button className="secondary-button">
                 {data.callToAction.label}

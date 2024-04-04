@@ -1160,10 +1160,18 @@ footer .footer-content nav a:hover {
 }
 
 .double-column-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1px;
   align-items: first baseline;
   margin: 4rem 2rem;
   padding-top: 2rem;
+}
+@media screen and (max-width: 768px) {
+  .double-column-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .double-column-container h2 {
   margin-top: 0;
@@ -1234,7 +1242,7 @@ footer .footer-content nav a:hover {
   width: 100%;
 }
 .pain-card .pain-card-content:hover img {
-  transform: scale(1.1);
+  transform: scale(1.02);
   transition: 700ms;
 }
 

@@ -46,7 +46,6 @@ function LogosPartners({ logos }: any) {
       <div className="logos-partners-container">
         {logos &&
           logos.map((logo: any, index: number) => {
-            console.log("logo.url :", logo.url);
             if (logo.url) {
               return (
                 <Link href={logo.url} target="_blank" style={{ border: "0" }}>
