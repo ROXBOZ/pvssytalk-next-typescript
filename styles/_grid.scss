@@ -7,10 +7,11 @@
 }
 
 .double-column-container {
-  @include grid;
+  // @include grid;
+  display: flex;
   align-items: first baseline;
-  margin: 0 $reg-space;
-  border-top: $border-solid $secondary;
+  margin: $lg-space $reg-space;
+  // border-top: $border-solid $secondary;
   padding-top: $reg-space;
 
   h2 {
@@ -18,6 +19,7 @@
   }
 
   div {
+    flex: 1;
     &:first-child {
       grid-column: 1/5;
     }
@@ -38,25 +40,38 @@
 }
 
 // pain cards
+
 .pain-cards-container {
   @include grid;
-  margin: 0 $reg-space;
+  margin: $lg-space 0;
+  border-top: $border-solid $secondary;
+  border-bottom: $border-solid $secondary;
+  background-color: $secondary;
 }
 
 .pain-card {
-  grid-column: span 3;
+  grid-column: span 4;
   width: 100%;
   color: $txt-color;
-  border-bottom: none;
+  background-color: $bg-color;
+  // &.is-on-the-right {
+  //   .pain-card-content {
+  //     margin-right: $sm-space;
+  //   }
+  // }
+  // &.is-on-the-left {
+  //   .pain-card-content {
+  //     margin-left: $sm-space;
+  //   }
+  // }
 
   a {
     border-bottom: 0;
   }
 
   .pain-card-content {
-    border: $border-solid $secondary;
     overflow: hidden;
-    border-radius: $border-radius;
+
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -65,13 +80,11 @@
 
     .text-container {
       z-index: 9;
-      background-color: $bg-color;
 
       display: flex;
-      justify-content: center;
 
       h3 {
-        margin: $reg-space;
+        margin: 0 $reg-space $reg-space;
         font-family: $font-logo;
         text-align: center;
         font-size: larger;
@@ -82,8 +95,6 @@
     }
 
     &:hover {
-      transform: translate(0, -3px);
-      border-color: $primary;
       img {
         transform: scale(1.1);
         transition: 700ms;

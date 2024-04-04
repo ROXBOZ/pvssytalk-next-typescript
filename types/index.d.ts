@@ -65,6 +65,7 @@ export type InfoPageSection = InfoPageSection[];
 
 interface PainDetail {
   filter(arg0: (pain: PainDetail) => boolean): unknown;
+
   _id: string;
   _ref: string;
   name: string;

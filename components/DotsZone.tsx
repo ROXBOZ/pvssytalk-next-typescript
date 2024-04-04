@@ -9,7 +9,7 @@ function DotsZone(data: any) {
   return (
     <div className="dots-zone snap-section">
       <div className="content">
-        <p className="h2">{text}</p>
+        <p className="h3">{text}</p>
         <Link href={`/${url}`} style={{ borderBottom: 0 }}>
           <button>{label}</button>
         </Link>

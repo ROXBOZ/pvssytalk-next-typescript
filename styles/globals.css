@@ -1162,23 +1162,16 @@ footer .footer-content nav a:hover {
 }
 
 .double-column-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  padding: 2rem 0 8rem;
+  display: flex;
   align-items: first baseline;
-  margin: 0 2rem;
-  border-top: 1px solid #e09cff;
+  margin: 4rem 2rem;
   padding-top: 2rem;
-}
-@media screen and (max-width: 768px) {
-  .double-column-container {
-    display: flex;
-    flex-direction: column;
-  }
 }
 .double-column-container h2 {
   margin-top: 0;
+}
+.double-column-container div {
+  flex: 1;
 }
 .double-column-container div:first-child {
   grid-column: 1/5;
@@ -1199,9 +1192,11 @@ footer .footer-content nav a:hover {
 .pain-cards-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  padding: 2rem 0 8rem;
-  margin: 0 2rem;
+  gap: 1px;
+  margin: 4rem 0;
+  border-top: 1px solid #e09cff;
+  border-bottom: 1px solid #e09cff;
+  background-color: #e09cff;
 }
 @media screen and (max-width: 768px) {
   .pain-cards-container {
@@ -1211,18 +1206,16 @@ footer .footer-content nav a:hover {
 }
 
 .pain-card {
-  grid-column: span 3;
+  grid-column: span 4;
   width: 100%;
   color: #31064b;
-  border-bottom: none;
+  background-color: #fefdf4;
 }
 .pain-card a {
   border-bottom: 0;
 }
 .pain-card .pain-card-content {
-  border: 1px solid #e09cff;
   overflow: hidden;
-  border-radius: 20px;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -1231,22 +1224,16 @@ footer .footer-content nav a:hover {
 }
 .pain-card .pain-card-content .text-container {
   z-index: 9;
-  background-color: #fefdf4;
   display: flex;
-  justify-content: center;
 }
 .pain-card .pain-card-content .text-container h3 {
-  margin: 2rem;
+  margin: 0 2rem 2rem;
   font-family: "ESRebond";
   text-align: center;
   font-size: larger;
 }
 .pain-card .pain-card-content img {
   width: 100%;
-}
-.pain-card .pain-card-content:hover {
-  transform: translate(0, -3px);
-  border-color: #f02b00;
 }
 .pain-card .pain-card-content:hover img {
   transform: scale(1.1);
@@ -1256,8 +1243,7 @@ footer .footer-content nav a:hover {
 .title-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  padding: 2rem 0 8rem;
+  gap: 1px;
   padding-bottom: 2rem;
   padding-top: 1rem;
 }
@@ -1327,8 +1313,7 @@ footer .footer-content nav a:hover {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  padding: 2rem 0 8rem;
+  gap: 1px;
 }
 @media screen and (max-width: 768px) {
   .pain-nav-article-container {
@@ -1378,9 +1363,17 @@ footer .footer-content nav a:hover {
   max-height: fit-content;
 }
 
-.pain-card-image {
+.pain-card-image-container {
+  border-radius: 20px;
+  overflow: hidden;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 1rem;
+}
+.pain-card-image-container .pain-card-image {
   width: 100%;
-  height: auto !important;
+  height: 100%;
+  display: flex;
 }
 
 .intro-image,
@@ -2170,20 +2163,21 @@ form .input-section .showPassword {
   align-items: center;
   position: relative;
   justify-content: center;
+  margin: 8rem 2rem;
 }
 .dots-zone .dots-container {
   position: absolute;
   top: 0;
   left: 0;
-  width: 96%;
-  height: 92%;
+  width: 100%;
+  height: 100%;
   z-index: -1;
-  margin: 2%;
+  margin: auto;
 }
 .dots-zone .dots-container .dot {
   position: absolute;
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2191,10 +2185,13 @@ form .input-section .showPassword {
   /*NOTE TESTING*/
   /* NOTE END TESTING*/
 }
+.dots-zone .dots-container .dot:after {
+  display: none;
+}
 @media only screen and (max-width: 600px) {
   .dots-zone .dots-container .dot {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
   }
 }
 .dots-zone .dots-container .dot:nth-of-type(1) {
@@ -2262,7 +2259,7 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot:nth-of-type(10) {
   top: 35%;
-  left: 18%;
+  left: 4%;
 }
 .dots-zone .dots-container .dot:nth-of-type(10):after {
   content: "10";
@@ -2289,8 +2286,8 @@ form .input-section .showPassword {
   content: "13";
 }
 .dots-zone .dots-container .dot:nth-of-type(14) {
-  top: 52%;
-  left: 6%;
+  top: 48%;
+  left: 8%;
 }
 .dots-zone .dots-container .dot:nth-of-type(14):after {
   content: "14";
@@ -2304,7 +2301,7 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot:nth-of-type(16) {
   top: 60%;
-  left: 20%;
+  left: 2%;
 }
 .dots-zone .dots-container .dot:nth-of-type(16):after {
   content: "16";
@@ -2317,7 +2314,7 @@ form .input-section .showPassword {
   content: "17";
 }
 .dots-zone .dots-container .dot:nth-of-type(18) {
-  top: 90%;
+  top: 75%;
   left: 45%;
 }
 .dots-zone .dots-container .dot:nth-of-type(18):after {
@@ -2384,7 +2381,8 @@ form .input-section .showPassword {
   animation: smallGlow 8s infinite;
 }
 .dots-zone .dots-container .dot.secondary {
-  background-color: #e09cff;
+  background-color: #e8b6ff;
+  filter: blur(3px);
 }
 .dots-zone .content {
   width: 50%;
@@ -2395,15 +2393,17 @@ form .input-section .showPassword {
   align-items: center;
   gap: 2rem;
 }
-.dots-zone .content .h2 {
+.dots-zone .content .h3 {
   text-align: center;
   margin: 0 auto;
   line-height: 1.1;
   font-family: "ESRebond";
+  max-width: 80%;
 }
 @media only screen and (max-width: 600px) {
-  .dots-zone .content .h2 {
+  .dots-zone .content .h3 {
     text-align: left;
+    max-width: 100%;
   }
 }
 .dots-zone .content a {

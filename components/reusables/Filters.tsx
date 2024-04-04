@@ -85,7 +85,7 @@ const Filters = ({
 
   return (
     <div className="filters-container">
-      <p className="filters-title">{filterOptions[0]}</p>
+      {/* <p className="filters-title">{filterOptions[0]}</p> */}
       <div className="filters-content">
         {filterOptions.slice(1).map((filter: FilterOption, index: number) => (
           <span

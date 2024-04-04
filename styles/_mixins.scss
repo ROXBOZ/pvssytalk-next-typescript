@@ -1,8 +1,9 @@
 @mixin grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: $sm-space;
-  padding: $reg-space 0 $lg-space * 2;
+  gap: 1px;
+  // gap: $sm-space;
+  // padding: $reg-space 0 $lg-space * 2;
 
   @media screen and (max-width: map-get($breakpoints, "md")) {
     display: flex;
