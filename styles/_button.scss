@@ -48,6 +48,7 @@ button {
 }
 
 .secondary-button {
+  font-family: $font-logo !important;
   max-width: fit-content;
   background-color: $secondary;
   border: $border-solid $secondary;

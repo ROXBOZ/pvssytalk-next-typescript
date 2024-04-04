@@ -55,16 +55,6 @@
   width: 100%;
   color: $txt-color;
   background-color: $bg-color;
-  // &.is-on-the-right {
-  //   .card-content {
-  //     margin-right: $sm-space;
-  //   }
-  // }
-  // &.is-on-the-left {
-  //   .card-content {
-  //     margin-left: $sm-space;
-  //   }
-  // }
 
   a {
     border-bottom: 0;
@@ -81,6 +71,7 @@
       padding: 0 $reg-space $sm-space;
       height: 100%;
       display: flex;
+      max-width: 55ch;
 
       flex: 1;
 
