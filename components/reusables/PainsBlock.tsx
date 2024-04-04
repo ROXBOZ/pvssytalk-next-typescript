@@ -38,24 +38,16 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
         </div>
       </div>
 
-      <div className="pain-cards-container">
+      <div className="cards-container">
         {filteredPains.map((pain: PainDetail, index: number) => {
-          const isOnTheRight = index % 3 === 2;
-          const isOnTheLeft = index % 3 === 0;
-
           return (
-            <div
-              className={`pain-card ${isOnTheRight ? "is-on-the-right" : ""}  ${
-                isOnTheLeft ? "is-on-the-left" : ""
-              }`}
-              key={index}
-            >
+            <div className="card" key={index}>
               <Link href={`/douleurs/${pain.slug.current}`} passHref>
-                <div className="pain-card-content">
-                  <div className="pain-card-image-container">
+                <div className="card-content">
+                  <div className="card-image-container">
                     {pain.mainImage && (
                       <Image
-                        className="pain-card-image"
+                        className="card-image"
                         src={urlFor(pain.mainImage.asset._ref).url()}
                         width={500}
                         height={300}
@@ -74,14 +66,14 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
 
         {hasEmptySpot && (
           <div
-            className="pain-card"
+            className="card"
             style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <h3
+            <p
               className="bigger-text"
               style={{
                 padding: "2rem",
@@ -89,7 +81,7 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
             >
               Nous travaillons actuellement sur de nouvelles douleurs. Si l’une
               t’intéresse en particulier, n’hésite pas à nous contacter.
-            </h3>
+            </p>
           </div>
         )}
         {hasTwoEmptySpots && (

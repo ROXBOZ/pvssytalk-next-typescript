@@ -41,26 +41,26 @@
 
 // pain cards
 
-.pain-cards-container {
+.cards-container {
   @include grid;
-  margin: $lg-space 0;
+
   border-top: $border-solid $secondary;
   border-bottom: $border-solid $secondary;
   background-color: $secondary;
 }
 
-.pain-card {
+.card {
   grid-column: span 4;
   width: 100%;
   color: $txt-color;
   background-color: $bg-color;
   // &.is-on-the-right {
-  //   .pain-card-content {
+  //   .card-content {
   //     margin-right: $sm-space;
   //   }
   // }
   // &.is-on-the-left {
-  //   .pain-card-content {
+  //   .card-content {
   //     margin-left: $sm-space;
   //   }
   // }
@@ -69,7 +69,7 @@
     border-bottom: 0;
   }
 
-  .pain-card-content {
+  .card-content {
     overflow: hidden;
 
     min-height: 100%;
@@ -80,13 +80,16 @@
 
     .text-container {
       z-index: 9;
+      padding: 0 $reg-space $sm-space;
+      min-height: 100%;
 
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       h3 {
-        margin: 0 $reg-space $reg-space;
+        margin-top: 0;
         font-family: $font-logo;
-        text-align: center;
         font-size: larger;
       }
     }

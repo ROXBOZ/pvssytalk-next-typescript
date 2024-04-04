@@ -6,6 +6,11 @@ header {
 
   &.relative {
     position: relative;
+    @media only screen and (max-width: 600px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 
   &.fixed {
@@ -35,6 +40,7 @@ header {
     height: fit-content;
 
     @media only screen and (max-width: 600px) {
+      padding: 0 $reg-space;
       width: 1.5rem;
       justify-content: center;
     }

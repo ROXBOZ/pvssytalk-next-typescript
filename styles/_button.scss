@@ -48,6 +48,7 @@ button {
 }
 
 .secondary-button {
+  max-width: fit-content;
   background-color: $secondary;
   border: $border-solid $secondary;
   display: flex;

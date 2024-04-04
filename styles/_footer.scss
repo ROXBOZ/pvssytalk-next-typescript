@@ -36,6 +36,7 @@
 }
 
 .logos-partners-section {
+  margin-top: $lg-space * 4;
   padding: $reg-space;
   h2,
   h3 {
@@ -45,6 +46,9 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: $reg-space;
+    @media only screen and (max-width: 600px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   figure {
     grid-template-columns: 1;
@@ -84,11 +88,15 @@ footer {
     display: flex;
     justify-content: space-between;
     padding: $reg-space 0 $lg-space;
+    @media only screen and (max-width: 600px) {
+      flex-direction: column-reverse;
+      gap: $lg-space;
+    }
 
     .lets {
       grid-column: #{$grid-first-third};
 
-      .logo {
+      div {
         font-size: 200%;
         letter-spacing: 0;
 
@@ -99,8 +107,10 @@ footer {
           font-family: $font-logo;
         }
       }
-      p {
-        margin: 0;
+      @media only screen and (min-width: 600px) {
+        p {
+          margin: 0;
+        }
       }
     }
 

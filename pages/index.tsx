@@ -5,6 +5,7 @@ import CustomHead from "../components/CustomHead";
 import DotsZone from "../components/DotsZone";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import LinkCards from "../components/LinkCards";
 import LogosPartners from "../components/LogosPartners";
 import NavBlock from "../components/reusables/NavBlock";
 import PageTransition from "../components/layouts/PageTransition";
@@ -43,8 +44,6 @@ const Home = ({
           <Tagline tagline={home[0].tagline} />
         </div>
 
-        {/* {home[0].dotsZone && <DotsZone data={[home[0].dotsZone]} />} */}
-
         {home[0].content && (
           <div className="content">
             {home[0].content.map((item: any, index: number) => {
@@ -52,8 +51,10 @@ const Home = ({
                 switch (item._type) {
                   case "dotsZone":
                     return <DotsZone data={item} key={index} />;
-                  case "navBlock":
-                    return <NavBlock data={item} key={index} />;
+                  case "linkCards":
+                    return <LinkCards data={item} key={index} />;
+                  // case "navBlock":
+                  //   return <NavBlock data={item} key={index} />;
                   case "painsBlock":
                     return <PainsBlock data={item} pains={pains} key={index} />;
                   case "textImageBlock":

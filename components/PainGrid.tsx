@@ -49,15 +49,15 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
         </div>
       </div>
 
-      <div className="pain-cards-container">
+      <div className="cards-container">
         {filteredPains.map((pain) => (
-          <div className="pain-card" key={pain._id}>
+          <div className="card" key={pain._id}>
             <Link href={`/douleurs/${pain.slug.current}`} passHref>
-              <div className="pain-card-content">
-                <div className="pain-card-image-container">
+              <div className="card-content">
+                <div className="card-image-container">
                   {pain.mainImage && (
                     <Image
-                      className="pain-card-image"
+                      className="card-image"
                       src={urlFor(pain.mainImage.asset._ref).url()}
                       width={500}
                       height={300}

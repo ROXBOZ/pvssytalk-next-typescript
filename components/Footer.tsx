@@ -8,7 +8,7 @@ const Footer = ({ data }: any) => {
       <div className="footer-content">
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <div className="lets">
-            <div className="logo">
+            <div>
               <span>Let’s pvssy</span>{" "}
               <Link
                 // style={{ borderBottom: "0" }}
@@ -25,7 +25,7 @@ const Footer = ({ data }: any) => {
           </div>
 
           <div className="lets">
-            <span className="logo">
+            <div>
               <span>Inscris-toi à notre</span>{" "}
               <Link
                 href="https://pvssy-talk.us13.list-manage.com/subscribe?u=c202f1a11b2efe147dfbb7c77&id=ad8e7a08e3"
@@ -34,7 +34,7 @@ const Footer = ({ data }: any) => {
               >
                 Newsletter
               </Link>
-            </span>
+            </div>
             <p>
               Pour suivre notre actualité et nos projets ou évènements à venir.
             </p>

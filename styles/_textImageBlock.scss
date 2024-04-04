@@ -1,22 +1,16 @@
 .textImageBlock-wrapper {
-  // &.primary {
-  //   background-color: lighten($primary, 5);
-  // }
-  // &.secondary {
-  //   background-color: $secondary;
-  // }
-  // &.tierary {
-  //   background-color: $tierary;
-  // }
   .textImageBlock {
     align-items: center;
     justify-content: space-between;
     padding: 0;
     display: flex;
-
+    @media only screen and (max-width: 600px) {
+      flex-direction: column-reverse;
+    }
     .text-container {
-      width: $chperline;
+      max-width: $chperline;
       margin: auto;
+      padding: $reg-space;
 
       h2 {
         margin-top: 0;
@@ -32,9 +26,15 @@
       max-width: 50%;
       justify-content: center;
       align-items: center;
+
+      @media only screen and (max-width: 600px) {
+        max-width: 100%;
+      }
       img {
         object-fit: contain;
-        width: 80%;
+        max-width: 80%;
+        height: fit-content;
+        margin: $reg-space;
       }
     }
   }
