@@ -2242,6 +2242,7 @@ form .input-section .showPassword {
   }
 }
 .textImageBlock-wrapper .textImageBlock .image-container img {
+  max-width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
   height: -moz-fit-content;
