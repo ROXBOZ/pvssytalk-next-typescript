@@ -42,7 +42,7 @@ function LogosPartners({ logos }: any) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="logos-partners-section">
+    <div className="logos-partners-section snap-section">
       <div className="logos-partners-container">
         {logos &&
           logos.map((logo: any, index: number) => {

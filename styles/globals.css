@@ -2518,7 +2518,7 @@ html {
 }
 
 .snap-section {
-  scroll-snap-align: center;
+  scroll-snap-align: start;
 }
 
 body {
