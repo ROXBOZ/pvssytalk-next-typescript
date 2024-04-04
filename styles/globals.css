@@ -1438,20 +1438,20 @@ footer .footer-content nav a:hover {
   height: fit-content;
   margin: 1rem;
   background-color: #e8b6ff;
+  aspect-ratio: 4/3;
 }
 .card-image-container .card-image {
-  max-width: 100%;
-  max-height: 100%;
   display: flex;
   -o-object-fit: cover;
      object-fit: cover;
-  aspect-ratio: 3/2;
+  width: auto;
+  height: auto;
 }
 
 .intro-image,
 .guide-image {
   width: 100%;
-  height: 100%;
+  height: auto;
   -o-object-fit: cover;
      object-fit: cover;
   margin: 2rem 0;
