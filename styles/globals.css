@@ -586,7 +586,11 @@ header .header-nav {
 header .header-nav svg {
   font-size: 1.5rem;
 }
-header .header-nav.fixed {
+header .header-nav.open {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
   right: 0;
 }
 header .header-nav .burger-icon {
@@ -724,6 +728,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   position: fixed;
   left: 0;
   right: 0;
+  top: 0;
   height: 100vh;
   background-color: #fefdf4;
   z-index: 999;
@@ -750,6 +755,11 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 .mobile-menu .mobile-menu-content a {
   position: relative;
+}
+@media only screen and (max-width: 600px) {
+  .mobile-menu .mobile-menu-content a {
+    padding: 0.5rem 0;
+  }
 }
 .mobile-menu .mobile-menu-content .title {
   display: flex;
@@ -794,7 +804,6 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   padding-top: 1rem;
 }
 .mobile-menu .mobile-menu-content nav.mobile-nav-content a span {
-  font-family: "ESRebond" !important;
   width: 100%;
 }
 

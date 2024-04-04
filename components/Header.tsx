@@ -16,7 +16,7 @@ const RenderMenu = ({ data, pains, setIsOpen, isOpen, marquee }: any) => {
   const [isSelected, setIsSelected] = useState("");
 
   return (
-    <nav className={`header-nav ${isOpen ? "fixed" : ""}`}>
+    <nav className={`header-nav ${isOpen ? "open" : ""}`}>
       {data &&
         data.map((item: MenuDetail, index: number) => {
           if (item._type === "page") {
