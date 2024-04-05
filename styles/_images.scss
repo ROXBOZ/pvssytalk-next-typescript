@@ -6,10 +6,10 @@
   border-radius: $border-radius;
   overflow: hidden;
   height: fit-content;
-  margin: 1rem;
+  margin: $reg-space;
   background-color: lighten($secondary, 5);
 
-  aspect-ratio: 4/3;
+  // aspect-ratio: 4/3;
 
   .card-image {
     display: flex;

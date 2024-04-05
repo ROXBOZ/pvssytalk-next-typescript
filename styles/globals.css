@@ -1222,11 +1222,6 @@ footer .footer-content nav a:hover {
     flex-direction: column;
   }
 }
-@media only screen and (max-width: 600px) {
-  .double-column-container {
-    margin: 4rem 1rem;
-  }
-}
 .double-column-container h2 {
   margin-top: 0;
 }
@@ -1284,8 +1279,6 @@ footer .footer-content nav a:hover {
   padding: 0 2rem 1rem;
   height: 100%;
   display: flex;
-  max-width: 55ch;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1438,9 +1431,8 @@ footer .footer-content nav a:hover {
   overflow: hidden;
   height: -moz-fit-content;
   height: fit-content;
-  margin: 1rem;
+  margin: 2rem;
   background-color: #e8b6ff;
-  aspect-ratio: 4/3;
 }
 .card-image-container .card-image {
   display: flex;
@@ -2216,6 +2208,7 @@ form .input-section .showPassword {
   padding: 0;
   display: flex;
   min-height: 100vh;
+  border-bottom: 1px solid #e09cff;
 }
 @media only screen and (max-width: 600px) {
   .textImageBlock-wrapper .textImageBlock {
@@ -2224,7 +2217,6 @@ form .input-section .showPassword {
 }
 .textImageBlock-wrapper .textImageBlock .text-container {
   max-width: 70ch;
-  margin: auto;
   padding: 2rem;
 }
 .textImageBlock-wrapper .textImageBlock .text-container h2 {
@@ -2268,7 +2260,6 @@ form .input-section .showPassword {
 .dots-zone .content {
   width: 50%;
   height: 50%;
-  border: 2px solid red;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -2515,11 +2506,6 @@ html {
   scroll-behavior: smooth;
   overscroll-behavior-y: contain;
   overflow-x: hidden;
-  scroll-snap-type: y proximity;
-}
-
-.snap-section {
-  scroll-snap-align: start;
 }
 
 body {

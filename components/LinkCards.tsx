@@ -45,7 +45,9 @@ function LinkCards({ data }: any) {
                       </div>
                       <Link
                         href={linkURL}
-                        target={card.linkType === "typeform" && "_blank"}
+                        {...(card.linkType === "typeform" && {
+                          target: "_blank",
+                        })}
                       >
                         <button className="secondary-button">
                           {card.label}

@@ -10,9 +10,7 @@
   @include grid;
   align-items: first baseline;
   margin: $lg-space $reg-space;
-  @media only screen and (max-width: 600px) {
-    margin: $lg-space $sm-space;
-  }
+
   padding-top: $reg-space;
 
   h2 {
@@ -71,9 +69,6 @@
       padding: 0 $reg-space $sm-space;
       height: 100%;
       display: flex;
-      max-width: 55ch;
-
-      flex: 1;
 
       display: flex;
       flex-direction: column;
