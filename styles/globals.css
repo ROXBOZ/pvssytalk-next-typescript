@@ -2301,8 +2301,7 @@ form .input-section .showPassword {
   justify-content: center;
   scale: 0;
   opacity: 0;
-  /*NOTE TESTING*/
-  /* NOTE END TESTING*/
+  /* NOTE TESTING*/
 }
 .dots-zone .dots-container .dot:after {
   display: none;
@@ -2384,7 +2383,7 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot:nth-of-type(10) {
   top: 35%;
-  left: 17%;
+  left: 22%;
 }
 .dots-zone .dots-container .dot:nth-of-type(10):after {
   content: "10";
@@ -2412,7 +2411,7 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot:nth-of-type(14) {
   top: 48%;
-  left: 8%;
+  left: 12%;
 }
 .dots-zone .dots-container .dot:nth-of-type(14):after {
   content: "14";
@@ -2467,7 +2466,7 @@ form .input-section .showPassword {
   content: "21";
 }
 .dots-zone .dots-container .dot:nth-of-type(22) {
-  top: 88%;
+  top: 92%;
   left: 33%;
 }
 .dots-zone .dots-container .dot:nth-of-type(22):after {
@@ -2506,6 +2505,11 @@ html {
   scroll-behavior: smooth;
   overscroll-behavior-y: contain;
   overflow-x: hidden;
+  scroll-snap-type: y proximity;
+}
+
+.snap-section {
+  scroll-snap-align: start;
 }
 
 body {
