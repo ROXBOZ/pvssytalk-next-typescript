@@ -60,7 +60,10 @@ function PainsBlock({ data, pains }: { data?: any; pains: PainDetail[] }) {
         </div>
       </div>
 
-      <div className="cards-container">
+      <div
+        className={`cards-container`}
+        style={!data ? { borderBottom: "0" } : {}}
+      >
         {filteredPains.map((pain: PainDetail, index: number) => {
           return (
             <div className="card" key={index}>
