@@ -32,13 +32,13 @@ html {
   scroll-behavior: smooth;
   overscroll-behavior-y: contain;
   overflow-x: hidden;
-  scroll-snap-type: y proximity;
+  // scroll-snap-type: y proximity;
 }
 
-.snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
+// .snap-section {
+//   scroll-snap-align: start;
+//   scroll-snap-stop: always;
+// }
 
 body {
   margin: 0;
