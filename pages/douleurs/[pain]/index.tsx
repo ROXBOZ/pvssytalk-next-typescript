@@ -206,7 +206,6 @@ const ArticlePain = ({
                   height={1000}
                   alt={pain.name}
                   style={imageCoverHotspot}
-                  priority
                 />
               </div>
             )}
