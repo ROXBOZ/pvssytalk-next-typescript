@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 import Link from "next/link";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { useInView } from "react-intersection-observer";
 
 function DotsZone(data: any) {
@@ -11,8 +10,8 @@ function DotsZone(data: any) {
   const url = data.data.callToAction.link.slug.current;
 
   const { ref, inView } = useInView({
-    threshold: 0.5, // Trigger animation when 50% of the component is in view
-    triggerOnce: true, // Trigger animation only once
+    threshold: 0.5,
+    triggerOnce: true,
   });
 
   useEffect(() => {
@@ -23,15 +22,38 @@ function DotsZone(data: any) {
         {
           opacity: 1,
           scale: 1,
-          duration: 0.5,
-
           stagger: {
-            each: 0.1,
-            from: "edges",
+            each: 0.2,
+            from: "start",
           },
-          ease: "power2.inOut",
+          ease: "elastic.inOut (1, 0.3)",
         }
       );
+      gsap.fromTo(
+        ".dot.primary",
+        {
+          backgroundColor: "#e09cff",
+        },
+        {
+          backgroundColor: "#f02b00",
+          duration: 3,
+        }
+      );
+      gsap.utils.toArray(".dot.primary").forEach((dot: any, index) => {
+        gsap.fromTo(
+          dot,
+          {
+            boxShadow: "0 0 0px 0px #f02b00, 0 0 0px 0px #f02b00",
+          },
+          {
+            boxShadow: "0 0 5px 5px #f02b00, 0 0 50px 25px #f02b00",
+            duration: 4,
+            repeat: -1,
+            yoyo: true,
+            delay: index * 2,
+          }
+        );
+      });
     }
   }, [inView]);
 

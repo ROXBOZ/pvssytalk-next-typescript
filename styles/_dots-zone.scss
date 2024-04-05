@@ -47,6 +47,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      scale: 0;
+      opacity: 0;
       /*NOTE TESTING*/
 
       &:after {
@@ -60,12 +63,11 @@
       }
 
       &.primary {
-        background-color: $primary;
-        animation: smallGlow 8s infinite;
+        background-color: $secondary;
+        // animation: smallGlow 8s infinite;
       }
       &.secondary {
-        background-color: lighten($secondary, 5%);
-        filter: blur(3px);
+        background-color: lighten($secondary, 10%);
       }
 
       &:nth-of-type(1) {

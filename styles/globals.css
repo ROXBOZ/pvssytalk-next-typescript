@@ -2299,6 +2299,8 @@ form .input-section .showPassword {
   display: flex;
   align-items: center;
   justify-content: center;
+  scale: 0;
+  opacity: 0;
   /*NOTE TESTING*/
   /* NOTE END TESTING*/
 }
@@ -2312,12 +2314,10 @@ form .input-section .showPassword {
   }
 }
 .dots-zone .dots-container .dot.primary {
-  background-color: #f02b00;
-  animation: smallGlow 8s infinite;
+  background-color: #e09cff;
 }
 .dots-zone .dots-container .dot.secondary {
-  background-color: #e8b6ff;
-  filter: blur(3px);
+  background-color: #f0cfff;
 }
 .dots-zone .dots-container .dot:nth-of-type(1) {
   top: 16%;
@@ -2519,7 +2519,6 @@ body {
 }
 body * {
   font-feature-settings: "ss11" !important;
-  transition: 0.2s ease-in;
 }
 body * ul li::marker {
   color: #f02b00;
