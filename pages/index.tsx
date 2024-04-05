@@ -81,7 +81,7 @@ export const getStaticProps = async () => {
     const headerMenu: MenuDetail[] = await fetchHeaderMenu();
     const footerMenu: MenuDetail[] = await fetchFooterMenu();
     const home: HomeDetail[] = await client.fetch(
-      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., content[] { ..., _type =="dotsZone" =>{..., callToAction{...,link->{slug{current}}}}, _type =="textImageBlock" => {..., callToAction {..., linkRef->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
+      '*[_type == "homepage" && !(_id in path("drafts.**"))]{..., content[] { ..., _type =="linkCards" =>{..., cards[]{..., linkTypeform->{url}, linkRes, linkRef->{slug{current}}}}, _type =="dotsZone" =>{..., callToAction{...,link->{slug{current}}}}, _type =="textImageBlock" => {..., callToAction {..., linkRef->{slug {current}}}}, _type == "navBlock" => { ..., navigation[]-> { title, slug {current}}}}}'
     );
     const pains: PainDetail[] = await client.fetch(
       '*[_type == "pain" && !(_id in path("drafts.**"))] {..., filters}'

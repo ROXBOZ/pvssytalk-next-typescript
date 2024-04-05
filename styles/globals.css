@@ -2264,7 +2264,33 @@ form .input-section .showPassword {
   align-items: center;
   position: relative;
   justify-content: center;
-  padding: 4rem 2rem;
+}
+.dots-zone .content {
+  width: 50%;
+  height: 50%;
+  border: 2px solid red;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.dots-zone .content .h3 {
+  text-align: center;
+  margin: 0 auto;
+  line-height: 1.1;
+  font-family: "ESRebond";
+  max-width: 80%;
+}
+@media only screen and (max-width: 600px) {
+  .dots-zone .content .h3 {
+    text-align: left;
+    max-width: 100%;
+  }
+}
+.dots-zone .content a {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 .dots-zone .dots-container {
   position: absolute;
@@ -2273,7 +2299,6 @@ form .input-section .showPassword {
   bottom: 0;
   right: 0;
   z-index: -1;
-  margin: 1rem;
 }
 .dots-zone .dots-container .dot {
   position: absolute;
@@ -2294,6 +2319,14 @@ form .input-section .showPassword {
     width: 2rem;
     height: 2rem;
   }
+}
+.dots-zone .dots-container .dot.primary {
+  background-color: #f02b00;
+  animation: smallGlow 8s infinite;
+}
+.dots-zone .dots-container .dot.secondary {
+  background-color: #e8b6ff;
+  filter: blur(3px);
 }
 .dots-zone .dots-container .dot:nth-of-type(1) {
   top: 16%;
@@ -2360,7 +2393,7 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot:nth-of-type(10) {
   top: 35%;
-  left: 4%;
+  left: 17%;
 }
 .dots-zone .dots-container .dot:nth-of-type(10):after {
   content: "10";
@@ -2476,40 +2509,6 @@ form .input-section .showPassword {
 }
 .dots-zone .dots-container .dot:nth-of-type(26):after {
   content: "26";
-}
-.dots-zone .dots-container .dot.primary {
-  background-color: #f02b00;
-  animation: smallGlow 8s infinite;
-}
-.dots-zone .dots-container .dot.secondary {
-  background-color: #e8b6ff;
-  filter: blur(3px);
-}
-.dots-zone .content {
-  width: 50%;
-  height: 50%;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-.dots-zone .content .h3 {
-  text-align: center;
-  margin: 0 auto;
-  line-height: 1.1;
-  font-family: "ESRebond";
-  max-width: 80%;
-}
-@media only screen and (max-width: 600px) {
-  .dots-zone .content .h3 {
-    text-align: left;
-    max-width: 100%;
-  }
-}
-.dots-zone .content a {
-  max-width: -moz-fit-content;
-  max-width: fit-content;
 }
 
 html {

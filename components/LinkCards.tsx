@@ -14,10 +14,18 @@ function LinkCards({ data }: any) {
       <div className="cards-container">
         {data.cards &&
           data.cards.map((card: any, index: number) => {
-            console.log("card :", card);
+            const linkURL =
+              card.linkType === "page"
+                ? card.linkRef.slug.current
+                : card.linkType === "ressource"
+                ? `ressources/${card.linkRes}`
+                : card.linkType === "typeform"
+                ? `/${card.linkTypeform?.url}`
+                : "";
+
             return (
               <div className="card" key={index}>
-                <Link href="" passHref>
+                <div>
                   <div className="card-content">
                     <div className="card-image-container">
                       {card.figure && (
@@ -35,24 +43,17 @@ function LinkCards({ data }: any) {
                         <h3>{card.title}</h3>
                         <p style={{ marginTop: "0" }}>{card.description}</p>
                       </div>
-                      {card.linkType === "page" ? (
+                      <Link
+                        href={linkURL}
+                        target={card.linkType === "typeform" && "_blank"}
+                      >
                         <button className="secondary-button">
                           {card.label}
                         </button>
-                      ) : card.linkType === "ressource" ? (
-                        <button className="secondary-button">
-                          {card.label}
-                        </button>
-                      ) : card.linkType === "typeform" ? (
-                        <button className="secondary-button">
-                          {card.label}
-                        </button>
-                      ) : (
-                        ""
-                      )}
+                      </Link>
                     </div>
                   </div>
-                </Link>
+                </div>
               </div>
             );
           })}

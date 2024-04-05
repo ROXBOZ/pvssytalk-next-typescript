@@ -4,7 +4,33 @@
   align-items: center;
   position: relative;
   justify-content: center;
-  padding: $lg-space $reg-space;
+
+  .content {
+    width: 50%;
+    height: 50%;
+    border: 2px solid red;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $reg-space;
+
+    .h3 {
+      text-align: center;
+      margin: 0 auto;
+      line-height: 1.1;
+      font-family: $font-logo;
+      max-width: 80%;
+      @media only screen and (max-width: 600px) {
+        text-align: left;
+        max-width: 100%;
+      }
+    }
+    a {
+      max-width: fit-content;
+    }
+  }
+
   .dots-container {
     position: absolute;
     top: 0;
@@ -12,7 +38,6 @@
     bottom: 0;
     right: 0;
     z-index: -1;
-    margin: $sm-space;
 
     .dot {
       position: absolute;
@@ -32,6 +57,15 @@
       @media only screen and (max-width: 600px) {
         width: 2rem;
         height: 2rem;
+      }
+
+      &.primary {
+        background-color: $primary;
+        animation: smallGlow 8s infinite;
+      }
+      &.secondary {
+        background-color: lighten($secondary, 5%);
+        filter: blur(3px);
       }
 
       &:nth-of-type(1) {
@@ -117,7 +151,7 @@
 
       &:nth-of-type(10) {
         top: 35%;
-        left: 4%;
+        left: 17%;
 
         &:after {
           content: "10";
@@ -267,40 +301,6 @@
           content: "26";
         }
       }
-
-      &.primary {
-        background-color: $primary;
-        animation: smallGlow 8s infinite;
-      }
-      &.secondary {
-        background-color: lighten($secondary, 5%);
-        filter: blur(3px);
-      }
-    }
-  }
-  .content {
-    width: 50%;
-    height: 50%;
-    // border: 2px solid red;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $reg-space;
-
-    .h3 {
-      text-align: center;
-      margin: 0 auto;
-      line-height: 1.1;
-      font-family: $font-logo;
-      max-width: 80%;
-      @media only screen and (max-width: 600px) {
-        text-align: left;
-        max-width: 100%;
-      }
-    }
-    a {
-      max-width: fit-content;
     }
   }
 }
