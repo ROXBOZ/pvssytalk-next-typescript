@@ -1293,13 +1293,13 @@ footer .footer-content nav a:hover {
 }
 @media only screen and (max-width: 600px) {
   .card .card-content .card-image-container {
-    aspect-ratio: 3/2;
+    aspect-ratio: 4/3;
   }
 }
 .card .card-content .card-image-container img {
   display: flex;
   min-height: 100%;
-  min-width: 100% !important;
+  min-width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }

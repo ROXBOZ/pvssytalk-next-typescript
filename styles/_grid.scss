@@ -84,12 +84,12 @@
     .card-image-container {
       display: flex;
       @media only screen and (max-width: 600px) {
-        aspect-ratio: 3/2;
+        aspect-ratio: 4/3;
       }
       img {
         display: flex;
         min-height: 100%;
-        min-width: 100% !important;
+        min-width: 100%;
         object-fit: cover;
       }
     }
