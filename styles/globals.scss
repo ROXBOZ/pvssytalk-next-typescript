@@ -39,6 +39,10 @@ html {
   scroll-snap-align: start;
 }
 
+.snap-stop {
+  scroll-snap-stop: always;
+}
+
 body {
   margin: 0;
   background-color: $bg-color;

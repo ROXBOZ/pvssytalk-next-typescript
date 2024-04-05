@@ -1303,6 +1303,16 @@ footer .footer-content nav a:hover {
   transition: 700ms;
 }
 
+.note {
+  padding: 0 2rem;
+}
+.note a {
+  border-bottom: 1px solid #e09cff;
+}
+.note a:hover {
+  border: none;
+}
+
 .title-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -2510,6 +2520,10 @@ html {
 
 .snap-section {
   scroll-snap-align: start;
+}
+
+.snap-stop {
+  scroll-snap-stop: always;
 }
 
 body {

@@ -21,7 +21,7 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
   const hasTwoEmptySpots = filteredPains.length % 3 === 1;
 
   return (
-    <div>
+    <div className="snap-section snap-stop">
       <div className="double-column-container">
         <div>
           <h2>{data.title}</h2>
@@ -73,15 +73,9 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
               alignItems: "center",
             }}
           >
-            <p
-              className="bigger-text"
-              style={{
-                padding: "2rem",
-              }}
-            >
-              Nous travaillons actuellement sur de nouvelles douleurs. Si l’une
-              t’intéresse en particulier, n’hésite pas à nous contacter.
-            </p>
+            <div className="bigger-text note">
+              <PortableText value={data.note as any} />
+            </div>
           </div>
         )}
         {hasTwoEmptySpots && (

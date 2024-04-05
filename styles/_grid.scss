@@ -100,6 +100,17 @@
   }
 }
 
+.note {
+  padding: 0 $reg-space;
+
+  a {
+    border-bottom: $border-solid $secondary;
+    &:hover {
+      border: none;
+    }
+  }
+}
+
 // articles
 .title-container {
   @include grid;
