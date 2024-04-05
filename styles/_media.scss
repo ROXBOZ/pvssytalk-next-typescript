@@ -5,6 +5,7 @@
   gap: $sm-space;
 
   h2 {
+    margin-top: $reg-space;
     margin-bottom: $reg-space;
     color: lighten($txt-color, 40);
   }
@@ -18,7 +19,7 @@
     border-bottom: $secondary $border-solid;
     padding-bottom: $sm-space;
     .tag-container {
-      margin-top: 0.25rem;
+      margin-top: $sm-space;
     }
   }
 }
