@@ -1291,6 +1291,11 @@ footer .footer-content nav a:hover {
 .card .card-content .card-image-container {
   display: flex;
 }
+@media only screen and (max-width: 600px) {
+  .card .card-content .card-image-container {
+    aspect-ratio: 3/2;
+  }
+}
 .card .card-content .card-image-container img {
   display: flex;
   min-height: 100%;
