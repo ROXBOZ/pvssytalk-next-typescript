@@ -543,6 +543,10 @@ header {
   width: 100%;
   align-items: baseline;
 }
+header .primary-button {
+  background-color: rgb(221, 255, 171);
+  border-color: rgb(221, 255, 171);
+}
 header.relative {
   position: relative;
 }
