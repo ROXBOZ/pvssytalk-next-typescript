@@ -20,7 +20,7 @@ function LinkCards({ data }: any) {
                 : card.linkType === "ressource"
                 ? `ressources/${card.linkRes}`
                 : card.linkType === "typeform"
-                ? `/${card.linkTypeform?.url}`
+                ? `${card.linkTypeform?.url}`
                 : "";
 
             return (
@@ -30,11 +30,12 @@ function LinkCards({ data }: any) {
                     <div className="card-image-container">
                       {card.figure && (
                         <Image
+                          loading="lazy"
                           className="card-image"
                           src={urlFor(card.figure.image.asset._ref).url()}
                           width={500}
                           height={300}
-                          alt={card.figure.altText}
+                          alt={card.figure.altText ? card.figure.altText : ""}
                         />
                       )}
                     </div>

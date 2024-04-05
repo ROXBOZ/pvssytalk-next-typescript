@@ -3,7 +3,6 @@ import CustomHead from "../CustomHead";
 import Footer from "../Footer";
 import Header from "../Header";
 import { MenuDetail } from "../../types";
-import PageTransition from "./PageTransition";
 import React from "react";
 
 function Layout({
@@ -30,7 +29,7 @@ function Layout({
       <Header data={headerMenuData} pains={painsSlugs} marquee={marquee} />
       <Breadcrumbs />
 
-      <PageTransition>{children}</PageTransition>
+      {children}
       <Footer data={footerMenuData} />
     </>
   );

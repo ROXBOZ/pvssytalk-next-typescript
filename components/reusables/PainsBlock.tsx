@@ -21,7 +21,7 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
   const hasTwoEmptySpots = filteredPains.length % 3 === 1;
 
   return (
-    <div className="snap-section snap-stop">
+    <div className="snap-section">
       <div className="double-column-container">
         <div>
           <h2>{data.title}</h2>

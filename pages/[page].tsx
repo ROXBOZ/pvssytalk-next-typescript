@@ -39,6 +39,7 @@ export default function Page({
             <PortableText value={page.subtitle as any} />
             {page.image && (
               <Image
+                loading="lazy"
                 className="intro-image"
                 src={urlFor(page.image.asset._ref).url()}
                 width={500}
@@ -58,6 +59,7 @@ export default function Page({
               <h2>{section.sectionTitle}</h2>
               {section.sectionImage && (
                 <Image
+                  loading="lazy"
                   style={{ width: "100%", height: "auto" }}
                   className={section.sectionTitle}
                   src={urlFor(section.sectionImage.asset._ref).url()}

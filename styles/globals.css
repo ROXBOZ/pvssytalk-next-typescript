@@ -2530,10 +2530,7 @@ html {
 
 .snap-section {
   scroll-snap-align: start;
-}
-
-.snap-stop {
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
 }
 
 body {

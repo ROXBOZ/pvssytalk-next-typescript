@@ -57,6 +57,7 @@ const PainGrid = ({ pains }: { pains: PainDetail[] }) => {
                 <div className="card-image-container">
                   {pain.mainImage && (
                     <Image
+                      loading="lazy"
                       className="card-image"
                       src={urlFor(pain.mainImage.asset._ref).url()}
                       width={500}

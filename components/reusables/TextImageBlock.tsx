@@ -29,6 +29,7 @@ function TextImageBlock({ data }: any) {
 
         <div className="image-container">
           <Image
+            loading="lazy"
             src={urlFor(data.figure.image.asset).url()}
             width={1000}
             height={1000}

@@ -98,6 +98,7 @@ const ArticlePain = ({
       key={index}
     >
       <Image
+        loading="lazy"
         className="schema"
         src={urlFor(diagram.diagram.asset._ref).url()}
         width={500}
@@ -199,6 +200,7 @@ const ArticlePain = ({
             {pain.mainImage && (
               <div className="pain-illu-cover">
                 <Image
+                  loading="lazy"
                   src={urlFor(pain.mainImage.asset._ref).url()}
                   width={1000}
                   height={1000}

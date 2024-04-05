@@ -30,6 +30,7 @@ const Modal: React.FC<ModalProps> = ({ diagram, closeModal }) => {
         <button onClick={closeModal}>fermer</button>
 
         <Image
+          loading="lazy"
           className="schema"
           src={urlFor(diagram.diagram.asset._ref).url()}
           width={600}

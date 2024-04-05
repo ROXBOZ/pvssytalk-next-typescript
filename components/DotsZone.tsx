@@ -43,10 +43,10 @@ function DotsZone(data: any) {
         gsap.fromTo(
           dot,
           {
-            boxShadow: "0 0 0px 0px #f02b00, 0 0 0px 0px #f02b00",
+            boxShadow: "0 0 0px 0px white, 0 0 0px 0px white",
           },
           {
-            boxShadow: "0 0 5px 5px #f02b00, 0 0 50px 25px #f02b00",
+            boxShadow: "0 0 50px 30px #f02b00, 0 0 100px 60px #e09cff",
             duration: 4,
             repeat: -1,
             yoyo: true,

@@ -2,15 +2,16 @@ import "../styles/globals.css";
 
 import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
+import Script from "next/script"; // Import next/script
 
 export default function App({ Component, pageProps, router }: any) {
   return (
     <>
       <Head>
-        <script>
+        <Script>
           {`
           window.biskouiSettings = {
-          clientId: "1137520",
+            clientId: "1137520",
           };
           (function (d, s) {
             var t = d.getElementsByTagName(s)[0],
@@ -20,7 +21,7 @@ export default function App({ Component, pageProps, router }: any) {
             t.parentNode.insertBefore(e, t);
           })(document, "script")
         `}
-        </script>
+        </Script>
       </Head>
       <AnimatePresence mode="wait">
         <Component key={router.route} {...pageProps} />

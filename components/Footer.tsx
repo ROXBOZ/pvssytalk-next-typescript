@@ -10,11 +10,7 @@ const Footer = ({ data }: any) => {
           <div className="lets">
             <div>
               <span>Let’s pvssy</span>{" "}
-              <Link
-                // style={{ borderBottom: "0" }}
-                href={"mailto:info@pvssy-talk.org"}
-                className="colored"
-              >
+              <Link href={"mailto:info@pvssy-talk.org"} className="colored">
                 talk
               </Link>
             </div>
@@ -29,7 +25,6 @@ const Footer = ({ data }: any) => {
               <span>Inscris-toi à notre</span>{" "}
               <Link
                 href="https://pvssy-talk.us13.list-manage.com/subscribe?u=c202f1a11b2efe147dfbb7c77&id=ad8e7a08e3"
-                // style={{ borderBottom: "0" }}
                 className="colored"
               >
                 Newsletter

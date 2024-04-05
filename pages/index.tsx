@@ -7,8 +7,6 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LinkCards from "../components/LinkCards";
 import LogosPartners from "../components/LogosPartners";
-import NavBlock from "../components/reusables/NavBlock";
-import PageTransition from "../components/layouts/PageTransition";
 import PainsBlock from "../components/reusables/PainsBlock";
 import Tagline from "../components/Tagline";
 import TextImageBlock from "../components/reusables/TextImageBlock";
@@ -38,38 +36,37 @@ const Home = ({
   return (
     <div>
       <CustomHead seo={home[0].seo} />
-      <PageTransition>
-        <div className="landing-view">
-          <Header data={headerMenuData} pains={painsSlugs} marquee={marquee} />
-          <Tagline tagline={home[0].tagline} />
-        </div>
 
-        {home[0].content && (
-          <>
-            {home[0].content.map((item: any, index: number) => {
-              if (item && item._type) {
-                switch (item._type) {
-                  case "dotsZone":
-                    return <DotsZone data={item} key={index} />;
-                  case "linkCards":
-                    return <LinkCards data={item} key={index} />;
-                  case "painsBlock":
-                    return <PainsBlock data={item} pains={pains} key={index} />;
-                  case "textImageBlock":
-                    return <TextImageBlock data={item} key={index} />;
+      <div className="landing-view">
+        <Header data={headerMenuData} pains={painsSlugs} marquee={marquee} />
+        <Tagline tagline={home[0].tagline} />
+      </div>
 
-                  default:
-                    return null;
-                }
+      {home[0].content && (
+        <>
+          {home[0].content.map((item: any, index: number) => {
+            if (item && item._type) {
+              switch (item._type) {
+                case "dotsZone":
+                  return <DotsZone data={item} key={index} />;
+                case "linkCards":
+                  return <LinkCards data={item} key={index} />;
+                case "painsBlock":
+                  return <PainsBlock data={item} pains={pains} key={index} />;
+                case "textImageBlock":
+                  return <TextImageBlock data={item} key={index} />;
+
+                default:
+                  return null;
               }
-              return null;
-            })}
-          </>
-        )}
+            }
+            return null;
+          })}
+        </>
+      )}
 
-        <LogosPartners logos={partnersLogos} />
-        <Footer data={footerMenuData} />
-      </PageTransition>
+      <LogosPartners logos={partnersLogos} />
+      <Footer data={footerMenuData} />
     </div>
   );
 };

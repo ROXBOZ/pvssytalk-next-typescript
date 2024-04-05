@@ -20,6 +20,7 @@ const LogoFigure = ({ isHovered, setIsHovered, index, logo }: any) => {
     >
       {logo.logoMono && logo.logoColor ? (
         <Image
+          loading="lazy"
           src={
             isHovered
               ? urlFor(logo.logoColor.asset._ref).url()
@@ -48,11 +49,15 @@ function LogosPartners({ logos }: any) {
           logos.map((logo: any, index: number) => {
             if (logo.url) {
               return (
-                <Link href={logo.url} target="_blank" style={{ border: "0" }}>
+                <Link
+                  key={index}
+                  href={logo.url}
+                  target="_blank"
+                  style={{ border: "0" }}
+                >
                   <LogoFigure
                     isHovered={isHovered}
                     setIsHovered={setIsHovered}
-                    index={index}
                     logo={logo}
                   />
                 </Link>
@@ -62,7 +67,7 @@ function LogosPartners({ logos }: any) {
                 <LogoFigure
                   isHovered={isHovered}
                   setIsHovered={setIsHovered}
-                  index={index}
+                  key={index}
                   logo={logo}
                 />
               );
