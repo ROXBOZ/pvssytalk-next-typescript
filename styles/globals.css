@@ -1536,11 +1536,6 @@ button {
   font-family: "ESKlarheit-Book";
   text-transform: lowercase;
 }
-@media only screen and (max-width: 600px) {
-  button {
-    padding: 0.25em 0.75em;
-  }
-}
 button:disabled {
   opacity: 40%;
 }

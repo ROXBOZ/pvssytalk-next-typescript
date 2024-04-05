@@ -11,9 +11,9 @@ button {
   font-family: $font-regular;
   text-transform: lowercase;
 
-  @media only screen and (max-width: 600px) {
-    padding: $padding-btn-mobile;
-  }
+  // @media only screen and (max-width: 600px) {
+  //   padding: $padding-btn-mobile;
+  // }
 
   &:disabled {
     opacity: 40%;
