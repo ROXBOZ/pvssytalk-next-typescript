@@ -44,18 +44,18 @@ function PainsBlock({ data, pains }: { data?: any; pains: PainDetail[] }) {
           </>
         )}
         <div>{data?.title && <h2>{data.title}</h2>}</div>
-        {data && (
-          <Filters
-            filterOptions={bodyParts}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-          />
-        )}
         <div>
           {data?.text && (
             <div className="bigger-text">
               <PortableText value={data?.text as any} />
             </div>
+          )}
+          {data && (
+            <Filters
+              filterOptions={bodyParts}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+            />
           )}
         </div>
       </div>
