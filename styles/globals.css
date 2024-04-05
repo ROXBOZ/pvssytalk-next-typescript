@@ -2214,15 +2214,20 @@ form .input-section .showPassword {
 
 .textImageBlock-wrapper .textImageBlock {
   align-items: center;
-  justify-content: space-between;
   padding: 0;
   display: flex;
-  min-height: 100vh;
   border-bottom: 1px solid #e09cff;
+}
+@media only screen and (min-width: 600px) {
+  .textImageBlock-wrapper .textImageBlock {
+    min-height: 100vh;
+    justify-content: space-between;
+  }
 }
 @media only screen and (max-width: 600px) {
   .textImageBlock-wrapper .textImageBlock {
     flex-direction: column-reverse;
+    gap: 2rem;
   }
 }
 .textImageBlock-wrapper .textImageBlock .text-container {

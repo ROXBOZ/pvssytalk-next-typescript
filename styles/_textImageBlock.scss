@@ -1,14 +1,17 @@
 .textImageBlock-wrapper {
   .textImageBlock {
     align-items: center;
-    justify-content: space-between;
     padding: 0;
     display: flex;
-    min-height: 100vh;
-    // background-color: darken($bg-color, 5);
+
     border-bottom: $border-solid $secondary;
+    @media only screen and (min-width: 600px) {
+      min-height: 100vh;
+      justify-content: space-between;
+    }
     @media only screen and (max-width: 600px) {
       flex-direction: column-reverse;
+      gap: $reg-space;
     }
     .text-container {
       max-width: $chperline;
