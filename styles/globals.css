@@ -65,6 +65,11 @@ li {
   line-height: 1.5;
 }
 
+.unknown__pt__mark__u {
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
 p,
 li {
   max-width: 70ch;

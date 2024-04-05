@@ -36,7 +36,9 @@ export default function Page({
 
           <div>
             <h1>{page.title}</h1>
-            <PortableText value={page.subtitle as any} />
+            <div className="bigger-text">
+              <PortableText value={page.subtitle as any} />
+            </div>
             {page.image && (
               <Image
                 loading="lazy"

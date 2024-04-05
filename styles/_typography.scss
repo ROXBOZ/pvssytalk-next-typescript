@@ -16,6 +16,11 @@ li {
   line-height: $line-height;
 }
 
+.unknown__pt__mark__u {
+  text-decoration: none;
+  border-bottom: $border-solid;
+}
+
 p,
 li {
   max-width: $chperline;
