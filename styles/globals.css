@@ -1232,7 +1232,7 @@ footer .footer-content nav a:hover {
   grid-column: 1/5;
 }
 .double-column-container div:nth-child(2) {
-  grid-column: 6/13;
+  grid-column: 5/13;
 }
 .double-column-container .nav-directory {
   grid-column-start: 7;
