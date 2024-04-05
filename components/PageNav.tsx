@@ -30,7 +30,12 @@ const PageNav = ({ headerMenu }: { headerMenu: any }) => {
           {fooMenuIsValid &&
             fooMenu &&
             fooMenu.map((page: any, index: number) => (
-              <Link href={page.slug.current} key={index}>
+              <Link
+                className="h4"
+                style={{ margin: "0" }}
+                href={page.slug.current}
+                key={index}
+              >
                 <span>{page.title}</span>
               </Link>
             ))}

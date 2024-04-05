@@ -1215,6 +1215,7 @@ footer .footer-content nav a:hover {
   align-items: first baseline;
   margin: 4rem 2rem;
   padding-top: 2rem;
+  gap: 2rem;
 }
 @media screen and (max-width: 768px) {
   .double-column-container {
