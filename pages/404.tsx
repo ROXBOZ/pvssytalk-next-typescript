@@ -40,7 +40,7 @@ function Custom404({
           <p className="bigger-text">
             La page recherchée n’existe pas ou plus. Si tu penses qu’il s’agit
             d'une erreur, tu peux nous contacter à{" "}
-            <a href="mailto:info@pvssy-talk.org">info@pvssy-talk.org</a>.
+            <a href="mailto:hello@pvssy-talk.org">hello@pvssy-talk.org</a>.
           </p>
           <p>
             Redirection automatique dans {countdown}{" "}

@@ -10,7 +10,7 @@ const Footer = ({ data }: any) => {
           <div className="lets">
             <div>
               <span>Let’s pvssy</span>{" "}
-              <Link href={"mailto:info@pvssy-talk.org"} className="colored">
+              <Link href={"mailto:hello@pvssy-talk.org"} className="colored">
                 talk
               </Link>
             </div>

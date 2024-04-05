@@ -134,14 +134,13 @@ a.colored.logo {
   flex: 1;
   justify-items: center;
   align-items: center;
-  margin: $lg-space;
+  margin: 0 $lg-space $lg-space * 2;
   .error-page-content {
-    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
     p {
-      align-self: center;
+      text-align: center;
     }
   }
 }
