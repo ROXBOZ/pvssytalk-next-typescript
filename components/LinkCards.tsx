@@ -7,7 +7,7 @@ function LinkCards({ data }: any) {
   return (
     <div className="snap-section">
       <div className="double-column-container" style={{ marginBottom: "0" }}>
-        <div>
+        <div style={{ gridColumn: "1/12" }}>
           <h2>{data.title}</h2>
         </div>
       </div>
