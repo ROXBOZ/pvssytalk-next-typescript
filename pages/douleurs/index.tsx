@@ -3,6 +3,7 @@ import { fetchFooterMenu, fetchHeaderMenu } from "../../lib/queries";
 
 import Layout from "../../components/layouts/Layout";
 import PainGrid from "../../components/PainGrid";
+import PainsBlock from "../../components/reusables/PainsBlock";
 import React from "react";
 import { client } from "../../config/sanity/client";
 
@@ -19,7 +20,7 @@ const Pains = ({
 }) => {
   return (
     <Layout headerMenu={headerMenu} footerMenu={footerMenu} marquee={marquee}>
-      <PainGrid pains={pains} />
+      <PainsBlock pains={pains} />
     </Layout>
   );
 };

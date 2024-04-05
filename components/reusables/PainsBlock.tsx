@@ -7,7 +7,7 @@ import { PainDetail } from "../../types";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "../../config/sanity/client";
 
-function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
+function PainsBlock({ data, pains }: { data?: any; pains: PainDetail[] }) {
   const sortedPains = pains.sort((a: any, b: any) =>
     a.name.localeCompare(b.name)
   );
@@ -23,18 +23,40 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
   return (
     <div className="snap-section">
       <div className="double-column-container">
-        <div>
-          <h2>{data.title}</h2>
+        {!data && (
+          <>
+            <div>
+              <h1>Douleurs</h1>
+            </div>
+            <div>
+              <p className="bigger-text">
+                Chaque douleur est traitée avec une approche à la fois médicale
+                et sexologique pour te donner une vision complète. Tu trouveras
+                également des <Link href="/ressources">ressources</Link> pour
+                aller plus loin.
+              </p>
+              <Filters
+                filterOptions={bodyParts}
+                selectedFilter={selectedFilter}
+                setSelectedFilter={setSelectedFilter}
+              />
+            </div>
+          </>
+        )}
+        <div>{data?.title && <h2>{data.title}</h2>}</div>
+        {data && (
           <Filters
             filterOptions={bodyParts}
             selectedFilter={selectedFilter}
             setSelectedFilter={setSelectedFilter}
           />
-        </div>
+        )}
         <div>
-          <div className="bigger-text">
-            <PortableText value={data.text as any} />
-          </div>
+          {data?.text && (
+            <div className="bigger-text">
+              <PortableText value={data?.text as any} />
+            </div>
+          )}
         </div>
       </div>
 
@@ -73,9 +95,11 @@ function PainsBlock({ data, pains }: { data: any; pains: PainDetail[] }) {
               alignItems: "center",
             }}
           >
-            <div className="bigger-text note">
-              <PortableText value={data.note as any} />
-            </div>
+            {data?.note && (
+              <div className="bigger-text note">
+                <PortableText value={data?.note as any} />
+              </div>
+            )}
           </div>
         )}
         {hasTwoEmptySpots && (
