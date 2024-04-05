@@ -950,8 +950,9 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 
 footer {
-  border-top: 1px solid #ba5ef2;
-  margin: 2rem;
+  border-top: 1px solid #e09cff;
+  padding: 0 2rem;
+  margin-top: 2rem;
 }
 footer .footer-content {
   display: flex;
@@ -1378,7 +1379,7 @@ footer .footer-content nav a:hover {
 
 .pain-article {
   grid-column: 4/9;
-  border-left: 1px solid #edd4fc;
+  border-left: 1px solid #e09cff;
   padding: 0 2rem;
   max-width: 100%;
 }
@@ -2358,7 +2359,7 @@ form .input-section .showPassword {
   content: "2";
 }
 .dots-zone .dots-container .dot:nth-of-type(3) {
-  top: 2%;
+  top: 4%;
   left: 60%;
 }
 .dots-zone .dots-container .dot:nth-of-type(3):after {
@@ -2505,8 +2506,8 @@ form .input-section .showPassword {
   content: "23";
 }
 .dots-zone .dots-container .dot:nth-of-type(24) {
-  top: 2%;
-  left: 2%;
+  top: 3%;
+  left: 3%;
 }
 .dots-zone .dots-container .dot:nth-of-type(24):after {
   content: "24";

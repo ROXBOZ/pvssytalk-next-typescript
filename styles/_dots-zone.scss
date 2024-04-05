@@ -4,6 +4,7 @@
   align-items: center;
   position: relative;
   justify-content: center;
+  // border-bottom: $border-solid $secondary;
 
   .content {
     width: 50%;
@@ -87,7 +88,7 @@
       }
 
       &:nth-of-type(3) {
-        top: 2%;
+        top: 4%;
         left: 60%;
 
         &:after {
@@ -276,8 +277,8 @@
       }
 
       &:nth-of-type(24) {
-        top: 2%;
-        left: 2%;
+        top: 3%;
+        left: 3%;
 
         &:after {
           content: "24";

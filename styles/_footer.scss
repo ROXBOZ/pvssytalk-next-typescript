@@ -81,8 +81,9 @@
 }
 
 footer {
-  border-top: $border-solid lighten($txt-color, 50%);
-  margin: $reg-space;
+  border-top: $border-solid $secondary;
+  padding: 0 $reg-space;
+  margin-top: $reg-space;
 
   .footer-content {
     display: flex;
