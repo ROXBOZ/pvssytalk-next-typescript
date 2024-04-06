@@ -545,9 +545,11 @@ header {
   width: 100%;
   align-items: baseline;
 }
-header .primary-button {
-  background-color: #ddffab;
-  border-color: #ddffab;
+@media only screen and (min-width: 600px) {
+  header .primary-button {
+    background-color: #ddffab;
+    border-color: #ddffab;
+  }
 }
 header.relative {
   position: relative;
@@ -927,6 +929,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   justify-content: center;
   position: relative;
   margin: 0;
+  height: auto;
 }
 .logos-partners-section figure figure img {
   transition: 0.2s ease-in;

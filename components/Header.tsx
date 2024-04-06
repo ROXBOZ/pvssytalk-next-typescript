@@ -184,7 +184,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
         {data &&
           data.map((item: any, index: number) => {
             return (
-              <>
+              <div key={index}>
                 {item._type === "customLink" && item.isAction === true && (
                   <Link
                     className="borderless"
@@ -295,7 +295,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
                       </>
                     );
                   })}
-              </>
+              </div>
             );
           })}
       </div>
