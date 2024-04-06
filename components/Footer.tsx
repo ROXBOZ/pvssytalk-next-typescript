@@ -28,7 +28,7 @@ const Footer = ({ data }: any) => {
                 href="https://pvssy-talk.us13.list-manage.com/subscribe?u=c202f1a11b2efe147dfbb7c77&id=ad8e7a08e3"
                 className="colored"
               >
-                Newsletter
+                newsletter
               </Link>
             </div>
             <p>

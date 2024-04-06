@@ -243,6 +243,7 @@ header {
     gap: 0.5rem;
     overflow-y: auto;
     position: relative;
+    height: 100%;
 
     a {
       width: 100%;
@@ -300,7 +301,6 @@ header {
         display: flex;
         padding-top: 1rem;
         span {
-          // font-family: $font-logo !important;
           width: 100%;
         }
       }

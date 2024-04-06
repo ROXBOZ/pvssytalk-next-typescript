@@ -756,6 +756,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   gap: 0.5rem;
   overflow-y: auto;
   position: relative;
+  height: 100%;
 }
 .mobile-menu .mobile-menu-content a {
   width: 100%;
@@ -1234,11 +1235,6 @@ footer .footer-content nav a:hover {
 }
 .double-column-container h2 {
   margin-top: 0;
-}
-@media only screen and (max-width: 600px) {
-  .double-column-container h2 {
-    margin-bottom: 0;
-  }
 }
 .double-column-container div {
   flex: 1;
