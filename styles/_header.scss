@@ -245,6 +245,12 @@ header {
     position: relative;
     height: 100%;
 
+    .foo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
     a {
       width: 100%;
     }

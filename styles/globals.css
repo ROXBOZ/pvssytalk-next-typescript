@@ -758,6 +758,11 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   position: relative;
   height: 100%;
 }
+.mobile-menu .mobile-menu-content .foo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 .mobile-menu .mobile-menu-content a {
   width: 100%;
 }

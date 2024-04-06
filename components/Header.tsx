@@ -184,7 +184,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
         {data &&
           data.map((item: any, index: number) => {
             return (
-              <div key={index}>
+              <div className="foo" key={index}>
                 {item._type === "customLink" && item.isAction === true && (
                   <Link
                     className="borderless"
@@ -213,7 +213,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
                   item.content &&
                   item.content.map((contentItem: any, index: number) => {
                     return (
-                      <>
+                      <div key={index}>
                         <div
                           key={index}
                           className="title plus"
@@ -292,7 +292,7 @@ const MobileMenu = ({ data, pains, setMobileMenuIsOpen, marquee }: any) => {
                                   ))}
                             </nav>
                           )}
-                      </>
+                      </div>
                     );
                   })}
               </div>
