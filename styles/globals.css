@@ -1239,6 +1239,11 @@ footer .footer-content nav a:hover {
 .double-column-container h2 {
   margin-top: 0;
 }
+@media only screen and (max-width: 600px) {
+  .double-column-container h2 {
+    margin-bottom: 0;
+  }
+}
 .double-column-container div {
   flex: 1;
 }
