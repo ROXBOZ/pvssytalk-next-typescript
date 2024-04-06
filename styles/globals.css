@@ -960,7 +960,7 @@ footer .footer-content {
 }
 @media only screen and (max-width: 600px) {
   footer .footer-content {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 4rem;
   }
 }
@@ -1231,6 +1231,11 @@ footer .footer-content nav a:hover {
     flex-direction: column;
   }
 }
+@media only screen and (max-width: 600px) {
+  .double-column-container {
+    gap: 1rem;
+  }
+}
 .double-column-container h2 {
   margin-top: 0;
 }
@@ -1458,7 +1463,8 @@ footer .footer-content nav a:hover {
   margin: 2rem;
   background-color: #e8b6ff;
 }
-.card-image-container .card-image {
+
+.card-image {
   display: flex;
   -o-object-fit: cover;
      object-fit: cover;

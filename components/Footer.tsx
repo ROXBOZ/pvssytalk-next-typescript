@@ -3,6 +3,7 @@ import { MenuDetail } from "../types";
 import React from "react";
 
 const Footer = ({ data }: any) => {
+  const currentYear = new Date().getFullYear();
   return (
     <footer>
       <div className="footer-content">
@@ -78,6 +79,16 @@ const Footer = ({ data }: any) => {
           </ul>
         </nav>
       </div>
+      <span
+        style={{
+          fontSize: "smaller",
+          paddingBottom: "1rem",
+          right: "1rem",
+          position: "absolute",
+        }}
+      >
+        © {currentYear}, tous droits réservés.
+      </span>
     </footer>
   );
 };

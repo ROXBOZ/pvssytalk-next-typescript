@@ -89,7 +89,7 @@ footer {
     justify-content: space-between;
     padding: $reg-space 0 $lg-space;
     @media only screen and (max-width: 600px) {
-      flex-direction: column-reverse;
+      flex-direction: column;
       gap: $lg-space;
     }
 

@@ -27,18 +27,20 @@ function LinkCards({ data }: any) {
               <div className="card" key={index}>
                 <div>
                   <div className="card-content">
-                    <div className="card-image-container">
-                      {card.figure && (
-                        <Image
-                          loading="lazy"
-                          className="card-image"
-                          src={urlFor(card.figure.image.asset._ref).url()}
-                          width={500}
-                          height={300}
-                          alt={card.figure.altText ? card.figure.altText : ""}
-                        />
-                      )}
-                    </div>
+                    <Link href={linkURL}>
+                      <div className="card-image-container">
+                        {card.figure && (
+                          <Image
+                            loading="lazy"
+                            className="card-image"
+                            src={urlFor(card.figure.image.asset._ref).url()}
+                            width={500}
+                            height={300}
+                            alt={card.figure.altText ? card.figure.altText : ""}
+                          />
+                        )}
+                      </div>
+                    </Link>
                     <div className="text-container">
                       <div>
                         <h3>{card.title}</h3>

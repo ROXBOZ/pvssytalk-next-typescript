@@ -10,14 +10,14 @@
   background-color: lighten($secondary, 5);
 
   // aspect-ratio: 4/3;
+}
 
-  .card-image {
-    display: flex;
-    object-fit: cover;
+.card-image {
+  display: flex;
+  object-fit: cover;
 
-    width: auto;
-    height: auto;
-  }
+  width: auto;
+  height: auto;
 }
 
 .intro-image,
