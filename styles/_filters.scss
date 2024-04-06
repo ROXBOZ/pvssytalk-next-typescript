@@ -55,16 +55,15 @@
       display: flex;
       align-items: center;
       gap: $sm-space;
-      // font-size: $smaller-text;
       border-radius: $border-radius;
       cursor: url("../assets/images/cursor-pointer.svg"), auto;
       text-transform: lowercase !important;
       height: fit-content;
-      border: $border-solid $txt-color;
+      border: $border-solid $secondary;
 
       &:hover {
         background-color: $txt-color;
-        border: $border-solid $txt-color;
+        border: $border-solid $secondary;
       }
     }
   }

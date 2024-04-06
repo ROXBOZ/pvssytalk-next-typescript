@@ -584,6 +584,7 @@ header .header-nav {
   text-transform: lowercase;
   height: -moz-fit-content;
   height: fit-content;
+  margin-top: 0.5rem;
 }
 @media only screen and (max-width: 600px) {
   header .header-nav {
@@ -756,19 +757,13 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   overflow-y: auto;
   position: relative;
 }
+.mobile-menu .mobile-menu-content a {
+  width: 100%;
+}
 .mobile-menu .mobile-menu-content button {
   font-size: 1rem;
-  margin-left: -1.25rem;
-  right: 0;
   position: absolute;
-}
-.mobile-menu .mobile-menu-content a {
-  position: relative;
-}
-@media only screen and (max-width: 600px) {
-  .mobile-menu .mobile-menu-content a {
-    padding: 0.5rem 0;
-  }
+  right: 2rem;
 }
 .mobile-menu .mobile-menu-content .title {
   display: flex;
@@ -1166,11 +1161,11 @@ footer .footer-content nav a:hover {
   text-transform: lowercase !important;
   height: -moz-fit-content;
   height: fit-content;
-  border: 1px solid #31064b;
+  border: 1px solid #e09cff;
 }
 .filters-container .filters-content .reset:hover {
   background-color: #31064b;
-  border: 1px solid #31064b;
+  border: 1px solid #e09cff;
 }
 
 .tag-container {
@@ -2297,6 +2292,7 @@ form .input-section .showPassword {
   align-items: center;
   position: relative;
   justify-content: center;
+  border-bottom: 1px solid #e09cff;
 }
 .dots-zone .content {
   width: 50%;
