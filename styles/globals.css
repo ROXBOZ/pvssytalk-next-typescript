@@ -1,6 +1,4 @@
 @charset "UTF-8";
-/*-----Colors-----*/
-/*-----Fonts-----*/
 @font-face {
   font-family: "ESRebond";
   src: url("../assets/fonts/ESRebondGrotesque-Semibold.otf") format("otf"), url("../assets/fonts/ESRebondGrotesque-Semibold.ttf") format("truetype");
@@ -31,7 +29,6 @@
 /*-----Borders-----*/
 /*-----Grid Columns-----*/
 /*-----Transitions-----*/
-/*-----Elevations-----*/
 /*-----Media Queries-----*/
 /*-----Animations-----*/
 .primary-button {
@@ -549,8 +546,8 @@ header {
   align-items: baseline;
 }
 header .primary-button {
-  background-color: rgb(221, 255, 171);
-  border-color: rgb(221, 255, 171);
+  background-color: #ddffab;
+  border-color: #ddffab;
 }
 header.relative {
   position: relative;
@@ -818,7 +815,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
 }
 
 .marquee {
-  background-color: rgb(221, 255, 171);
+  background-color: #ddffab;
   padding: 1rem;
   display: flex;
   left: 0;
@@ -935,7 +932,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   transition: 0.2s ease-in;
 }
 .logos-partners-section figure .placeholder {
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 2rem;
   text-align: center;
   background-color: #f0cfff;
@@ -1009,8 +1006,9 @@ footer .footer-content nav ul {
 }
 @media only screen and (max-width: 600px) {
   footer .footer-content nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
   }
 }
 footer .footer-content nav li {
@@ -1165,11 +1163,11 @@ footer .footer-content nav a:hover {
   text-transform: lowercase !important;
   height: -moz-fit-content;
   height: fit-content;
-  border: 1px solid #edd4fc;
+  border: 1px solid #31064b;
 }
 .filters-container .filters-content .reset:hover {
-  background-color: #edd4fc;
-  border: 1px solid #edd4fc;
+  background-color: #31064b;
+  border: 1px solid #31064b;
 }
 
 .tag-container {
@@ -1293,6 +1291,10 @@ footer .footer-content nav a:hover {
   display: flex;
   flex-direction: column;
   gap: 0;
+  transition: 0.2s ease-in;
+}
+.card .card-content:hover {
+  background-color: #f8e9ff;
 }
 .card .card-content .text-container {
   padding: 0 2rem 2rem;
@@ -1501,7 +1503,7 @@ footer .footer-content nav a:hover {
   flex-direction: column;
   align-items: center;
   border: 1px solid #e09cff;
-  border-radius: 10px;
+  border-radius: 20px;
   padding-top: 2rem;
 }
 .diagrams-container .schema-container .schema {
@@ -1526,7 +1528,7 @@ footer .footer-content nav a:hover {
 }
 .modal .modal-content {
   border: 1px solid #e09cff;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #fefdf4;
   width: 80%;
   height: 80%;
@@ -1699,7 +1701,7 @@ button.square-button {
   display: flex;
   margin: 2rem 0;
   border: 1px solid #e09cff;
-  border-radius: 10px;
+  border-radius: 20px;
   max-width: 100%;
 }
 .exercise-steps ul {
@@ -1819,7 +1821,7 @@ form .search-bar::placeholder {
   aspect-ratio: 1/1;
   line-height: 0;
   margin: 0;
-  background-color: #edd4fc;
+  background-color: #31064b;
 }
 .letter-link-container .letter-link:hover {
   cursor: pointer;
@@ -1855,7 +1857,7 @@ form .search-bar::placeholder {
   display: flex;
   width: 92%;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 2rem;
   border: 1px solid #e09cff;
 }
@@ -1950,7 +1952,7 @@ form .search-bar::placeholder {
   margin: 0;
 }
 .msg.success {
-  border-bottom: 1px solid rgb(221, 255, 171);
+  border-bottom: 1px solid #ddffab;
 }
 .msg.success:before {
   content: "👏  ";
@@ -1968,7 +1970,7 @@ form .search-bar::placeholder {
   content: "⌛  ";
 }
 .msg.warning {
-  border-bottom: 1px solid #ffc3ee;
+  border-bottom: 1px solid red;
 }
 .msg.warning:before {
   content: "⚠️  ";
@@ -2034,9 +2036,9 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 1px solid #edd4fc;
+  border: 1px solid #31064b;
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 form.search-form {
   flex-direction: row;
@@ -2073,13 +2075,13 @@ form .form-section select {
   width: 100%;
 }
 form .form-section select option:checked, form .form-section select option:focus {
-  background-color: #ffc3ee;
+  background-color: #ddffab;
 }
 form .form-section input,
 form .form-section textarea {
   font-family: "ESKlarheit-Book";
   color: #31064b;
-  background-color: #edd4fc;
+  background-color: #31064b;
   border: none;
   font-size: 16px;
   padding: 0.5rem;
@@ -2109,8 +2111,8 @@ form .form-section.addresses .address {
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  border-radius: 10px;
-  border: 1px solid #edd4fc;
+  border-radius: 20px;
+  border: 1px solid #31064b;
   padding: 1rem;
 }
 form .input-section {
@@ -2124,8 +2126,8 @@ form .input-section .showPassword {
 
 .radio-buttons-container,
 .checkbox-buttons-container {
-  border: 1px solid #ffc3ee;
-  border-radius: 10px;
+  border: 1px solid #e09cff;
+  border-radius: 20px;
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;

@@ -2,10 +2,9 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: $border-solid $txt-color-lighten;
+  border: $border-solid $txt-color;
   padding: $sm-space;
-  border-radius: $border-radius-soft;
-
+  border-radius: $border-radius;
   &.search-form {
     flex-direction: row;
     align-items: baseline;
@@ -17,7 +16,6 @@ form {
   }
 
   label {
-    // font-size: $smaller-text;
     font-family: $font-regular;
     min-width: 25%;
     width: fit-content;
@@ -47,7 +45,7 @@ form {
       option {
         &:checked,
         &:focus {
-          background-color: $quarterary;
+          background-color: $tierary;
         }
       }
     }
@@ -55,7 +53,7 @@ form {
     textarea {
       font-family: $font-regular;
       color: $txt-color;
-      background-color: $txt-color-lighten;
+      background-color: $txt-color;
       border: none;
       font-size: $font-size-basis;
       padding: $xs-space;
@@ -88,8 +86,8 @@ form {
         display: flex;
         gap: $sm-space;
         flex-direction: column;
-        border-radius: $border-radius-soft;
-        border: $border-solid $txt-color-lighten;
+        border-radius: $border-radius;
+        border: $border-solid $txt-color;
         padding: $sm-space;
       }
     }
@@ -108,8 +106,8 @@ form {
 
 .radio-buttons-container,
 .checkbox-buttons-container {
-  border: $border-solid $quarterary;
-  border-radius: $border-radius-soft;
+  border: $border-solid $secondary;
+  border-radius: $border-radius;
   padding: $sm-space;
   display: flex;
   flex-wrap: wrap;

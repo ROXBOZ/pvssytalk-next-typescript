@@ -83,11 +83,9 @@ const Footer = ({ data }: any) => {
         style={{
           fontSize: "smaller",
           paddingBottom: "1rem",
-          right: "1rem",
-          position: "absolute",
         }}
       >
-        © {currentYear}, tous droits réservés.
+        © {currentYear}, <span className="logo">pvssy talk</span>.
       </span>
     </footer>
   );

@@ -60,11 +60,11 @@
       cursor: url("../assets/images/cursor-pointer.svg"), auto;
       text-transform: lowercase !important;
       height: fit-content;
-      border: $border-solid $txt-color-lighten;
+      border: $border-solid $txt-color;
 
       &:hover {
-        background-color: $txt-color-lighten;
-        border: $border-solid $txt-color-lighten;
+        background-color: $txt-color;
+        border: $border-solid $txt-color;
       }
     }
   }

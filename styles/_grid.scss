@@ -72,6 +72,11 @@
     display: flex;
     flex-direction: column;
     gap: 0;
+    transition: $animation-transition;
+
+    &:hover {
+      background-color: lighten($secondary, 15%);
+    }
 
     .text-container {
       padding: 0 $reg-space $reg-space;
