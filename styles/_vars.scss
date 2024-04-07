@@ -15,6 +15,7 @@ $gradient: radial-gradient(circle, $primary 0%, $secondary 30%);
 $font-logo: "ESRebond";
 
 @font-face {
+  font-family: "ESKlarheit-Book";
   src: url("../assets/fonts/ESKlarheitGrotesk-Bk.woff2") format("woff2");
   font-display: swap;
 }
