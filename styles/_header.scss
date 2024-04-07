@@ -32,6 +32,10 @@ header {
     padding: 0.5rem;
     margin-left: $sm-space;
 
+    @media only screen and (max-width: 600px) {
+      padding: 0.5rem 1rem;
+    }
+
     &.fixed {
       z-index: 99999999999;
       position: fixed;
