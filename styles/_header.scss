@@ -3,6 +3,7 @@ header {
   grid-template-columns: 1fr 1fr;
   width: 100%;
   align-items: baseline;
+
   @media only screen and (min-width: 600px) {
     .primary-button {
       background-color: $tierary;
@@ -12,6 +13,7 @@ header {
 
   &.relative {
     position: relative;
+
     @media only screen and (max-width: 600px) {
       display: flex;
       align-items: center;
@@ -114,7 +116,6 @@ header {
     .dropdown-content-wrapper {
       display: none;
       z-index: -1;
-
       position: fixed;
       margin: 0;
       left: 0;
@@ -123,8 +124,8 @@ header {
       background-color: $bg-color;
       flex-direction: column;
       box-shadow: 0px 20px 70px $txt-color;
-
       cursor: default;
+
       &.selected {
         display: flex;
       }
@@ -177,10 +178,12 @@ header {
                 }
               }
             }
+
             .link-resource {
               .arrow {
                 margin-bottom: 0;
               }
+
               &:hover {
                 .resource {
                   border-bottom-color: $secondary;
@@ -191,6 +194,7 @@ header {
                 }
               }
             }
+
             .resource {
               display: flex;
               justify-content: space-between;
@@ -235,6 +239,7 @@ header {
   z-index: 999;
   display: flex;
   flex-direction: column;
+
   .logo {
     position: fixed;
   }
@@ -278,9 +283,9 @@ header {
         height: fit-content;
         align-items: baseline;
         gap: 1rem;
+
         a {
           display: flex;
-
           justify-content: space-between;
         }
 
@@ -296,6 +301,7 @@ header {
           margin-top: -1px;
         }
       }
+
       a {
         width: 100% !important;
       }
@@ -310,6 +316,7 @@ header {
       a {
         display: flex;
         padding-top: 1rem;
+
         span {
           width: 100%;
         }
@@ -337,9 +344,11 @@ header {
     position: absolute;
     top: $sm-space;
     right: $reg-space;
+
     svg {
       width: 15px;
     }
+
     @media only screen and (min-width: 600px) {
       display: none;
     }
@@ -355,6 +364,7 @@ header {
     display: flex;
     align-items: center;
     gap: 2rem;
+
     a {
       border-bottom: $border-solid $secondary;
     }
