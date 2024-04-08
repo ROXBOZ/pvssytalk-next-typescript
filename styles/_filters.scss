@@ -60,9 +60,10 @@
       text-transform: lowercase !important;
       height: fit-content;
       border: $border-solid $secondary;
+      transition: $animation-transition;
 
       &:hover {
-        background-color: $txt-color;
+        background-color: $secondary;
         border: $border-solid $secondary;
       }
     }

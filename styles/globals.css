@@ -1173,9 +1173,10 @@ footer .footer-content nav a:hover {
   height: -moz-fit-content;
   height: fit-content;
   border: 1px solid #e09cff;
+  transition: 0.2s ease-in;
 }
 .filters-container .filters-content .reset:hover {
-  background-color: #31064b;
+  background-color: #e09cff;
   border: 1px solid #e09cff;
 }
 

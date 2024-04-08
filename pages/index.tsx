@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LinkCards from "../components/LinkCards";
 import LogosPartners from "../components/LogosPartners";
+import Marquee2 from "../components/Marquee2";
 import PainsBlock from "../components/reusables/PainsBlock";
 import Tagline from "../components/Tagline";
 import TextImageBlock from "../components/reusables/TextImageBlock";
@@ -66,6 +67,7 @@ const Home = ({
       )}
 
       <LogosPartners logos={partnersLogos} />
+      {/* <Marquee2 repeatTimes={999} /> */}
       <Footer data={footerMenuData} />
     </div>
   );

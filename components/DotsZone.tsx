@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import Link from "next/link";
+import Marquee2 from "./Marquee2";
 import gsap from "gsap";
 import { useInView } from "react-intersection-observer";
 
@@ -58,41 +59,44 @@ function DotsZone(data: any) {
   }, [inView]);
 
   return (
-    <div className="dots-zone snap-section" ref={ref}>
-      <div className="content">
-        <p className="h3">{text}</p>
-        <Link href={`/${url}`} style={{ borderBottom: 0 }}>
-          <button className="secondary-button">{label}</button>
-        </Link>
+    <>
+      <div className="dots-zone snap-section" ref={ref}>
+        <div className="content">
+          <p className="h3">{text}</p>
+          <Link href={`/${url}`} style={{ borderBottom: 0 }}>
+            <button className="secondary-button">{label}</button>
+          </Link>
+        </div>
+        <div className="dots-container">
+          <div className="dot primary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot primary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot primary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot primary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot primary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+          <div className="dot secondary" />
+        </div>
       </div>
-      <div className="dots-container">
-        <div className="dot primary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot primary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot primary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot primary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot primary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-        <div className="dot secondary" />
-      </div>
-    </div>
+      <Marquee2 repeatTimes={999} />
+    </>
   );
 }
 
