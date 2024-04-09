@@ -768,6 +768,11 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   flex-direction: column;
   gap: 0.5rem;
 }
+.mobile-menu .mobile-menu-content .foo div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 .mobile-menu .mobile-menu-content a {
   width: 100%;
 }
@@ -790,6 +795,7 @@ header .dropdown .dropdown-content-wrapper .dropdown-content .contenu .col .reso
   height: fit-content;
   align-items: baseline;
   gap: 1rem;
+  flex-direction: row;
 }
 .mobile-menu .mobile-menu-content .title.plus a {
   display: flex;
@@ -2299,7 +2305,6 @@ form .input-section .showPassword {
   align-items: center;
   position: relative;
   justify-content: center;
-  border-bottom: 1px solid #e09cff;
 }
 .dots-zone .content {
   width: 50%;

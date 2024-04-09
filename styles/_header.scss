@@ -258,6 +258,11 @@ header {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
     }
 
     a {
@@ -283,6 +288,7 @@ header {
         height: fit-content;
         align-items: baseline;
         gap: 1rem;
+        flex-direction: row;
 
         a {
           display: flex;
