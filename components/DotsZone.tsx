@@ -95,7 +95,7 @@ function DotsZone(data: any) {
           <div className="dot secondary" />
         </div>
       </div>
-      <Marquee2 repeatTimes={999} />
+      {/* <Marquee2 repeatTimes={999} /> */}
     </>
   );
 }
