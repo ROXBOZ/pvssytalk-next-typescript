@@ -1832,7 +1832,7 @@ form .search-bar::placeholder {
   aspect-ratio: 1/1;
   line-height: 0;
   margin: 0;
-  background-color: #31064b;
+  background-color: #f0cfff;
 }
 .letter-link-container .letter-link:hover {
   cursor: pointer;
@@ -1844,7 +1844,7 @@ form .search-bar::placeholder {
 }
 .letter-link-container .letter-link.disabled {
   cursor: default;
-  opacity: 40%;
+  background-color: #f8e9ff;
   border: none;
 }
 
