@@ -222,6 +222,7 @@ export interface DirectoryDetail {
     pricingMax: number;
     isReimbursed: boolean;
     isReimbursedComp: boolean;
+    tarmed: boolean;
   };
   recommendations: {
     name: string;

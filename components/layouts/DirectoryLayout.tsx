@@ -14,6 +14,9 @@ const DirectoryLayout: React.FC<any> = ({
 
   return (
     <div className="directory-container">
+      {validatedItems.length !== 0 && (
+        <h2 className="h3 category-title">{category.title}</h2>
+      )}
       {validatedItems.map((directoryItem: DirectoryDetail, index: number) => {
         const itemPains: string[] = (directoryItem.relatedPain || []).map(
           (p: any) => p.name
@@ -38,9 +41,6 @@ const DirectoryLayout: React.FC<any> = ({
         ) {
           return (
             <React.Fragment key={index}>
-              {validatedItems.length !== 0 && (
-                <h2 className="h3 category-title">{category.title}</h2>
-              )}
               <DirectoryItem contact={directoryItem} />
             </React.Fragment>
           );

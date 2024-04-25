@@ -82,6 +82,11 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                       <span>remboursé par la complémentaire</span>
                     </div>
                   )}
+                  {contact.pricing.tarmed === true && (
+                    <div className="tag">
+                      <span>tarifs TARMED</span>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -107,8 +112,10 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                           {a.phone}
                         </Link>
                       )}
-                      <br />
-                      <div className="tag-container">
+                      <div
+                        className="tag-container"
+                        style={{ marginTop: "1rem" }}
+                      >
                         {a.accessibility &&
                           a.accessibility.map((tag: any, index: number) => {
                             return (
