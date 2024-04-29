@@ -245,14 +245,14 @@ const ArticlePain = ({
                     </>
                   )}
 
-                  {pain.medicalApproach && (
+                  {/* {pain.medicalApproach && (
                     <ToContinue
                       isMed={isMed}
                       setIsMed={setIsMed}
                       filters={pain.filters}
                       otherPains={otherPains}
                     />
-                  )}
+                  )} */}
                 </div>
               ) : (
                 <div id="startSex">
@@ -377,14 +377,14 @@ const ArticlePain = ({
                     </>
                   )}
 
-                  {pain.sexologicApproach && (
+                  {/* {pain.sexologicApproach && (
                     <ToContinue
                       isMed={isMed}
                       setIsMed={setIsMed}
                       filters={pain.filters}
                       otherPains={otherPains}
                     />
-                  )}
+                  )} */}
                 </div>
               )}
               {is600Max && (
