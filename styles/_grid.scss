@@ -93,9 +93,8 @@
 
     .card-image-container {
       display: flex;
-      @media only screen and (max-width: 600px) {
-        aspect-ratio: 4/3;
-      }
+      aspect-ratio: 16/9;
+
       img {
         display: flex;
         min-height: 100%;

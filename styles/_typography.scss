@@ -59,7 +59,6 @@ sup {
   color: $primary;
 }
 
-.logo,
 .unknown__pt__mark__span,
 .unknown__pt__mark__logo {
   white-space: nowrap;
@@ -152,20 +151,22 @@ $level-size: $type-base-size;
 }
 
 .to-continue {
-  margin-top: $lg-space;
-  border-top: $border-solid $secondary;
-  padding-top: $sm-space;
+  padding-top: $reg-space;
   display: flex;
   flex-direction: column;
   gap: $sm-space;
   align-items: baseline;
-  background-color: yellow;
 
   .switch-approach {
     display: flex;
     gap: $sm-space;
     align-items: baseline;
+
+    button {
+      margin-bottom: $lg-space;
+    }
   }
+
   .similar-pains {
     display: flex;
     flex-direction: column;

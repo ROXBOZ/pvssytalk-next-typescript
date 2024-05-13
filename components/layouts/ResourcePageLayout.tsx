@@ -164,13 +164,28 @@ const ResourcePageLayout: React.FC<{
               </span>
             </h1>
           </div>
-
+          {pageName === "Annuaire" && (
+            <div>
+              <span>
+                → Centres de conseil de{" "}
+                <Link href="https://www.sante-sexuelle.ch/centres-de-conseil">
+                  Santé Sexuelle Suisse
+                </Link>
+              </span>
+              <br />
+              <span>
+                →{" "}
+                <Link href="https://adopteunegyneco.wordpress.com/">
+                  Adopte un gynéco
+                </Link>
+              </span>
+            </div>
+          )}
           {pain && !is600Max ? (
             <PainNav pain={pain} />
           ) : !pain && !is600Max ? (
             <RessourceNav />
           ) : null}
-
           {pageName !== "Glossaire" && (
             <div className="dropdowns-container">
               {!pain && <DropDown title="Douleur" array={allPains} />}
@@ -190,7 +205,6 @@ const ResourcePageLayout: React.FC<{
               )}
             </div>
           )}
-
           {pageName === "Glossaire" && (
             <div className="letter-link-container">
               {Array.from({ length: 26 }, (_, i) =>

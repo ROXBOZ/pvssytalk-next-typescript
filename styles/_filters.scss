@@ -101,7 +101,7 @@
     .dot {
       width: 12px;
       height: 12px;
-      background-color: lighten($txt-color, 50);
+      background-color: $primary;
       border-radius: 50%;
     }
   }

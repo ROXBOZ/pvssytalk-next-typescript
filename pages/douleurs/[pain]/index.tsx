@@ -245,14 +245,14 @@ const ArticlePain = ({
                     </>
                   )}
 
-                  {/* {pain.medicalApproach && (
+                  {pain.medicalApproach && (
                     <ToContinue
                       isMed={isMed}
                       setIsMed={setIsMed}
                       filters={pain.filters}
                       otherPains={otherPains}
                     />
-                  )} */}
+                  )}
                 </div>
               ) : (
                 <div id="startSex">
@@ -368,7 +368,7 @@ const ArticlePain = ({
 
                   {pain.sexologicApproach?.pleasure && (
                     <>
-                      <h2 className="h3">Plaisir/ anti-douleur</h2>
+                      <h2 className="h3">Plaisir/anti-douleur</h2>
                       <CustomPortableText
                         value={pain.sexologicApproach?.pleasure}
                         slug={pain.slug.current}
@@ -377,14 +377,14 @@ const ArticlePain = ({
                     </>
                   )}
 
-                  {/* {pain.sexologicApproach && (
+                  {pain.sexologicApproach && (
                     <ToContinue
                       isMed={isMed}
                       setIsMed={setIsMed}
                       filters={pain.filters}
                       otherPains={otherPains}
                     />
-                  )} */}
+                  )}
                 </div>
               )}
               {is600Max && (

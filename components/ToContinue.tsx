@@ -32,14 +32,14 @@ export const ToContinue = ({
   return (
     <div className="to-continue">
       <div className="switch-approach">
-        <span>
+        {/* <span>
           C’était l'approche {isMed === true ? "médicale" : "sexologique"}.
-        </span>
+        </span> */}
         <button className="logo" onClick={handleClick}>
-          approche {isMed === true ? "sexologique" : "médicale"}
+          lire l’approche {isMed === true ? "sexologique" : "médicale"} →
         </button>
       </div>
-      <div className="similar-pains">
+      {/* <div className="similar-pains">
         {Array.isArray(similarPainsArray) && similarPainsArray.length > 0 && (
           <span>Douleurs similaires</span>
         )}
@@ -49,7 +49,7 @@ export const ToContinue = ({
               {pain?.name}
             </Link>
           ))}
-      </div>
+      </div> */}
     </div>
   );
 };

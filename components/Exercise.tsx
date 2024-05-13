@@ -61,11 +61,9 @@ export const Exercise = ({
                 exercise.steps.map((step, index) => {
                   return (
                     <div className="step" key={step._key}>
-                      <div className="">
-                        <h4>
-                          <li>{step.title}</li>
-                        </h4>
-                      </div>
+                      <h4>
+                        <li>{step.title}</li>
+                      </h4>
                       <PortableText value={step.stepDescription as any} />
                     </div>
                   );

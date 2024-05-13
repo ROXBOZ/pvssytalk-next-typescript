@@ -69,7 +69,7 @@
   ul {
     padding-left: 0;
     li {
-      list-style: none;
+      list-style: unset;
       padding: 0;
     }
   }
@@ -80,6 +80,8 @@ ol {
   .step {
     h4 {
       li {
+        margin-top: 0;
+        padding-top: 0;
         font-family: $font-logo !important;
         &::marker {
           color: lighten($txt-color, 40%);

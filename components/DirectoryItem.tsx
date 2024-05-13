@@ -42,9 +42,9 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
                 {contact.email && (
                   <Link href={`mailto:${contact.email}`}>{contact.email}</Link>
                 )}
+                {contact.email && contact.url && <br />}
                 {contact.url && (
                   <>
-                    <br />
                     <Link href={contact.url} target="_blank">
                       {cleanUrl(contact.url)}
                     </Link>
@@ -54,7 +54,7 @@ function DirectoryItem({ contact }: { contact: DirectoryDetail }) {
 
               {contact.pricing && (
                 <div>
-                  {contact.pricing.pricingMin && (
+                  {contact.pricing && contact.pricing.pricingMin && (
                     <h4>Tarifs de consultation</h4>
                   )}
 
