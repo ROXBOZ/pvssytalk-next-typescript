@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "../config/sanity/client";
 
-const LogoFigure = ({ isHovered, setIsHovered, index, logo }: any) => {
+const LogoFigure = ({ index, logo }: any) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -12,6 +14,7 @@ const LogoFigure = ({ isHovered, setIsHovered, index, logo }: any) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
   return (
     <figure
       key={index}
@@ -40,8 +43,6 @@ const LogoFigure = ({ isHovered, setIsHovered, index, logo }: any) => {
 };
 
 function LogosPartners({ logos }: any) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div className="logos-partners-section snap-section">
       <div className="logos-partners-container">
@@ -55,22 +56,12 @@ function LogosPartners({ logos }: any) {
                   target="_blank"
                   style={{ border: "0" }}
                 >
-                  <LogoFigure
-                    isHovered={isHovered}
-                    setIsHovered={setIsHovered}
-                    logo={logo}
-                  />
+                  <LogoFigure key={index} index={index} logo={logo} />
                 </Link>
               );
-            } else
-              return (
-                <LogoFigure
-                  isHovered={isHovered}
-                  setIsHovered={setIsHovered}
-                  key={index}
-                  logo={logo}
-                />
-              );
+            } else {
+              return <LogoFigure key={index} index={index} logo={logo} />;
+            }
           })}
       </div>
     </div>
