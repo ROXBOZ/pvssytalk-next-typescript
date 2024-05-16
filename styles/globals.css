@@ -564,6 +564,7 @@ header.fixed {
   position: fixed;
   z-index: 999999;
   right: 0;
+  overflow-y: scroll;
 }
 header .logo {
   display: flex;
@@ -653,10 +654,12 @@ header .dropdown .dropdown-content-wrapper {
   left: 0;
   top: 0;
   right: 0;
+  height: 100vh;
   background-color: #fefdf4;
   flex-direction: column;
   box-shadow: 0px 20px 70px #31064b;
   cursor: default;
+  overflow-y: auto;
 }
 header .dropdown .dropdown-content-wrapper.selected {
   display: flex;

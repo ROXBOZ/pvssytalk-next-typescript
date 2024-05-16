@@ -40,24 +40,26 @@ const ArticlePain = ({
   };
   const is600Max = useWindowSize();
 
-  const renderDiagram = (diagram: Diagram, index: number) => (
-    <div
-      className="schema-container"
-      onClick={() => handleImageModal(index)}
-      data-index={index}
-      key={index}
-    >
-      <Image
-        loading="lazy"
-        className="schema"
-        src={urlFor(diagram.diagram.asset._ref).url()}
-        width={500}
-        height={500}
-        alt={`schéma : ${diagram.diagram.alternativeText}`}
-      />
-      <p className="schema-caption">{diagram.diagram.caption}</p>
-    </div>
-  );
+  const renderDiagram = (diagram: Diagram, index: number) => {
+    return (
+      <div
+        className="schema-container"
+        onClick={() => handleImageModal(index)}
+        data-index={index}
+        key={index}
+      >
+        <Image
+          loading="lazy"
+          className="schema"
+          src={urlFor(diagram.diagram.asset._ref).url()}
+          width={500}
+          height={500}
+          alt={`schéma : ${diagram.diagram.alternativeText}`}
+        />
+        <p className="schema-caption">{diagram.diagram.caption}</p>
+      </div>
+    );
+  };
 
   const CustomPortableText = ({
     value,
