@@ -8,7 +8,7 @@
 
 .double-column-container {
   @include grid;
-  align-items: first baseline;
+  align-items: top;
   margin: $lg-space $reg-space;
 
   padding-top: $reg-space;

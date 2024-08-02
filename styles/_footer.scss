@@ -82,14 +82,16 @@
 }
 
 footer {
-  border-top: $border-solid $secondary;
+  // border-top: $border-solid $secondary;
   padding: 0 $reg-space;
+  background-color: $secondary;
 
   .footer-content {
     display: flex;
     justify-content: space-between;
     padding: $reg-space 0 $lg-space;
-    @media only screen and (max-width: 600px) {
+
+    @media only screen and (max-width: 1024px) {
       flex-direction: column;
       gap: $lg-space;
     }
@@ -97,15 +99,12 @@ footer {
     .lets {
       grid-column: #{$grid-first-third};
 
-      div {
+      a {
+        font-family: $font-logo;
         font-size: 200%;
-        letter-spacing: 0;
-
         span {
           font-family: $font-logo;
-        }
-        .colored {
-          font-family: $font-logo;
+          border-bottom: 1px solid;
         }
       }
       @media only screen and (min-width: 600px) {

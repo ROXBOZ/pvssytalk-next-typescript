@@ -45,6 +45,7 @@ const LogoFigure = ({ index, logo }: any) => {
 function LogosPartners({ logos }: any) {
   return (
     <div className="logos-partners-section snap-section">
+      <h2 className="h3">Nos partenaires</h2>
       <div className="logos-partners-container">
         {logos &&
           logos.map((logo: any, index: number) => {

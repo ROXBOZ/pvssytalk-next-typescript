@@ -2,7 +2,7 @@ import "../styles/globals.css";
 
 import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
-import Script from "next/script"; // Import next/script
+import Script from "next/script";
 
 export default function App({ Component, pageProps, router }: any) {
   return (

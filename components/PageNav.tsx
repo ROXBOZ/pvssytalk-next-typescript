@@ -26,7 +26,7 @@ const PageNav = ({ headerMenu }: { headerMenu: any }) => {
     <>
       {showMenu && (
         <nav className={`page-nav nav-directory`}>
-          <h3>{fooMenuTitle}</h3>
+          {/* <h3>{fooMenuTitle}</h3> */}
           {fooMenuIsValid &&
             fooMenu &&
             fooMenu.map((page: any, index: number) => (

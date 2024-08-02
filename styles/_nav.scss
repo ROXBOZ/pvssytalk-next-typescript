@@ -153,6 +153,7 @@
 .fixed-container {
   position: -webkit-sticky;
   position: sticky;
+  top: 2rem;
 
   @media only screen and (max-width: 600px) {
     position: relative;

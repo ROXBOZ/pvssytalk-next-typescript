@@ -9,12 +9,9 @@ const Footer = ({ data }: any) => {
       <div className="footer-content">
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <div className="lets">
-            <div>
-              <span>Let’s pvssy</span>{" "}
-              <Link href={"mailto:hello@pvssy-talk.org"} className="colored">
-                talk
-              </Link>
-            </div>
+            <Link href={"mailto:hello@pvssy-talk.org"}>
+              Let’s pvssy <span>talk</span>
+            </Link>
             <p>
               N’hésite pas à nous laisser un message, un retour ou nous proposer
               une collaboration.
@@ -22,15 +19,9 @@ const Footer = ({ data }: any) => {
           </div>
 
           <div className="lets">
-            <div>
-              <span>Inscris-toi à notre</span>{" "}
-              <Link
-                href="https://pvssy-talk.us13.list-manage.com/subscribe?u=c202f1a11b2efe147dfbb7c77&id=ad8e7a08e3"
-                className="colored"
-              >
-                newsletter
-              </Link>
-            </div>
+            <Link href="https://pvssy-talk.us13.list-manage.com/subscribe?u=c202f1a11b2efe147dfbb7c77&id=ad8e7a08e3">
+              Inscris-toi à notre <span>newsletter</span>
+            </Link>
             <p>
               Pour suivre notre actualité et nos projets ou évènements à venir.
             </p>
@@ -82,7 +73,6 @@ const Footer = ({ data }: any) => {
       <span
         style={{
           fontSize: "smaller",
-          paddingBottom: "1rem",
         }}
       >
         © {currentYear}, <span className="logo">pvssy talk</span>.
