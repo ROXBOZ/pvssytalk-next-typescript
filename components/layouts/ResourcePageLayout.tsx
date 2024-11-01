@@ -128,102 +128,106 @@ const ResourcePageLayout: React.FC<{
   return (
     <div className="double-column-containers-group">
       <div className="double-column-container">
-        <div className="fixed-container">
-          <div className="title">
-            <h1>
-              {pageName}{" "}
-              <span
-                style={{
-                  display: "flex",
-                  gap: "1rem",
-                }}
-              >
-                {pain && pain.name && (
-                  <Link
-                    href={`/douleurs/${pain.slug.current}`}
-                    className="colored logo"
-                  >
-                    {acronym(pain.name)}
-                  </Link>
-                )}{" "}
-                <sup className={`${pain ? "no-color" : "color"}`}>
-                  {relatedContent &&
-                    relatedContent.filter(
-                      (item: any) => item.isValidated === true
-                    ).length}
-                  {!pain && typeformLink && (
+        <div>
+          <div className="fixed-container">
+            <div className="title">
+              <h1>
+                {pageName}{" "}
+                <span
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                  }}
+                >
+                  {pain && pain.name && (
                     <Link
-                      target="_blank"
-                      style={{ border: "0" }}
-                      href={typeformLink}
+                      href={`/douleurs/${pain.slug.current}`}
+                      className="colored logo"
                     >
-                      <button className="primary-button">recommander</button>
+                      {acronym(pain.name)}
                     </Link>
-                  )}
-                </sup>
-              </span>
-            </h1>
+                  )}{" "}
+                  <sup className={`${pain ? "no-color" : "color"}`}>
+                    {relatedContent &&
+                      relatedContent.filter(
+                        (item: any) => item.isValidated === true
+                      ).length}
+                    {!pain && typeformLink && (
+                      <Link
+                        target="_blank"
+                        style={{ border: "0" }}
+                        href={typeformLink}
+                      >
+                        <button className="primary-button">recommander</button>
+                      </Link>
+                    )}
+                  </sup>
+                </span>
+              </h1>
+            </div>
+            {pageName === "Annuaire" && (
+              <div>
+                <span>
+                  → Centres de conseil de{" "}
+                  <Link href="https://www.sante-sexuelle.ch/centres-de-conseil">
+                    Santé Sexuelle Suisse
+                  </Link>
+                </span>
+                <br />
+                <span>
+                  →{" "}
+                  <Link href="https://adopteunegyneco.wordpress.com/">
+                    Adopte un gynéco
+                  </Link>
+                </span>
+              </div>
+            )}
+            {pain && !is600Max ? (
+              <PainNav pain={pain} />
+            ) : !pain && !is600Max ? (
+              <RessourceNav />
+            ) : null}
+            {pageName !== "Glossaire" && (
+              <div className="dropdowns-container">
+                {!pain && <DropDown title="Douleur" array={allPains} />}
+                {(pageName === "Annuaire" || pageName === "Agenda") && (
+                  <DropDown title="Région" array={allRegions} />
+                )}
+                {(!pain ||
+                  pageName === "Annuaire" ||
+                  pageName === "Agenda") && (
+                  <button
+                    className="reset-button"
+                    onClick={() => {
+                      setSelectedPain("");
+                      setSelectedRegion("");
+                    }}
+                  >
+                    &#x2715;
+                  </button>
+                )}
+              </div>
+            )}
+            {pageName === "Glossaire" && (
+              <div className="letter-link-container">
+                {Array.from({ length: 26 }, (_, i) =>
+                  String.fromCharCode("A".charCodeAt(0) + i)
+                ).map((letter, index) => (
+                  <Link
+                    className="letter-link"
+                    key={index}
+                    href={`${router}/#${letter.toLowerCase()}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      scrollToAnchor(letter);
+                    }}
+                  >
+                    {letter}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
-          {pageName === "Annuaire" && (
-            <div>
-              <span>
-                → Centres de conseil de{" "}
-                <Link href="https://www.sante-sexuelle.ch/centres-de-conseil">
-                  Santé Sexuelle Suisse
-                </Link>
-              </span>
-              <br />
-              <span>
-                →{" "}
-                <Link href="https://adopteunegyneco.wordpress.com/">
-                  Adopte un gynéco
-                </Link>
-              </span>
-            </div>
-          )}
-          {pain && !is600Max ? (
-            <PainNav pain={pain} />
-          ) : !pain && !is600Max ? (
-            <RessourceNav />
-          ) : null}
-          {pageName !== "Glossaire" && (
-            <div className="dropdowns-container">
-              {!pain && <DropDown title="Douleur" array={allPains} />}
-              {(pageName === "Annuaire" || pageName === "Agenda") && (
-                <DropDown title="Région" array={allRegions} />
-              )}
-              {(!pain || pageName === "Annuaire" || pageName === "Agenda") && (
-                <button
-                  className="reset-button"
-                  onClick={() => {
-                    setSelectedPain("");
-                    setSelectedRegion("");
-                  }}
-                >
-                  &#x2715;
-                </button>
-              )}
-            </div>
-          )}
-          {pageName === "Glossaire" && (
-            <div className="letter-link-container">
-              {Array.from({ length: 26 }, (_, i) =>
-                String.fromCharCode("A".charCodeAt(0) + i)
-              ).map((letter, index) => (
-                <Link
-                  className="letter-link"
-                  key={index}
-                  href={`${router}/#${letter.toLowerCase()}`}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    scrollToAnchor(letter);
-                  }}
-                >
-                  {letter}
-                </Link>
-              ))}
-            </div>
-          )}
         </div>
         <div>{children}</div>
         {!pain && is600Max ? (
